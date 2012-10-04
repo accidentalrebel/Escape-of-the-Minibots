@@ -9,6 +9,7 @@ public class PlatformInputController : MonoBehaviour {
     // This makes the character turn to face the current movement speed per default.
     public bool autoRotate = true;
     public bool disableZAxisMovement = false;
+    public bool invertHorizontal = false;
     float maxRotationSpeed = 360;
 
     CharacterMotor motor;
@@ -20,15 +21,18 @@ public class PlatformInputController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-
+        float xVector = Input.GetAxis("Horizontal");
         float yVector;
         if (disableZAxisMovement)
             yVector = 0;
         else
             yVector = Input.GetAxis("Vertical");
 
+        if (invertHorizontal)
+            xVector = -xVector;
+
 	    // Get the input vector from kayboard or analog stick
-	    Vector3 directionVector = new Vector3(Input.GetAxis("Horizontal"), yVector , 0);
+	    Vector3 directionVector = new Vector3(xVector, yVector , 0);
 	
 	    if (directionVector != Vector3.zero) {
 		    // Get the length of the directon vector and then normalize it

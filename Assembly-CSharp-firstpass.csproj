@@ -5,11 +5,11 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{93CB38F5-3031-8D6B-E563-015DEE8C54D0}</ProjectGuid>
+	<ProjectGuid>{03C4B0A3-8262-2733-7899-7B0DA3B64F8E}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
-	<AssemblyName>Assembly-CSharp</AssemblyName>
+	<AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
 	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
 	<FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -44,13 +44,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scirpts\Character\CharacterMotor.cs" />
-     <Compile Include="Assets\Scirpts\Character\PlatformInputController.cs" />
-     <Compile Include="Assets\Scirpts\Main\Main.cs" />
-     <Compile Include="Assets\Scirpts\Main\Registry.cs" />
-     <Compile Include="Assets\Scirpts\Player\Player.cs" />
-     <Compile Include="Assets\Scirpts\Tile\HazardTile.cs" />
-     <Compile Include="Assets\Scirpts\Tile\Tile.cs" />
+     <Compile Include="Assets\Standard Assets\Tile.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Main : MonoBehaviour
 {
-
     void Awake()
     {
         Registry.main = this;
@@ -13,12 +12,12 @@ public class Main : MonoBehaviour
     {        
         if (Input.GetKeyDown(KeyCode.R))
         {
-            Application.LoadLevel(0);
+            RestartGame();
         } 
     }
 
-    void RestartGame()
+    internal void RestartGame()
     {
-        Application.LoadLevel(0);
+        Application.LoadLevel(Application.loadedLevel);
     }
 }

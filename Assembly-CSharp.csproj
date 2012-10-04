@@ -46,7 +46,8 @@
   <ItemGroup>
      <Compile Include="Assets\Scirpts\Character\CharacterMotor.cs" />
      <Compile Include="Assets\Scirpts\Character\PlatformInputController.cs" />
-     <Compile Include="Assets\Scirpts\Registry.cs" />
+     <Compile Include="Assets\Scirpts\Main\Main.cs" />
+     <Compile Include="Assets\Scirpts\Main\Registry.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

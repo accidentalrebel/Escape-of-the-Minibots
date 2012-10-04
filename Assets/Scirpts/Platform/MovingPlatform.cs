@@ -5,8 +5,8 @@ public class MovingPlatform : MonoBehaviour {
 
     public enum Direction { Left, Right };
 
-    public Vector2 startingPosition;
-    public Vector2 endingPosition;
+    public Vector2 leftmostPosition;
+    public Vector2 rightmostPosition;
     public float speed = 1;
     public Direction startingDirection = Direction.Right;
     private Direction direction;
@@ -14,11 +14,12 @@ public class MovingPlatform : MonoBehaviour {
 
     void Start()
     {
-        if (startingPosition == Vector2.zero)
-            startingPosition = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-        if (endingPosition == null)
+        if (leftmostPosition == Vector2.zero)
+            leftmostPosition = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+        if (rightmostPosition == null)
             Debug.LogError("EndingPosition not specified!");
 
+        gameObject.transform.position = new Vector3(leftmostPosition.x, leftmostPosition.y, 0);
         direction = startingDirection;
     }
 
@@ -26,8 +27,8 @@ public class MovingPlatform : MonoBehaviour {
 	void Update () {
 
         // Have we reached the ending position?
-        if ((direction == Direction.Right && transform.position.x >= endingPosition.x)
-            || ( direction == Direction.Left && transform.position.x <= startingPosition.x))
+        if ((direction == Direction.Right && transform.position.x >= rightmostPosition.x)
+            || ( direction == Direction.Left && transform.position.x <= leftmostPosition.x))
         {
             ChangeDirection();
         }
@@ -35,6 +36,7 @@ public class MovingPlatform : MonoBehaviour {
         if (direction == Direction.Right)
         {
             gameObject.transform.Translate(Vector3.right * Time.deltaTime * speed);
+            //gameObject.rigidbody.AddForce(Vector3.right);
         }
         else
         {

@@ -5,7 +5,7 @@ public class Tile : MonoBehaviour
 {
     internal Renderer theRenderer;
 
-    void Start()
+    void Awake()
     {
         theRenderer = gameObject.GetComponentInChildren<Renderer>();
         if (theRenderer == null)

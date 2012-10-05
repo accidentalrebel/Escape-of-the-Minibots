@@ -5,7 +5,7 @@ public class ItemObject : MonoBehaviour {
 
     protected Tile theTile;
 
-    void Start()
+    protected void Start()
     {
         theTile = gameObject.GetComponent<Tile>();
         if (theTile == null)

@@ -2,13 +2,15 @@ using UnityEngine;
 using System.Collections;
 
 //[ExecuteInEditMode]
-public class TriggerableBlocks : MonoBehaviour {
+public class TriggerableBlocks : ItemObject {
 
     public Vector2 blockSize;
+    public bool isTriggered = false;
 
 	// Use this for initialization
 	void Start () {
         GenerateTiles();
+        SetStatusOfChildTiles();
 	}
 
     private void GenerateTiles()
@@ -29,6 +31,33 @@ public class TriggerableBlocks : MonoBehaviour {
                 newTile.transform.parent = this.transform;
             }
         }
+    }
+
+    override internal void Use()
+    {
+        if (isTriggered)
+            isTriggered = false;
+        else
+            isTriggered = true;
+
+        SetStatusOfChildTiles();  
+    }
+
+    private void SetStatusOfChildTiles()
+    {
+        foreach (Transform child in transform)
+        {
+            if (isTriggered)
+            {
+                child.gameObject.collider.enabled = false;
+                child.gameObject.GetComponent<Tile>().theRenderer.enabled = false;
+            }
+            else
+            {
+                child.gameObject.collider.enabled = true;
+                child.gameObject.GetComponent<Tile>().theRenderer.enabled = true;
+            }
+        }      
     }
 
     void OnDrawGizmos()

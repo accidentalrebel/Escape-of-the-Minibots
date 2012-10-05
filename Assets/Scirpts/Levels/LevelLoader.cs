@@ -6,8 +6,14 @@ public class LevelLoader : MonoBehaviour {
 
     private char[,] mapArray;
 
+    private Object pfTile;
+
 	// Use this for initialization
-	void Start () {
+	void Start () {   
+        pfTile = Resources.Load(@"Prefabs/pfTile");
+        if (pfTile == null)
+            Debug.LogError("Can not find pfTile prefab!");
+
         BuildLevel(GetLevelData("1"));
 	}
 
@@ -21,17 +27,18 @@ public class LevelLoader : MonoBehaviour {
         Vector2 levelDimension = GetLevelDimensions(levelData);
         mapArray = GetMapArray(levelData, levelDimension);
 
-        string debugText = "";
-
         for (int yCoord = 0; yCoord < (int)levelDimension.y; yCoord++)
         {
             for (int xCoord = 0; xCoord < (int)levelDimension.x; xCoord++)
-            {                
-                debugText += "" + mapArray[xCoord, yCoord].ToString();
+            {
+                if (mapArray[xCoord, yCoord] == '0'
+                    || mapArray[xCoord, yCoord] == '1')
+                {
+                    GameObject newTile = (GameObject)Instantiate(pfTile);
+                    newTile.transform.position
+                        = new Vector3(xCoord, levelDimension.y-yCoord, 0);
+                }
             }
-
-            Debug.Log(debugText);
-            debugText = "";
         }
     }
 

@@ -46,6 +46,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scirpts\Character\CharacterMotor.cs" />
      <Compile Include="Assets\Scirpts\Character\PlatformInputController.cs" />
+     <Compile Include="Assets\Scirpts\Character\RigidBodyFPSController.cs" />
      <Compile Include="Assets\Scirpts\Main\Main.cs" />
      <Compile Include="Assets\Scirpts\Main\Registry.cs" />
      <Compile Include="Assets\Scirpts\Platform\MovingPlatform.cs" />

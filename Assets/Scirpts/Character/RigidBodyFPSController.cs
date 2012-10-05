@@ -32,8 +32,13 @@ public class RigidBodyFPSController : MonoBehaviour
 
     void FixedUpdate()
     {
+        float xInput = Input.GetAxis("Horizontal");
+        float yInput = Input.GetAxis("Vertical");
+        if (invertGravity)
+            xInput = -xInput;
+
         // Calculate how fast we should be moving
-        Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        Vector3 targetVelocity = new Vector3(xInput, 0, yInput);
         targetVelocity = transform.TransformDirection(targetVelocity);
         targetVelocity *= speed;
 

@@ -8,6 +8,7 @@ public class RigidBodyFPSController : MonoBehaviour
 {
     public float speed = 10.0f;
     public float gravity = 10.0f;
+    public bool invertGravity = false;
     public float maxVelocityChange = 10.0f;
     public bool canJump = true;
     public float jumpHeight = 2.0f;
@@ -19,30 +20,41 @@ public class RigidBodyFPSController : MonoBehaviour
         rigidbody.freezeRotation = true;
         rigidbody.useGravity = false;
         capsule = GetComponent<CapsuleCollider>();
+
+        if (invertGravity)
+            InvertGravity();
+    }
+
+    private void InvertGravity()
+    {
+        gravity = -gravity;
     }
 
     void FixedUpdate()
     {
+        // Calculate how fast we should be moving
+        Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        targetVelocity = transform.TransformDirection(targetVelocity);
+        targetVelocity *= speed;
+
+        // Apply a force that attempts to reach our target velocity
+        Vector3 velocity = rigidbody.velocity;
+        Vector3 velocityChange = (targetVelocity - velocity);
+        velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
+        velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
+        velocityChange.y = 0;
+        rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
+
         if (grounded)
         {
-            // Calculate how fast we should be moving
-            Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            targetVelocity = transform.TransformDirection(targetVelocity);
-            targetVelocity *= speed;
-
-            // Apply a force that attempts to reach our target velocity
-            Vector3 velocity = rigidbody.velocity;
-            Vector3 velocityChange = (targetVelocity - velocity);
-            velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
-            velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
-            velocityChange.y = 0;
-            rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
-
             // Jump
             if (canJump && Input.GetButton("Jump"))
             {
                 Debug.Log(CalculateJumpVerticalSpeed());
-                rigidbody.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
+                if ( invertGravity )
+                    rigidbody.velocity = new Vector3(velocity.x, -CalculateJumpVerticalSpeed(), velocity.z);
+                else
+                    rigidbody.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
             }
         }
 
@@ -61,13 +73,22 @@ public class RigidBodyFPSController : MonoBehaviour
     {
         // From the jump height and gravity we deduce the upwards speed 
         // for the character to reach at the apex.
-        return Mathf.Sqrt(2 * jumpHeight * gravity);
+        if ( invertGravity )
+            return Mathf.Sqrt(2 * jumpHeight * -gravity);
+        else
+            return Mathf.Sqrt(2 * jumpHeight * gravity);
     }
 
     void CheckIfGrounded()
     {
         RaycastHit hit;
-        if (Physics.Raycast(gameObject.transform.position, Vector3.down, out hit, 0.6f))
+        Vector3 checkDirection;
+        if ( invertGravity )
+            checkDirection = Vector3.up;
+        else
+            checkDirection = Vector3.down;
+
+        if (Physics.Raycast(gameObject.transform.position, checkDirection , out hit, 0.6f))
         {
             if (hit.collider.tag == "Tile"
                 || hit.collider.tag == "Player")

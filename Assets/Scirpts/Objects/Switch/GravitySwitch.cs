@@ -1,14 +1,30 @@
 using UnityEngine;
 using System.Collections;
 
-public class GravitySwitch : MonoBehaviour {
+public class GravitySwitch : Switch
+{
+    //void OnTriggerEnter(Collider col)
+    //{
+    //    Debug.Log("Gravity switch triggered ");
+    //    if (col.gameObject.tag == "Player")
+    //    {
+    //        col.GetComponent<RigidBodyFPSController>().InvertGravity();
+    //    }
+    //}
 
-    void OnTriggerEnter(Collider col)
+    void Start()
     {
-        Debug.Log("Gravity switch triggered ");
-        if (col.gameObject.tag == "Player")
+
+    }
+
+    void Update()
+    {
+        if (isTriggered)
         {
-            col.GetComponent<RigidBodyFPSController>().InvertGravity();
+            if (Input.GetKeyUp(KeyCode.X))
+            {
+                triggeredCollider.gameObject.GetComponent<RigidBodyFPSController>().InvertGravity();
+            }
         }
     }
 }

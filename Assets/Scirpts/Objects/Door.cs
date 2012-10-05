@@ -3,19 +3,19 @@ using System.Collections;
 
 public class Door : ItemObject {
 
-    bool isOpened = false;
+    internal bool isOpen = false;
 
     override internal void Use()
     {
-        if (isOpened)
+        if (isOpen)
         {
             theTile.theRenderer.material.color = Color.green;
-            isOpened = false;
+            isOpen = false;
         }
         else
         {
             theTile.theRenderer.material.color = Color.cyan;
-            isOpened = true;
+            isOpen = true;
         }        
     }
 }

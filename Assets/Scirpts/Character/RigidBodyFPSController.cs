@@ -7,11 +7,13 @@ using System.Collections;
 public class RigidBodyFPSController : MonoBehaviour
 {
     public float speed = 10.0f;
-    public float gravity = 10.0f;
-    public bool invertGravity = false;
-    public float maxVelocityChange = 10.0f;
-    public bool canJump = true;
+    public float gravity = 10.0f;    
+    public float maxVelocityChange = 10.0f;    
     public float jumpHeight = 2.0f;
+    public bool canJump = true;
+    public bool invertGravity = false;
+    public bool invertHorizontal = false;
+
     private bool grounded = false;
     private CapsuleCollider capsule;
 
@@ -25,6 +27,14 @@ public class RigidBodyFPSController : MonoBehaviour
             InvertGravity();
     }
 
+    private void InvertHorizontal()
+    {
+        if (invertHorizontal)
+            invertHorizontal = false;
+        else
+            invertHorizontal = true;
+    }
+
     private void InvertGravity()
     {
         gravity = -gravity;
@@ -35,6 +45,8 @@ public class RigidBodyFPSController : MonoBehaviour
         float xInput = Input.GetAxis("Horizontal");
         float yInput = Input.GetAxis("Vertical");
         if (invertGravity)
+            xInput = -xInput;
+        if (invertHorizontal)
             xInput = -xInput;
 
         // Calculate how fast we should be moving

@@ -54,8 +54,7 @@ public class RigidBodyFPSController : MonoBehaviour
 
     void OnCollisionStay(Collision col)
     {
-        TrackGrounded(col);
-        //grounded = true;
+        CheckIfGrounded();
     }
 
     float CalculateJumpVerticalSpeed()
@@ -65,21 +64,16 @@ public class RigidBodyFPSController : MonoBehaviour
         return Mathf.Sqrt(2 * jumpHeight * gravity);
     }
 
-    void TrackGrounded (Collision col)
+    void CheckIfGrounded()
     {
-        float minimumHeight = capsule.bounds.min.y + capsule.radius;
-        float maximumHeight = capsule.bounds.max.y + capsule.radius;
-        foreach (ContactPoint c in col.contacts)
+        RaycastHit hit;
+        if (Physics.Raycast(gameObject.transform.position, Vector3.down, out hit, 0.6f))
         {
-            if (c.point.y < minimumHeight)
+            if (hit.collider.tag == "Tile")
             {
-                //if (col.rigidbody)
-                //    groundVelocity = col.rigidbody.velocity;
-                //else
-                //    groundVelocity = Vector3.zero;
-
+                Debug.DrawLine(gameObject.transform.position, hit.point);
                 grounded = true;
             }
-        }   
+        }
     }
 }

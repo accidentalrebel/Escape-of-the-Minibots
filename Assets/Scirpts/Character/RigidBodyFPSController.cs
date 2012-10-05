@@ -73,7 +73,6 @@ public class RigidBodyFPSController : MonoBehaviour
             // Jump
             if (canJump && Input.GetButton("Jump"))
             {
-                Debug.Log(CalculateJumpVerticalSpeed());
                 if ( invertGravity )
                     rigidbody.velocity = new Vector3(velocity.x, -CalculateJumpVerticalSpeed(), velocity.z);
                 else
@@ -89,7 +88,6 @@ public class RigidBodyFPSController : MonoBehaviour
 
     private bool CheckIfCanMove(Vector3 velocityChange)
     {
-        Debug.Log("x Velocity change is " + velocityChange.x);
         if ( velocityChange.x < 0 )
         {
             if (CheckIfThereIsWall(Direction.Left))

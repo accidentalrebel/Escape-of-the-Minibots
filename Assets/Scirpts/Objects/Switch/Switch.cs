@@ -4,7 +4,7 @@ using System.Collections;
 public class Switch : MonoBehaviour {
 
     public ItemObject objectToActivate;
-    private bool isTriggered = false;
+    protected bool isTriggered = false;
 
 	// Use this for initialization
 	void Start () {
@@ -24,7 +24,7 @@ public class Switch : MonoBehaviour {
 	}
 
     void OnTriggerEnter(Collider col)
-    {       
+    {
         isTriggered = true;
     }
 

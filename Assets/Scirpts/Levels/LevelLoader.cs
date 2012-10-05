@@ -4,6 +4,8 @@ using System.Collections;
 [RequireComponent(typeof(FileReader))]
 public class LevelLoader : MonoBehaviour {
 
+    public enum TileType { None = '0', Wall = '1' };
+
     private char[,] mapArray;
 
     private Object pfTile;
@@ -31,8 +33,7 @@ public class LevelLoader : MonoBehaviour {
         {
             for (int xCoord = 0; xCoord < (int)levelDimension.x; xCoord++)
             {
-                if (mapArray[xCoord, yCoord] == '0'
-                    || mapArray[xCoord, yCoord] == '1')
+                if ( mapArray[xCoord, yCoord] == (char)TileType.Wall)
                 {
                     GameObject newTile = (GameObject)Instantiate(pfTile);
                     newTile.transform.position

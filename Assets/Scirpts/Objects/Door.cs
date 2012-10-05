@@ -3,8 +3,19 @@ using System.Collections;
 
 public class Door : ItemObject {
 
+    bool isOpened = false;
+
     override internal void Use()
     {
-        Debug.Log("Door has been opened");
+        if (isOpened)
+        {
+            theTile.theRenderer.material.color = Color.green;
+            isOpened = false;
+        }
+        else
+        {
+            theTile.theRenderer.material.color = Color.cyan;
+            isOpened = true;
+        }        
     }
 }

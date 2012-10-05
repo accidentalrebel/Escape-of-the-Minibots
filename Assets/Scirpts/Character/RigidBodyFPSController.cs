@@ -69,7 +69,8 @@ public class RigidBodyFPSController : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(gameObject.transform.position, Vector3.down, out hit, 0.6f))
         {
-            if (hit.collider.tag == "Tile")
+            if (hit.collider.tag == "Tile"
+                || hit.collider.tag == "Player")
             {
                 Debug.DrawLine(gameObject.transform.position, hit.point);
                 grounded = true;

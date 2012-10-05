@@ -6,8 +6,6 @@ using System.Collections;
 
 public class RigidBodyFPSController : MonoBehaviour
 {
-    enum Direction { Left, Right };
-
     public float speed = 10.0f;
     public float gravity = 10.0f;    
     public float maxVelocityChange = 10.0f;    
@@ -18,12 +16,18 @@ public class RigidBodyFPSController : MonoBehaviour
 
     private bool grounded = false;
     private CapsuleCollider capsule;
+    private Player player;
 
     void Awake()
     {
         rigidbody.freezeRotation = true;
         rigidbody.useGravity = false;
         capsule = GetComponent<CapsuleCollider>();
+        if (capsule == null)
+            Debug.LogError("capsule was not found!");
+        player = GetComponent<Player>();
+        if (player == null)
+            Debug.LogError("player not found!");
 
         if (invertGravity)
             InvertGravity();
@@ -90,12 +94,12 @@ public class RigidBodyFPSController : MonoBehaviour
     {
         if ( velocityChange.x < 0 )
         {
-            if (CheckIfThereIsWall(Direction.Left))
+            if (player.GetObjectAtSide(Player.Direction.Left) != null)
                 return false;
         }
         else if (velocityChange.x > 0)
         {
-            if (CheckIfThereIsWall(Direction.Right))
+            if (player.GetObjectAtSide(Player.Direction.Right) != null)
                 return false;
         }
 
@@ -137,24 +141,5 @@ public class RigidBodyFPSController : MonoBehaviour
         }
     }
 
-    private bool CheckIfThereIsWall(Direction direction)
-    {
-        RaycastHit hit;
-        Vector3 checkDirection;
-        if (direction == Direction.Left)
-            checkDirection = Vector3.left;
-        else
-            checkDirection = Vector3.right;
-
-        if (Physics.Raycast(gameObject.transform.position, checkDirection, out hit, 0.6f))
-        {
-            if (hit.collider.tag == "Tile" )
-            {
-                Debug.DrawLine(gameObject.transform.position, hit.point);
-                return true;
-            }
-        }
-
-        return false;
-    }
+    
 }

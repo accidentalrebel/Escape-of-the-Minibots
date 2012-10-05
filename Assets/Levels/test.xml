@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <tiles>
-  <rotation>
-    <x>1</x>
-  </rotation>
+  <tile type="tile" x="0" />
+  <tile type="player" x="1" />
 </tiles>

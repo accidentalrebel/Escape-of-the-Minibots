@@ -30,13 +30,15 @@ public class XMLWriter : MonoBehaviour {
         xmlDoc.Load(filepath);
         XmlElement elemRoot = xmlDoc.DocumentElement;
         elemRoot.RemoveAll();                               // Remove all inside the transforms node
-        XmlElement elemNew = xmlDoc.CreateElement("rotation");  // Create the rotation node
-        //XmlAttribute 
+        
+        XmlElement elemNew = xmlDoc.CreateElement("tile");  // Create the rotation node
+        elemNew.SetAttribute("type", "tile");
+        elemNew.SetAttribute("x", "0");
+        elemRoot.AppendChild(elemNew);                      // Make the transform node the parent
 
-        XmlElement rotationX = xmlDoc.CreateElement("x");   // Create the rotation x node
-        rotationX.InnerText = "1";
-
-        elemNew.AppendChild(rotationX);                     // Make the rotation node the parent
+        elemNew = xmlDoc.CreateElement("tile");  // Create the rotation node
+        elemNew.SetAttribute("type", "player");
+        elemNew.SetAttribute("x", "1");
         elemRoot.AppendChild(elemNew);                      // Make the transform node the parent
 
         xmlDoc.Save(filepath);

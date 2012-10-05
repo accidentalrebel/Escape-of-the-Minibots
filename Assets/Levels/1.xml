@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <tiles>
-   <tile name="wall" x="0" y="0" z="0">
-   </tile>
+  <rotation>
+    <x>1</x>
+  </rotation>
 </tiles>

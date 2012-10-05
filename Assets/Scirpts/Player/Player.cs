@@ -5,6 +5,20 @@ public class Player : MonoBehaviour {
 
     public enum Direction { Left, Right };
 
+    void Update()
+    {
+        // Handles the picking up of objects
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            GameObject objectAtSide = GetObjectAtSide(Direction.Right);
+            if ( objectAtSide != null
+                && objectAtSide.tag == "Movable")
+            {
+                Debug.Log("There's a box");
+            }
+        }
+    }
+
     internal void Die()
     {
         Debug.LogWarning("I DIED");

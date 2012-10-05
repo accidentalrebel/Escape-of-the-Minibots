@@ -5,6 +5,7 @@ public class Switch : MonoBehaviour {
 
     public ItemObject objectToActivate;
     protected bool isTriggered = false;
+    protected Collider triggeredCollider;
 
 	// Use this for initialization
 	void Start () {
@@ -25,11 +26,13 @@ public class Switch : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
+        triggeredCollider = col;
         isTriggered = true;
     }
 
     void OnTriggerExit()
     {
+        triggeredCollider = null;
         isTriggered = false;
     }
 }

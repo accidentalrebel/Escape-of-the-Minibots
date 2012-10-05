@@ -33,7 +33,7 @@ public class RigidBodyFPSController : MonoBehaviour
             InvertGravity();
     }
 
-    private void InvertHorizontal()
+    internal void InvertHorizontal()
     {
         if (invertHorizontal)
             invertHorizontal = false;

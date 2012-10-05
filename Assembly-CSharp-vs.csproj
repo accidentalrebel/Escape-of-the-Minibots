@@ -53,6 +53,7 @@
      <Compile Include="Assets\Scirpts\Objects\Door.cs" />
      <Compile Include="Assets\Scirpts\Objects\ItemObject.cs" />
      <Compile Include="Assets\Scirpts\Objects\Switch\GravitySwitch.cs" />
+     <Compile Include="Assets\Scirpts\Objects\Switch\HorizontalSwitch.cs" />
      <Compile Include="Assets\Scirpts\Objects\Switch\StepSwitch.cs" />
      <Compile Include="Assets\Scirpts\Objects\Switch\Switch.cs" />
      <Compile Include="Assets\Scirpts\Objects\TriggerableBlocks.cs" />

@@ -4,6 +4,7 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
     public enum Direction { Left, Right };
+    private GameObject objectBeingCarried;
 
     void Update()
     {
@@ -15,8 +16,22 @@ public class Player : MonoBehaviour {
                 && objectAtSide.tag == "Movable")
             {
                 Debug.Log("There's a box");
+                PickUp(objectAtSide);
             }
         }
+
+        // Handles the carrying of the object
+        if (objectBeingCarried != null)
+        {
+            objectBeingCarried.transform.position = transform.position + Vector3.up;
+        }
+    }
+
+    private void PickUp(GameObject objectAtSide)
+    {
+        objectBeingCarried = objectAtSide;
+        Debug.Log(objectBeingCarried);
+        objectBeingCarried.GetComponent<Box>().PickedUp();
     }
 
     internal void Die()

@@ -3,13 +3,17 @@ using System.Collections;
 
 public class Box : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    private Rigidbody theRigidBody;
+
+    void Start()
+    {
+        theRigidBody = GetComponent<Rigidbody>();
+        if (theRigidBody == null)
+            Debug.LogError("theRigidBody is not found!");
+    }
+
+    internal void PickedUp()
+    {
+        theRigidBody.useGravity = false;
+    }
 }

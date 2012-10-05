@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Box : MonoBehaviour {
+public class Box : ItemObject {
 
     private Rigidbody theRigidBody;
 
@@ -12,8 +12,13 @@ public class Box : MonoBehaviour {
             Debug.LogError("theRigidBody is not found!");
     }
 
-    internal void PickedUp()
+    internal void PickUp()
     {
         theRigidBody.useGravity = false;
+    }
+
+    internal void PutDown()
+    {
+        theRigidBody.useGravity = true;
     }
 }

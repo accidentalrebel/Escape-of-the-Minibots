@@ -8,8 +8,15 @@ public class Player : MonoBehaviour {
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.C)
+            && objectBeingCarried != null)
+        {
+            PutDown(objectBeingCarried);
+        }
+
         // Handles the picking up of objects
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C)
+            && objectBeingCarried ==  null )
         {
             GameObject objectAtSide = GetObjectAtSide(Direction.Right);
             if ( objectAtSide != null
@@ -27,11 +34,17 @@ public class Player : MonoBehaviour {
         }
     }
 
+    private void PutDown(GameObject objectToPutDown)
+    {
+        objectBeingCarried.transform.position = transform.position + Vector3.right;
+        objectToPutDown.GetComponent<Box>().PutDown();
+        objectBeingCarried = null;
+    }
+
     private void PickUp(GameObject objectAtSide)
     {
         objectBeingCarried = objectAtSide;
-        Debug.Log(objectBeingCarried);
-        objectBeingCarried.GetComponent<Box>().PickedUp();
+        objectBeingCarried.GetComponent<Box>().PickUp();
     }
 
     internal void Die()

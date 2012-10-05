@@ -67,6 +67,7 @@
      <Compile Include="Assets\Scirpts\Tile\Tile.cs" />
      <None Include="Assets\Levels\1.txt" />
      <None Include="Assets\Levels\1.xml" />
+     <None Include="Assets\Levels\test.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -29,5 +29,18 @@ public class TriggerableBlocks : MonoBehaviour {
                 newTile.transform.parent = this.transform;
             }
         }
-    }	
+    }
+
+    void OnDrawGizmos()
+    {
+        for (int yCoord = 0; yCoord < blockSize.y; yCoord++)
+        {
+            for (int xCoord = 0; xCoord < blockSize.x; xCoord++)
+            {
+                Gizmos.color = Color.blue;
+                Gizmos.DrawWireCube(new Vector3(transform.position.x + xCoord
+                        , transform.position.y + yCoord, 5), new Vector3(1, 1, 1));
+            }
+        }
+    }
 }

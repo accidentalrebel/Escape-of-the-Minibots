@@ -68,7 +68,7 @@ public class TriggerableBlocks : ItemObject {
             {
                 Gizmos.color = Color.blue;
                 Gizmos.DrawWireCube(new Vector3(transform.position.x + xCoord
-                        , transform.position.y + yCoord, 5), new Vector3(1, 1, 1));
+                        , transform.position.y + yCoord, 1), new Vector3(1, 1, 1));
             }
         }
     }

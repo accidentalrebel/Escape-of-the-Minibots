@@ -6,6 +6,8 @@ using System.Collections;
 
 public class RigidBodyFPSController : MonoBehaviour
 {
+    enum Direction { Left, Right };
+
     public float speed = 10.0f;
     public float gravity = 10.0f;    
     public float maxVelocityChange = 10.0f;    
@@ -60,7 +62,11 @@ public class RigidBodyFPSController : MonoBehaviour
         velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
         velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
         velocityChange.y = 0;
-        rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
+
+        if (CheckIfCanMove(velocityChange))
+        {
+            rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
+        }
 
         if (grounded)
         {
@@ -79,6 +85,23 @@ public class RigidBodyFPSController : MonoBehaviour
         rigidbody.AddForce(new Vector3(0, -gravity * rigidbody.mass, 0));
 
         grounded = false;
+    }
+
+    private bool CheckIfCanMove(Vector3 velocityChange)
+    {
+        Debug.Log("x Velocity change is " + velocityChange.x);
+        if ( velocityChange.x < 0 )
+        {
+            if (CheckIfThereIsWall(Direction.Left))
+                return false;
+        }
+        else if (velocityChange.x > 0)
+        {
+            if (CheckIfThereIsWall(Direction.Right))
+                return false;
+        }
+
+        return true;
     }
 
     void OnCollisionStay(Collision col)
@@ -114,5 +137,26 @@ public class RigidBodyFPSController : MonoBehaviour
                 grounded = true;
             }
         }
+    }
+
+    private bool CheckIfThereIsWall(Direction direction)
+    {
+        RaycastHit hit;
+        Vector3 checkDirection;
+        if (direction == Direction.Left)
+            checkDirection = Vector3.left;
+        else
+            checkDirection = Vector3.right;
+
+        if (Physics.Raycast(gameObject.transform.position, checkDirection, out hit, 0.6f))
+        {
+            if (hit.collider.tag == "Tile" )
+            {
+                Debug.DrawLine(gameObject.transform.position, hit.point);
+                return true;
+            }
+        }
+
+        return false;
     }
 }

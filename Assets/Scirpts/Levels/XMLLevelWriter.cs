@@ -3,11 +3,11 @@ using System.Collections;
 using System.Xml;
 using System.IO;
 
-public class XMLWriter : MonoBehaviour {
+public class XMLLevelWriter : XMLAccessor {
 
-    void Start()
+    void SaveLevel(string filename)
     {
-        string filepath = Application.dataPath + @"/Levels/test.xml";
+        string filepath = Application.dataPath + @"/Levels/" + filename + ".xml";
         Debug.Log(filepath);
 
         XmlDocument xmlDoc = new XmlDocument();
@@ -30,7 +30,7 @@ public class XMLWriter : MonoBehaviour {
         xmlDoc.Load(filepath);
         XmlElement elemRoot = xmlDoc.DocumentElement;
         elemRoot.RemoveAll();                               // Remove all inside the transforms node
-        
+
         XmlElement elemNew = xmlDoc.CreateElement("tile");  // Create the rotation node
         elemNew.SetAttribute("type", "tile");
         elemNew.SetAttribute("x", "0");

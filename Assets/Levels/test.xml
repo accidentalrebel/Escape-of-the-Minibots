@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <tiles>
-  <minibot x="16" y="0" invertGravity="0" invertHorizontal="0" />
-  <minibot x="5" y="5" invertGravity="0" invertHorizontal="0" />
-  <minibot x="2" y="0" invertGravity="0" invertHorizontal="0" />
+  <minibot x="16" y="0.9299999" invertGravity="0" invertHorizontal="0" />
+  <minibot x="5" y="5.93" invertGravity="1" invertHorizontal="0" />
+  <minibot x="2" y="0.9299999" invertGravity="0" invertHorizontal="0" />
   <tile x="19" y="0" />
   <tile x="0" y="7" />
   <tile x="7" y="5" />

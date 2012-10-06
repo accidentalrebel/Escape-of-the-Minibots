@@ -15,4 +15,22 @@ public class XMLAccessor : MonoBehaviour {
 
         return true;
     }
+
+    protected string BoolToString(bool theParameter)
+    {
+        if (theParameter)
+            return "1";
+        else
+            return "0";
+    }
+
+    protected bool StringToBool(string theValue)
+    {
+        if (theValue == "0")
+            return false;
+        else if (theValue == "1")
+            return true;
+
+        return false;
+    }
 }

@@ -30,7 +30,7 @@ public class RigidBodyFPSController : MonoBehaviour
             Debug.LogError("player not found!");
 
         if (invertGravity)
-            InvertGravity();
+            gravity = -gravity;
     }
 
     internal void InvertHorizontal()
@@ -43,7 +43,11 @@ public class RigidBodyFPSController : MonoBehaviour
 
     internal void InvertGravity()
     {
-        invertGravity = true;
+        if (invertGravity)
+            invertGravity = false;
+        else
+            invertGravity = true;
+
         gravity = -gravity;
     }
 

@@ -58,16 +58,10 @@ public class XMLLevelWriter : XMLAccessor {
             RigidBodyFPSController controllerScipt
                 = minibot.GetComponent<RigidBodyFPSController>();
             string value = "";
-            if ( controllerScipt.invertGravity )
-                value = "1";
-            else
-                value = "0";
+            value = BoolToString(controllerScipt.invertGravity);
             elemNew.SetAttribute("invertGravity", value);            
 
-            if (controllerScipt.invertHorizontal)
-                value = "1";
-            else
-                value = "0";
+            value = BoolToString(controllerScipt.invertHorizontal);
             elemNew.SetAttribute("invertHorizontal", value);
             elemRoot.AppendChild(elemNew);                      // Make the transform node the parent
         }

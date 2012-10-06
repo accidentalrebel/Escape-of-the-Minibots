@@ -7,16 +7,20 @@ public class XMLLevelReader : XMLAccessor {
     public string levelToLoad = "1";
     
     private Object pfTile;
+    private Object pfMinibot;
 
 	// Use this for initialization
 	void Start () {
         pfTile = Resources.Load(@"Prefabs/pfTile");
         if (pfTile == null)
             Debug.LogError("Can not find pfTile prefab!");
+        pfMinibot = Resources.Load(@"Prefabs/pfMinibot");
+        if (pfMinibot == null)
+            Debug.LogError("Can not find pfMinibot prefab!");
 
         string filepath = Application.dataPath + @"/Levels/" + levelToLoad + ".xml";
-        if (CheckIfFileExists(filepath))
-            LoadLevel(filepath);
+        //if (CheckIfFileExists(filepath))
+        //    LoadLevel(filepath);
 	}   
 
     void LoadLevel(string filepath)
@@ -28,10 +32,14 @@ public class XMLLevelReader : XMLAccessor {
         {
             if (reader.IsStartElement("minibot"))
             {
-                GameObject newTile = (GameObject)Instantiate(pfTile);
-                newTile.transform.position
+                GameObject newMinibot = (GameObject)Instantiate(pfMinibot);
+                newMinibot.transform.position
                     = new Vector3(float.Parse(reader.GetAttribute("x"))
-                        , float.Parse(reader.GetAttribute("y"), 0));
+                        , Mathf.Ceil(float.Parse(reader.GetAttribute("y"))), 0);
+                
+                RigidBodyFPSController controller = newMinibot.GetComponentInChildren<RigidBodyFPSController>();
+                controller.invertGravity = StringToBool(reader.GetAttribute("invertGravity"));
+                controller.invertHorizontal = StringToBool(reader.GetAttribute("invertHorizontal"));
             }
             else if (reader.IsStartElement("tile"))
             {

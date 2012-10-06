@@ -4,7 +4,7 @@ using System.IO;
 
 public class XMLAccessor : MonoBehaviour {
 
-    protected void CheckIfFileExists(string levelToLoad)
+    protected bool CheckIfFileExists(string levelToLoad)
     {
         string filepath = Application.dataPath + @"/Levels/" + levelToLoad + ".xml";
 
@@ -12,6 +12,9 @@ public class XMLAccessor : MonoBehaviour {
         if (!File.Exists(filepath))
         {
             Debug.LogError("File " + levelToLoad + ".xml does not exist!");
+            return false;
         }
+
+        return true;
     }
 }

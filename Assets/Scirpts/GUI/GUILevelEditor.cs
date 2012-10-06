@@ -10,6 +10,24 @@ public class GUILevelEditor : MonoBehaviour {
         get{ return mapEditMode; }
     }
 
+    XMLLevelReader levelReader;
+    XMLLevelWriter levelWriter;
+
+    void Start()
+    {
+        GameObject map = GameObject.Find("Map");
+        if (map == null)
+            Debug.LogError("map is not found!");
+
+        levelReader = map.GetComponent<XMLLevelReader>();
+        if (levelReader == null)
+            Debug.LogError("levelReader is not found!");
+
+        levelWriter = map.GetComponent<XMLLevelWriter>();
+        if (levelWriter == null)
+            Debug.LogError("levelWriter is not found!");
+    }
+
     void OnGUI()
     {
         MapEditMode = GUI.Toggle(new Rect(10, 10, 200, 20), MapEditMode, "Map Edit Mode");

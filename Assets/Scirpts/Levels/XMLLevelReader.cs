@@ -8,8 +8,8 @@ public class XMLLevelReader : XMLAccessor {
 
 	// Use this for initialization
 	void Start () {
-        if (CheckIfFileExists(levelToLoad))
-            LoadLevel(levelToLoad);
+        //if (CheckIfFileExists(levelToLoad))
+        //    LoadLevel(levelToLoad);
 	}   
 
     void LoadLevel(string filename)

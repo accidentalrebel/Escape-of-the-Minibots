@@ -6,12 +6,16 @@ using System.IO;
 public class XMLLevelWriter : XMLAccessor {
 
     GameObject tilesContainer;
+    GameObject minibotsContainer;
 
     void Start()
     {
         tilesContainer = gameObject.transform.FindChild("Tiles").gameObject;
         if (tilesContainer == null)
             Debug.LogError("tilesContainer not found!");
+        minibotsContainer = GameObject.Find("Minibots");
+        if (minibotsContainer == null)
+            Debug.LogError("minibotsContainer not found!");
     }
 
     internal void SaveLevel(string filename)
@@ -43,6 +47,30 @@ public class XMLLevelWriter : XMLAccessor {
         XmlElement elemRoot = xmlDoc.DocumentElement;
         elemRoot.RemoveAll();                               // Remove all
 
+        // We loop through all the minibots      
+        foreach (Transform minibot in minibotsContainer.transform)
+        {
+            elemNew = xmlDoc.CreateElement("minibot");  // Create the rotation node
+            elemNew.SetAttribute("x", minibot.position.x.ToString());
+            elemNew.SetAttribute("y", minibot.position.y.ToString());
+
+            RigidBodyFPSController controllerScipt
+                = minibot.GetComponent<RigidBodyFPSController>();
+            string value = "";
+            if ( controllerScipt.invertGravity )
+                value = "1";
+            else
+                value = "0";
+            elemNew.SetAttribute("invertGravity", value);            
+
+            if (controllerScipt.invertHorizontal)
+                value = "1";
+            else
+                value = "0";
+            elemNew.SetAttribute("invertHorizontal", value);
+            elemRoot.AppendChild(elemNew);                      // Make the transform node the parent
+        }
+
         // We then loop through all the objects
         // First we loop through the tiles first        
         foreach (Transform tile in tilesContainer.transform)
@@ -50,7 +78,6 @@ public class XMLLevelWriter : XMLAccessor {
             elemNew = xmlDoc.CreateElement("tile");  // Create the rotation node
             elemNew.SetAttribute("x", tile.position.x.ToString());
             elemNew.SetAttribute("y", tile.position.y.ToString());
-            elemNew.SetAttribute("z", tile.position.z.ToString());
             elemRoot.AppendChild(elemNew);                      // Make the transform node the parent
         }
           

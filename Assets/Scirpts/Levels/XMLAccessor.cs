@@ -4,14 +4,14 @@ using System.IO;
 
 public class XMLAccessor : MonoBehaviour {
 
-    protected bool CheckIfFileExists(string levelToLoad)
+    protected bool CheckIfFileExists(string levelToCheck)
     {
-        string filepath = Application.dataPath + @"/Levels/" + levelToLoad + ".xml";
+        string filepath = Application.dataPath + @"/Levels/" + levelToCheck + ".xml";
 
         // If file does not exist. Create the xml file.
         if (!File.Exists(filepath))
         {
-            Debug.LogError("File " + levelToLoad + ".xml does not exist!");
+            Debug.LogWarning("File " + levelToCheck + ".xml does not exist!");
             return false;
         }
 

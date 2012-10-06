@@ -5,17 +5,24 @@ using System.IO;
 
 public class XMLLevelWriter : XMLAccessor {
 
-    void SaveLevel(string filename)
+    GameObject tilesContainer;
+
+    void Start()
+    {
+        tilesContainer = gameObject.transform.FindChild("Tiles").gameObject;
+        if (tilesContainer == null)
+            Debug.LogError("tilesContainer not found!");
+    }
+
+    internal void SaveLevel(string filename)
     {
         string filepath = Application.dataPath + @"/Levels/" + filename + ".xml";
-        Debug.Log(filepath);
 
-        XmlDocument xmlDoc = new XmlDocument();
-
-        // If file does not exist. Create the xml file.
-        if (!File.Exists(filepath))
+        // We first check if file exists
+        if (!CheckIfFileExists(filepath))
         {
-            Debug.LogWarning("File does not exist. Creating file");
+            // if not, we create the file
+            Debug.Log("Creating a new XML file.");
 
             FileStream fs = File.Create(filepath);
             StreamWriter writer = new StreamWriter(fs);
@@ -26,21 +33,27 @@ public class XMLLevelWriter : XMLAccessor {
             fs.Close();
         }
 
-        Debug.Log("loaded");
+        // Then we proceed with the saving
+        XmlDocument xmlDoc = new XmlDocument();
+        XmlElement elemNew;
+
         xmlDoc.Load(filepath);
+        Debug.Log("XML loaded.");
+
         XmlElement elemRoot = xmlDoc.DocumentElement;
-        elemRoot.RemoveAll();                               // Remove all inside the transforms node
+        elemRoot.RemoveAll();                               // Remove all
 
-        XmlElement elemNew = xmlDoc.CreateElement("tile");  // Create the rotation node
-        elemNew.SetAttribute("type", "tile");
-        elemNew.SetAttribute("x", "0");
-        elemRoot.AppendChild(elemNew);                      // Make the transform node the parent
-
-        elemNew = xmlDoc.CreateElement("tile");  // Create the rotation node
-        elemNew.SetAttribute("type", "player");
-        elemNew.SetAttribute("x", "1");
-        elemRoot.AppendChild(elemNew);                      // Make the transform node the parent
-
+        // We then loop through all the objects
+        // First we loop through the tiles first        
+        foreach (Transform tile in tilesContainer.transform)
+        {
+            elemNew = xmlDoc.CreateElement("tile");  // Create the rotation node
+            elemNew.SetAttribute("x", tile.position.x.ToString());
+            elemNew.SetAttribute("y", tile.position.y.ToString());
+            elemNew.SetAttribute("z", tile.position.z.ToString());
+            elemRoot.AppendChild(elemNew);                      // Make the transform node the parent
+        }
+          
         xmlDoc.Save(filepath);
     }
 }

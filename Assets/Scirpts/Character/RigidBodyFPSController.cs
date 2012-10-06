@@ -18,12 +18,12 @@ public class RigidBodyFPSController : MonoBehaviour
     {
         set { 
             invertGravity = value; 
-            HandleGravityInversion(); 
+            UpdateGravity(); 
         }
         get { return invertGravity; }
     }
 
-    private void HandleGravityInversion()
+    private void UpdateGravity()
     {
         if (invertGravity == true && gravity > 0)
             gravity = -gravity;
@@ -47,7 +47,7 @@ public class RigidBodyFPSController : MonoBehaviour
             Debug.LogError("player not found!");
 
         if (invertGravity)
-            HandleGravityInversion();
+            UpdateGravity();
     }
 
     internal void InvertHorizontal()
@@ -65,7 +65,7 @@ public class RigidBodyFPSController : MonoBehaviour
         else
             invertGravity = true;
 
-        gravity = -gravity;
+        UpdateGravity();
     }
 
     void FixedUpdate()

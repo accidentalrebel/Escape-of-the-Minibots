@@ -18,9 +18,12 @@ public class XMLLevelReader : XMLAccessor {
         if (pfMinibot == null)
             Debug.LogError("Can not find pfMinibot prefab!");
 
-        string filepath = Application.dataPath + @"/Levels/" + levelToLoad + ".xml";
-        if (CheckIfFileExists(filepath))
-            LoadLevel(filepath);
+        if (levelToLoad != "")
+        {
+            string filepath = Application.dataPath + @"/Levels/" + levelToLoad + ".xml";
+            if (CheckIfFileExists(filepath))
+                LoadLevel(filepath);
+        }
 	}   
 
     void LoadLevel(string filepath)

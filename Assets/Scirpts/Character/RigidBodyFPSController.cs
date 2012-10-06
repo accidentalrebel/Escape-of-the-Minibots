@@ -14,6 +14,23 @@ public class RigidBodyFPSController : MonoBehaviour
     public bool invertGravity = false;
     public bool invertHorizontal = false;
 
+    internal bool InvertGravity
+    {
+        set { 
+            invertGravity = value; 
+            HandleGravityInversion(); 
+        }
+        get { return invertGravity; }
+    }
+
+    private void HandleGravityInversion()
+    {
+        if (invertGravity == true && gravity > 0)
+            gravity = -gravity;
+        else if (invertGravity == false && gravity < 0)
+            gravity = -gravity;
+    }
+
     private bool grounded = false;
     private CapsuleCollider capsule;
     private Player player;
@@ -30,7 +47,7 @@ public class RigidBodyFPSController : MonoBehaviour
             Debug.LogError("player not found!");
 
         if (invertGravity)
-            gravity = -gravity;
+            HandleGravityInversion();
     }
 
     internal void InvertHorizontal()
@@ -41,7 +58,7 @@ public class RigidBodyFPSController : MonoBehaviour
             invertHorizontal = true;
     }
 
-    internal void InvertGravity()
+    internal void InvertTheGravity()
     {
         if (invertGravity)
             invertGravity = false;

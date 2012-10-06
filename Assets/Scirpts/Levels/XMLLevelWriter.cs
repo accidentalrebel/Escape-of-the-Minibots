@@ -58,7 +58,7 @@ public class XMLLevelWriter : XMLAccessor {
             RigidBodyFPSController controllerScipt
                 = minibot.GetComponent<RigidBodyFPSController>();
             string value = "";
-            value = BoolToString(controllerScipt.invertGravity);
+            value = BoolToString(controllerScipt.InvertGravity);
             elemNew.SetAttribute("invertGravity", value);            
 
             value = BoolToString(controllerScipt.invertHorizontal);

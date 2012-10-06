@@ -19,8 +19,8 @@ public class XMLLevelReader : XMLAccessor {
             Debug.LogError("Can not find pfMinibot prefab!");
 
         string filepath = Application.dataPath + @"/Levels/" + levelToLoad + ".xml";
-        //if (CheckIfFileExists(filepath))
-        //    LoadLevel(filepath);
+        if (CheckIfFileExists(filepath))
+            LoadLevel(filepath);
 	}   
 
     void LoadLevel(string filepath)
@@ -38,7 +38,7 @@ public class XMLLevelReader : XMLAccessor {
                         , Mathf.Ceil(float.Parse(reader.GetAttribute("y"))), 0);
                 
                 RigidBodyFPSController controller = newMinibot.GetComponentInChildren<RigidBodyFPSController>();
-                controller.invertGravity = StringToBool(reader.GetAttribute("invertGravity"));
+                controller.InvertGravity = StringToBool(reader.GetAttribute("invertGravity"));
                 controller.invertHorizontal = StringToBool(reader.GetAttribute("invertHorizontal"));
             }
             else if (reader.IsStartElement("tile"))

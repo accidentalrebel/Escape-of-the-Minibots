@@ -23,7 +23,7 @@ public class GravitySwitch : Switch
         {
             if (Input.GetKeyUp(KeyCode.X))
             {
-                triggeredCollider.gameObject.GetComponent<RigidBodyFPSController>().InvertGravity();
+                triggeredCollider.gameObject.GetComponent<RigidBodyFPSController>().InvertTheGravity();
             }
         }
     }

@@ -5,7 +5,7 @@ using System.Collections;
 public class TriggerableBlocks : ItemObject {
 
     public Vector2 blockSize;
-    public bool isTriggered = false;
+    public bool isHidden = false;
 
 	// Use this for initialization
 	void Start () {
@@ -35,10 +35,10 @@ public class TriggerableBlocks : ItemObject {
 
     override internal void Use()
     {
-        if (isTriggered)
-            isTriggered = false;
+        if (isHidden)
+            isHidden = false;
         else
-            isTriggered = true;
+            isHidden = true;
 
         SetStatusOfChildTiles();  
     }
@@ -47,7 +47,7 @@ public class TriggerableBlocks : ItemObject {
     {
         foreach (Transform child in transform)
         {
-            if (isTriggered)
+            if (isHidden)
             {
                 child.gameObject.collider.enabled = false;
                 child.gameObject.GetComponent<Tile>().theRenderer.enabled = false;

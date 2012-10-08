@@ -99,5 +99,5 @@
   <movingPlatform x="11" y="1" />
   <stepSwitch x="2" y="6" />
   <switch x="5" y="1" />
-  <triggerableBlock x="13" y="5" />
+  <triggerableBlock x="13" y="5" isHidden="0" />
 </tiles>

@@ -192,6 +192,8 @@ public class XMLLevelWriter : XMLAccessor {
 			elemNew = xmlDoc.CreateElement("triggerableBlock");
 			elemNew.SetAttribute("x", triggerableBlock.position.x.ToString());
 			elemNew.SetAttribute("y", triggerableBlock.position.y.ToString());
+			TriggerableBlocks tbScript = triggerableBlock.GetComponent<TriggerableBlocks>();
+			elemNew.SetAttribute("isHidden", BoolToString(tbScript.isHidden));
 			elemRoot.AppendChild(elemNew);		
 		}
           

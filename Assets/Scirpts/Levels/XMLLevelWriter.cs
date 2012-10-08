@@ -116,8 +116,8 @@ public class XMLLevelWriter : XMLAccessor {
 		foreach (Transform box in boxesContainer.transform)
 		{
 			elemNew = xmlDoc.CreateElement("box");
-			elemNew.SetAttribute("x", box.position.x.ToString());
-			elemNew.SetAttribute("y", box.position.y.ToString());
+			elemNew.SetAttribute("x", Mathf.Ceil(box.position.x).ToString());
+			elemNew.SetAttribute("y", Mathf.Ceil(box.position.y).ToString());
 			elemRoot.AppendChild(elemNew);
 		}
 		

@@ -87,10 +87,13 @@ public class XMLLevelReader : XMLAccessor {
                     = new Vector3(float.Parse(reader.GetAttribute("x"))
                         , float.Parse(reader.GetAttribute("y"), 0));
             }
-//			else if (reader.IsStartElement("box"))
-//			{
-//				GameObject newBox = (GameObject)Instantiate(pfBox);
-//			}
+			else if (reader.IsStartElement("box"))
+			{
+				GameObject newBox = (GameObject)Instantiate(pfBox);
+				newBox.transform.position
+                    = new Vector3(float.Parse(reader.GetAttribute("x"))
+                        , float.Parse(reader.GetAttribute("y"), 0));
+			}
         }
     }
 }

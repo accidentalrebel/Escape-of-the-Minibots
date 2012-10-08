@@ -10,6 +10,12 @@ public class XMLLevelWriter : XMLAccessor {
 	GameObject boxesContainer;
 	GameObject doorsContainer;
 	GameObject gravityInvertersContainer;
+	GameObject hazardsContainer;
+	GameObject horizontalInvertersContainer;
+	GameObject movingPlatformsContainer;
+	GameObject stepSwitchesContainer;
+	GameObject switchesCointainer;
+	GameObject triggerableBlocksContainer;
 
     void Start()
     {
@@ -28,6 +34,24 @@ public class XMLLevelWriter : XMLAccessor {
 		gravityInvertersContainer = gameObject.transform.FindChild("GravityInverters").gameObject;
 		if (gravityInvertersContainer == null )
 			Debug.LogError("gravityInvertersContainer not found!");
+		hazardsContainer = gameObject.transform.FindChild("Hazards").gameObject;
+		if (hazardsContainer == null )
+			Debug.LogError("hazardsContainer not found!");
+		horizontalInvertersContainer = gameObject.transform.FindChild("HorizontalInverters").gameObject;
+		if (horizontalInvertersContainer == null)
+			Debug.LogError("horizontalInvertersContainer not found!");
+		movingPlatformsContainer = gameObject.transform.FindChild("MovingPlatforms").gameObject;
+		if (movingPlatformsContainer == null)
+			Debug.LogError("movingPlatformsContainer not found!");
+		stepSwitchesContainer = gameObject.transform.FindChild("StepSwitches").gameObject;
+		if (stepSwitchesContainer == null )
+			Debug.LogError("stepSwitchesContainer not found!");
+		switchesCointainer = gameObject.transform.FindChild("Switches").gameObject;
+		if (switchesCointainer == null)
+			Debug.LogError("switchesContainer not found!");
+		triggerableBlocksContainer = gameObject.transform.FindChild("TriggerableBlocks").gameObject;
+		if (triggerableBlocksContainer == null)
+			Debug.LogError("triggerableBlocksContainer not found!");
     }
 
     internal void SaveLevel(string filename)

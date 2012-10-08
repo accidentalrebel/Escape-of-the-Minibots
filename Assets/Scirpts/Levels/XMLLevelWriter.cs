@@ -140,6 +140,60 @@ public class XMLLevelWriter : XMLAccessor {
 			elemNew.SetAttribute("y", gravityInverter.position.y.ToString());
 			elemRoot.AppendChild(elemNew);
 		}
+		
+		// We loop through all the hazards
+		foreach (Transform hazard in hazardsContainer.transform)
+		{
+			elemNew = xmlDoc.CreateElement("hazard");
+			elemNew.SetAttribute("x", hazard.position.x.ToString());
+			elemNew.SetAttribute("y", hazard.position.y.ToString());
+			elemRoot.AppendChild(elemNew);	
+		}
+		
+		// We loop through all the horizontalInverters
+		foreach (Transform horizontalInverter in horizontalInvertersContainer.transform)
+		{
+			elemNew = xmlDoc.CreateElement("horizontalInverter");
+			elemNew.SetAttribute("x", horizontalInverter.position.x.ToString());
+			elemNew.SetAttribute("y", horizontalInverter.position.y.ToString());
+			elemRoot.AppendChild(elemNew);	
+		}
+		
+		// We loop through all the movingPlatforms
+		foreach (Transform movingPlatform in movingPlatformsContainer.transform )
+		{
+			elemNew = xmlDoc.CreateElement("movingPlatform");
+			elemNew.SetAttribute("x", movingPlatform.position.x.ToString());
+			elemNew.SetAttribute("y", movingPlatform.position.y.ToString());
+			elemRoot.AppendChild(elemNew);	
+		}
+		
+		// We loop through all the stepSwitches
+		foreach (Transform stepSwitch in stepSwitchesContainer.transform )
+		{
+			elemNew = xmlDoc.CreateElement("stepSwitch");
+			elemNew.SetAttribute("x", stepSwitch.position.x.ToString());
+			elemNew.SetAttribute("y", stepSwitch.position.y.ToString());
+			elemRoot.AppendChild(elemNew);	
+		}
+		
+		// We loop through all the switches
+		foreach (Transform aSwitch in switchesCointainer.transform )
+		{
+			elemNew = xmlDoc.CreateElement("switch");
+			elemNew.SetAttribute("x", aSwitch.position.x.ToString());
+			elemNew.SetAttribute("y", aSwitch.position.y.ToString());
+			elemRoot.AppendChild(elemNew);	
+		}
+		
+		// We loop through all the triggerableBlocks
+		foreach (Transform triggerableBlock in triggerableBlocksContainer.transform )
+		{
+			elemNew = xmlDoc.CreateElement("triggerableBlock");
+			elemNew.SetAttribute("x", triggerableBlock.position.x.ToString());
+			elemNew.SetAttribute("y", triggerableBlock.position.y.ToString());
+			elemRoot.AppendChild(elemNew);		
+		}
           
         xmlDoc.Save(filepath);
     }

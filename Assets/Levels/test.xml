@@ -93,4 +93,11 @@
   <door x="8" y="2" isOpen="0" />
   <gravityInverter x="12" y="1" />
   <gravityInverter x="18" y="9" />
+  <hazard x="8" y="0" />
+  <hazard x="7" y="0" />
+  <horizontalInverter x="18" y="1" />
+  <movingPlatform x="11" y="1" />
+  <stepSwitch x="2" y="6" />
+  <switch x="5" y="1" />
+  <triggerableBlock x="13" y="5" />
 </tiles>

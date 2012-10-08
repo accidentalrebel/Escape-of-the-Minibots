@@ -8,6 +8,15 @@ public class XMLLevelReader : XMLAccessor {
     
     private Object pfTile;
     private Object pfMinibot;
+	private Object pfBox;
+	private Object pfDoor;
+	private Object pfGravityInverter;
+	private Object pfHazard;
+	private Object pfHorizontalInverter;
+	private Object pfMovingPlatform;
+	private Object pfStepSwitch;
+	private Object pfSwitch;
+	private Object pfTriggerableBlock;
 
 	// Use this for initialization
 	void Start () {
@@ -17,6 +26,33 @@ public class XMLLevelReader : XMLAccessor {
         pfMinibot = Resources.Load(@"Prefabs/pfMinibot");
         if (pfMinibot == null)
             Debug.LogError("Can not find pfMinibot prefab!");
+		pfBox = Resources.Load (@"Prefabs/pfBox");
+		if (pfBox == null)
+			Debug.LogError("Can not find pfBox prefab!");
+		pfDoor = Resources.Load (@"Prefabs/pfDoor");
+		if (pfDoor == null)
+			Debug.LogError("Can not find pfDoor prefab!");
+		pfGravityInverter = Resources.Load(@"Prefabs/pfGravityInverter");
+		if (pfGravityInverter == null )
+			Debug.LogError("Can not find pfGravityInverter prefab!");
+		pfHazard = Resources.Load (@"Prefabs/pfHazard");
+		if ( pfHazard == null )
+			Debug.LogError("Can not find pfHazard prefab!");
+		pfHorizontalInverter = Resources.Load (@"Prefabs/pfHorizontalInverter");
+		if ( pfHorizontalInverter == null )
+			Debug.LogError("Can not find pfHorizontalInverter prefab!");
+		pfMovingPlatform = Resources.Load ( @"Prefabs/pfMovingPlatform");
+		if ( pfMovingPlatform == null )
+			Debug.LogError("Can not find pfMovingPlatform prefab!");
+		pfStepSwitch = Resources.Load( @"Prefabs/pfStepSwitch");
+		if (pfStepSwitch == null )
+			Debug.LogError("Can not find pfStepSwitch prefab!");
+		pfSwitch = Resources.Load( @"Prefabs/pfSwitch");
+		if (pfSwitch == null )
+			Debug.LogError("Can not find pfSwitch prefab!");
+		pfTriggerableBlock = Resources.Load (@"Prefabs/pfTriggerableBlock");
+		if ( pfTriggerableBlock == null )
+			Debug.LogError("Can not find pfTriggerableBlock prefab!");
 
         if (levelToLoad != "")
         {
@@ -51,6 +87,10 @@ public class XMLLevelReader : XMLAccessor {
                     = new Vector3(float.Parse(reader.GetAttribute("x"))
                         , float.Parse(reader.GetAttribute("y"), 0));
             }
+//			else if (reader.IsStartElement("box"))
+//			{
+//				GameObject newBox = (GameObject)Instantiate(pfBox);
+//			}
         }
     }
 }

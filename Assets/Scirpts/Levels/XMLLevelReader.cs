@@ -78,9 +78,10 @@ public class XMLLevelReader : XMLAccessor {
             else if (reader.IsStartElement("tile"))
             {
                 newObject = (GameObject)Instantiate(pfTile);
-                newObject.transform.position
-                    = new Vector3(float.Parse(reader.GetAttribute("x"))
-                        , float.Parse(reader.GetAttribute("y"), 0));
+                newObject.GetComponent<Tile>().Initialize
+                    (new Vector3
+                        (float.Parse(reader.GetAttribute("x"))
+                        , float.Parse(reader.GetAttribute("y")), 0));
 				
 				newObject.transform.parent = tilesContainer.transform;
             }
@@ -115,9 +116,13 @@ public class XMLLevelReader : XMLAccessor {
 			else if (reader.IsStartElement("hazard"))
 			{
 				newObject = (GameObject)Instantiate(pfHazard);
-                newObject.transform.position
-                    = new Vector3(float.Parse(reader.GetAttribute("x"))
-                        , float.Parse(reader.GetAttribute("y"), 0));
+                newObject.GetComponent<HazardTile>().Initialize
+                   (new Vector3
+                       (float.Parse(reader.GetAttribute("x"))
+                       , float.Parse(reader.GetAttribute("y")), 0));
+                //newObject.transform.position
+                //    = new Vector3(float.Parse(reader.GetAttribute("x"))
+                //        , float.Parse(reader.GetAttribute("y"), 0));
 				
 				newObject.transform.parent = hazardsContainer.transform;
 			}

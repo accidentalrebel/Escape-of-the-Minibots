@@ -14,4 +14,10 @@ public class Tile : MonoBehaviour
 		
 		startingPos = gameObject.transform.position;
     }
+
+    internal void Initialize(Vector3 theStartingPos)
+    {
+        startingPos = theStartingPos;
+        gameObject.transform.position = startingPos;
+    }
 }

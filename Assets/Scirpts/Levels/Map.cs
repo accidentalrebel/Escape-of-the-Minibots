@@ -12,7 +12,7 @@ public class Map : MonoBehaviour {
 	internal GameObject horizontalInvertersContainer;
 	internal GameObject movingPlatformsContainer;
 	internal GameObject stepSwitchesContainer;
-	internal GameObject switchesCointainer;
+	internal GameObject switchesContainer;
 	internal GameObject triggerableBlocksContainer;
 	
 	// Use this for initialization
@@ -46,21 +46,32 @@ public class Map : MonoBehaviour {
 		stepSwitchesContainer = gameObject.transform.FindChild("StepSwitches").gameObject;
 		if (stepSwitchesContainer == null )
 			Debug.LogError("stepSwitchesContainer not found!");
-		switchesCointainer = gameObject.transform.FindChild("Switches").gameObject;
-		if (switchesCointainer == null)
+		switchesContainer = gameObject.transform.FindChild("Switches").gameObject;
+		if (switchesContainer == null)
 			Debug.LogError("switchesContainer not found!");
 		triggerableBlocksContainer = gameObject.transform.FindChild("TriggerableBlocks").gameObject;
 		if (triggerableBlocksContainer == null)
 			Debug.LogError("triggerableBlocksContainer not found!");
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-	
-	internal LevelObject GetLObjectAtPosition(Vector3 posToCheck)
+	internal LevelObject GetLevelObjectAtPosition(Vector3 posToCheck)
 	{
+		// We loop through doors
+		foreach ( Transform door in doorsContainer.transform )
+		{
+			if ( door.position == posToCheck )
+			{
+				return door.gameObject.GetComponent<LevelObject>();	
+			}
+		}
+		foreach ( Transform triggerableBlock in triggerableBlocksContainer.transform )
+		{
+			if ( triggerableBlock.position == posToCheck )
+			{
+				return triggerableBlock.gameObject.GetComponent<LevelObject>();	
+			}
+		}
+		
 		return null;
 	}
 }

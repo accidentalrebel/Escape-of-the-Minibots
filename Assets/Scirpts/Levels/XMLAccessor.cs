@@ -25,7 +25,7 @@ public class XMLAccessor : MonoBehaviour {
 	protected GameObject horizontalInvertersContainer;
 	protected GameObject movingPlatformsContainer;
 	protected GameObject stepSwitchesContainer;
-	protected GameObject switchesCointainer;
+	protected GameObject switchesContainer;
 	protected GameObject triggerableBlocksContainer;
 	
 	void Awake()
@@ -38,7 +38,8 @@ public class XMLAccessor : MonoBehaviour {
 		hazardsContainer = Registry.map.hazardsContainer;
 		horizontalInvertersContainer = Registry.map.horizontalInvertersContainer;
 		movingPlatformsContainer = Registry.map.movingPlatformsContainer;
-		switchesCointainer = Registry.map.switchesCointainer;
+		stepSwitchesContainer = Registry.map.stepSwitchesContainer;
+		switchesContainer = Registry.map.switchesContainer;
 		triggerableBlocksContainer = Registry.map.triggerableBlocksContainer;
 	}
 	

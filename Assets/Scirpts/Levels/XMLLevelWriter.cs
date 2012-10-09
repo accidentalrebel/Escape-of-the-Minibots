@@ -150,7 +150,7 @@ public class XMLLevelWriter : XMLAccessor {
 		}
 		
 		// We loop through all the switches
-		foreach (Transform aSwitch in switchesCointainer.transform )
+		foreach (Transform aSwitch in switchesContainer.transform )
 		{
 			elemNew = xmlDoc.CreateElement("switch");
 			LevelObject levelObjectScript = aSwitch.gameObject.GetComponent<LevelObject>();

@@ -145,11 +145,7 @@ public class XMLLevelReader : XMLAccessor {
 				newObject = (GameObject)Instantiate(pfStepSwitch);
 				newObject.GetComponent<StepSwitch>().Initialize(new Vector3
 					( float.Parse(reader.GetAttribute("x"))
-					, float.Parse(reader.GetAttribute("y")), 0)				
-					, new Vector2
-					( float.Parse(reader.GetAttribute("xPosOfObjectToActivate"))
-					, float.Parse(reader.GetAttribute("yPosOfObjectToActivate"))
-					));
+					, float.Parse(reader.GetAttribute("y")), 0));
 				
 				newObject.transform.parent = stepSwitchesContainer.transform;
 			}
@@ -164,9 +160,8 @@ public class XMLLevelReader : XMLAccessor {
 					, float.Parse(reader.GetAttribute("yPosOfObjectToActivate"))
 					));
 				
-				newObject.transform.parent = switchesCointainer.transform;
-			}
-			
+				newObject.transform.parent = switchesContainer.transform;
+			}			
         }
     }
 }

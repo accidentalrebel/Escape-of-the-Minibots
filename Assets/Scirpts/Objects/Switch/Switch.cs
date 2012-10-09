@@ -13,9 +13,11 @@ public class Switch : LevelObject {
             Debug.LogError("objectToActivate is not specified");
 	}
 	
-	internal void Initialize(Vector3 theStartingPos)
+	internal void Initialize(Vector3 theStartingPos, Vector2 posOfObjectToActivate)
 	{
 		base.Initialize(theStartingPos);
+		
+		
 	}
 	
 	// Update is called once per frame

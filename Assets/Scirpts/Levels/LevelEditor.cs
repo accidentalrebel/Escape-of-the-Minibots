@@ -14,7 +14,7 @@ public class LevelEditor : MonoBehaviour {
     XMLLevelReader levelReader;
     XMLLevelWriter levelWriter;
     string levelFileName;
-    Object objectToPlace;
+    Object objectToSpawn;
     Map map;
 
     void Start()
@@ -36,7 +36,17 @@ public class LevelEditor : MonoBehaviour {
 
     void Update()
     {
-
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (objectToSpawn != null)
+            {
+                GameObject spawnedObject = (GameObject)Instantiate(objectToSpawn);
+                Vector3 spawnPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                spawnedObject.GetComponent<Tile>().Initialize(new Vector3
+                    ( spawnPos.x
+                    , spawnPos.y, 0));
+            }
+        }
     }
 
     void OnGUI()
@@ -45,10 +55,10 @@ public class LevelEditor : MonoBehaviour {
         
         if (MapEditMode)
         {
-            if (GUI.Button(new Rect(10, 550, 100, 30), "Spawn Player"))
+            if (GUI.Button(new Rect(10, 550, 100, 30), "Spawn Tile"))
             {
                 Debug.Log("Spawn player clicked");
-                //objectToPlace = map.pf
+                objectToSpawn = Registry.prefabHandler.pfTile;
             }
 
             saveMapMode = GUI.Toggle(new Rect(10, 40, 200, 20), saveMapMode, "Save map?");

@@ -11,6 +11,12 @@ public class Door : LevelObject {
 
         UpdateDoorGraphic();
     }
+	
+	internal void Initialize(Vector3 theStartingPos, bool theIsOpen)
+	{
+		base.Initialize(theStartingPos);		
+		isOpen = theIsOpen;
+	}
 
     private void UpdateDoorGraphic()
     {

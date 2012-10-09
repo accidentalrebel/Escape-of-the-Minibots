@@ -70,33 +70,43 @@ public class XMLLevelReader : XMLAccessor {
     {
         XmlReader reader = XmlReader.Create(filepath);
         Debug.Log(reader);
+		
+		GameObject newObject;
 
         while (reader.Read())
         {
             if (reader.IsStartElement("minibot"))
             {
-                GameObject newMinibot = (GameObject)Instantiate(pfMinibot);
-                newMinibot.transform.position
+                newObject = (GameObject)Instantiate(pfMinibot);
+                newObject.transform.position
                     = new Vector3(float.Parse(reader.GetAttribute("x"))
                         , Mathf.Ceil(float.Parse(reader.GetAttribute("y"))), 0);
                 
-                RigidBodyFPSController controller = newMinibot.GetComponentInChildren<RigidBodyFPSController>();
+                RigidBodyFPSController controller = newObject.GetComponentInChildren<RigidBodyFPSController>();
                 controller.InvertGravity = StringToBool(reader.GetAttribute("invertGravity"));
                 controller.invertHorizontal = StringToBool(reader.GetAttribute("invertHorizontal"));
             }
             else if (reader.IsStartElement("tile"))
             {
-                GameObject newTile = (GameObject)Instantiate(pfTile);
-                newTile.transform.position
+                newObject = (GameObject)Instantiate(pfTile);
+                newObject.transform.position
                     = new Vector3(float.Parse(reader.GetAttribute("x"))
                         , float.Parse(reader.GetAttribute("y"), 0));
             }
 			else if (reader.IsStartElement("box"))
 			{
-				GameObject newBox = (GameObject)Instantiate(pfBox);
-				newBox.GetComponent<Box>().Initialize(new Vector3
+				newObject = (GameObject)Instantiate(pfBox);
+				newObject.GetComponent<Box>().Initialize(new Vector3
 					( float.Parse(reader.GetAttribute("x"))
 					, float.Parse(reader.GetAttribute("y")), 0));
+			}
+			else if (reader.IsStartElement("door"))
+			{
+				newObject = (GameObject)Instantiate(pfDoor);
+				newObject.GetComponent<Door>().Initialize(new Vector3
+					( float.Parse(reader.GetAttribute("x"))
+					, float.Parse(reader.GetAttribute("y")), 0)
+					, StringToBool(reader.GetAttribute("isOpen")));
 			}
         }
     }

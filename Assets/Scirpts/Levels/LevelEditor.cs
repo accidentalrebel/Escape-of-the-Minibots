@@ -3,6 +3,8 @@ using System.Collections;
 
 public class LevelEditor : MonoBehaviour {
 
+    enum ObjectType { None, Tile };
+
     bool mapEditMode = false;
     bool MapEditMode
     {
@@ -14,7 +16,7 @@ public class LevelEditor : MonoBehaviour {
     XMLLevelReader levelReader;
     XMLLevelWriter levelWriter;
     string levelFileName;
-    Object objectToSpawn;
+    ObjectType objectToSpawn = ObjectType.None;
     Map map;
 
     void Start()
@@ -35,18 +37,29 @@ public class LevelEditor : MonoBehaviour {
     }
 
     void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
+    {        
+        if (objectToSpawn != ObjectType.None )
         {
-            if (objectToSpawn != null)
+            if (Input.GetMouseButtonDown(0) && mapEditMode)
             {
-                GameObject spawnedObject = (GameObject)Instantiate(objectToSpawn);
+                // We determine which prefab to spawn
+                Object prefabToSpawn = Registry.prefabHandler.pfTile;
+                if ( objectToSpawn == ObjectType.Tile )
+                    prefabToSpawn = Registry.prefabHandler.pfTile;
+
+                GameObject spawnedObject = (GameObject)Instantiate(prefabToSpawn);
                 Vector3 spawnPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 spawnedObject.GetComponent<Tile>().Initialize(new Vector3
                     ( Mathf.Round(spawnPos.x)
                     , Mathf.Round(spawnPos.y), 0));
+
+                // If the left key is currently pressed
+                // Or if the leftShift key has just been released
+                if (!Input.GetKey(KeyCode.LeftShift)
+                    || Input.GetKeyUp(KeyCode.LeftShift))
+                    objectToSpawn = ObjectType.None;   // We set the objectToSpawn to none
             }
-        }
+        }        
     }
 
     void OnGUI()
@@ -57,8 +70,8 @@ public class LevelEditor : MonoBehaviour {
         {
             if (GUI.Button(new Rect(10, 550, 100, 30), "Spawn Tile"))
             {
-                Debug.Log("Spawn player clicked");
-                objectToSpawn = Registry.prefabHandler.pfTile;
+                Debug.Log("Spawn tile clicked");
+                objectToSpawn = ObjectType.Tile;
             }
 
             saveMapMode = GUI.Toggle(new Rect(10, 40, 200, 20), saveMapMode, "Save map?");

@@ -175,18 +175,6 @@ public class XMLLevelWriter : XMLAccessor {
 //			elemRoot.AppendChild(elemNew);	
 //		}
 		
-		// We loop through all the triggerableBlocks
-		foreach (Transform triggerableBlock in triggerableBlocksContainer.transform )
-		{
-			elemNew = xmlDoc.CreateElement("triggerableBlock");
-			LevelObject levelObjectScript = triggerableBlock.gameObject.GetComponent<LevelObject>();
-			elemNew.SetAttribute("x", levelObjectScript.startingPos.x.ToString());
-			elemNew.SetAttribute("y", levelObjectScript.startingPos.y.ToString());
-			TriggerableBlocks tbScript = triggerableBlock.GetComponent<TriggerableBlocks>();
-			elemNew.SetAttribute("isHidden", BoolToString(tbScript.isHidden));
-			elemRoot.AppendChild(elemNew);		
-		}
-          
 		// We loop through all the stepSwitches
 		foreach (Transform stepSwitch in stepSwitchesContainer.transform )
 		{
@@ -194,8 +182,6 @@ public class XMLLevelWriter : XMLAccessor {
 			LevelObject levelObjectScript = stepSwitch.gameObject.GetComponent<LevelObject>();
 			elemNew.SetAttribute("x", levelObjectScript.startingPos.x.ToString());
 			elemNew.SetAttribute("y", levelObjectScript.startingPos.y.ToString());
-			
-			//elemNew.SetAttribute("objectAtPosToActivate", 
 			elemRoot.AppendChild(elemNew);	
 		}
 		
@@ -209,6 +195,18 @@ public class XMLLevelWriter : XMLAccessor {
 			elemRoot.AppendChild(elemNew);	
 		}
 		
+		// We loop through all the triggerableBlocks
+		foreach (Transform triggerableBlock in triggerableBlocksContainer.transform )
+		{
+			elemNew = xmlDoc.CreateElement("triggerableBlock");
+			LevelObject levelObjectScript = triggerableBlock.gameObject.GetComponent<LevelObject>();
+			elemNew.SetAttribute("x", levelObjectScript.startingPos.x.ToString());
+			elemNew.SetAttribute("y", levelObjectScript.startingPos.y.ToString());
+			TriggerableBlocks tbScript = triggerableBlock.GetComponent<TriggerableBlocks>();
+			elemNew.SetAttribute("isHidden", BoolToString(tbScript.isHidden));
+			elemRoot.AppendChild(elemNew);		
+		}
+          
         xmlDoc.Save(filepath);
     }
 }

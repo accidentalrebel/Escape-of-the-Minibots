@@ -6,18 +6,11 @@ public class Switch : LevelObject {
     public LevelObject objectToActivate;
     protected bool isTriggered = false;
     protected Collider triggeredCollider;
-	
-	private ObjectList objectList;
 
 	// Use this for initialization
 	void Start () {
-		objectList = Registry.map.objectList;
-		
         if (objectToActivate == null)
             Debug.LogError("objectToActivate is not specified");
-		else
-			objectList.activeTriggerableObjects.Add(objectToActivate);
-					
 	}
 	
 	internal void Initialize(Vector3 theStartingPos)

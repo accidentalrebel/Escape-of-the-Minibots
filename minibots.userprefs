@@ -1,13 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scirpts\Main\Registry.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scirpts\Objects\LevelObject.cs">
     <Files>
-      <File FileName="Assets\Scirpts\Levels\XMLLevelWriter.cs" Line="198" Column="6" />
-      <File FileName="Assets\Scirpts\Main\Registry.cs" Line="8" Column="2" />
-      <File FileName="Assets\Scirpts\Objects\Door.cs" Line="13" Column="6" />
-      <File FileName="Assets\Scirpts\Objects\Switch\StepSwitch.cs" Line="8" Column="1" />
-      <File FileName="Assets\Scirpts\Objects\Switch\Switch.cs" Line="14" Column="3" />
-      <File FileName="Assets\Scirpts\Objects\ObjectList.cs" Line="7" Column="11" />
+      <File FileName="Assets\Scirpts\Levels\XMLLevelWriter.cs" Line="120" Column="42" />
+      <File FileName="Assets\Scirpts\Player\Minibot.cs" Line="28" Column="72" />
+      <File FileName="Assets\Scirpts\Objects\LevelObject.cs" Line="9" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -43,8 +43,8 @@ public class LevelEditor : MonoBehaviour {
                 GameObject spawnedObject = (GameObject)Instantiate(objectToSpawn);
                 Vector3 spawnPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 spawnedObject.GetComponent<Tile>().Initialize(new Vector3
-                    ( spawnPos.x
-                    , spawnPos.y, 0));
+                    ( Mathf.Round(spawnPos.x)
+                    , Mathf.Round(spawnPos.y), 0));
             }
         }
     }

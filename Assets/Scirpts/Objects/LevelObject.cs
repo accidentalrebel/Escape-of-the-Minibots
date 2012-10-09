@@ -6,9 +6,10 @@ public class LevelObject : MonoBehaviour {
     protected Tile theTile;
 	internal Vector3 startingPos;
 	
-	void Awake()
+	protected void Awake()
 	{
-		startingPos = gameObject.transform.position;	
+		startingPos = gameObject.transform.position;
+		Debug.Log (gameObject.name + startingPos);
 	}
 	
 	protected void Initialize(Vector3 theStartingPos)

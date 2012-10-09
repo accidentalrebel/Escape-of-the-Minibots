@@ -10,6 +10,8 @@ public class Switch : LevelObject {
 
 	// Use this for initialization
 	void Awake () {
+		base.Awake();
+		
 		map = Registry.map;
 		
         if (objectToActivate == null)

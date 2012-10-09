@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class GUILevelEditor : MonoBehaviour {
+public class LevelEditor : MonoBehaviour {
 
     bool mapEditMode = false;
     bool MapEditMode
@@ -14,10 +14,12 @@ public class GUILevelEditor : MonoBehaviour {
     XMLLevelReader levelReader;
     XMLLevelWriter levelWriter;
     string levelFileName;
+    Object objectToPlace;
+    Map map;
 
     void Start()
     {
-        GameObject map = GameObject.Find("Map");
+        map = Registry.map;
         if (map == null)
             Debug.LogError("map is not found!");
 
@@ -29,7 +31,12 @@ public class GUILevelEditor : MonoBehaviour {
         if (levelWriter == null)
             Debug.LogError("levelWriter is not found!");
 
-        levelFileName = levelReader.levelToLoad;
+        levelFileName = levelReader.levelToLoad;        
+    }
+
+    void Update()
+    {
+
     }
 
     void OnGUI()
@@ -41,6 +48,7 @@ public class GUILevelEditor : MonoBehaviour {
             if (GUI.Button(new Rect(10, 550, 100, 30), "Spawn Player"))
             {
                 Debug.Log("Spawn player clicked");
+                //objectToPlace = map.pf
             }
 
             saveMapMode = GUI.Toggle(new Rect(10, 40, 200, 20), saveMapMode, "Save map?");

@@ -47,8 +47,8 @@
      <Compile Include="Assets\Scirpts\Character\CharacterMotor.cs" />
      <Compile Include="Assets\Scirpts\Character\PlatformInputController.cs" />
      <Compile Include="Assets\Scirpts\Character\RigidBodyFPSController.cs" />
-     <Compile Include="Assets\Scirpts\GUI\GUILevelEditor.cs" />
      <Compile Include="Assets\Scirpts\Levels\FileReader.cs" />
+     <Compile Include="Assets\Scirpts\Levels\LevelEditor.cs" />
      <Compile Include="Assets\Scirpts\Levels\LevelLoader.cs" />
      <Compile Include="Assets\Scirpts\Levels\Map.cs" />
      <Compile Include="Assets\Scirpts\Levels\XMLAccessor.cs" />
@@ -56,6 +56,7 @@
      <Compile Include="Assets\Scirpts\Levels\XMLLevelWriter.cs" />
      <Compile Include="Assets\Scirpts\Main\Main.cs" />
      <Compile Include="Assets\Scirpts\Main\Registry.cs" />
+     <Compile Include="Assets\Scirpts\Misc\PrefabHandler.cs" />
      <Compile Include="Assets\Scirpts\Objects\Box.cs" />
      <Compile Include="Assets\Scirpts\Objects\Door.cs" />
      <Compile Include="Assets\Scirpts\Objects\LevelObject.cs" />

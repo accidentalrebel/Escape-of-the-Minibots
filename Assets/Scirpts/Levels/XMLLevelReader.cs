@@ -3,45 +3,38 @@ using System.Collections;
 using System.Xml;
 
 public class XMLLevelReader : XMLAccessor {
-    
+
+    protected Object pfTile;
+    protected Object pfMinibot;
+    protected Object pfBox;
+    protected Object pfDoor;
+    protected Object pfGravityInverter;
+    protected Object pfHazard;
+    protected Object pfHorizontalInverter;
+    protected Object pfMovingPlatform;
+    protected Object pfStepSwitch;
+    protected Object pfSwitch;
+    protected Object pfTriggerableBlock;
+
     public string levelToLoad = "1";    
 
 	// Use this for initialization
 	void Start () {
-		pfTile = Resources.Load(@"Prefabs/pfTile");
-        if (pfTile == null)
-            Debug.LogError("Can not find pfTile prefab!");
-        pfMinibot = Resources.Load(@"Prefabs/pfMinibot");
-        if (pfMinibot == null)
-            Debug.LogError("Can not find pfMinibot prefab!");
-		pfBox = Resources.Load (@"Prefabs/pfBox");
-		if (pfBox == null)
-			Debug.LogError("Can not find pfBox prefab!");
-		pfDoor = Resources.Load (@"Prefabs/pfDoor");
-		if (pfDoor == null)
-			Debug.LogError("Can not find pfDoor prefab!");
-		pfGravityInverter = Resources.Load(@"Prefabs/pfGravityInverter");
-		if (pfGravityInverter == null )
-			Debug.LogError("Can not find pfGravityInverter prefab!");
-		pfHazard = Resources.Load (@"Prefabs/pfHazard");
-		if ( pfHazard == null )
-			Debug.LogError("Can not find pfHazard prefab!");
-		pfHorizontalInverter = Resources.Load (@"Prefabs/pfHorizontalInverter");
-		if ( pfHorizontalInverter == null )
-			Debug.LogError("Can not find pfHorizontalInverter prefab!");
-		pfMovingPlatform = Resources.Load ( @"Prefabs/pfMovingPlatform");
-		if ( pfMovingPlatform == null )
-			Debug.LogError("Can not find pfMovingPlatform prefab!");
-		pfStepSwitch = Resources.Load( @"Prefabs/pfStepSwitch");
-		if (pfStepSwitch == null )
-			Debug.LogError("Can not find pfStepSwitch prefab!");
-		pfSwitch = Resources.Load( @"Prefabs/pfSwitch");
-		if (pfSwitch == null )
-			Debug.LogError("Can not find pfSwitch prefab!");
-		pfTriggerableBlock = Resources.Load (@"Prefabs/pfTriggerableBlock");
-		if ( pfTriggerableBlock == null )
-			Debug.LogError("Can not find pfTriggerableBlock prefab!");	
-		
+
+        PrefabHandler prefabHandler = Registry.prefabHandler;
+
+        pfTile = prefabHandler.pfTile;
+        pfMinibot = prefabHandler.pfMinibot;
+        pfBox = prefabHandler.pfBox;
+        pfDoor = prefabHandler.pfDoor;
+        pfGravityInverter = prefabHandler.pfGravityInverter;
+        pfHazard = prefabHandler.pfHazard;
+        pfHorizontalInverter = prefabHandler.pfHorizontalInverter;
+        pfMovingPlatform = prefabHandler.pfMovingPlatform;
+        pfStepSwitch = prefabHandler.pfStepSwitch;
+        pfSwitch = prefabHandler.pfSwitch;
+        pfTriggerableBlock = prefabHandler.pfTriggerableBlock;
+
         if (levelToLoad != "")
         {
             string filepath = Application.dataPath + @"/Levels/" + levelToLoad + ".xml";

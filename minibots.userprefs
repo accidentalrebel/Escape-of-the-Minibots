@@ -1,6 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scirpts\Levels\XMLLevelReader.cs">
+    <Files>
+      <File FileName="Assets\Scirpts\Levels\XMLLevelWriter.cs" Line="163" Column="38" />
+      <File FileName="Assets\Levels\test.xml" Line="101" Column="36" />
+      <File FileName="Assets\Scirpts\Objects\LevelObject.cs" Line="12" Column="45" />
+      <File FileName="Assets\Scirpts\Objects\Switch\Switch.cs" Line="25" Column="31" />
+      <File FileName="Assets\Scirpts\Objects\Switch\StepSwitch.cs" Line="13" Column="1" />
+      <File FileName="Assets\Scirpts\Levels\XMLLevelReader.cs" Line="160" Column="26" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="D:\Development\Projects\Minibots\minibots\Assets\Scirpts\Character\CharacterMotor.cs" line="436" />

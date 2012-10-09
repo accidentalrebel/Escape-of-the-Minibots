@@ -146,6 +146,9 @@ public class XMLLevelWriter : XMLAccessor {
 			LevelObject levelObjectScript = stepSwitch.gameObject.GetComponent<LevelObject>();
 			elemNew.SetAttribute("x", levelObjectScript.startingPos.x.ToString());
 			elemNew.SetAttribute("y", levelObjectScript.startingPos.y.ToString());
+			StepSwitch switchScript = stepSwitch.gameObject.GetComponent<StepSwitch>();
+			elemNew.SetAttribute("xPosOfObjectToActivate", switchScript.objectToActivate.transform.position.x.ToString());
+			elemNew.SetAttribute("yPosOfObjectToActivate", switchScript.objectToActivate.transform.position.y.ToString());
 			elemRoot.AppendChild(elemNew);	
 		}
 		

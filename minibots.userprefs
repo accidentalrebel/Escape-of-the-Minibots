@@ -1,12 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scirpts\Levels\XMLLevelReader.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scirpts\Objects\LevelObject.cs">
     <Files>
-      <File FileName="Assets\Scirpts\Character\PlatformInputController.cs" Line="8" Column="2" />
-      <File FileName="Assets\Levels\test.xml" Line="102" Column="45" />
-      <File FileName="Assets\Scirpts\Objects\TriggerableBlocks.cs" Line="16" Column="33" />
-      <File FileName="Assets\Scirpts\Levels\XMLLevelWriter.cs" Line="196" Column="67" />
-      <File FileName="Assets\Scirpts\Levels\XMLLevelReader.cs" Line="78" Column="17" />
+      <File FileName="Assets\Scirpts\Levels\XMLLevelWriter.cs" Line="120" Column="42" />
+      <File FileName="Assets\Scirpts\Player\Minibot.cs" Line="28" Column="72" />
+      <File FileName="Assets\Scirpts\Objects\LevelObject.cs" Line="9" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

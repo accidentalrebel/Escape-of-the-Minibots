@@ -1,11 +1,18 @@
 using UnityEngine;
 using System.Collections;
 
-public class Player : MonoBehaviour {
+public class Minibot : MonoBehaviour {
 
     public enum Direction { Left, Right };
     private GameObject objectBeingCarried;
-
+	
+	internal Vector3 startingPos;
+	
+	void Start()
+	{
+		startingPos = gameObject.transform.position;	
+	}
+	
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.C)

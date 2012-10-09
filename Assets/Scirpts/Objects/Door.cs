@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Door : ItemObject {
+public class Door : LevelObject {
 
     public bool isOpen = false;
 

@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 //[ExecuteInEditMode]
-public class TriggerableBlocks : ItemObject {
+public class TriggerableBlocks : LevelObject {
 
     public Vector2 blockSize;
     public bool isHidden = false;

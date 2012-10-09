@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Box : ItemObject {
+public class Box : LevelObject {
 
     private Rigidbody theRigidBody;
 

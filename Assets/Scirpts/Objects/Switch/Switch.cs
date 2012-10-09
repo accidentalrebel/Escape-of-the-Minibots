@@ -1,9 +1,9 @@
 using UnityEngine;
 using System.Collections;
 
-public class Switch : MonoBehaviour {
+public class Switch : LevelObject {
 
-    public ItemObject objectToActivate;
+    public LevelObject objectToActivate;
     protected bool isTriggered = false;
     protected Collider triggeredCollider;
 

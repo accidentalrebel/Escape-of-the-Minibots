@@ -88,8 +88,9 @@ public class XMLLevelWriter : XMLAccessor {
         foreach (Transform minibot in minibotsContainer.transform)
         {
             elemNew = xmlDoc.CreateElement("minibot");  // Create the rotation node
-            elemNew.SetAttribute("x", minibot.position.x.ToString());
-            elemNew.SetAttribute("y", minibot.position.y.ToString());
+			Minibot minibotScript = minibot.gameObject.GetComponent<Minibot>();
+            elemNew.SetAttribute("x", minibotScript.startingPos.x.ToString());
+            elemNew.SetAttribute("y", minibotScript.startingPos.y.ToString());
 
             RigidBodyFPSController controllerScipt
                 = minibot.GetComponent<RigidBodyFPSController>();
@@ -106,9 +107,10 @@ public class XMLLevelWriter : XMLAccessor {
         // First we loop through the tiles first        
         foreach (Transform tile in tilesContainer.transform)
         {
-            elemNew = xmlDoc.CreateElement("tile"); 
-            elemNew.SetAttribute("x", tile.position.x.ToString());
-            elemNew.SetAttribute("y", tile.position.y.ToString());
+            elemNew = xmlDoc.CreateElement("tile");
+			Tile tileScript = tile.gameObject.GetComponent<Tile>();
+            elemNew.SetAttribute("x", tileScript.startingPos.x.ToString());
+            elemNew.SetAttribute("y", tileScript.startingPos.y.ToString());
             elemRoot.AppendChild(elemNew);                      // Make the transform node the parent
         }
 		
@@ -116,8 +118,9 @@ public class XMLLevelWriter : XMLAccessor {
 		foreach (Transform box in boxesContainer.transform)
 		{
 			elemNew = xmlDoc.CreateElement("box");
-			elemNew.SetAttribute("x", Mathf.Ceil(box.position.x).ToString());
-			elemNew.SetAttribute("y", Mathf.Ceil(box.position.y).ToString());
+			LevelObject levelObjectScript = box.gameObject.GetComponent<LevelObject>();
+			elemNew.SetAttribute("x", Mathf.Ceil(levelObjectScript.startingPos.x).ToString());
+			elemNew.SetAttribute("y", Mathf.Ceil(levelObjectScript.startingPos.y).ToString());
 			elemRoot.AppendChild(elemNew);
 		}
 		
@@ -125,8 +128,9 @@ public class XMLLevelWriter : XMLAccessor {
 		foreach (Transform door in doorsContainer.transform)
 		{
 			elemNew = xmlDoc.CreateElement("door");
-			elemNew.SetAttribute("x", door.position.x.ToString());
-			elemNew.SetAttribute("y", door.position.y.ToString());
+			LevelObject levelObjectScript = door.gameObject.GetComponent<LevelObject>();
+			elemNew.SetAttribute("x", levelObjectScript.startingPos.x.ToString());
+			elemNew.SetAttribute("y", levelObjectScript.startingPos.y.ToString());
 			Door doorScript = door.GetComponent<Door>();
 			elemNew.SetAttribute("isOpen", BoolToString(doorScript.isOpen));
 			elemRoot.AppendChild(elemNew);
@@ -136,8 +140,9 @@ public class XMLLevelWriter : XMLAccessor {
 		foreach (Transform gravityInverter in gravityInvertersContainer.transform)
 		{
 			elemNew = xmlDoc.CreateElement("gravityInverter");
-			elemNew.SetAttribute("x", gravityInverter.position.x.ToString());
-			elemNew.SetAttribute("y", gravityInverter.position.y.ToString());
+			LevelObject levelObjectScript = gravityInverter.gameObject.GetComponent<LevelObject>();
+			elemNew.SetAttribute("x", levelObjectScript.startingPos.x.ToString());
+			elemNew.SetAttribute("y", levelObjectScript.startingPos.y.ToString());
 			elemRoot.AppendChild(elemNew);
 		}
 		
@@ -145,35 +150,38 @@ public class XMLLevelWriter : XMLAccessor {
 		foreach (Transform hazard in hazardsContainer.transform)
 		{
 			elemNew = xmlDoc.CreateElement("hazard");
-			elemNew.SetAttribute("x", hazard.position.x.ToString());
-			elemNew.SetAttribute("y", hazard.position.y.ToString());
+			Tile tileScript = hazard.gameObject.GetComponent<Tile>();
+			elemNew.SetAttribute("x", tileScript.startingPos.x.ToString());
+			elemNew.SetAttribute("y", tileScript.startingPos.y.ToString());
 			elemRoot.AppendChild(elemNew);	
 		}
 		
 		// We loop through all the horizontalInverters
 		foreach (Transform horizontalInverter in horizontalInvertersContainer.transform)
 		{
-			elemNew = xmlDoc.CreateElement("horizontalInverter");
-			elemNew.SetAttribute("x", horizontalInverter.position.x.ToString());
-			elemNew.SetAttribute("y", horizontalInverter.position.y.ToString());
+			elemNew = xmlDoc.CreateElement("horizontalInverter");			
+			LevelObject levelObjectScript = horizontalInverter.gameObject.GetComponent<LevelObject>();
+			elemNew.SetAttribute("x", levelObjectScript.startingPos.x.ToString());
+			elemNew.SetAttribute("y", levelObjectScript.startingPos.y.ToString());
 			elemRoot.AppendChild(elemNew);	
 		}
 		
 		// We loop through all the movingPlatforms
-		foreach (Transform movingPlatform in movingPlatformsContainer.transform )
-		{
-			elemNew = xmlDoc.CreateElement("movingPlatform");
-			elemNew.SetAttribute("x", movingPlatform.position.x.ToString());
-			elemNew.SetAttribute("y", movingPlatform.position.y.ToString());
-			elemRoot.AppendChild(elemNew);	
-		}
+//		foreach (Transform movingPlatform in movingPlatformsContainer.transform )
+//		{
+//			elemNew = xmlDoc.CreateElement("movingPlatform");
+//			elemNew.SetAttribute("x", movingPlatform.position.x.ToString());
+//			elemNew.SetAttribute("y", movingPlatform.position.y.ToString());
+//			elemRoot.AppendChild(elemNew);	
+//		}
 		
 		// We loop through all the stepSwitches
 		foreach (Transform stepSwitch in stepSwitchesContainer.transform )
 		{
 			elemNew = xmlDoc.CreateElement("stepSwitch");
-			elemNew.SetAttribute("x", stepSwitch.position.x.ToString());
-			elemNew.SetAttribute("y", stepSwitch.position.y.ToString());
+			LevelObject levelObjectScript = stepSwitch.gameObject.GetComponent<LevelObject>();
+			elemNew.SetAttribute("x", levelObjectScript.startingPos.x.ToString());
+			elemNew.SetAttribute("y", levelObjectScript.startingPos.y.ToString());
 			elemRoot.AppendChild(elemNew);	
 		}
 		
@@ -181,8 +189,9 @@ public class XMLLevelWriter : XMLAccessor {
 		foreach (Transform aSwitch in switchesCointainer.transform )
 		{
 			elemNew = xmlDoc.CreateElement("switch");
-			elemNew.SetAttribute("x", aSwitch.position.x.ToString());
-			elemNew.SetAttribute("y", aSwitch.position.y.ToString());
+			LevelObject levelObjectScript = aSwitch.gameObject.GetComponent<LevelObject>();
+			elemNew.SetAttribute("x", levelObjectScript.startingPos.x.ToString());
+			elemNew.SetAttribute("y", levelObjectScript.startingPos.y.ToString());
 			elemRoot.AppendChild(elemNew);	
 		}
 		
@@ -190,8 +199,9 @@ public class XMLLevelWriter : XMLAccessor {
 		foreach (Transform triggerableBlock in triggerableBlocksContainer.transform )
 		{
 			elemNew = xmlDoc.CreateElement("triggerableBlock");
-			elemNew.SetAttribute("x", triggerableBlock.position.x.ToString());
-			elemNew.SetAttribute("y", triggerableBlock.position.y.ToString());
+			LevelObject levelObjectScript = triggerableBlock.gameObject.GetComponent<LevelObject>();
+			elemNew.SetAttribute("x", levelObjectScript.startingPos.x.ToString());
+			elemNew.SetAttribute("y", levelObjectScript.startingPos.y.ToString());
 			TriggerableBlocks tbScript = triggerableBlock.GetComponent<TriggerableBlocks>();
 			elemNew.SetAttribute("isHidden", BoolToString(tbScript.isHidden));
 			elemRoot.AppendChild(elemNew);		

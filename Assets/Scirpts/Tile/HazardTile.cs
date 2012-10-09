@@ -7,7 +7,7 @@ public class HazardTile : Tile {
     {        
         if (other.tag == "Player")
         {
-            other.GetComponent<Player>().Die();            
+            other.GetComponent<Minibot>().Die();            
         }
     }
 }

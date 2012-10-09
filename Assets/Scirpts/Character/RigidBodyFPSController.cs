@@ -33,7 +33,7 @@ public class RigidBodyFPSController : MonoBehaviour
 
     private bool grounded = false;
     private CapsuleCollider capsule;
-    private Player player;
+    private Minibot player;
 
     void Awake()
     {
@@ -42,7 +42,7 @@ public class RigidBodyFPSController : MonoBehaviour
         capsule = GetComponent<CapsuleCollider>();
         if (capsule == null)
             Debug.LogError("capsule was not found!");
-        player = GetComponent<Player>();
+        player = GetComponent<Minibot>();
         if (player == null)
             Debug.LogError("player not found!");
 
@@ -116,12 +116,12 @@ public class RigidBodyFPSController : MonoBehaviour
     {
         if ( velocityChange.x < 0 )
         {
-            if (player.GetObjectAtSide(Player.Direction.Left) != null)
+            if (player.GetObjectAtSide(Minibot.Direction.Left) != null)
                 return false;
         }
         else if (velocityChange.x > 0)
         {
-            if (player.GetObjectAtSide(Player.Direction.Right) != null)
+            if (player.GetObjectAtSide(Minibot.Direction.Right) != null)
                 return false;
         }
 

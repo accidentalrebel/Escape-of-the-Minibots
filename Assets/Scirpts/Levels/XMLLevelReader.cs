@@ -8,7 +8,7 @@ public class XMLLevelReader : XMLAccessor {
 
 	// Use this for initialization
 	void Start () {
-        pfTile = Resources.Load(@"Prefabs/pfTile");
+		pfTile = Resources.Load(@"Prefabs/pfTile");
         if (pfTile == null)
             Debug.LogError("Can not find pfTile prefab!");
         pfMinibot = Resources.Load(@"Prefabs/pfMinibot");
@@ -40,8 +40,8 @@ public class XMLLevelReader : XMLAccessor {
 			Debug.LogError("Can not find pfSwitch prefab!");
 		pfTriggerableBlock = Resources.Load (@"Prefabs/pfTriggerableBlock");
 		if ( pfTriggerableBlock == null )
-			Debug.LogError("Can not find pfTriggerableBlock prefab!");
-
+			Debug.LogError("Can not find pfTriggerableBlock prefab!");	
+		
         if (levelToLoad != "")
         {
             string filepath = Application.dataPath + @"/Levels/" + levelToLoad + ".xml";
@@ -73,6 +73,8 @@ public class XMLLevelReader : XMLAccessor {
                 RigidBodyFPSController controller = newObject.GetComponentInChildren<RigidBodyFPSController>();
                 controller.InvertGravity = StringToBool(reader.GetAttribute("invertGravity"));
                 controller.invertHorizontal = StringToBool(reader.GetAttribute("invertHorizontal"));
+				
+				newObject.transform.parent = minibotsContainer.transform;
             }
             else if (reader.IsStartElement("tile"))
             {
@@ -80,6 +82,8 @@ public class XMLLevelReader : XMLAccessor {
                 newObject.transform.position
                     = new Vector3(float.Parse(reader.GetAttribute("x"))
                         , float.Parse(reader.GetAttribute("y"), 0));
+				
+				newObject.transform.parent = tilesContainer.transform;
             }
 			else if (reader.IsStartElement("box"))
 			{
@@ -87,6 +91,8 @@ public class XMLLevelReader : XMLAccessor {
 				newObject.GetComponent<Box>().Initialize(new Vector3
 					( float.Parse(reader.GetAttribute("x"))
 					, float.Parse(reader.GetAttribute("y")), 0));
+				
+				newObject.transform.parent = boxesContainer.transform;
 			}
 			else if (reader.IsStartElement("door"))
 			{
@@ -95,6 +101,8 @@ public class XMLLevelReader : XMLAccessor {
 					( float.Parse(reader.GetAttribute("x"))
 					, float.Parse(reader.GetAttribute("y")), 0)
 					, StringToBool(reader.GetAttribute("isOpen")));
+				
+				newObject.transform.parent = doorsContainer.transform;
 			}
 			else if (reader.IsStartElement("gravityInverter"))
 			{
@@ -102,6 +110,8 @@ public class XMLLevelReader : XMLAccessor {
 				newObject.GetComponent<GravitySwitch>().Initialize(new Vector3
 					( float.Parse(reader.GetAttribute("x"))
 					, float.Parse(reader.GetAttribute("y")), 0));
+				
+				newObject.transform.parent = gravityInvertersContainer.transform;
 			}
 			else if (reader.IsStartElement("hazard"))
 			{
@@ -109,6 +119,8 @@ public class XMLLevelReader : XMLAccessor {
                 newObject.transform.position
                     = new Vector3(float.Parse(reader.GetAttribute("x"))
                         , float.Parse(reader.GetAttribute("y"), 0));
+				
+				newObject.transform.parent = hazardsContainer.transform;
 			}
 			else if (reader.IsStartElement("horizontalInverter"))
 			{
@@ -116,6 +128,17 @@ public class XMLLevelReader : XMLAccessor {
 				newObject.GetComponent<HorizontalSwitch>().Initialize(new Vector3
 					( float.Parse(reader.GetAttribute("x"))
 					, float.Parse(reader.GetAttribute("y")), 0));
+				
+				newObject.transform.parent = horizontalInvertersContainer.transform;
+			}			
+			else if (reader.IsStartElement("triggerableBlock"))
+			{
+				newObject = (GameObject)Instantiate(pfTriggerableBlock);
+				newObject.GetComponent<TriggerableBlocks>().Initialize(new Vector3
+					( float.Parse(reader.GetAttribute("x"))
+					, float.Parse(reader.GetAttribute("y")), 0));
+				
+				newObject.transform.parent = triggerableBlocksContainer.transform;
 			}
 			else if (reader.IsStartElement("stepSwitch"))
 			{
@@ -123,6 +146,8 @@ public class XMLLevelReader : XMLAccessor {
 				newObject.GetComponent<StepSwitch>().Initialize(new Vector3
 					( float.Parse(reader.GetAttribute("x"))
 					, float.Parse(reader.GetAttribute("y")), 0));
+				
+				newObject.transform.parent = stepSwitchesContainer.transform;
 			}
 			else if (reader.IsStartElement("switch"))
 			{
@@ -130,14 +155,10 @@ public class XMLLevelReader : XMLAccessor {
 				newObject.GetComponent<Switch>().Initialize(new Vector3
 					( float.Parse(reader.GetAttribute("x"))
 					, float.Parse(reader.GetAttribute("y")), 0));
+				
+				newObject.transform.parent = switchesCointainer.transform;
 			}
-			else if (reader.IsStartElement("triggerableBlock"))
-			{
-				newObject = (GameObject)Instantiate(pfTriggerableBlock);
-				newObject.GetComponent<TriggerableBlocks>().Initialize(new Vector3
-					( float.Parse(reader.GetAttribute("x"))
-					, float.Parse(reader.GetAttribute("y")), 0));
-			}
+			
         }
     }
 }

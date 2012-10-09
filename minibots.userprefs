@@ -1,12 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scirpts\Objects\LevelObject.cs">
-    <Files>
-      <File FileName="Assets\Scirpts\Levels\XMLLevelWriter.cs" Line="120" Column="42" />
-      <File FileName="Assets\Scirpts\Player\Minibot.cs" Line="28" Column="72" />
-      <File FileName="Assets\Scirpts\Objects\LevelObject.cs" Line="9" Column="20" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="D:\Development\Projects\Minibots\minibots\Assets\Scirpts\Character\CharacterMotor.cs" line="436" />

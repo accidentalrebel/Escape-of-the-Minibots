@@ -175,6 +175,19 @@ public class XMLLevelWriter : XMLAccessor {
 //			elemRoot.AppendChild(elemNew);	
 //		}
 		
+		
+		// We loop through all the triggerableBlocks
+		foreach (Transform triggerableBlock in triggerableBlocksContainer.transform )
+		{
+			elemNew = xmlDoc.CreateElement("triggerableBlock");
+			LevelObject levelObjectScript = triggerableBlock.gameObject.GetComponent<LevelObject>();
+			elemNew.SetAttribute("x", levelObjectScript.startingPos.x.ToString());
+			elemNew.SetAttribute("y", levelObjectScript.startingPos.y.ToString());
+			TriggerableBlocks tbScript = triggerableBlock.GetComponent<TriggerableBlocks>();
+			elemNew.SetAttribute("isHidden", BoolToString(tbScript.isHidden));
+			elemRoot.AppendChild(elemNew);		
+		}
+		
 		// We loop through all the stepSwitches
 		foreach (Transform stepSwitch in stepSwitchesContainer.transform )
 		{
@@ -192,19 +205,10 @@ public class XMLLevelWriter : XMLAccessor {
 			LevelObject levelObjectScript = aSwitch.gameObject.GetComponent<LevelObject>();
 			elemNew.SetAttribute("x", levelObjectScript.startingPos.x.ToString());
 			elemNew.SetAttribute("y", levelObjectScript.startingPos.y.ToString());
+			Switch switchScript = aSwitch.gameObject.GetComponent<Switch>();
+			elemNew.SetAttribute("xPosOfObjectToActivate", switchScript.objectToActivate.transform.position.x.ToString());
+			elemNew.SetAttribute("yPosOfObjectToActivate", switchScript.objectToActivate.transform.position.y.ToString());
 			elemRoot.AppendChild(elemNew);	
-		}
-		
-		// We loop through all the triggerableBlocks
-		foreach (Transform triggerableBlock in triggerableBlocksContainer.transform )
-		{
-			elemNew = xmlDoc.CreateElement("triggerableBlock");
-			LevelObject levelObjectScript = triggerableBlock.gameObject.GetComponent<LevelObject>();
-			elemNew.SetAttribute("x", levelObjectScript.startingPos.x.ToString());
-			elemNew.SetAttribute("y", levelObjectScript.startingPos.y.ToString());
-			TriggerableBlocks tbScript = triggerableBlock.GetComponent<TriggerableBlocks>();
-			elemNew.SetAttribute("isHidden", BoolToString(tbScript.isHidden));
-			elemRoot.AppendChild(elemNew);		
 		}
           
         xmlDoc.Save(filepath);

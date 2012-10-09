@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scirpts\GUI\GUILevelEditor.cs" />
      <Compile Include="Assets\Scirpts\Levels\FileReader.cs" />
      <Compile Include="Assets\Scirpts\Levels\LevelLoader.cs" />
+     <Compile Include="Assets\Scirpts\Levels\Map.cs" />
      <Compile Include="Assets\Scirpts\Levels\XMLAccessor.cs" />
      <Compile Include="Assets\Scirpts\Levels\XMLLevelReader.cs" />
      <Compile Include="Assets\Scirpts\Levels\XMLLevelWriter.cs" />

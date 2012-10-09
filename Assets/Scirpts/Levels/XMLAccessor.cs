@@ -4,6 +4,18 @@ using System.IO;
 
 public class XMLAccessor : MonoBehaviour {
 
+	protected Object pfTile;
+    protected Object pfMinibot;
+	protected Object pfBox;
+	protected Object pfDoor;
+	protected Object pfGravityInverter;
+	protected Object pfHazard;
+	protected Object pfHorizontalInverter;
+	protected Object pfMovingPlatform;
+	protected Object pfStepSwitch;
+	protected Object pfSwitch;
+	protected Object pfTriggerableBlock;
+	
     protected bool CheckIfFileExists(string filepath)
     {
         // If file does not exist. Create the xml file.

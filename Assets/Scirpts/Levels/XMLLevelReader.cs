@@ -4,19 +4,7 @@ using System.Xml;
 
 public class XMLLevelReader : XMLAccessor {
     
-    public string levelToLoad = "1";
-    
-    private Object pfTile;
-    private Object pfMinibot;
-	private Object pfBox;
-	private Object pfDoor;
-	private Object pfGravityInverter;
-	private Object pfHazard;
-	private Object pfHorizontalInverter;
-	private Object pfMovingPlatform;
-	private Object pfStepSwitch;
-	private Object pfSwitch;
-	private Object pfTriggerableBlock;
+    public string levelToLoad = "1";    
 
 	// Use this for initialization
 	void Start () {

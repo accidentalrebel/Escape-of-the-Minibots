@@ -96,7 +96,7 @@
   <hazard x="8" y="0" />
   <hazard x="7" y="0" />
   <horizontalInverter x="18" y="1" />
-  <stepSwitch x="2" y="6" />
-  <switch x="5" y="1" />
   <triggerableBlock x="13" y="5" isHidden="0" />
+  <stepSwitch x="2" y="6" />
+  <switch x="5" y="1" xPosOfObjectToActivate="13" yPosOfObjectToActivate="5" />
 </tiles>

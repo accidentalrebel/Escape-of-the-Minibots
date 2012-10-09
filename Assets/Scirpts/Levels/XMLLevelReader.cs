@@ -57,7 +57,6 @@ public class XMLLevelReader : XMLAccessor {
     void LoadLevel(string filepath)
     {
         XmlReader reader = XmlReader.Create(filepath);
-        Debug.Log(reader);
 		
 		GameObject newObject;
 

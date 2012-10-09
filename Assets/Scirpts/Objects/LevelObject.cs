@@ -9,7 +9,6 @@ public class LevelObject : MonoBehaviour {
 	protected void Awake()
 	{
 		startingPos = gameObject.transform.position;
-		Debug.Log (gameObject.name + startingPos);
 	}
 	
 	protected void Initialize(Vector3 theStartingPos)

@@ -22,7 +22,6 @@ public class Switch : LevelObject {
 	{
 		base.Initialize(theStartingPos);		
 		
-		Debug.Log ("map is " + map);
 		LevelObject theObject = map.GetLevelObjectAtPosition
 			(new Vector3(posOfObjectToActivate.x, posOfObjectToActivate.y, 0));
 		if ( theObject != null )

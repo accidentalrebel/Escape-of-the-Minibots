@@ -47,11 +47,16 @@ public class LevelEditor : MonoBehaviour {
                 if ( objectToSpawn == ObjectType.Tile )
                     prefabToSpawn = Registry.prefabHandler.pfTile;
 
+                // We handle the actual initialization of the object
                 GameObject spawnedObject = (GameObject)Instantiate(prefabToSpawn);
                 Vector3 spawnPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 spawnedObject.GetComponent<Tile>().Initialize(new Vector3
                     ( Mathf.Round(spawnPos.x)
                     , Mathf.Round(spawnPos.y), 0));
+
+                // We then place the new object to its respecive container
+                if (objectToSpawn == ObjectType.Tile)
+                    spawnedObject.transform.parent = Registry.map.tilesContainer.transform;
 
                 // If the left key is currently pressed
                 // Or if the leftShift key has just been released

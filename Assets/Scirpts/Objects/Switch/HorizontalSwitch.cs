@@ -7,6 +7,11 @@ public class HorizontalSwitch : Switch {
     {
 
     }
+	
+	internal void Initialize(Vector3 theStartingPos)
+	{
+		base.Initialize(theStartingPos);
+	}
 
     void Update()
     {

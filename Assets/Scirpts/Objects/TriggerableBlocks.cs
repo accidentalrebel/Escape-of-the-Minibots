@@ -12,6 +12,11 @@ public class TriggerableBlocks : LevelObject {
         GenerateTiles();
         SetStatusOfChildTiles();
 	}
+	
+	internal void Initialize(Vector3 theStartingPos)
+	{
+		base.Initialize(theStartingPos);
+	}
 
     private void GenerateTiles()
     {

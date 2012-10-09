@@ -108,6 +108,48 @@ public class XMLLevelReader : XMLAccessor {
 					, float.Parse(reader.GetAttribute("y")), 0)
 					, StringToBool(reader.GetAttribute("isOpen")));
 			}
+			else if (reader.IsStartElement("gravityInverter"))
+			{
+				newObject = (GameObject)Instantiate(pfGravityInverter);
+				newObject.GetComponent<GravitySwitch>().Initialize(new Vector3
+					( float.Parse(reader.GetAttribute("x"))
+					, float.Parse(reader.GetAttribute("y")), 0));
+			}
+			else if (reader.IsStartElement("hazard"))
+			{
+				newObject = (GameObject)Instantiate(pfHazard);
+                newObject.transform.position
+                    = new Vector3(float.Parse(reader.GetAttribute("x"))
+                        , float.Parse(reader.GetAttribute("y"), 0));
+			}
+			else if (reader.IsStartElement("horizontalInverter"))
+			{
+				newObject = (GameObject)Instantiate(pfHorizontalInverter);
+				newObject.GetComponent<HorizontalSwitch>().Initialize(new Vector3
+					( float.Parse(reader.GetAttribute("x"))
+					, float.Parse(reader.GetAttribute("y")), 0));
+			}
+			else if (reader.IsStartElement("stepSwitch"))
+			{
+				newObject = (GameObject)Instantiate(pfStepSwitch);
+				newObject.GetComponent<StepSwitch>().Initialize(new Vector3
+					( float.Parse(reader.GetAttribute("x"))
+					, float.Parse(reader.GetAttribute("y")), 0));
+			}
+			else if (reader.IsStartElement("switch"))
+			{
+				newObject = (GameObject)Instantiate(pfSwitch);
+				newObject.GetComponent<Switch>().Initialize(new Vector3
+					( float.Parse(reader.GetAttribute("x"))
+					, float.Parse(reader.GetAttribute("y")), 0));
+			}
+			else if (reader.IsStartElement("triggerableBlock"))
+			{
+				newObject = (GameObject)Instantiate(pfTriggerableBlock);
+				newObject.GetComponent<TriggerableBlocks>().Initialize(new Vector3
+					( float.Parse(reader.GetAttribute("x"))
+					, float.Parse(reader.GetAttribute("y")), 0));
+			}
         }
     }
 }

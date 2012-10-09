@@ -11,6 +11,11 @@ public class Box : LevelObject {
         if (theRigidBody == null)
             Debug.LogError("theRigidBody is not found!");
     }
+	
+	internal void Initialize(Vector3 theStartingPos)
+	{
+		base.Initialize(theStartingPos);
+	}
 
     internal void PickUp()
     {

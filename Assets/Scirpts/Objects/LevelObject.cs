@@ -11,6 +11,12 @@ public class LevelObject : MonoBehaviour {
 		startingPos = gameObject.transform.position;	
 	}
 	
+	protected void Initialize(Vector3 theStartingPos)
+	{
+		startingPos = theStartingPos;
+		gameObject.transform.position = startingPos;
+	}
+	
     protected void Start()
     {
         theTile = gameObject.GetComponent<Tile>();

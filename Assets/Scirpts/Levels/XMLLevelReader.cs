@@ -60,6 +60,10 @@ public class XMLLevelReader : XMLAccessor {
             if (CheckIfFileExists(filepath))
                 LoadLevel(filepath);
         }
+		else
+		{
+			Debug.LogWarning("No levelToLoad is specified");	
+		}
 	}   
 
     void LoadLevel(string filepath)
@@ -90,9 +94,9 @@ public class XMLLevelReader : XMLAccessor {
 			else if (reader.IsStartElement("box"))
 			{
 				GameObject newBox = (GameObject)Instantiate(pfBox);
-				newBox.transform.position
-                    = new Vector3(float.Parse(reader.GetAttribute("x"))
-                        , float.Parse(reader.GetAttribute("y"), 0));
+				newBox.GetComponent<Box>().Initialize(new Vector3
+					( float.Parse(reader.GetAttribute("x"))
+					, float.Parse(reader.GetAttribute("y")), 0));
 			}
         }
     }

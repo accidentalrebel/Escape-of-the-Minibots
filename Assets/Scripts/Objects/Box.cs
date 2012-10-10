@@ -26,4 +26,13 @@ public class Box : LevelObject {
     {
         theRigidBody.useGravity = true;
     }
+
+    internal override void ResetObject()
+    {
+        theRigidBody.velocity = Vector3.zero;
+        theRigidBody.angularVelocity = Vector3.zero;
+        theRigidBody.useGravity = true;
+
+        base.ResetObject();
+    }
 }

@@ -5,6 +5,7 @@ public class Minibot : LevelObject {
 
     public enum Direction { Left, Right };
     private GameObject objectBeingCarried;
+    private Rigidbody theRigidBody;
 
     RigidBodyFPSController controller;
     private bool startingIsInvertedGravity;
@@ -12,7 +13,11 @@ public class Minibot : LevelObject {
 	
 	void Start()
 	{
-		startingPos = gameObject.transform.position;	
+		startingPos = gameObject.transform.position;
+
+        theRigidBody = GetComponent<Rigidbody>();
+        if (theRigidBody == null)
+            Debug.LogError("theRigidBody is not found!");
 	}    
 	
     void Update()
@@ -112,10 +117,22 @@ public class Minibot : LevelObject {
 
     override internal void ResetObject()
     {
+        // We drop anything that minibot is carrying
+        if (objectBeingCarried != null)
+            objectBeingCarried = null;
+
+        // We cancel out all applied the forces
+        theRigidBody.velocity = Vector3.zero;
+        theRigidBody.angularVelocity = Vector3.zero;
+
+        // We reset the objects position to its starting pos
         base.ResetObject();
 
+        // We then reset the controller values to its starting values
         controller.InvertGravity = startingIsInvertedGravity;
         controller.invertHorizontal = startingIsInvertedHorizontal;
+
+        // If object is inactive, activate it
         gameObject.SetActiveRecursively(true);
     }
 }

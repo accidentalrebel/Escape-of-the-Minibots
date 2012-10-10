@@ -18,6 +18,7 @@ public class LevelEditor : MonoBehaviour {
     string levelFileName;
     ObjectType objectToSpawn = ObjectType.None;
     Map map;
+    bool isSimulating = true;
 
     void Start()
     {
@@ -33,7 +34,7 @@ public class LevelEditor : MonoBehaviour {
         if (levelWriter == null)
             Debug.LogError("levelWriter is not found!");
 
-        levelFileName = levelReader.levelToLoad;        
+        levelFileName = levelReader.levelToLoad;
     }
 
     void Update()
@@ -86,6 +87,27 @@ public class LevelEditor : MonoBehaviour {
         
         if (MapEditMode)
         {
+            // Play and Stop Buttons
+            string btnText = "";
+            if (isSimulating)
+                btnText = "Stop";
+            else
+                btnText = "Play";
+
+            if (GUI.Button(new Rect(10, 40, 100, 30), btnText))
+            {
+                if (isSimulating)
+                {
+                    Time.timeScale = 0;
+                    isSimulating = false;
+                }
+                else
+                {
+                    Time.timeScale = 1;
+                    isSimulating = true;
+                }
+            }
+
             // Spawning buttons
             if (GUI.Button(new Rect(10, 550, 100, 30), "Spawn Tile"))
             {
@@ -99,17 +121,22 @@ public class LevelEditor : MonoBehaviour {
             }
 
             // Save map mode
-            saveMapMode = GUI.Toggle(new Rect(10, 40, 200, 20), saveMapMode, "Save map?");
+            saveMapMode = GUI.Toggle(new Rect(10, 80, 200, 20), saveMapMode, "Save map?");
             if (saveMapMode)
             {
-                GUI.Label(new Rect(30, 80, 100, 50), "Level name: ");
-                levelFileName = GUI.TextField(new Rect(115, 80, 50, 20), levelFileName);
-                if (GUI.Button(new Rect(40, 110, 100, 30), "Save Map"))
+                GUI.Label(new Rect(30, 120, 100, 50), "Level name: ");
+                levelFileName = GUI.TextField(new Rect(115, 1200, 50, 20), levelFileName);
+                if (GUI.Button(new Rect(40, 150, 100, 30), "Save Map"))
                 {
                     Debug.Log("Save map clicked");
                     levelWriter.SaveLevel(levelFileName);
                 }
             }
         }
+    }
+
+    private void HandleTimeScale()
+    {
+        throw new System.NotImplementedException();
     }
 }

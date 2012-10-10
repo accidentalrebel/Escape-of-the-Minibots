@@ -128,7 +128,8 @@ public class XMLLevelReader : XMLAccessor {
 				newObject = (GameObject)Instantiate(pfTriggerableBlock);
 				newObject.GetComponent<TriggerableBlocks>().Initialize(new Vector3
 					( float.Parse(reader.GetAttribute("x"))
-					, float.Parse(reader.GetAttribute("y")), 0));
+					, float.Parse(reader.GetAttribute("y")), 0)
+                    , StringToBool(reader.GetAttribute("isHidden")));
 				
 				newObject.transform.parent = triggerableBlocksContainer.transform;
 			}

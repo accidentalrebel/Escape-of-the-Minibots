@@ -85,5 +85,13 @@ public class Map : MonoBehaviour {
         {
             minibot.GetComponent<Minibot>().ResetObject();
         }
+        foreach (Transform door in doorsContainer.transform)
+        {
+            door.GetComponent<Door>().ResetObject();
+        }
+        foreach (Transform triggerableBlock in triggerableBlocksContainer.transform)
+        {
+            triggerableBlock.GetComponent<TriggerableBlocks>().ResetObject();
+        }
     }
 }

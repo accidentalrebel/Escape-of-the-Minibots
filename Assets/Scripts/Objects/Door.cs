@@ -4,6 +4,7 @@ using System.Collections;
 public class Door : LevelObject {
 
     public bool isOpen = false;
+    private bool startingIsOpen = false;
 
     void Start()
     {
@@ -16,6 +17,7 @@ public class Door : LevelObject {
 	{
 		base.Initialize(theStartingPos);		
 		isOpen = theIsOpen;
+        startingIsOpen = isOpen;
 	}
 
     private void UpdateDoorGraphic()
@@ -34,5 +36,10 @@ public class Door : LevelObject {
             isOpen = true;
 
         UpdateDoorGraphic();
+    }
+
+    internal override void ResetObject()
+    {
+        isOpen = startingIsOpen;
     }
 }

@@ -6,6 +6,7 @@ public class TriggerableBlocks : LevelObject {
 
     public Vector2 blockSize;
     public bool isHidden = false;
+    private bool startingIsHidden = false;
 
 	// Use this for initialization
 	void Start () {
@@ -13,9 +14,11 @@ public class TriggerableBlocks : LevelObject {
         SetStatusOfChildTiles();
 	}
 	
-	internal void Initialize(Vector3 theStartingPos)
+	internal void Initialize(Vector3 theStartingPos, bool theIsHidden)
 	{
 		base.Initialize(theStartingPos);
+        isHidden = theIsHidden;
+        startingIsHidden = isHidden;
 	}
 
     private void GenerateTiles()
@@ -76,5 +79,11 @@ public class TriggerableBlocks : LevelObject {
                         , transform.position.y + yCoord, 1), new Vector3(1, 1, 1));
             }
         }
+    }
+
+    internal override void ResetObject()
+    {
+        isHidden = startingIsHidden;
+        SetStatusOfChildTiles();  
     }
 }

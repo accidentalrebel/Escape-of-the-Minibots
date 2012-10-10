@@ -3,7 +3,7 @@ using System.Collections;
 
 public class LevelEditor : MonoBehaviour {
 
-    enum ObjectType { None, Tile };
+    enum ObjectType { None, Tile, Minibot };
 
     bool mapEditMode = false;
     bool MapEditMode
@@ -44,19 +44,32 @@ public class LevelEditor : MonoBehaviour {
             {
                 // We determine which prefab to spawn
                 Object prefabToSpawn = Registry.prefabHandler.pfTile;
-                if ( objectToSpawn == ObjectType.Tile )
-                    prefabToSpawn = Registry.prefabHandler.pfTile;
-
-                // We handle the actual initialization of the object
-                GameObject spawnedObject = (GameObject)Instantiate(prefabToSpawn);
-                Vector3 spawnPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                spawnedObject.GetComponent<Tile>().Initialize(new Vector3
-                    ( Mathf.Round(spawnPos.x)
-                    , Mathf.Round(spawnPos.y), 0));
-
-                // We then place the new object to its respecive container
                 if (objectToSpawn == ObjectType.Tile)
+                {
+                    // We handle the actual initialization of the object
+                    GameObject spawnedObject = (GameObject)Instantiate(Registry.prefabHandler.pfTile);
+                    Vector3 spawnPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    spawnedObject.GetComponent<Tile>().Initialize(new Vector3
+                        (Mathf.Round(spawnPos.x)
+                        , Mathf.Round(spawnPos.y), 0));
+
+                    // We then place the new object to its respecive container
                     spawnedObject.transform.parent = Registry.map.tilesContainer.transform;
+                }
+                else if (objectToSpawn == ObjectType.Minibot)
+                {
+                    // We handle the actual initialization of the object
+                    GameObject spawnedObject = (GameObject)Instantiate(Registry.prefabHandler.pfMinibot);
+                    Vector3 spawnPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    spawnedObject.GetComponent<Minibot>().Initialize(new Vector3
+                        (Mathf.Round(spawnPos.x)
+                        , Mathf.Round(spawnPos.y), 0)
+                        , false, false);
+
+                    // We then place the new object to its respecive container
+                    spawnedObject.transform.parent = Registry.map.minibotsContainer.transform;
+                }
+                    
 
                 // If the left key is currently pressed
                 // Or if the leftShift key has just been released
@@ -73,14 +86,20 @@ public class LevelEditor : MonoBehaviour {
         
         if (MapEditMode)
         {
+            // Spawning buttons
             if (GUI.Button(new Rect(10, 550, 100, 30), "Spawn Tile"))
             {
                 Debug.Log("Spawn tile clicked");
                 objectToSpawn = ObjectType.Tile;
             }
+            if (GUI.Button(new Rect(110, 550, 100, 30), "Spawn Minibot"))
+            {
+                Debug.Log("Spawn minibot clicked");
+                objectToSpawn = ObjectType.Minibot;
+            }
 
+            // Save map mode
             saveMapMode = GUI.Toggle(new Rect(10, 40, 200, 20), saveMapMode, "Save map?");
-
             if (saveMapMode)
             {
                 GUI.Label(new Rect(30, 80, 100, 50), "Level name: ");

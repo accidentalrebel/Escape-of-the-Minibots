@@ -56,6 +56,7 @@
      <Compile Include="Assets\Scirpts\Levels\XMLLevelWriter.cs" />
      <Compile Include="Assets\Scirpts\Main\Main.cs" />
      <Compile Include="Assets\Scirpts\Main\Registry.cs" />
+     <Compile Include="Assets\Scirpts\Misc\GraphicHandler.cs" />
      <Compile Include="Assets\Scirpts\Misc\PrefabHandler.cs" />
      <Compile Include="Assets\Scirpts\Objects\Box.cs" />
      <Compile Include="Assets\Scirpts\Objects\Door.cs" />
@@ -64,11 +65,11 @@
      <Compile Include="Assets\Scirpts\Objects\Switch\HorizontalSwitch.cs" />
      <Compile Include="Assets\Scirpts\Objects\Switch\StepSwitch.cs" />
      <Compile Include="Assets\Scirpts\Objects\Switch\Switch.cs" />
+     <Compile Include="Assets\Scirpts\Objects\Tile\HazardTile.cs" />
+     <Compile Include="Assets\Scirpts\Objects\Tile\Tile.cs" />
      <Compile Include="Assets\Scirpts\Objects\TriggerableBlocks.cs" />
      <Compile Include="Assets\Scirpts\Platform\MovingPlatform.cs" />
      <Compile Include="Assets\Scirpts\Player\Minibot.cs" />
-     <Compile Include="Assets\Scirpts\Tile\HazardTile.cs" />
-     <Compile Include="Assets\Scirpts\Tile\Tile.cs" />
      <None Include="Assets\Levels\1.txt" />
      <None Include="Assets\Levels\1.xml" />
      <None Include="Assets\Levels\test.xml" />

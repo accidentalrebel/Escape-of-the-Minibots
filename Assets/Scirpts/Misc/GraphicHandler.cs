@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Tile : MonoBehaviour 
+public class GraphicHandler : MonoBehaviour 
 {
     internal Renderer theRenderer;
 	internal Vector3 startingPos;
@@ -13,11 +13,5 @@ public class Tile : MonoBehaviour
             Debug.LogError("Could not find the renderer!");
 		
 		startingPos = gameObject.transform.position;
-    }
-
-    internal void Initialize(Vector3 theStartingPos)
-    {
-        startingPos = theStartingPos;
-        gameObject.transform.position = startingPos;
     }
 }

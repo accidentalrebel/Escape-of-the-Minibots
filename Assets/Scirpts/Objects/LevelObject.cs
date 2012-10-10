@@ -1,9 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(GraphicHandler))]
 public class LevelObject : MonoBehaviour {
 
-    protected Tile theTile;
+    protected GraphicHandler theGraphicHandler;
 	internal Vector3 startingPos;
 	
 	protected void Awake()
@@ -11,7 +12,7 @@ public class LevelObject : MonoBehaviour {
 		startingPos = gameObject.transform.position;
 	}
 	
-	protected void Initialize(Vector3 theStartingPos)
+	internal void Initialize(Vector3 theStartingPos)
 	{
 		startingPos = theStartingPos;
 		gameObject.transform.position = startingPos;
@@ -19,9 +20,9 @@ public class LevelObject : MonoBehaviour {
 	
     protected void Start()
     {
-        theTile = gameObject.GetComponent<Tile>();
-        if (theTile == null)
-            Debug.LogError("theTile can not be found!");
+        theGraphicHandler = gameObject.GetComponent<GraphicHandler>();
+        if (theGraphicHandler == null)
+            Debug.LogError("theGraphicHandler at " + gameObject.name + "can not be found!");
     }
 
     virtual internal void Use()

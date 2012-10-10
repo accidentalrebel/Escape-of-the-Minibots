@@ -55,12 +55,12 @@ public class TriggerableBlocks : LevelObject {
             if (isHidden)
             {
                 child.gameObject.collider.enabled = false;
-                child.gameObject.GetComponent<Tile>().theRenderer.enabled = false;
+                child.gameObject.GetComponent<GraphicHandler>().theRenderer.enabled = false;
             }
             else
             {
                 child.gameObject.collider.enabled = true;
-                child.gameObject.GetComponent<Tile>().theRenderer.enabled = true;
+                child.gameObject.GetComponent<GraphicHandler>().theRenderer.enabled = true;
             }
         }      
     }

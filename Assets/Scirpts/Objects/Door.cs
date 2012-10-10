@@ -21,9 +21,9 @@ public class Door : LevelObject {
     private void UpdateDoorGraphic()
     {
         if( isOpen)
-            theTile.theRenderer.material.color = Color.cyan;
+            theGraphicHandler.theRenderer.material.color = Color.cyan;
         else            
-            theTile.theRenderer.material.color = Color.green;
+            theGraphicHandler.theRenderer.material.color = Color.green;
     }
 
     override internal void Use()

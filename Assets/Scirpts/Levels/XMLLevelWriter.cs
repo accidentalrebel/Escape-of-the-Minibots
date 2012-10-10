@@ -59,7 +59,7 @@ public class XMLLevelWriter : XMLAccessor {
         foreach (Transform tile in tilesContainer.transform)
         {
             elemNew = xmlDoc.CreateElement("tile");
-			Tile tileScript = tile.gameObject.GetComponent<Tile>();
+			GraphicHandler tileScript = tile.gameObject.GetComponent<GraphicHandler>();
             elemNew.SetAttribute("x", tileScript.startingPos.x.ToString());
             elemNew.SetAttribute("y", tileScript.startingPos.y.ToString());
             elemRoot.AppendChild(elemNew);                      // Make the transform node the parent
@@ -101,7 +101,7 @@ public class XMLLevelWriter : XMLAccessor {
 		foreach (Transform hazard in hazardsContainer.transform)
 		{
 			elemNew = xmlDoc.CreateElement("hazard");
-			Tile tileScript = hazard.gameObject.GetComponent<Tile>();
+			GraphicHandler tileScript = hazard.gameObject.GetComponent<GraphicHandler>();
 			elemNew.SetAttribute("x", tileScript.startingPos.x.ToString());
 			elemNew.SetAttribute("y", tileScript.startingPos.y.ToString());
 			elemRoot.AppendChild(elemNew);	

@@ -7,11 +7,12 @@ public class Minibot : MonoBehaviour {
     private GameObject objectBeingCarried;
 	
 	internal Vector3 startingPos;
+    RigidBodyFPSController controller;
 	
 	void Start()
 	{
 		startingPos = gameObject.transform.position;	
-	}
+	}    
 	
     void Update()
     {
@@ -39,6 +40,15 @@ public class Minibot : MonoBehaviour {
         {
             objectBeingCarried.transform.position = transform.position + Vector3.up;
         }
+    }
+    
+    internal void Initialize(Vector3 startPos, bool isInvertedGrav, bool isInvertedHor)
+    {
+        startingPos = startPos;
+        gameObject.transform.position = startingPos;
+        controller = gameObject.GetComponentInChildren<RigidBodyFPSController>();
+        controller.InvertGravity = isInvertedGrav;
+        controller.invertHorizontal = isInvertedHor;
     }
 
     private void PutDown(GameObject objectToPutDown)

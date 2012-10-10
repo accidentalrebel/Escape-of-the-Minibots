@@ -58,13 +58,11 @@ public class XMLLevelReader : XMLAccessor {
             if (reader.IsStartElement("minibot"))
             {
                 newObject = (GameObject)Instantiate(pfMinibot);
-                newObject.transform.position
-                    = new Vector3(float.Parse(reader.GetAttribute("x"))
-                        , Mathf.Ceil(float.Parse(reader.GetAttribute("y"))), 0);
-                
-                RigidBodyFPSController controller = newObject.GetComponentInChildren<RigidBodyFPSController>();
-                controller.InvertGravity = StringToBool(reader.GetAttribute("invertGravity"));
-                controller.invertHorizontal = StringToBool(reader.GetAttribute("invertHorizontal"));
+                newObject.GetComponent<Minibot>().Initialize(
+                    new Vector3(float.Parse(reader.GetAttribute("x"))
+                        , Mathf.Ceil(float.Parse(reader.GetAttribute("y"))), 0)
+                        , StringToBool(reader.GetAttribute("invertGravity"))
+                        , StringToBool(reader.GetAttribute("invertHorizontal")));
 				
 				newObject.transform.parent = minibotsContainer.transform;
             }
@@ -113,9 +111,6 @@ public class XMLLevelReader : XMLAccessor {
                    (new Vector3
                        (float.Parse(reader.GetAttribute("x"))
                        , float.Parse(reader.GetAttribute("y")), 0));
-                //newObject.transform.position
-                //    = new Vector3(float.Parse(reader.GetAttribute("x"))
-                //        , float.Parse(reader.GetAttribute("y"), 0));
 				
 				newObject.transform.parent = hazardsContainer.transform;
 			}

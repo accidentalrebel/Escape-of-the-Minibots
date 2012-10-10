@@ -100,6 +100,7 @@ public class LevelEditor : MonoBehaviour {
                 {
                     Time.timeScale = 0;
                     isSimulating = false;
+                    map.RestartLevel();
                 }
                 else
                 {
@@ -124,9 +125,9 @@ public class LevelEditor : MonoBehaviour {
             saveMapMode = GUI.Toggle(new Rect(10, 80, 200, 20), saveMapMode, "Save map?");
             if (saveMapMode)
             {
-                GUI.Label(new Rect(30, 120, 100, 50), "Level name: ");
-                levelFileName = GUI.TextField(new Rect(115, 1200, 50, 20), levelFileName);
-                if (GUI.Button(new Rect(40, 150, 100, 30), "Save Map"))
+                GUI.Label(new Rect(30, 105, 100, 50), "Level name: ");
+                levelFileName = GUI.TextField(new Rect(115, 105, 50, 20), levelFileName);
+                if (GUI.Button(new Rect(30, 130, 100, 30), "Save Map"))
                 {
                     Debug.Log("Save map clicked");
                     levelWriter.SaveLevel(levelFileName);

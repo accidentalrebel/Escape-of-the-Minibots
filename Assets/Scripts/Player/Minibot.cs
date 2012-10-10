@@ -7,6 +7,8 @@ public class Minibot : LevelObject {
     private GameObject objectBeingCarried;
 
     RigidBodyFPSController controller;
+    private bool startingIsInvertedGravity;
+    private bool startingIsInvertedHorizontal;
 	
 	void Start()
 	{
@@ -43,11 +45,14 @@ public class Minibot : LevelObject {
     
     internal void Initialize(Vector3 startPos, bool isInvertedGrav, bool isInvertedHor)
     {
-        startingPos = startPos;
+        startingPos = startPos;        
         gameObject.transform.position = startingPos;
+
         controller = gameObject.GetComponentInChildren<RigidBodyFPSController>();
         controller.InvertGravity = isInvertedGrav;
         controller.invertHorizontal = isInvertedHor;
+        startingIsInvertedGravity = isInvertedGrav;
+        startingIsInvertedHorizontal = isInvertedHor;
     }
 
     private void PutDown(GameObject objectToPutDown)
@@ -103,5 +108,14 @@ public class Minibot : LevelObject {
             }
         }
         return null;
+    }
+
+    override internal void ResetObject()
+    {
+        base.ResetObject();
+
+        controller.InvertGravity = startingIsInvertedGravity;
+        controller.invertHorizontal = startingIsInvertedHorizontal;
+        gameObject.SetActiveRecursively(true);
     }
 }

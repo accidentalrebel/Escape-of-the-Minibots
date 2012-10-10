@@ -74,4 +74,16 @@ public class Map : MonoBehaviour {
 		
 		return null;
 	}
+
+    internal void RestartLevel()
+    {
+        foreach (Transform box in boxesContainer.transform)
+        {
+            box.GetComponent<Box>().ResetObject();
+        }
+        foreach (Transform minibot in minibotsContainer.transform)
+        {
+            minibot.GetComponent<Minibot>().ResetObject();
+        }
+    }
 }

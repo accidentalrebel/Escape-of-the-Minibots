@@ -1,12 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
-public class Minibot : MonoBehaviour {
+public class Minibot : LevelObject {
 
     public enum Direction { Left, Right };
     private GameObject objectBeingCarried;
-	
-	internal Vector3 startingPos;
+
     RigidBodyFPSController controller;
 	
 	void Start()

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <tiles>
-  <minibot x="5" y="6.00392" invertGravity="0" invertHorizontal="0" />
-  <minibot x="16" y="0.99608" invertGravity="0" invertHorizontal="0" />
-  <minibot x="2" y="0.99608" invertGravity="0" invertHorizontal="0" />
+  <minibot x="5" y="6" invertGravity="0" invertHorizontal="0" />
+  <minibot x="16" y="1" invertGravity="0" invertHorizontal="0" />
+  <minibot x="2" y="1" invertGravity="0" invertHorizontal="0" />
   <tile x="19" y="0" />
   <tile x="0" y="7" />
   <tile x="7" y="5" />
@@ -87,15 +87,14 @@
   <tile x="10" y="2" />
   <tile x="0" y="2" />
   <tile x="5" y="5" />
-  <tile x="9" y="1" />
   <box x="7" y="7" />
   <door x="9" y="7" isOpen="1" />
   <door x="11" y="6" isOpen="1" />
   <door x="8" y="2" isOpen="0" />
   <gravityInverter x="12" y="1" />
   <gravityInverter x="18" y="9" />
-  <hazard x="8" y="0" />
   <hazard x="7" y="0" />
+  <hazard x="8" y="0" />
   <horizontalInverter x="18" y="1" />
   <triggerableBlock x="13" y="5" isHidden="0" />
   <stepSwitch x="2" y="6" xPosOfObjectToActivate="8" yPosOfObjectToActivate="2" />

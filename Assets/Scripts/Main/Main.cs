@@ -3,9 +3,12 @@ using System.Collections;
 
 public class Main : MonoBehaviour
 {
+    Map map;
+
     void Awake()
     {
         Registry.main = this;
+        map = Registry.map;
     }
 
     void Update()
@@ -18,6 +21,7 @@ public class Main : MonoBehaviour
 
     internal void RestartGame()
     {
-        Application.LoadLevel(Application.loadedLevel);
+        //Application.LoadLevel(Application.loadedLevel);
+        map.RestartLevel();
     }
 }

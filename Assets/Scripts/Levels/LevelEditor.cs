@@ -3,7 +3,8 @@ using System.Collections;
 
 public class LevelEditor : MonoBehaviour {
 
-    enum ObjectType { None, Tile, Minibot, Box, Door };
+    enum ObjectType { None, Tile, Minibot, Box, Door, GravityInverter, Hazard, HorizontalInverter
+        , MovingPlatform, StepSwitch, Switch, TriggerableBlock };
 
     bool mapEditMode = false;
     bool MapEditMode
@@ -136,26 +137,65 @@ public class LevelEditor : MonoBehaviour {
             }
 
             // Spawning buttons
-            
-            if (GUI.Button(new Rect(10, Screen.height-40, 100, 30), "Spawn Tile"))
+
+            if (GUI.Button(new Rect(10, Screen.height - 70, 100, 30), "Tile"))
             {
                 Debug.Log("Spawn tile clicked");
                 objectToSpawn = ObjectType.Tile;
             }
-            if (GUI.Button(new Rect(110, Screen.height - 40, 100, 30), "Spawn Minibot"))
+            if (GUI.Button(new Rect(110, Screen.height - 70, 100, 30), "Hazard"))
+            {
+                Debug.Log("Spawn hazard clicked");
+                objectToSpawn = ObjectType.Hazard;
+            }
+            if (GUI.Button(new Rect(210, Screen.height - 70, 100, 30), "Minibot"))
             {
                 Debug.Log("Spawn minibot clicked");
                 objectToSpawn = ObjectType.Minibot;
             }
-            if (GUI.Button(new Rect(210, Screen.height - 40, 100, 30), "Spawn Box"))
+            if (GUI.Button(new Rect(310, Screen.height - 70, 100, 30), "Box"))
             {
                 Debug.Log("Spawn box clicked");
                 objectToSpawn = ObjectType.Box;
             }
-            if (GUI.Button(new Rect(310, Screen.height - 40, 100, 30), "Spawn Door"))
+            if (GUI.Button(new Rect(410, Screen.height - 70, 100, 30), "Door"))
             {
                 Debug.Log("Spawn door clicked");
                 objectToSpawn = ObjectType.Door;
+            }           
+            
+
+            // 2nd row
+
+            if (GUI.Button(new Rect(10, Screen.height - 40, 100, 30), "Switch"))
+            {
+                Debug.Log("Spawn switch clicked");
+                objectToSpawn = ObjectType.Switch;
+            }
+            if (GUI.Button(new Rect(110, Screen.height - 40, 100, 30), "StepSwitch"))
+            {
+                Debug.Log("Spawn stepSwitch clicked");
+                objectToSpawn = ObjectType.StepSwitch;
+            }            
+            if (GUI.Button(new Rect(210, Screen.height - 40, 100, 30), "GravInv"))
+            {
+                Debug.Log("Spawn gravity inverter clicked");
+                objectToSpawn = ObjectType.GravityInverter;
+            }            
+            if (GUI.Button(new Rect(310, Screen.height - 40, 100, 30), "HorInv"))
+            {
+                Debug.Log("Spawn horizontal inverter clicked");
+                objectToSpawn = ObjectType.HorizontalInverter;
+            }
+            if (GUI.Button(new Rect(410, Screen.height - 40, 100, 30), "MovPlatform"))
+            {
+                Debug.Log("Spawn moving platform clicked");
+                objectToSpawn = ObjectType.MovingPlatform;
+            }
+            if (GUI.Button(new Rect(510, Screen.height - 40, 100, 30), "TrigBlocks"))
+            {
+                Debug.Log("Spawn triggerableBlocks clicked");
+                objectToSpawn = ObjectType.TriggerableBlock;
             }
 
             // Save map mode

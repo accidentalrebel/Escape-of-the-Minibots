@@ -1,1 +1,8 @@
 D:\Development\Projects\Minibots\minibots\obj\Debug\ResolveAssemblyReference.cache
+D:\Development\Projects\Minibots\Minibots\Temp\bin\Debug\Assembly-CSharp.dll
+D:\Development\Projects\Minibots\Minibots\Temp\bin\Debug\Assembly-CSharp.pdb
+D:\Development\Projects\Minibots\Minibots\Temp\bin\Debug\UnityEditor.dll
+D:\Development\Projects\Minibots\Minibots\Temp\bin\Debug\UnityEngine.dll
+D:\Development\Projects\Minibots\Minibots\Temp\bin\Debug\nunit.framework.dll
+D:\Development\Projects\Minibots\Minibots\obj\Debug\Assembly-CSharp.dll
+D:\Development\Projects\Minibots\Minibots\obj\Debug\Assembly-CSharp.pdb

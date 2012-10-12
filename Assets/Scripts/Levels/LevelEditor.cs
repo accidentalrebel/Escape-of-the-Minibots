@@ -3,7 +3,7 @@ using System.Collections;
 
 public class LevelEditor : MonoBehaviour {
 
-    enum ObjectType { None, Tile, Minibot };
+    enum ObjectType { None, Tile, Minibot, Box };
 
     bool mapEditMode = false;
     bool MapEditMode
@@ -70,6 +70,18 @@ public class LevelEditor : MonoBehaviour {
                     // We then place the new object to its respecive container
                     spawnedObject.transform.parent = Registry.map.minibotsContainer.transform;
                 }
+                else if (objectToSpawn == ObjectType.Box)
+                {
+                    // We handle the actual initialization of the object
+                    GameObject spawnedObject = (GameObject)Instantiate(Registry.prefabHandler.pfBox);
+                    Vector3 spawnPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    spawnedObject.GetComponent<Box>().Initialize(new Vector3
+                        (Mathf.Round(spawnPos.x)
+                        , Mathf.Round(spawnPos.y), 0));
+
+                    // We then place the new object to its respecive container
+                    spawnedObject.transform.parent = Registry.map.boxesContainer.transform;
+                }
                     
 
                 // If the left key is currently pressed
@@ -120,6 +132,11 @@ public class LevelEditor : MonoBehaviour {
             {
                 Debug.Log("Spawn minibot clicked");
                 objectToSpawn = ObjectType.Minibot;
+            }
+            if (GUI.Button(new Rect(210, Screen.height - 40, 100, 30), "Spawn Box"))
+            {
+                Debug.Log("Spawn box clicked");
+                objectToSpawn = ObjectType.Box;
             }
 
             // Save map mode

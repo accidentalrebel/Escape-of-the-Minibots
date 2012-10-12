@@ -110,12 +110,13 @@ public class LevelEditor : MonoBehaviour {
             }
 
             // Spawning buttons
-            if (GUI.Button(new Rect(10, 550, 100, 30), "Spawn Tile"))
+            
+            if (GUI.Button(new Rect(10, Screen.height-40, 100, 30), "Spawn Tile"))
             {
                 Debug.Log("Spawn tile clicked");
                 objectToSpawn = ObjectType.Tile;
             }
-            if (GUI.Button(new Rect(110, 550, 100, 30), "Spawn Minibot"))
+            if (GUI.Button(new Rect(110, Screen.height - 40, 100, 30), "Spawn Minibot"))
             {
                 Debug.Log("Spawn minibot clicked");
                 objectToSpawn = ObjectType.Minibot;

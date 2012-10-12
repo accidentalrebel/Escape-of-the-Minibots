@@ -3,7 +3,7 @@ using System.Collections;
 
 public class LevelEditor : MonoBehaviour {
 
-    enum ObjectType { None, Tile, Minibot, Box };
+    enum ObjectType { None, Tile, Minibot, Box, Door };
 
     bool mapEditMode = false;
     bool MapEditMode
@@ -63,6 +63,11 @@ public class LevelEditor : MonoBehaviour {
                     prefabToSpawn = Registry.prefabHandler.pfBox;
                     parentTransform = Registry.map.boxesContainer.transform;
                 }
+                else if (objectToSpawn == ObjectType.Door)
+                {
+                    prefabToSpawn = Registry.prefabHandler.pfDoor;
+                    parentTransform = Registry.map.doorsContainer.transform;
+                }
 
                 GameObject spawnedObject = (GameObject)Instantiate(prefabToSpawn);  // We initialize the object
                 spawnedObject.transform.parent = parentTransform;                    // We then place the new object to its respecive container
@@ -85,7 +90,13 @@ public class LevelEditor : MonoBehaviour {
                     spawnedObject.GetComponent<Box>().Initialize(new Vector3
                         (Mathf.Round(spawnPos.x)
                         , Mathf.Round(spawnPos.y), 0));
-                }              
+                }
+                else if (objectToSpawn == ObjectType.Door)
+                {
+                    spawnedObject.GetComponent<Door>().Initialize(new Vector3
+                        (Mathf.Round(spawnPos.x)
+                        , Mathf.Round(spawnPos.y), 0));
+                }  
                 
                 // If the left key is currently pressed
                 // Or if the leftShift key has just been released
@@ -140,6 +151,11 @@ public class LevelEditor : MonoBehaviour {
             {
                 Debug.Log("Spawn box clicked");
                 objectToSpawn = ObjectType.Box;
+            }
+            if (GUI.Button(new Rect(310, Screen.height - 40, 100, 30), "Spawn Door"))
+            {
+                Debug.Log("Spawn door clicked");
+                objectToSpawn = ObjectType.Door;
             }
 
             // Save map mode

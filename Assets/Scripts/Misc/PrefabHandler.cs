@@ -13,7 +13,7 @@ public class PrefabHandler : MonoBehaviour {
     internal Object pfMovingPlatform;
     internal Object pfStepSwitch;
     internal Object pfSwitch;
-    internal Object pfTriggerableBlock;
+    internal Object pfTriggerableBlock;    
 
 	// Use this for initialization
 	void Awake () {

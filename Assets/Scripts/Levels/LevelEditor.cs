@@ -16,10 +16,11 @@ public class LevelEditor : MonoBehaviour {
 
     XMLLevelReader levelReader;
     XMLLevelWriter levelWriter;
-    string levelFileName;
     ObjectType objectToSpawn = ObjectType.None;
     Map map;
+    string levelFileName;    
     bool isSimulating = true;
+    Renderer originMarkerRenderer; 
 
     void Start()
     {
@@ -36,6 +37,23 @@ public class LevelEditor : MonoBehaviour {
             Debug.LogError("levelWriter is not found!");
 
         levelFileName = levelReader.levelToLoad;
+
+        InitializeOriginMarker();
+
+    }
+
+    private void InitializeOriginMarker()
+    {
+        Object pfOriginMarker = Resources.Load(@"Prefabs/pfOriginMarker");
+        if (pfOriginMarker == null)
+            Debug.LogError("Can not find pfOriginMarker prefab!");
+
+        // We create an instance of the coordinate marker
+        GameObject originMarkerObject = (GameObject)Instantiate(pfOriginMarker);
+        originMarkerObject.transform.parent = map.transform;
+        originMarkerObject.name = "Origin Marker";
+        originMarkerRenderer = originMarkerObject.GetComponent<GraphicHandler>().theRenderer;
+        originMarkerRenderer.enabled = false;
     }
 
     void Update()
@@ -52,7 +70,13 @@ public class LevelEditor : MonoBehaviour {
                     || Input.GetKeyUp(KeyCode.LeftShift))
                     objectToSpawn = ObjectType.None;   // We set the objectToSpawn to none
             }
-        }        
+        }
+
+        // This only shows the origin marker when mapEditMode is enabled
+        if (mapEditMode)
+            originMarkerRenderer.enabled = true;
+        else
+            originMarkerRenderer.enabled = false;
     }
 
     private void HandleLevelObjectPlacement()
@@ -177,7 +201,6 @@ public class LevelEditor : MonoBehaviour {
                 (Mathf.Round(spawnPos.x)
                 , Mathf.Round(spawnPos.y), 0));
         }
-                
     }
 
     void OnGUI()

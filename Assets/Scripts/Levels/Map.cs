@@ -2,7 +2,8 @@ using UnityEngine;
 using System.Collections;
 
 public class Map : MonoBehaviour {
-	
+
+    internal GameObject levelObjectsContainer;
 	internal GameObject tilesContainer;
     internal GameObject minibotsContainer;
 	internal GameObject boxesContainer;
@@ -19,37 +20,40 @@ public class Map : MonoBehaviour {
 	void Awake () {
 		Registry.map = this;
 		
-		tilesContainer = gameObject.transform.FindChild("Tiles").gameObject;
+        levelObjectsContainer = gameObject.transform.FindChild("LevelObjects").gameObject;
+        if (levelObjectsContainer == null)
+            Debug.LogError("levelObjectsContainer not found!");
+		tilesContainer = levelObjectsContainer.transform.FindChild("Tiles").gameObject;
         if (tilesContainer == null)
             Debug.LogError("tilesContainer not found!");
         minibotsContainer = GameObject.Find("Minibots");
         if (minibotsContainer == null)
             Debug.LogError("minibotsContainer not found!");
-		boxesContainer = gameObject.transform.FindChild("Boxes").gameObject;
+		boxesContainer = levelObjectsContainer.transform.FindChild("Boxes").gameObject;
 		if (boxesContainer == null)
 			Debug.LogError("boxesContainer not found!");
-		doorsContainer = gameObject.transform.FindChild("Doors").gameObject;
+		doorsContainer = levelObjectsContainer.transform.FindChild("Doors").gameObject;
 		if (doorsContainer == null)
 			Debug.LogError("doorsContainer not found!");
-		gravityInvertersContainer = gameObject.transform.FindChild("GravityInverters").gameObject;
+		gravityInvertersContainer = levelObjectsContainer.transform.FindChild("GravityInverters").gameObject;
 		if (gravityInvertersContainer == null )
 			Debug.LogError("gravityInvertersContainer not found!");
-		hazardsContainer = gameObject.transform.FindChild("Hazards").gameObject;
+		hazardsContainer = levelObjectsContainer.transform.FindChild("Hazards").gameObject;
 		if (hazardsContainer == null )
 			Debug.LogError("hazardsContainer not found!");
-		horizontalInvertersContainer = gameObject.transform.FindChild("HorizontalInverters").gameObject;
+		horizontalInvertersContainer = levelObjectsContainer.transform.FindChild("HorizontalInverters").gameObject;
 		if (horizontalInvertersContainer == null)
 			Debug.LogError("horizontalInvertersContainer not found!");
-		movingPlatformsContainer = gameObject.transform.FindChild("MovingPlatforms").gameObject;
+		movingPlatformsContainer = levelObjectsContainer.transform.FindChild("MovingPlatforms").gameObject;
 		if (movingPlatformsContainer == null)
 			Debug.LogError("movingPlatformsContainer not found!");
-		stepSwitchesContainer = gameObject.transform.FindChild("StepSwitches").gameObject;
+		stepSwitchesContainer = levelObjectsContainer.transform.FindChild("StepSwitches").gameObject;
 		if (stepSwitchesContainer == null )
 			Debug.LogError("stepSwitchesContainer not found!");
-		switchesContainer = gameObject.transform.FindChild("Switches").gameObject;
+		switchesContainer = levelObjectsContainer.transform.FindChild("Switches").gameObject;
 		if (switchesContainer == null)
 			Debug.LogError("switchesContainer not found!");
-		triggerableBlocksContainer = gameObject.transform.FindChild("TriggerableBlocks").gameObject;
+		triggerableBlocksContainer = levelObjectsContainer.transform.FindChild("TriggerableBlocks").gameObject;
 		if (triggerableBlocksContainer == null)
 			Debug.LogError("triggerableBlocksContainer not found!");
 	}

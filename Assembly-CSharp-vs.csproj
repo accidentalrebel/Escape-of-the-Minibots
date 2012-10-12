@@ -61,6 +61,7 @@
      <Compile Include="Assets\Scripts\Objects\Box.cs" />
      <Compile Include="Assets\Scripts\Objects\Door.cs" />
      <Compile Include="Assets\Scripts\Objects\LevelObject.cs" />
+     <Compile Include="Assets\Scripts\Objects\Platform\MovingPlatform.cs" />
      <Compile Include="Assets\Scripts\Objects\Switch\GravitySwitch.cs" />
      <Compile Include="Assets\Scripts\Objects\Switch\HorizontalSwitch.cs" />
      <Compile Include="Assets\Scripts\Objects\Switch\StepSwitch.cs" />
@@ -68,7 +69,6 @@
      <Compile Include="Assets\Scripts\Objects\Tile\HazardTile.cs" />
      <Compile Include="Assets\Scripts\Objects\Tile\Tile.cs" />
      <Compile Include="Assets\Scripts\Objects\TriggerableBlocks.cs" />
-     <Compile Include="Assets\Scripts\Platform\MovingPlatform.cs" />
      <Compile Include="Assets\Scripts\Player\Minibot.cs" />
      <None Include="Assets\Levels\1.txt" />
      <None Include="Assets\Levels\1.xml" />

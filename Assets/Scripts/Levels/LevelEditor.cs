@@ -44,127 +44,8 @@ public class LevelEditor : MonoBehaviour {
         {
             if (Input.GetMouseButtonDown(0) && mapEditMode)
             {
-                // We determine which prefab to spawn
-                Object prefabToSpawn = null;
-                Vector3 spawnPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Transform parentTransform = null ;
+                HandleLevelObjectPlacement();
 
-                if (objectToSpawn == ObjectType.Tile)
-                {
-                    prefabToSpawn = Registry.prefabHandler.pfTile;
-                    parentTransform = Registry.map.tilesContainer.transform;
-                }
-                else if (objectToSpawn == ObjectType.Hazard)
-                {
-                    prefabToSpawn = Registry.prefabHandler.pfHazard;
-                    parentTransform = Registry.map.hazardsContainer.transform;
-                }
-                else if (objectToSpawn == ObjectType.Minibot)
-                {
-                    prefabToSpawn = Registry.prefabHandler.pfMinibot;
-                    parentTransform = Registry.map.minibotsContainer.transform;
-                }
-                else if (objectToSpawn == ObjectType.Box)
-                {                    
-                    prefabToSpawn = Registry.prefabHandler.pfBox;
-                    parentTransform = Registry.map.boxesContainer.transform;
-                }
-                else if (objectToSpawn == ObjectType.Door)
-                {
-                    prefabToSpawn = Registry.prefabHandler.pfDoor;
-                    parentTransform = Registry.map.doorsContainer.transform;
-                }
-                else if (objectToSpawn == ObjectType.Switch)
-                {
-                    prefabToSpawn = Registry.prefabHandler.pfSwitch;
-                    parentTransform = Registry.map.switchesContainer.transform;
-                }
-                else if (objectToSpawn == ObjectType.StepSwitch)
-                {
-                    prefabToSpawn = Registry.prefabHandler.pfStepSwitch;
-                    parentTransform = Registry.map.stepSwitchesContainer.transform;
-                }
-                else if (objectToSpawn == ObjectType.GravityInverter)
-                {
-                    prefabToSpawn = Registry.prefabHandler.pfGravityInverter;
-                    parentTransform = Registry.map.gravityInvertersContainer.transform;
-                }
-                else if (objectToSpawn == ObjectType.HorizontalInverter)
-                {
-                    prefabToSpawn = Registry.prefabHandler.pfHorizontalInverter;
-                    parentTransform = Registry.map.horizontalInvertersContainer.transform;
-                }
-                else if (objectToSpawn == ObjectType.TriggerableBlock)
-                {
-                    prefabToSpawn = Registry.prefabHandler.pfTriggerableBlock;
-                    parentTransform = Registry.map.triggerableBlocksContainer.transform;
-                }
-
-                GameObject spawnedObject = (GameObject)Instantiate(prefabToSpawn);  // We initialize the object
-                spawnedObject.transform.parent = parentTransform;                    // We then place the new object to its respecive container
-
-                if (objectToSpawn == ObjectType.Tile)
-                {
-                    spawnedObject.GetComponent<Tile>().Initialize(new Vector3
-                        (Mathf.Round(spawnPos.x)
-                        , Mathf.Round(spawnPos.y), 0));                    
-                }
-                else if (objectToSpawn == ObjectType.Hazard)
-                {
-                    spawnedObject.GetComponent<HazardTile>().Initialize(new Vector3
-                          (Mathf.Round(spawnPos.x)
-                          , Mathf.Round(spawnPos.y), 0));  
-                }
-                else if (objectToSpawn == ObjectType.Minibot)
-                {
-                    spawnedObject.GetComponent<Minibot>().Initialize(new Vector3
-                        (Mathf.Round(spawnPos.x)
-                        , Mathf.Round(spawnPos.y), 0)
-                        , false, false);
-                }
-                else if (objectToSpawn == ObjectType.Box)
-                {
-                    spawnedObject.GetComponent<Box>().Initialize(new Vector3
-                        (Mathf.Round(spawnPos.x)
-                        , Mathf.Round(spawnPos.y), 0));
-                }
-                else if (objectToSpawn == ObjectType.Door)
-                {
-                    spawnedObject.GetComponent<Door>().Initialize(new Vector3
-                        (Mathf.Round(spawnPos.x)
-                        , Mathf.Round(spawnPos.y), 0));
-                }
-                else if (objectToSpawn == ObjectType.Switch)
-                {
-                    spawnedObject.GetComponent<Switch>().Initialize(new Vector3
-                        (Mathf.Round(spawnPos.x)
-                        , Mathf.Round(spawnPos.y), 0));
-                }
-                else if (objectToSpawn == ObjectType.StepSwitch)
-                {
-                    spawnedObject.GetComponent<StepSwitch>().Initialize(new Vector3
-                        (Mathf.Round(spawnPos.x)
-                        , Mathf.Round(spawnPos.y), 0));
-                }
-                else if (objectToSpawn == ObjectType.GravityInverter)
-                {
-                    spawnedObject.GetComponent<GravitySwitch>().Initialize(new Vector3
-                        (Mathf.Round(spawnPos.x)
-                        , Mathf.Round(spawnPos.y), 0));
-                }
-                else if (objectToSpawn == ObjectType.HorizontalInverter)
-                {
-                    spawnedObject.GetComponent<HorizontalSwitch>().Initialize(new Vector3
-                        (Mathf.Round(spawnPos.x)
-                        , Mathf.Round(spawnPos.y), 0));
-                }
-                else if (objectToSpawn == ObjectType.TriggerableBlock)
-                {
-                    spawnedObject.GetComponent<TriggerableBlocks>().Initialize(new Vector3
-                        (Mathf.Round(spawnPos.x)
-                        , Mathf.Round(spawnPos.y), 0));
-                }
-                
                 // If the left key is currently pressed
                 // Or if the leftShift key has just been released
                 if (!Input.GetKey(KeyCode.LeftShift)
@@ -172,6 +53,131 @@ public class LevelEditor : MonoBehaviour {
                     objectToSpawn = ObjectType.None;   // We set the objectToSpawn to none
             }
         }        
+    }
+
+    private void HandleLevelObjectPlacement()
+    {
+        // We determine which prefab to spawn
+        Object prefabToSpawn = null;
+        Vector3 spawnPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Transform parentTransform = null;
+
+        if (objectToSpawn == ObjectType.Tile)
+        {
+            prefabToSpawn = Registry.prefabHandler.pfTile;
+            parentTransform = Registry.map.tilesContainer.transform;
+        }
+        else if (objectToSpawn == ObjectType.Hazard)
+        {
+            prefabToSpawn = Registry.prefabHandler.pfHazard;
+            parentTransform = Registry.map.hazardsContainer.transform;
+        }
+        else if (objectToSpawn == ObjectType.Minibot)
+        {
+            prefabToSpawn = Registry.prefabHandler.pfMinibot;
+            parentTransform = Registry.map.minibotsContainer.transform;
+        }
+        else if (objectToSpawn == ObjectType.Box)
+        {
+            prefabToSpawn = Registry.prefabHandler.pfBox;
+            parentTransform = Registry.map.boxesContainer.transform;
+        }
+        else if (objectToSpawn == ObjectType.Door)
+        {
+            prefabToSpawn = Registry.prefabHandler.pfDoor;
+            parentTransform = Registry.map.doorsContainer.transform;
+        }
+        else if (objectToSpawn == ObjectType.Switch)
+        {
+            prefabToSpawn = Registry.prefabHandler.pfSwitch;
+            parentTransform = Registry.map.switchesContainer.transform;
+        }
+        else if (objectToSpawn == ObjectType.StepSwitch)
+        {
+            prefabToSpawn = Registry.prefabHandler.pfStepSwitch;
+            parentTransform = Registry.map.stepSwitchesContainer.transform;
+        }
+        else if (objectToSpawn == ObjectType.GravityInverter)
+        {
+            prefabToSpawn = Registry.prefabHandler.pfGravityInverter;
+            parentTransform = Registry.map.gravityInvertersContainer.transform;
+        }
+        else if (objectToSpawn == ObjectType.HorizontalInverter)
+        {
+            prefabToSpawn = Registry.prefabHandler.pfHorizontalInverter;
+            parentTransform = Registry.map.horizontalInvertersContainer.transform;
+        }
+        else if (objectToSpawn == ObjectType.TriggerableBlock)
+        {
+            prefabToSpawn = Registry.prefabHandler.pfTriggerableBlock;
+            parentTransform = Registry.map.triggerableBlocksContainer.transform;
+        }
+
+        GameObject spawnedObject = (GameObject)Instantiate(prefabToSpawn);  // We initialize the object
+        spawnedObject.transform.parent = parentTransform;                    // We then place the new object to its respecive container
+
+        if (objectToSpawn == ObjectType.Tile)
+        {
+            spawnedObject.GetComponent<Tile>().Initialize(new Vector3
+                (Mathf.Round(spawnPos.x)
+                , Mathf.Round(spawnPos.y), 0));
+        }
+        else if (objectToSpawn == ObjectType.Hazard)
+        {
+            spawnedObject.GetComponent<HazardTile>().Initialize(new Vector3
+                  (Mathf.Round(spawnPos.x)
+                  , Mathf.Round(spawnPos.y), 0));
+        }
+        else if (objectToSpawn == ObjectType.Minibot)
+        {
+            spawnedObject.GetComponent<Minibot>().Initialize(new Vector3
+                (Mathf.Round(spawnPos.x)
+                , Mathf.Round(spawnPos.y), 0)
+                , false, false);
+        }
+        else if (objectToSpawn == ObjectType.Box)
+        {
+            spawnedObject.GetComponent<Box>().Initialize(new Vector3
+                (Mathf.Round(spawnPos.x)
+                , Mathf.Round(spawnPos.y), 0));
+        }
+        else if (objectToSpawn == ObjectType.Door)
+        {
+            spawnedObject.GetComponent<Door>().Initialize(new Vector3
+                (Mathf.Round(spawnPos.x)
+                , Mathf.Round(spawnPos.y), 0));
+        }
+        else if (objectToSpawn == ObjectType.Switch)
+        {
+            spawnedObject.GetComponent<Switch>().Initialize(new Vector3
+                (Mathf.Round(spawnPos.x)
+                , Mathf.Round(spawnPos.y), 0));
+        }
+        else if (objectToSpawn == ObjectType.StepSwitch)
+        {
+            spawnedObject.GetComponent<StepSwitch>().Initialize(new Vector3
+                (Mathf.Round(spawnPos.x)
+                , Mathf.Round(spawnPos.y), 0));
+        }
+        else if (objectToSpawn == ObjectType.GravityInverter)
+        {
+            spawnedObject.GetComponent<GravitySwitch>().Initialize(new Vector3
+                (Mathf.Round(spawnPos.x)
+                , Mathf.Round(spawnPos.y), 0));
+        }
+        else if (objectToSpawn == ObjectType.HorizontalInverter)
+        {
+            spawnedObject.GetComponent<HorizontalSwitch>().Initialize(new Vector3
+                (Mathf.Round(spawnPos.x)
+                , Mathf.Round(spawnPos.y), 0));
+        }
+        else if (objectToSpawn == ObjectType.TriggerableBlock)
+        {
+            spawnedObject.GetComponent<TriggerableBlocks>().Initialize(new Vector3
+                (Mathf.Round(spawnPos.x)
+                , Mathf.Round(spawnPos.y), 0));
+        }
+                
     }
 
     void OnGUI()

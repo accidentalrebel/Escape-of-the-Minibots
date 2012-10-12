@@ -44,46 +44,49 @@ public class LevelEditor : MonoBehaviour {
             if (Input.GetMouseButtonDown(0) && mapEditMode)
             {
                 // We determine which prefab to spawn
-                Object prefabToSpawn = Registry.prefabHandler.pfTile;
+                Object prefabToSpawn = null;
+                Vector3 spawnPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Transform parentTransform = null ;
+
                 if (objectToSpawn == ObjectType.Tile)
                 {
-                    // We handle the actual initialization of the object
-                    GameObject spawnedObject = (GameObject)Instantiate(Registry.prefabHandler.pfTile);
-                    Vector3 spawnPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    spawnedObject.GetComponent<Tile>().Initialize(new Vector3
-                        (Mathf.Round(spawnPos.x)
-                        , Mathf.Round(spawnPos.y), 0));
-
-                    // We then place the new object to its respecive container
-                    spawnedObject.transform.parent = Registry.map.tilesContainer.transform;
+                    prefabToSpawn = Registry.prefabHandler.pfTile;
+                    parentTransform = Registry.map.tilesContainer.transform;
                 }
                 else if (objectToSpawn == ObjectType.Minibot)
                 {
-                    // We handle the actual initialization of the object
-                    GameObject spawnedObject = (GameObject)Instantiate(Registry.prefabHandler.pfMinibot);
-                    Vector3 spawnPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    prefabToSpawn = Registry.prefabHandler.pfMinibot;
+                    parentTransform = Registry.map.minibotsContainer.transform;
+                }
+                else if (objectToSpawn == ObjectType.Box)
+                {                    
+                    prefabToSpawn = Registry.prefabHandler.pfBox;
+                    parentTransform = Registry.map.boxesContainer.transform;
+                }
+
+                GameObject spawnedObject = (GameObject)Instantiate(prefabToSpawn);  // We initialize the object
+                spawnedObject.transform.parent = parentTransform;                    // We then place the new object to its respecive container
+
+                if (objectToSpawn == ObjectType.Tile)
+                {
+                    spawnedObject.GetComponent<Tile>().Initialize(new Vector3
+                        (Mathf.Round(spawnPos.x)
+                        , Mathf.Round(spawnPos.y), 0));                    
+                }
+                else if (objectToSpawn == ObjectType.Minibot)
+                {
                     spawnedObject.GetComponent<Minibot>().Initialize(new Vector3
                         (Mathf.Round(spawnPos.x)
                         , Mathf.Round(spawnPos.y), 0)
                         , false, false);
-
-                    // We then place the new object to its respecive container
-                    spawnedObject.transform.parent = Registry.map.minibotsContainer.transform;
                 }
                 else if (objectToSpawn == ObjectType.Box)
                 {
-                    // We handle the actual initialization of the object
-                    GameObject spawnedObject = (GameObject)Instantiate(Registry.prefabHandler.pfBox);
-                    Vector3 spawnPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                     spawnedObject.GetComponent<Box>().Initialize(new Vector3
                         (Mathf.Round(spawnPos.x)
                         , Mathf.Round(spawnPos.y), 0));
-
-                    // We then place the new object to its respecive container
-                    spawnedObject.transform.parent = Registry.map.boxesContainer.transform;
-                }
-                    
-
+                }              
+                
                 // If the left key is currently pressed
                 // Or if the leftShift key has just been released
                 if (!Input.GetKey(KeyCode.LeftShift)

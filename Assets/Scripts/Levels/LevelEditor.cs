@@ -263,14 +263,11 @@ public class LevelEditor : MonoBehaviour {
             {
                 if (isSimulating)
                 {
-                    Time.timeScale = 0;
-                    isSimulating = false;
-                    map.RestartLevel();
+                    StopSimulation();
                 }
                 else
                 {
-                    Time.timeScale = 1;
-                    isSimulating = true;
+                    StartSimulation();
                 }
             }
 
@@ -278,6 +275,7 @@ public class LevelEditor : MonoBehaviour {
             if (GUI.Button(new Rect(10, Screen.height - 110, 100, 30), "Delete Object"))
             {
                 Debug.Log("Delete button clicked");
+                StopSimulation();
                 currentMode = LevelEditorMode.ObjectDeletion;
             }
 
@@ -363,5 +361,18 @@ public class LevelEditor : MonoBehaviour {
                 }
             }
         }
+    }
+
+    private void StartSimulation()
+    {
+        Time.timeScale = 1;
+        isSimulating = true;
+    }
+
+    private void StopSimulation()
+    {
+        Time.timeScale = 0;
+        isSimulating = false;
+        map.RestartLevel();
     }
 }

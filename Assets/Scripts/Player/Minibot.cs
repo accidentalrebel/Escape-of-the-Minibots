@@ -18,8 +18,6 @@ public class Minibot : LevelObject {
 
 	override protected void Start()
 	{
-		startingPos = gameObject.transform.position;
-
         theRigidBody = GetComponent<Rigidbody>();
         if (theRigidBody == null)
             Debug.LogError("theRigidBody is not found!");

@@ -54,16 +54,13 @@ public class LevelEditor : MonoBehaviour {
         {
             if (Input.GetMouseButtonDown(0) && GUIUtility.hotControl == 0 && mapEditMode)
             {
-                HandleLevelObjectPlacement();
-
-                // If the left key is currently pressed
-                // Or if the leftShift key has just been released
-                    //if (!Input.GetKey(KeyCode.LeftShift)
-                    //    || Input.GetKeyUp(KeyCode.LeftShift))
-                    //{
-                    //    objectToSpawn = ObjectType.None;   // We set the objectToSpawn to none
-                    //    currentMode = LevelEditorMode.None;
-                    //}
+                // We check if there is already an object at the clickPosition
+                Vector3 clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                if ( GetObjectAtPosition(clickPos) == null )
+                {
+                    // If there is none, then continue the object placement
+                    HandleLevelObjectPlacement();
+                }
             }
         }
         else if (currentMode == LevelEditorMode.ObjectDeletion)
@@ -80,7 +77,7 @@ public class LevelEditor : MonoBehaviour {
         else
             originMarkerRenderer.enabled = false;
     }
-
+    
     // ************************************************************************************
     // Initializations
     // ************************************************************************************
@@ -106,16 +103,19 @@ public class LevelEditor : MonoBehaviour {
     private void HandleLevelObjectDeletion()
     {
         Vector3 clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Debug.Log("clickPos.x " + Mathf.Round(clickPos.x) + " clickPos.y " + Mathf.Round(clickPos.y));
-        LevelObject clickedObject = map.GetLevelObjectAtPosition(new Vector3
-                (Mathf.Round(clickPos.x)
-                , Mathf.Round(clickPos.y), 0));
-
-        Debug.Log("Clicked object is " + clickedObject);
+        LevelObject clickedObject = GetObjectAtPosition(clickPos);
+        
         if (clickedObject == null)
             return;
 
         GameObject.Destroy(clickedObject.gameObject);
+    }
+
+    private LevelObject GetObjectAtPosition(Vector3 thePos)
+    {
+        return map.GetLevelObjectAtPosition(new Vector3
+            (Mathf.Round(thePos.x)
+            , Mathf.Round(thePos.y), 0));
     }
 
     private void HandleLevelObjectPlacement()

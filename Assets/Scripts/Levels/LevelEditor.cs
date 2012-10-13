@@ -15,6 +15,10 @@ public class LevelEditor : MonoBehaviour {
     }
     bool saveMapMode = false;
     string levelFileName;
+    public string LevelFileName
+    {
+        set { levelFileName = value; }
+    }
     bool isSimulating = true;
 
     LevelEditorMode currentMode = LevelEditorMode.None;
@@ -41,9 +45,7 @@ public class LevelEditor : MonoBehaviour {
         levelWriter = map.GetComponent<XMLLevelWriter>();
         if (levelWriter == null)
             Debug.LogError("levelWriter is not found!");
-
-        levelFileName = levelReader.levelToLoad;
-
+        
         InitializeOriginMarker();
     }
 

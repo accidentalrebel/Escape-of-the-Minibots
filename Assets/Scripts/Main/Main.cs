@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Main : MonoBehaviour
 {
     Map map;
-    LevelEditor levelEditor;
+    internal LevelEditor levelEditor;
     List<Minibot> minibotList = new List<Minibot>();
 
     // ************************************************************************************
@@ -112,6 +112,8 @@ public class Main : MonoBehaviour
             Debug.LogWarning("Could not get the next level");
             return;
         }
+
+        Debug.Log("LOADING LEVEL NUMBER " + nextLevelName);
 
         map.ClearLevel();
         map.levelReader.LoadLevel(nextLevelName);        

@@ -20,7 +20,7 @@ public class Map : MonoBehaviour {
 
     internal XMLLevelReader levelReader;
     internal XMLLevelWriter levelWriter;
-    public string currentLevel = "";
+    public string currentLevel = "";    
 
     // ************************************************************************************
     // MAIN

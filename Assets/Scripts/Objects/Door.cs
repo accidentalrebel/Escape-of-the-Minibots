@@ -4,7 +4,7 @@ using System.Collections;
 public class Door : LevelObject {
 
     public bool isOpen = false;
-    private bool startingIsOpen = false;
+    private bool startingIsOpen = true;
 
     override protected void Start()
     {

@@ -52,23 +52,23 @@ public class LevelEditor : MonoBehaviour {
         if (currentMode == LevelEditorMode.ObjectPlacement 
             && objectToSpawn != ObjectType.None)
         {
-            if (Input.GetMouseButtonDown(0) && mapEditMode)
+            if (Input.GetMouseButtonDown(0) && GUIUtility.hotControl == 0 && mapEditMode)
             {
                 HandleLevelObjectPlacement();
 
                 // If the left key is currently pressed
                 // Or if the leftShift key has just been released
-                if (!Input.GetKey(KeyCode.LeftShift)
-                    || Input.GetKeyUp(KeyCode.LeftShift))
-                {
-                    objectToSpawn = ObjectType.None;   // We set the objectToSpawn to none
-                    currentMode = LevelEditorMode.None;
-                }
+                    //if (!Input.GetKey(KeyCode.LeftShift)
+                    //    || Input.GetKeyUp(KeyCode.LeftShift))
+                    //{
+                    //    objectToSpawn = ObjectType.None;   // We set the objectToSpawn to none
+                    //    currentMode = LevelEditorMode.None;
+                    //}
             }
         }
         else if (currentMode == LevelEditorMode.ObjectDeletion)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && GUIUtility.hotControl == 0)
             {
                 HandleLevelObjectDeletion();
             }

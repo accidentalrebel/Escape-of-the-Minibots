@@ -47,17 +47,11 @@
   <tile x="2" y="3" />
   <tile x="3" y="3" />
   <tile x="4" y="3" />
-  <tile x="5" y="3" />
-  <tile x="6" y="3" />
   <tile x="7" y="3" />
   <tile x="8" y="3" />
-  <tile x="9" y="2" />
-  <tile x="9" y="1" />
   <tile x="12" y="1" />
   <tile x="12" y="2" />
   <tile x="12" y="3" />
-  <tile x="13" y="3" />
-  <tile x="14" y="3" />
   <tile x="15" y="3" />
   <tile x="16" y="3" />
   <tile x="17" y="3" />
@@ -70,16 +64,10 @@
   <tile x="3" y="2" />
   <tile x="3" y="1" />
   <tile x="4" y="2" />
-  <tile x="5" y="1" />
-  <tile x="6" y="2" />
   <tile x="4" y="1" />
-  <tile x="5" y="2" />
-  <tile x="6" y="1" />
   <tile x="7" y="2" />
   <tile x="7" y="1" />
   <tile x="8" y="1" />
-  <tile x="13" y="2" />
-  <tile x="14" y="2" />
   <tile x="15" y="2" />
   <tile x="16" y="2" />
   <tile x="17" y="2" />
@@ -88,8 +76,6 @@
   <tile x="17" y="1" />
   <tile x="16" y="1" />
   <tile x="15" y="1" />
-  <tile x="14" y="1" />
-  <tile x="13" y="1" />
   <tile x="19" y="12" />
   <tile x="0" y="12" />
   <tile x="19" y="13" />
@@ -168,14 +154,14 @@
   <tile x="6" y="13" />
   <tile x="5" y="13" />
   <tile x="4" y="13" />
-  <tile x="11" y="3" />
-  <tile x="11" y="2" />
-  <tile x="10" y="2" />
-  <tile x="10" y="1" />
   <tile x="11" y="1" />
-  <tile x="9" y="3" />
-  <tile x="10" y="3" />
-  <tile x="10" y="4" />
-  <tile x="9" y="4" />
+  <tile x="11" y="2" />
+  <tile x="11" y="3" />
   <door x="17" y="4" isOpen="1" />
+  <hazard x="10" y="1" />
+  <hazard x="9" y="1" />
+  <hazard x="5" y="1" />
+  <hazard x="6" y="1" />
+  <hazard x="13" y="1" />
+  <hazard x="14" y="1" />
 </tiles>

@@ -7,22 +7,14 @@ public class Main : MonoBehaviour
     Map map;
     List<Minibot> minibotList = new List<Minibot>();
 
+    // ************************************************************************************
+    // MAIN
+    // ************************************************************************************
+
     void Awake()
     {
         Registry.main = this;
         map = Registry.map;
-    }
-
-    /// <summary>
-    /// Gets all the minibots in the level
-    /// And then saves it for future reference
-    /// </summary>
-    internal void GetMinibotsInLevel()
-    {
-        foreach (Transform minibot in map.minibotsContainer.transform)
-        {           
-            minibotList.Add(minibot.gameObject.GetComponent<Minibot>());            
-        }
     }
 
     void Update()
@@ -37,6 +29,26 @@ public class Main : MonoBehaviour
             LevelOver();
         } 
     }
+
+    // ************************************************************************************
+    // INITIALIZATION
+    // ************************************************************************************
+
+    /// <summary>
+    /// Gets all the minibots in the level
+    /// And then saves it for future reference
+    /// </summary>
+    internal void GetMinibotsInLevel()
+    {
+        foreach (Transform minibot in map.minibotsContainer.transform)
+        {
+            minibotList.Add(minibot.gameObject.GetComponent<Minibot>());
+        }
+    }
+
+    // ************************************************************************************
+    // END GAME LOGIC
+    // ************************************************************************************
 
     /// <summary>
     /// Checks if all the minibots in the level has succesfully exited the level
@@ -77,6 +89,10 @@ public class Main : MonoBehaviour
         LoadNextLevel(nextLevelName);        
     }
 
+    /// <summary>
+    /// Loads the next level
+    /// </summary>
+    /// <param name="nextLevelName"></param>
     private void LoadNextLevel(string nextLevelName)
     {        
         if (nextLevelName == "")
@@ -88,6 +104,10 @@ public class Main : MonoBehaviour
         map.ClearLevel();
         map.levelReader.LoadLevel(nextLevelName);        
     }
+
+    // ************************************************************************************
+    // HELPER FUNCTIONS
+    // ************************************************************************************
 
     /// <summary>
     /// Restarts the game

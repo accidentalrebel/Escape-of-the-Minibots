@@ -76,6 +76,7 @@
      <None Include="Assets\Levels\template.xml" />
      <None Include="Assets\Levels\3.xml" />
      <None Include="Assets\Levels\test.xml" />
+     <None Include="Assets\Levels\4.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

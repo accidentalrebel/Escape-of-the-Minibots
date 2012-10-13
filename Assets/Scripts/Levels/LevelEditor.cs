@@ -367,6 +367,7 @@ public class LevelEditor : MonoBehaviour {
             {
                 Debug.Log("Save map clicked");
                 levelWriter.SaveLevel(levelFileName);
+                map.currentLevel = levelFileName;
             }
 
             // Load map mode

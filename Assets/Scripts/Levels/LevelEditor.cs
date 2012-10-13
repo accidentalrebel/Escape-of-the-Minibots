@@ -279,6 +279,13 @@ public class LevelEditor : MonoBehaviour {
             //    currentMode = LevelEditorMode.ObjectDeletion;
             //}
 
+            // Clears the whole map
+            if (GUI.Button(new Rect(Screen.width-110, 10, 100, 30), "Clear Map"))
+            {
+                Debug.Log("Clear map clilcked");
+                map.ClearLevel();
+            }
+
             // Spawning buttons
             if (GUI.Button(new Rect(10, Screen.height - 70, 100, 30), "Tile"))
             {

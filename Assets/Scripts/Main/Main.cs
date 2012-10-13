@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class Main : MonoBehaviour
 {
     Map map;
+    LevelEditor levelEditor;
     List<Minibot> minibotList = new List<Minibot>();
 
     // ************************************************************************************
@@ -15,6 +16,9 @@ public class Main : MonoBehaviour
     {
         Registry.main = this;
         map = Registry.map;
+        levelEditor = gameObject.GetComponent<LevelEditor>();
+        if (levelEditor == null)
+            Debug.LogError("Could not find level editor!");
     }
 
     void Update()
@@ -62,7 +66,7 @@ public class Main : MonoBehaviour
                 return;
             }
         }
-
+       
         LevelOver();
     }
 
@@ -72,6 +76,13 @@ public class Main : MonoBehaviour
     private void LevelOver()
     {
         Debug.Log("LEVEL IS OVER!");
+
+        // Just restart the game if in mapEditMode
+        if ( levelEditor != null 
+            && levelEditor.MapEditMode == true)
+            RestartGame();    
+    
+        // Else go to next level
         GetNextLevel();
     }
 

@@ -46,6 +46,7 @@ public class Main : MonoBehaviour
     /// </summary>
     internal void GetMinibotsInLevel()
     {
+        minibotList.Clear();
         foreach (Transform minibot in map.minibotsContainer.transform)
         {
             minibotList.Add(minibot.gameObject.GetComponent<Minibot>());
@@ -63,7 +64,7 @@ public class Main : MonoBehaviour
     {
         foreach (Minibot minibot in minibotList)
         {
-            if (minibot.hasExited == false)
+            if (minibot != null && minibot.hasExited == false)
             {
                 return;
             }

@@ -111,6 +111,17 @@ public class LevelEditor : MonoBehaviour {
             return;
 
         GameObject.Destroy(clickedObject.gameObject);
+
+        // If the deleted object is a minibot
+        if (clickedObject.gameObject.GetComponent<Minibot>() != null)
+        {
+            Debug.Log("there is minibot");
+            Registry.main.GetMinibotsInLevel();     // We tell main to recount the number of minibots
+        }
+        else
+        {
+            Debug.Log("no minibot");
+        }
     }
 
     private LevelObject GetObjectAtPosition(Vector3 thePos)
@@ -199,6 +210,7 @@ public class LevelEditor : MonoBehaviour {
                 (Mathf.Round(spawnPos.x)
                 , Mathf.Round(spawnPos.y), 0)
                 , false, false);
+            Registry.main.GetMinibotsInLevel();     // We tell main to recount the number of minibots
         }
         else if (objectToSpawn == ObjectType.Box)
         {

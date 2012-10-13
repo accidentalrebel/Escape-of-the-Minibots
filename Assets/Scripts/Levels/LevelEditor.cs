@@ -63,13 +63,13 @@ public class LevelEditor : MonoBehaviour {
                 }
             }
         }
-        else if (currentMode == LevelEditorMode.ObjectDeletion)
+
+        // Pressing the right mouse button deletes the object at mouse position
+        if (Input.GetMouseButtonDown(1) && GUIUtility.hotControl == 0 && mapEditMode)
         {
-            if (Input.GetMouseButtonDown(0) && GUIUtility.hotControl == 0)
-            {
-                HandleLevelObjectDeletion();
-            }
+            HandleLevelObjectDeletion();
         }
+ 
 
         // This only shows the origin marker when mapEditMode is enabled
         if (mapEditMode)
@@ -272,12 +272,12 @@ public class LevelEditor : MonoBehaviour {
             }
 
             // Deletion button
-            if (GUI.Button(new Rect(10, Screen.height - 110, 100, 30), "Delete Object"))
-            {
-                Debug.Log("Delete button clicked");
-                StopSimulation();
-                currentMode = LevelEditorMode.ObjectDeletion;
-            }
+            //if (GUI.Button(new Rect(10, Screen.height - 110, 100, 30), "Delete Object"))
+            //{
+            //    Debug.Log("Delete button clicked");
+            //    StopSimulation();
+            //    currentMode = LevelEditorMode.ObjectDeletion;
+            //}
 
             // Spawning buttons
             if (GUI.Button(new Rect(10, Screen.height - 70, 100, 30), "Tile"))

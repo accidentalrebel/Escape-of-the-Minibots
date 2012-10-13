@@ -248,7 +248,7 @@ public class LevelEditor : MonoBehaviour {
 
     void OnGUI()
     {
-        MapEditMode = GUI.Toggle(new Rect(10, 10, 200, 20), MapEditMode, "Map Edit Mode");
+        MapEditMode = GUI.Toggle(new Rect(10, 10, 100, 20), MapEditMode, "Map Edit Mode");
         
         if (MapEditMode)
         {
@@ -356,7 +356,7 @@ public class LevelEditor : MonoBehaviour {
             //}
 
             // Save map mode
-            saveMapMode = GUI.Toggle(new Rect(10, 80, 200, 20), saveMapMode, "Save map?");
+            saveMapMode = GUI.Toggle(new Rect(10, 80, 100, 20), saveMapMode, "Save map?");
             if (saveMapMode)
             {
                 GUI.Label(new Rect(30, 105, 100, 50), "Level name: ");

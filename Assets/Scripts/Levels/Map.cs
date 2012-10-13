@@ -15,6 +15,9 @@ public class Map : MonoBehaviour {
 	internal GameObject stepSwitchesContainer;
 	internal GameObject switchesContainer;
 	internal GameObject triggerableBlocksContainer;
+
+    internal XMLLevelReader levelReader;
+    internal XMLLevelWriter levelWriter;
 	
 	// Use this for initialization
 	void Awake () {
@@ -56,6 +59,13 @@ public class Map : MonoBehaviour {
 		triggerableBlocksContainer = levelObjectsContainer.transform.FindChild("TriggerableBlocks").gameObject;
 		if (triggerableBlocksContainer == null)
 			Debug.LogError("triggerableBlocksContainer not found!");
+
+        levelReader = gameObject.GetComponent<XMLLevelReader>();
+        if (levelReader == null)
+            Debug.LogError("levelReader is not found!");
+        levelWriter = gameObject.GetComponent<XMLLevelWriter>();
+        if (levelWriter == null)
+            Debug.LogError("levelWriter is not found!");
 	}
 	
 	internal LevelObject GetLevelObjectAtPosition(Vector3 posToCheck)
@@ -97,5 +107,53 @@ public class Map : MonoBehaviour {
         {
             triggerableBlock.GetComponent<TriggerableBlocks>().ResetObject();
         }
+    }
+
+    internal void ClearLevel()
+    {
+        foreach (Transform tile in tilesContainer.transform)
+        {
+            GameObject.Destroy(tile.gameObject);
+        }
+        foreach (Transform hazard in hazardsContainer.transform)
+        {
+            GameObject.Destroy(hazard.gameObject);
+        }
+        foreach (Transform box in boxesContainer.transform)
+        {
+            GameObject.Destroy(box.gameObject);
+        }
+        foreach (Transform minibot in minibotsContainer.transform)
+        {
+            GameObject.Destroy(minibot.gameObject);            
+        }
+        foreach (Transform door in doorsContainer.transform)
+        {
+            GameObject.Destroy(door.gameObject);
+        }
+        foreach (Transform triggerableBlock in triggerableBlocksContainer.transform)
+        {
+            GameObject.Destroy(triggerableBlock.gameObject);
+        }
+        foreach (Transform aSwitch in switchesContainer.transform )
+        {
+            GameObject.Destroy(aSwitch.gameObject);
+        }
+        foreach (Transform stepSwitch in stepSwitchesContainer.transform)
+        {
+            GameObject.Destroy(stepSwitch.gameObject);
+        }
+        foreach (Transform gravityInverter in gravityInvertersContainer.transform)
+        {
+            GameObject.Destroy(gravityInverter.gameObject);
+        }
+        foreach (Transform horizontalInverter in horizontalInvertersContainer.transform)
+        {
+            GameObject.Destroy(horizontalInverter.gameObject);
+        }
+        foreach (Transform movingPlatform in movingPlatformsContainer.transform)
+        {
+            GameObject.Destroy(movingPlatform.gameObject);
+        }        
     }
 }

@@ -71,6 +71,7 @@
      <Compile Include="Assets\Scripts\Objects\TriggerableBlocks.cs" />
      <Compile Include="Assets\Scripts\Player\Minibot.cs" />
      <None Include="Assets\Levels\1.txt" />
+     <None Include="Assets\Levels\2.xml" />
      <None Include="Assets\Levels\1.xml" />
      <None Include="Assets\Levels\test.xml" />
   </ItemGroup>

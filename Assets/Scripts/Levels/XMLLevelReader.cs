@@ -36,10 +36,8 @@ public class XMLLevelReader : XMLAccessor {
         pfTriggerableBlock = prefabHandler.pfTriggerableBlock;
 
         if (levelToLoad != "")
-        {
-            string filepath = Application.dataPath + @"/Levels/" + levelToLoad + ".xml";
-            if (CheckIfFileExists(filepath))
-                LoadLevel(filepath);
+        {            
+            LoadLevel(levelToLoad);
         }
 		else
 		{
@@ -47,8 +45,18 @@ public class XMLLevelReader : XMLAccessor {
 		}
 	}   
 
-    void LoadLevel(string filepath)
+    internal void LoadLevel(string theLevelToLoad)
     {
+        string filepath = Application.dataPath + @"/Levels/" + theLevelToLoad + ".xml";
+        
+        // We check if the file exits
+        if (!CheckIfFileExists(filepath))
+        {
+            Debug.LogWarning("Error! File does not exist! Cannot load level!");
+            return;
+        }
+
+        // If file exists, continue reading file
         XmlReader reader = XmlReader.Create(filepath);
 		
 		GameObject newObject;

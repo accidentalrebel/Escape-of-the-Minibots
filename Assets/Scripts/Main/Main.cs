@@ -31,6 +31,10 @@ public class Main : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             RestartGame();
+        }
+        else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            LevelOver();
         } 
     }
 
@@ -43,12 +47,29 @@ public class Main : MonoBehaviour
         {
             if (minibot.hasExited == false)
             {
-                Debug.Log("LEVEL IS NOT OVER YET");
                 return;
             }
         }
 
+        LevelOver();
+    }
+
+    /// <summary>
+    /// This method handles what would happen when the level is over
+    /// </summary>
+    private void LevelOver()
+    {
         Debug.Log("LEVEL IS OVER!");
+        GetNextLevel();
+    }
+
+    /// <summary>
+    /// Gets the name of the level that would go next after this level
+    /// </summary>
+    private void GetNextLevel()
+    {
+        map.ClearLevel();
+        map.levelReader.LoadLevel("1");        
     }
 
     /// <summary>

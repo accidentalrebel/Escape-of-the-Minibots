@@ -66,6 +66,13 @@ public class LevelEditor : MonoBehaviour {
                 }
             }
         }
+        else if (currentMode == LevelEditorMode.ObjectDeletion)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                HandleLevelObjectDeletion();
+            }
+        }
 
         // This only shows the origin marker when mapEditMode is enabled
         if (mapEditMode)
@@ -93,8 +100,23 @@ public class LevelEditor : MonoBehaviour {
     }
 
     // ************************************************************************************
-    // OBJECT PLACEMENT
+    // LEVEL EDITING
     // ************************************************************************************
+
+    private void HandleLevelObjectDeletion()
+    {
+        Vector3 clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Debug.Log("clickPos.x " + Mathf.Round(clickPos.x) + " clickPos.y " + Mathf.Round(clickPos.y));
+        LevelObject clickedObject = map.GetLevelObjectAtPosition(new Vector3
+                (Mathf.Round(clickPos.x)
+                , Mathf.Round(clickPos.y), 0));
+
+        Debug.Log("Clicked object is " + clickedObject);
+        if (clickedObject == null)
+            return;
+
+        GameObject.Destroy(clickedObject.gameObject);
+    }
 
     private void HandleLevelObjectPlacement()
     {

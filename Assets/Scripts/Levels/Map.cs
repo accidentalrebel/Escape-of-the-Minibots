@@ -155,28 +155,58 @@ public class Map : MonoBehaviour {
     // HELPER FUNCTIONS
     // ************************************************************************************
 
+    private LevelObject GetLevelObject(Transform containerToCheck, Vector3 posToCheck)
+    {
+        foreach (Transform theTransform in containerToCheck)
+        {
+            if (theTransform.position == posToCheck)
+            {
+                return theTransform.gameObject.GetComponent<LevelObject>();
+            }
+        }
+
+        return null;
+    }
+
     /// <summary>
     /// A helper function that gets a levelObject at the specified position
     /// </summary>
     /// <param name="posToCheck">The position to check</param>
     /// <returns></returns>
 	internal LevelObject GetLevelObjectAtPosition(Vector3 posToCheck)
-	{
-		// We loop through doors
-		foreach ( Transform door in doorsContainer.transform )
-		{
-			if ( door.position == posToCheck )
-			{
-				return door.gameObject.GetComponent<LevelObject>();	
-			}
-		}
-		foreach ( Transform triggerableBlock in triggerableBlocksContainer.transform )
-		{
-			if ( triggerableBlock.position == posToCheck )
-			{
-				return triggerableBlock.gameObject.GetComponent<LevelObject>();	
-			}
-		}
+	{		
+        Transform containerToCheck = null;
+        LevelObject theLevelObject;
+
+        for ( int i = 0 ; i < 10 ; i++ )
+        {
+            if (i == 0)
+                containerToCheck = doorsContainer.transform;
+            else if (i == 2)
+                containerToCheck = triggerableBlocksContainer.transform;
+            else if (i == 3)
+                containerToCheck = tilesContainer.transform;
+            else if (i == 4)
+                containerToCheck = hazardsContainer.transform;
+            else if (i == 5)
+                containerToCheck = minibotsContainer.transform;
+            else if (i == 6)
+                containerToCheck = boxesContainer.transform;
+            else if (i == 7)
+                containerToCheck = switchesContainer.transform;
+            else if (i == 8)
+                containerToCheck = stepSwitchesContainer.transform;
+            else if (i == 9)
+                containerToCheck = gravityInvertersContainer.transform;
+            else if (i == 10)
+                containerToCheck = horizontalInvertersContainer.transform;
+            else if (i == 11)
+                containerToCheck = movingPlatformsContainer.transform;
+
+            theLevelObject = GetLevelObject(containerToCheck, posToCheck);
+            if (theLevelObject != null)
+                return theLevelObject;
+        }
 		
 		return null;
 	}

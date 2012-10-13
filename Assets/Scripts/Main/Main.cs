@@ -16,9 +16,11 @@ public class Main : MonoBehaviour
     {
         Registry.main = this;
         map = Registry.map;
+
+        // Level editor is optional
         levelEditor = gameObject.GetComponent<LevelEditor>();
         if (levelEditor == null)
-            Debug.LogError("Could not find level editor!");
+            Debug.LogWarning("Could not find level editor.");
     }
 
     void Update()
@@ -80,10 +82,9 @@ public class Main : MonoBehaviour
         // Just restart the game if in mapEditMode
         if ( levelEditor != null 
             && levelEditor.MapEditMode == true)
-            RestartGame();    
-    
-        // Else go to next level
-        GetNextLevel();
+            RestartGame();
+        else // Else go to next level
+            GetNextLevel();
     }
 
     /// <summary>

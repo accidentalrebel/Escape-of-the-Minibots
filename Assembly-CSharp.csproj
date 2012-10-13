@@ -73,6 +73,7 @@
      <None Include="Assets\Resources\Levels\4.xml" />
      <None Include="Assets\Resources\Levels\3.xml" />
      <None Include="Assets\Resources\Levels\2.xml" />
+     <None Include="Assets\Resources\Levels\5.xml" />
      <None Include="Assets\Resources\Levels\1.xml" />
      <None Include="Assets\Resources\Levels\template.xml" />
      <None Include="Assets\Resources\Levels\1.txt" />

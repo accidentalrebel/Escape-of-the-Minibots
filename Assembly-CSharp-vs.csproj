@@ -74,6 +74,7 @@
      <None Include="Assets\Levels\2.xml" />
      <None Include="Assets\Levels\1.xml" />
      <None Include="Assets\Levels\template.xml" />
+     <None Include="Assets\Levels\3.xml" />
      <None Include="Assets\Levels\test.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

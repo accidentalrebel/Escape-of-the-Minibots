@@ -278,14 +278,7 @@ public class LevelEditor : MonoBehaviour {
             //    StopSimulation();
             //    currentMode = LevelEditorMode.ObjectDeletion;
             //}
-
-            // Clears the whole map
-            if (GUI.Button(new Rect(Screen.width-110, 10, 100, 30), "Clear Map"))
-            {
-                Debug.Log("Clear map clilcked");
-                map.ClearLevel();
-            }
-
+            
             // Spawning buttons
             if (GUI.Button(new Rect(10, Screen.height - 70, 100, 30), "Tile"))
             {
@@ -354,18 +347,35 @@ public class LevelEditor : MonoBehaviour {
             //    Debug.Log("Spawn moving platform clicked");
             //    objectToSpawn = ObjectType.MovingPlatform;
             //}
-
-            // Save map mode
-            saveMapMode = GUI.Toggle(new Rect(10, 80, 100, 20), saveMapMode, "Save map?");
-            if (saveMapMode)
+            
+            // Clears the whole map
+            if (GUI.Button(new Rect(Screen.width - 110, 10, 100, 30), "New Map"))
             {
-                GUI.Label(new Rect(30, 105, 100, 50), "Level name: ");
-                levelFileName = GUI.TextField(new Rect(115, 105, 50, 20), levelFileName);
-                if (GUI.Button(new Rect(30, 130, 100, 30), "Save Map"))
-                {
-                    Debug.Log("Save map clicked");
-                    levelWriter.SaveLevel(levelFileName);
-                }
+                Debug.Log("New map clicked");
+                map.ClearLevel();
+                levelReader.LoadLevel("template");
+            }
+            if (GUI.Button(new Rect(Screen.width - 110, 40, 100, 30), "Clear Map"))
+            {
+                Debug.Log("Clear map clilcked");
+                map.ClearLevel();
+            }
+            
+            // Save map mode
+            levelFileName = GUI.TextField(new Rect(Screen.width - 110, 90, 100, 30), levelFileName);
+            if (GUI.Button(new Rect(Screen.width - 110, 120, 100, 30), "Save Map"))
+            {
+                Debug.Log("Save map clicked");
+                levelWriter.SaveLevel(levelFileName);
+            }
+
+            // Load map mode
+            levelFileName = GUI.TextField(new Rect(Screen.width - 110, 170, 100, 30), levelFileName);
+            if (GUI.Button(new Rect(Screen.width - 110, 200, 100, 30), "Load Map"))
+            {
+                Debug.Log("Load map clicked");
+                map.ClearLevel();
+                levelReader.LoadLevel(levelFileName);
             }
         }
     }

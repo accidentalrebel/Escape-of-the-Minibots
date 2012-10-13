@@ -18,7 +18,11 @@ public class Map : MonoBehaviour {
 
     internal XMLLevelReader levelReader;
     internal XMLLevelWriter levelWriter;
-	
+
+    // ************************************************************************************
+    // MAIN
+    // ************************************************************************************
+
 	// Use this for initialization
 	void Awake () {
 		Registry.map = this;
@@ -67,28 +71,14 @@ public class Map : MonoBehaviour {
         if (levelWriter == null)
             Debug.LogError("levelWriter is not found!");
 	}
-	
-	internal LevelObject GetLevelObjectAtPosition(Vector3 posToCheck)
-	{
-		// We loop through doors
-		foreach ( Transform door in doorsContainer.transform )
-		{
-			if ( door.position == posToCheck )
-			{
-				return door.gameObject.GetComponent<LevelObject>();	
-			}
-		}
-		foreach ( Transform triggerableBlock in triggerableBlocksContainer.transform )
-		{
-			if ( triggerableBlock.position == posToCheck )
-			{
-				return triggerableBlock.gameObject.GetComponent<LevelObject>();	
-			}
-		}
-		
-		return null;
-	}
 
+    // ************************************************************************************
+    // LEVEL MANIPULATION
+    // ************************************************************************************
+
+    /// <summary>
+    /// Restarts the level. All level objects goes back to their original positions and states
+    /// </summary>
     internal void RestartLevel()
     {
         foreach (Transform box in boxesContainer.transform)
@@ -109,6 +99,9 @@ public class Map : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Clears the whole level of all levelObjects
+    /// </summary>
     internal void ClearLevel()
     {
         foreach (Transform tile in tilesContainer.transform)
@@ -125,7 +118,7 @@ public class Map : MonoBehaviour {
         }
         foreach (Transform minibot in minibotsContainer.transform)
         {
-            GameObject.Destroy(minibot.gameObject);            
+            GameObject.Destroy(minibot.gameObject);
         }
         foreach (Transform door in doorsContainer.transform)
         {
@@ -135,7 +128,7 @@ public class Map : MonoBehaviour {
         {
             GameObject.Destroy(triggerableBlock.gameObject);
         }
-        foreach (Transform aSwitch in switchesContainer.transform )
+        foreach (Transform aSwitch in switchesContainer.transform)
         {
             GameObject.Destroy(aSwitch.gameObject);
         }
@@ -154,6 +147,36 @@ public class Map : MonoBehaviour {
         foreach (Transform movingPlatform in movingPlatformsContainer.transform)
         {
             GameObject.Destroy(movingPlatform.gameObject);
-        }        
+        }
     }
+
+    // ************************************************************************************
+    // HELPER FUNCTIONS
+    // ************************************************************************************
+
+    /// <summary>
+    /// A helper function that gets a levelObject at the specified position
+    /// </summary>
+    /// <param name="posToCheck">The position to check</param>
+    /// <returns></returns>
+	internal LevelObject GetLevelObjectAtPosition(Vector3 posToCheck)
+	{
+		// We loop through doors
+		foreach ( Transform door in doorsContainer.transform )
+		{
+			if ( door.position == posToCheck )
+			{
+				return door.gameObject.GetComponent<LevelObject>();	
+			}
+		}
+		foreach ( Transform triggerableBlock in triggerableBlocksContainer.transform )
+		{
+			if ( triggerableBlock.position == posToCheck )
+			{
+				return triggerableBlock.gameObject.GetComponent<LevelObject>();	
+			}
+		}
+		
+		return null;
+	}
 }

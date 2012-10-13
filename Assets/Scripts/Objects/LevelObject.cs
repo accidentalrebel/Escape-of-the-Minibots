@@ -7,18 +7,18 @@ public class LevelObject : MonoBehaviour {
     protected GraphicHandler theGraphicHandler;
 	internal Vector3 startingPos;
 	
-	protected void Awake()
+	virtual protected void Awake()
 	{
 		startingPos = gameObject.transform.position;
 	}
 	
-	internal void Initialize(Vector3 theStartingPos)
+	virtual internal void Initialize(Vector3 theStartingPos)
 	{
 		startingPos = theStartingPos;
 		gameObject.transform.position = startingPos;
 	}
 	
-    protected void Start()
+    virtual protected void Start()
     {
         theGraphicHandler = gameObject.GetComponent<GraphicHandler>();
         if (theGraphicHandler == null)

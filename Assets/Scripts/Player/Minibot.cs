@@ -11,8 +11,12 @@ public class Minibot : LevelObject {
     private bool startingIsInvertedGravity;
     private bool startingIsInvertedHorizontal;
     public bool hasExited;
-	
-	void Start()
+
+    // ************************************************************************************
+    // MAIN
+    // ************************************************************************************
+
+	override protected void Start()
 	{
 		startingPos = gameObject.transform.position;
 
@@ -61,13 +65,11 @@ public class Minibot : LevelObject {
         controller.invertHorizontal = isInvertedHor;
         startingIsInvertedGravity = isInvertedGrav;
         startingIsInvertedHorizontal = isInvertedHor;
-    }
+    }    
 
-    private void PickUp(GameObject objectAtSide)
-    {
-        objectBeingCarried = objectAtSide;
-        objectBeingCarried.GetComponent<Box>().PickUp();
-    }
+    // ************************************************************************************
+    // TRIGGERS
+    // ************************************************************************************
 
     void OnTriggerEnter(Collider col)
     {
@@ -81,6 +83,19 @@ public class Minibot : LevelObject {
     // ************************************************************************************
     // ACTIONS
     // ************************************************************************************
+
+    private void PickUp(GameObject objectAtSide)
+    {
+        objectBeingCarried = objectAtSide;
+        objectBeingCarried.GetComponent<Box>().PickUp();
+    }
+
+    private void PutDown(GameObject objectToPutDown)
+    {
+        objectBeingCarried.transform.position = transform.position + Vector3.right;
+        objectToPutDown.GetComponent<Box>().PutDown();
+        objectBeingCarried = null;
+    }
 
     internal GameObject GetObjectAtSide(Direction direction)
     {
@@ -101,13 +116,6 @@ public class Minibot : LevelObject {
             }
         }
         return null;
-    }
-
-    private void PutDown(GameObject objectToPutDown)
-    {
-        objectBeingCarried.transform.position = transform.position + Vector3.right;
-        objectToPutDown.GetComponent<Box>().PutDown();
-        objectBeingCarried = null;
     }
 
     // ************************************************************************************

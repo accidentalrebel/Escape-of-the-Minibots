@@ -5,14 +5,16 @@ public class Box : LevelObject {
 
     private Rigidbody theRigidBody;
 
-    void Start()
+    override protected void Start()
     {
         theRigidBody = GetComponent<Rigidbody>();
         if (theRigidBody == null)
             Debug.LogError("theRigidBody is not found!");
+
+        base.Start();
     }
 	
-	internal void Initialize(Vector3 theStartingPos)
+	override internal void Initialize(Vector3 theStartingPos)
 	{
 		base.Initialize(theStartingPos);
 	}

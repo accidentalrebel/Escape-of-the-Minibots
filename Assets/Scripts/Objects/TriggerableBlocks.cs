@@ -9,7 +9,7 @@ public class TriggerableBlocks : LevelObject {
     private bool startingIsHidden = false;
 
 	// Use this for initialization
-	void Start () {
+	protected new void Start () {
         GenerateTiles();
         SetStatusOfChildTiles();
 	}

@@ -6,10 +6,9 @@ public class Door : LevelObject {
     public bool isOpen = false;
     private bool startingIsOpen = false;
 
-    void Start()
+    override protected void Start()
     {
         base.Start();
-
         UpdateDoorGraphic();
     }
 	

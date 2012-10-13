@@ -9,7 +9,7 @@ public class Switch : LevelObject {
 	private Map map;
 
 	// Use this for initialization
-	void Awake () {
+	override protected void Awake () {
 		base.Awake();
 		
 		map = Registry.map;

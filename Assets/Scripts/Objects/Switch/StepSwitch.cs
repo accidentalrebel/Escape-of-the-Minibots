@@ -3,7 +3,7 @@ using System.Collections;
 
 public class StepSwitch : Switch {
 	
-	internal void Initialize(Vector3 theStartingPos)
+	override internal void Initialize(Vector3 theStartingPos)
 	{
 		base.Initialize(theStartingPos);		
 	}

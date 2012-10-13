@@ -3,21 +3,7 @@ using System.Collections;
 
 public class GravitySwitch : Switch
 {
-    //void OnTriggerEnter(Collider col)
-    //{
-    //    Debug.Log("Gravity switch triggered ");
-    //    if (col.gameObject.tag == "Player")
-    //    {
-    //        col.GetComponent<RigidBodyFPSController>().InvertGravity();
-    //    }
-    //}
-
-    void Start()
-    {
-
-    }
-	
-	internal void Initialize(Vector3 theStartingPos)
+	override internal void Initialize(Vector3 theStartingPos)
 	{
 		base.Initialize(theStartingPos);
 	}

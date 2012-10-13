@@ -10,6 +10,7 @@ public class Minibot : LevelObject {
     RigidBodyFPSController controller;
     private bool startingIsInvertedGravity;
     private bool startingIsInvertedHorizontal;
+    public bool hasExited;
 	
 	void Start()
 	{
@@ -18,6 +19,8 @@ public class Minibot : LevelObject {
         theRigidBody = GetComponent<Rigidbody>();
         if (theRigidBody == null)
             Debug.LogError("theRigidBody is not found!");
+
+        base.Start();
 	}    
 	
     void Update()
@@ -60,29 +63,10 @@ public class Minibot : LevelObject {
         startingIsInvertedHorizontal = isInvertedHor;
     }
 
-    private void PutDown(GameObject objectToPutDown)
-    {
-        objectBeingCarried.transform.position = transform.position + Vector3.right;
-        objectToPutDown.GetComponent<Box>().PutDown();
-        objectBeingCarried = null;
-    }
-
     private void PickUp(GameObject objectAtSide)
     {
         objectBeingCarried = objectAtSide;
         objectBeingCarried.GetComponent<Box>().PickUp();
-    }
-
-    internal void Die()
-    {
-        Debug.LogWarning("I DIED");
-        Registry.main.RestartGame();
-    }
-
-    void ExitStage()
-    {
-        Debug.Log("exiting stage");
-        gameObject.SetActiveRecursively(false);
     }
 
     void OnTriggerEnter(Collider col)
@@ -90,9 +74,13 @@ public class Minibot : LevelObject {
         if (col.tag == "Door")
         {
             if ( col.gameObject.GetComponent<Door>().isOpen )
-                ExitStage();
+                ExitLevel();
         }
     }
+
+    // ************************************************************************************
+    // ACTIONS
+    // ************************************************************************************
 
     internal GameObject GetObjectAtSide(Direction direction)
     {
@@ -115,6 +103,31 @@ public class Minibot : LevelObject {
         return null;
     }
 
+    private void PutDown(GameObject objectToPutDown)
+    {
+        objectBeingCarried.transform.position = transform.position + Vector3.right;
+        objectToPutDown.GetComponent<Box>().PutDown();
+        objectBeingCarried = null;
+    }
+
+    // ************************************************************************************
+    // SPAWNING
+    // ************************************************************************************
+
+    internal void Die()
+    {
+        Debug.LogWarning("I DIED");
+        Registry.main.RestartGame();
+    }
+
+    void ExitLevel()
+    {
+        Debug.Log("exiting stage");
+        hasExited = true;
+        DisableMinibot();
+        Registry.main.CheckIfLevelComplete();
+    } 
+
     override internal void ResetObject()
     {
         // We drop anything that minibot is carrying
@@ -132,7 +145,24 @@ public class Minibot : LevelObject {
         controller.InvertGravity = startingIsInvertedGravity;
         controller.invertHorizontal = startingIsInvertedHorizontal;
 
-        // If object is inactive, activate it
+        // If object is inactive, activate it        
+        EnableMinibot();
+
+        // We make sure that it has not exited
+        hasExited = false;
+    }
+
+    // Disables this current minibot
+    // Hides graphic and then doesn't allow movement.
+    private void DisableMinibot()
+    {
+        gameObject.SetActiveRecursively(false);
+    }
+
+    // Disables this current minibsot
+    // Shows graphic and then allows movement.
+    private void EnableMinibot()
+    {        
         gameObject.SetActiveRecursively(true);
     }
 }

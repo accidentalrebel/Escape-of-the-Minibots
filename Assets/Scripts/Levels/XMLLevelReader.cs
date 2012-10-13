@@ -160,5 +160,16 @@ public class XMLLevelReader : XMLAccessor {
 				newObject.transform.parent = switchesContainer.transform;
 			}			
         }
+
+        // We tell the main that we have finished loading
+        HasFinishedLoadingLevel();
+    }
+
+    /// <summary>
+    /// When loading of the level is finished, it informs all who needs to know
+    /// </summary>
+    private void HasFinishedLoadingLevel()
+    {
+        Registry.main.GetMinibotsInLevel();
     }
 }

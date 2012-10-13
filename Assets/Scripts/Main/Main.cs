@@ -68,8 +68,25 @@ public class Main : MonoBehaviour
     /// </summary>
     private void GetNextLevel()
     {
+        string nextLevelName = "";
+        int currentLevel;
+
+        int.TryParse(map.currentLevel, out currentLevel);    // We try to parse the loadedLevel name to int
+        nextLevelName = (currentLevel+=1).ToString();       // We increment the level number and set it as the next level
+
+        LoadNextLevel(nextLevelName);        
+    }
+
+    private void LoadNextLevel(string nextLevelName)
+    {        
+        if (nextLevelName == "")
+        {
+            Debug.LogWarning("Could not get the next level");
+            return;
+        }
+
         map.ClearLevel();
-        map.levelReader.LoadLevel("1");        
+        map.levelReader.LoadLevel(nextLevelName);        
     }
 
     /// <summary>

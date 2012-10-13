@@ -170,14 +170,15 @@ public class XMLLevelReader : XMLAccessor {
         }
 
         // We tell the main that we have finished loading
-        HasFinishedLoadingLevel();
+        HasFinishedLoadingLevel(theLevelToLoad);
     }
 
     /// <summary>
     /// When loading of the level is finished, it informs all who needs to know
     /// </summary>
-    private void HasFinishedLoadingLevel()
+    private void HasFinishedLoadingLevel(string theCurrentLevel)
     {
+        Registry.map.currentLevel = theCurrentLevel;
         Registry.main.GetMinibotsInLevel();
     }
 }

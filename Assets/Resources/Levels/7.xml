@@ -68,27 +68,103 @@
   <tile x="1" y="14" />
   <tile x="0" y="14" />
   <tile x="0" y="13" />
-  <tile x="1" y="5" />
-  <tile x="3" y="5" />
-  <tile x="2" y="5" />
-  <tile x="4" y="5" />
-  <tile x="5" y="5" />
-  <tile x="6" y="5" />
-  <tile x="7" y="5" />
-  <tile x="8" y="5" />
-  <tile x="9" y="5" />
-  <tile x="10" y="5" />
   <tile x="11" y="5" />
   <tile x="11" y="6" />
   <tile x="11" y="7" />
-  <tile x="11" y="8" />
-  <tile x="12" y="8" />
-  <tile x="13" y="8" />
-  <tile x="14" y="8" />
-  <tile x="15" y="8" />
-  <tile x="16" y="8" />
-  <tile x="17" y="8" />
-  <tile x="18" y="8" />
-  <door x="2" y="6" isOpen="1" />
-  <door x="17" y="9" isOpen="1" />
+  <tile x="1" y="4" />
+  <tile x="2" y="4" />
+  <tile x="3" y="4" />
+  <tile x="4" y="4" />
+  <tile x="5" y="4" />
+  <tile x="7" y="4" />
+  <tile x="6" y="4" />
+  <tile x="8" y="4" />
+  <tile x="9" y="4" />
+  <tile x="10" y="4" />
+  <tile x="11" y="4" />
+  <tile x="12" y="4" />
+  <tile x="12" y="5" />
+  <tile x="12" y="6" />
+  <tile x="12" y="7" />
+  <tile x="13" y="7" />
+  <tile x="13" y="6" />
+  <tile x="13" y="4" />
+  <tile x="13" y="5" />
+  <tile x="14" y="7" />
+  <tile x="14" y="5" />
+  <tile x="14" y="4" />
+  <tile x="14" y="6" />
+  <tile x="15" y="7" />
+  <tile x="17" y="7" />
+  <tile x="18" y="7" />
+  <tile x="18" y="6" />
+  <tile x="17" y="6" />
+  <tile x="16" y="6" />
+  <tile x="15" y="6" />
+  <tile x="16" y="7" />
+  <tile x="15" y="5" />
+  <tile x="16" y="5" />
+  <tile x="17" y="5" />
+  <tile x="18" y="5" />
+  <tile x="18" y="4" />
+  <tile x="17" y="4" />
+  <tile x="16" y="4" />
+  <tile x="15" y="4" />
+  <tile x="18" y="3" />
+  <tile x="17" y="3" />
+  <tile x="16" y="3" />
+  <tile x="14" y="3" />
+  <tile x="12" y="3" />
+  <tile x="10" y="3" />
+  <tile x="9" y="3" />
+  <tile x="6" y="3" />
+  <tile x="5" y="3" />
+  <tile x="3" y="3" />
+  <tile x="2" y="3" />
+  <tile x="1" y="3" />
+  <tile x="4" y="2" />
+  <tile x="4" y="3" />
+  <tile x="5" y="2" />
+  <tile x="2" y="2" />
+  <tile x="1" y="2" />
+  <tile x="3" y="2" />
+  <tile x="2" y="1" />
+  <tile x="1" y="1" />
+  <tile x="4" y="1" />
+  <tile x="5" y="1" />
+  <tile x="3" y="1" />
+  <tile x="6" y="1" />
+  <tile x="6" y="2" />
+  <tile x="7" y="3" />
+  <tile x="8" y="3" />
+  <tile x="8" y="2" />
+  <tile x="7" y="2" />
+  <tile x="7" y="1" />
+  <tile x="8" y="1" />
+  <tile x="9" y="1" />
+  <tile x="9" y="2" />
+  <tile x="10" y="2" />
+  <tile x="10" y="1" />
+  <tile x="11" y="2" />
+  <tile x="11" y="3" />
+  <tile x="11" y="1" />
+  <tile x="12" y="1" />
+  <tile x="12" y="2" />
+  <tile x="13" y="3" />
+  <tile x="13" y="2" />
+  <tile x="13" y="1" />
+  <tile x="14" y="1" />
+  <tile x="14" y="2" />
+  <tile x="15" y="3" />
+  <tile x="15" y="2" />
+  <tile x="15" y="1" />
+  <tile x="16" y="1" />
+  <tile x="16" y="2" />
+  <tile x="17" y="2" />
+  <tile x="17" y="1" />
+  <tile x="18" y="2" />
+  <tile x="18" y="1" />
+  <door x="2" y="5" isOpen="0" />
+  <door x="17" y="8" isOpen="1" />
+  <switch x="12" y="8" xPosOfObjectToActivate="2" yPosOfObjectToActivate="5" />
 </tiles>

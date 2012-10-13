@@ -72,14 +72,15 @@
      <Compile Include="Assets\Scripts\Player\Minibot.cs" />
      <None Include="Assets\Resources\Levels\5.xml" />
      <None Include="Assets\Resources\Levels\3.xml" />
-     <None Include="Assets\Resources\Levels\7.xml" />
+     <None Include="Assets\Resources\Levels\8.xml" />
      <None Include="Assets\Resources\Levels\2.xml" />
      <None Include="Assets\Resources\Levels\4.xml" />
      <None Include="Assets\Resources\Levels\1.xml" />
      <None Include="Assets\Resources\Levels\template.xml" />
-     <None Include="Assets\Resources\Levels\6.xml" />
+     <None Include="Assets\Resources\Levels\7.xml" />
      <None Include="Assets\Resources\Levels\1.txt" />
      <None Include="Assets\Resources\Levels\test.xml" />
+     <None Include="Assets\Resources\Levels\6.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -47,7 +47,7 @@ public class XMLLevelReader : XMLAccessor {
 
     internal void LoadLevel(string theLevelToLoad)
     {
-        string filepath = Application.dataPath + @"/Levels/" + theLevelToLoad + ".xml";
+        string filepath = Application.dataPath + @"/Resources/Levels/" + theLevelToLoad + ".xml";
         
         // We check if the file exits
         if (!CheckIfFileExists(filepath))

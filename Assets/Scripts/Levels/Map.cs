@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Map : MonoBehaviour {
 
@@ -15,6 +16,7 @@ public class Map : MonoBehaviour {
 	internal GameObject stepSwitchesContainer;
 	internal GameObject switchesContainer;
 	internal GameObject triggerableBlocksContainer;
+    private List<Transform> levelObjectContainerList = new List<Transform>();
 
     internal XMLLevelReader levelReader;
     internal XMLLevelWriter levelWriter;
@@ -64,6 +66,7 @@ public class Map : MonoBehaviour {
 		triggerableBlocksContainer = levelObjectsContainer.transform.FindChild("TriggerableBlocks").gameObject;
 		if (triggerableBlocksContainer == null)
 			Debug.LogError("triggerableBlocksContainer not found!");
+        PopulateLevelObjectContainerList();
 
         levelReader = gameObject.GetComponent<XMLLevelReader>();
         if (levelReader == null)
@@ -72,6 +75,21 @@ public class Map : MonoBehaviour {
         if (levelWriter == null)
             Debug.LogError("levelWriter is not found!");
 	}
+
+    private void PopulateLevelObjectContainerList()
+    {
+        levelObjectContainerList.Add(doorsContainer.transform);
+        levelObjectContainerList.Add(triggerableBlocksContainer.transform);
+        levelObjectContainerList.Add(tilesContainer.transform);
+        levelObjectContainerList.Add(hazardsContainer.transform);
+        levelObjectContainerList.Add(minibotsContainer.transform);
+        levelObjectContainerList.Add(boxesContainer.transform);
+        levelObjectContainerList.Add(switchesContainer.transform);
+        levelObjectContainerList.Add(stepSwitchesContainer.transform);
+        levelObjectContainerList.Add(gravityInvertersContainer.transform);
+        levelObjectContainerList.Add(horizontalInvertersContainer.transform);
+        //levelObjectContainerList.Add(movingPlatformsContainer.transform);
+    }
 
     // ************************************************************************************
     // LEVEL MANIPULATION
@@ -152,7 +170,7 @@ public class Map : MonoBehaviour {
     }
 
     // ************************************************************************************
-    // HELPER FUNCTIONS
+    // LEVEL OBJECT PICKING
     // ************************************************************************************
 
     private LevelObject GetLevelObject(Transform containerToCheck, Vector3 posToCheck)
@@ -175,34 +193,10 @@ public class Map : MonoBehaviour {
     /// <returns></returns>
 	internal LevelObject GetLevelObjectAtPosition(Vector3 posToCheck)
 	{		
-        Transform containerToCheck = null;
         LevelObject theLevelObject;
 
-        for ( int i = 0 ; i < 10 ; i++ )
+        foreach(Transform containerToCheck in levelObjectContainerList)
         {
-            if (i == 0)
-                containerToCheck = doorsContainer.transform;
-            else if (i == 2)
-                containerToCheck = triggerableBlocksContainer.transform;
-            else if (i == 3)
-                containerToCheck = tilesContainer.transform;
-            else if (i == 4)
-                containerToCheck = hazardsContainer.transform;
-            else if (i == 5)
-                containerToCheck = minibotsContainer.transform;
-            else if (i == 6)
-                containerToCheck = boxesContainer.transform;
-            else if (i == 7)
-                containerToCheck = switchesContainer.transform;
-            else if (i == 8)
-                containerToCheck = stepSwitchesContainer.transform;
-            else if (i == 9)
-                containerToCheck = gravityInvertersContainer.transform;
-            else if (i == 10)
-                containerToCheck = horizontalInvertersContainer.transform;
-            else if (i == 11)
-                containerToCheck = movingPlatformsContainer.transform;
-
             theLevelObject = GetLevelObject(containerToCheck, posToCheck);
             if (theLevelObject != null)
                 return theLevelObject;

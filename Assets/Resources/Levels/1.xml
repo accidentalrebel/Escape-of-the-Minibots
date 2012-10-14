@@ -175,7 +175,5 @@
   <tile x="11" y="1" />
   <tile x="9" y="3" />
   <tile x="10" y="3" />
-  <tile x="10" y="4" />
-  <tile x="9" y="4" />
   <door x="17" y="4" isOpen="1" />
 </tiles>

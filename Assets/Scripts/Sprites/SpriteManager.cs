@@ -8,15 +8,17 @@ public class SpriteManager : MonoBehaviour {
     Renderer theRenderer;
     public float animationSpeed = 1;
     public bool enableAnimation = true;
+    int totalNumberOfFrames;
+    Dictionary<int, Vector2> animationFrames = new Dictionary<int, Vector2>();
 
 	// Use this for initialization
 	void Start () {
         theRenderer = gameObject.GetComponent<Renderer>().renderer;
         if (theRenderer == null)
             Debug.LogError("theRenderer is not found!");
-
-        StartCoroutine("Animate");
+                
         Initialize(4, 4);
+        StartCoroutine("Animate");
 	}
 
     void Initialize(int numOfHorizontalFrames, int numOfVerticalFrames)
@@ -24,16 +26,15 @@ public class SpriteManager : MonoBehaviour {
         Vector2 offsetDifference = new Vector2();
         offsetDifference.x = (float)(1f / numOfHorizontalFrames);
         offsetDifference.y = (float)(1f / numOfVerticalFrames);
-        int totalNumberOfFrames = numOfVerticalFrames * numOfVerticalFrames;
+        totalNumberOfFrames = numOfVerticalFrames * numOfVerticalFrames;
 
-        Dictionary<int, Vector2> frames = new Dictionary<int, Vector2>();
         int frameIndex = 1;
         Vector2 currentOffset = new Vector2(0, 1f-offsetDifference.y);
         
         while ( frameIndex <= totalNumberOfFrames )
-        {
-            frames.Add(frameIndex, currentOffset);
-            frameIndex++;
+        {           
+            animationFrames.Add(frameIndex, currentOffset);
+            frameIndex++;            
             currentOffset.x += offsetDifference.x;
 
             // If we exceed the xoffset
@@ -52,33 +53,27 @@ public class SpriteManager : MonoBehaviour {
         }
     }
 
+    void SetAnimation(string animationName, int[] frameSet)
+    {
+
+    }
+
     IEnumerator Animate()
     {
-        Vector2 newOffset = new Vector2();
+        int currentFrame = 1;
+
         while (enableAnimation)
         {
-            newOffset = theRenderer.material.GetTextureOffset("_MainTex");
-            newOffset.x += 0.25f;            
+            theRenderer.material.SetTextureOffset("_MainTex", animationFrames[currentFrame]);
 
-            // If we exceed the xoffset
-            if (newOffset.x >= 1)
+            yield return new WaitForSeconds(animationSpeed);
+            currentFrame++;
+
+            // If we reached the end, go to the first frame
+            if (currentFrame > totalNumberOfFrames)
             {
-                newOffset.x = 0;        // Go back to the first frame
-                newOffset.y -= 0.25f;   // And then move the y offset
-
-                // We check if we exceed the yOffset
-                if (newOffset.y < 0)
-                {
-                    newOffset.x = 0;
-                    newOffset.y = 0.75f;
-                }
+                currentFrame = 1;
             }
-
-            // We then apply the new offset
-            theRenderer.material.SetTextureOffset
-                ("_MainTex", newOffset);
-
-            yield return new WaitForSeconds(animationSpeed);            
         }
     }
 }

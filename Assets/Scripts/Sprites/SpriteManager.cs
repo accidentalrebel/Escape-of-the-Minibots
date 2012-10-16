@@ -8,7 +8,6 @@ public class SpriteManager : MonoBehaviour {
     Renderer theRenderer;
     public bool enableAnimation = true;
     int totalNumberOfFrames;
-    string currentAnimation;
 
     Dictionary<int, Vector2> animationFrames = new Dictionary<int, Vector2>();
     Dictionary<string, AnimationProperties> animationSets = new Dictionary<string, AnimationProperties>();
@@ -35,9 +34,8 @@ public class SpriteManager : MonoBehaviour {
             Debug.LogError("theRenderer is not found!");
                 
         Initialize(4, 4);                               // We initialize the sprite sheet
-        CreateAnimation("walking", new AnimationProperties(new int[] {1,3}, 0.5f));    // We create a new walkign animation
-        SetCurrentAnimation("walking");                 // We set the new walking animation as our current animation
-        StartCoroutine("PlayAnimation");                // We start the animation
+        CreateAnimation("walking", new AnimationProperties(new int[] {1,3}, 0.5f));    // We create a new walkign animation        
+        Play("default");
 	}
 
     /// <summary>
@@ -58,7 +56,7 @@ public class SpriteManager : MonoBehaviour {
         totalNumberOfFrames = numOfVerticalFrames * numOfVerticalFrames;
 
         int frameIndex = 1;
-        int[] defaultFrameSet = new int[totalNumberOfFrames+1];
+        int[] defaultFrameSet = new int[totalNumberOfFrames];
         Vector2 currentOffset = new Vector2(0, 1f-offsetDifference.y);
         
         // The following assigns the offsets to the a frame index through the use of a dictionary
@@ -84,17 +82,7 @@ public class SpriteManager : MonoBehaviour {
             }
         }
 
-        CreateAnimation("default", new AnimationProperties(defaultFrameSet, 0.5f));        // We create the default animation for default
-        SetCurrentAnimation("default");                     // We set the default as our default animation
-    }
-
-    /// <summary>
-    /// This sets the currentAnimation
-    /// </summary>
-    /// <param name="nameOfAnimationSet">The name of the animationToUse</param>
-    private void SetCurrentAnimation(string nameOfAnimationSet)
-    {
-        currentAnimation = nameOfAnimationSet;
+        CreateAnimation("default", new AnimationProperties(defaultFrameSet, 0.5f));        // We create the default animation for default        
     }
 
     /// <summary>
@@ -108,10 +96,20 @@ public class SpriteManager : MonoBehaviour {
     }
 
     /// <summary>
+    /// Plays the specified animation. Stops previous animation.    
+    /// </summary>
+    /// <param name="currentAnimation">The name of the animation to play</param>
+    public void Play(string currentAnimation)
+    {
+        StopCoroutine("Animate");                       // Stop coroutine if it is currently running
+        StartCoroutine("Animate", currentAnimation);    // Start animate coroutine
+    }
+
+    /// <summary>
     /// Plays the animation
     /// </summary>
     /// <returns></returns>
-    IEnumerator PlayAnimation()
+    IEnumerator Animate(string currentAnimation)
     {
         int currentFrame = 1;
 

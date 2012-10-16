@@ -106,6 +106,14 @@ public class SpriteManager : MonoBehaviour {
     }
 
     /// <summary>
+    /// Stops any running coroutines
+    /// </summary>
+    public void Stop()
+    {
+        StopCoroutine("Animate");
+    }
+
+    /// <summary>
     /// Plays the animation
     /// </summary>
     /// <returns></returns>

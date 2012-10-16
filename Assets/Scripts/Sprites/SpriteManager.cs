@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Renderer))]
 public class SpriteManager : MonoBehaviour {
@@ -15,7 +16,41 @@ public class SpriteManager : MonoBehaviour {
             Debug.LogError("theRenderer is not found!");
 
         StartCoroutine("Animate");
+        Initialize(4, 4);
 	}
+
+    void Initialize(int numOfHorizontalFrames, int numOfVerticalFrames)
+    {
+        Vector2 offsetDifference = new Vector2();
+        offsetDifference.x = (float)(1f / numOfHorizontalFrames);
+        offsetDifference.y = (float)(1f / numOfVerticalFrames);
+        int totalNumberOfFrames = numOfVerticalFrames * numOfVerticalFrames;
+
+        Dictionary<int, Vector2> frames = new Dictionary<int, Vector2>();
+        int frameIndex = 1;
+        Vector2 currentOffset = new Vector2(0, 1f-offsetDifference.y);
+        
+        while ( frameIndex <= totalNumberOfFrames )
+        {
+            frames.Add(frameIndex, currentOffset);
+            frameIndex++;
+            currentOffset.x += offsetDifference.x;
+
+            // If we exceed the xoffset
+            if (currentOffset.x >= 1)
+            {   
+                currentOffset.x = 0;                        // Go back to the first frame
+                currentOffset.y -= offsetDifference.y;     // And then move the y offset
+
+                // We check if we exceed the yOffset
+                if (currentOffset.y < 0)
+                {   
+                    currentOffset.x = 0;
+                    currentOffset.y = 1 - offsetDifference.y;
+                }
+            }
+        }
+    }
 
     IEnumerator Animate()
     {

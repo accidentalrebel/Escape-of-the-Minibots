@@ -11,14 +11,17 @@ public class SpriteManager : MonoBehaviour {
     string currentAnimation;
 
     Dictionary<int, Vector2> animationFrames = new Dictionary<int, Vector2>();
-    Dictionary<string, AnimationValues> animationSets = new Dictionary<string, AnimationValues>();
-        
-    private struct AnimationValues
-    {
-        public int[] frameSet;
-        public float animationSpeed;
+    Dictionary<string, AnimationProperties> animationSets = new Dictionary<string, AnimationProperties>();
 
-        public AnimationValues(int[] theFrameSet, float theAnimationSpeed)
+    /// <summary>
+    /// This is a struct that holds an animation's properties
+    /// </summary>
+    private struct AnimationProperties
+    {
+        public int[] frameSet;          // The frameSet that contains the frame numbers that this animation should loop through
+        public float animationSpeed;    // The animation speed of this animation
+
+        public AnimationProperties(int[] theFrameSet, float theAnimationSpeed)
         {
             frameSet = theFrameSet;
             animationSpeed = theAnimationSpeed;
@@ -32,7 +35,7 @@ public class SpriteManager : MonoBehaviour {
             Debug.LogError("theRenderer is not found!");
                 
         Initialize(4, 4);                               // We initialize the sprite sheet
-        CreateAnimation("walking", new AnimationValues(new int[] {1,3}, 0.5f));    // We create a new walkign animation
+        CreateAnimation("walking", new AnimationProperties(new int[] {1,3}, 0.5f));    // We create a new walkign animation
         SetCurrentAnimation("walking");                 // We set the new walking animation as our current animation
         StartCoroutine("PlayAnimation");                // We start the animation
 	}
@@ -81,7 +84,7 @@ public class SpriteManager : MonoBehaviour {
             }
         }
 
-        CreateAnimation("default", new AnimationValues(defaultFrameSet, 0.5f));        // We create the default animation for default
+        CreateAnimation("default", new AnimationProperties(defaultFrameSet, 0.5f));        // We create the default animation for default
         SetCurrentAnimation("default");                     // We set the default as our default animation
     }
 
@@ -99,9 +102,9 @@ public class SpriteManager : MonoBehaviour {
     /// </summary>
     /// <param name="animationName">The name of the new animation set</param>
     /// <param name="frameSet">the frames to use for this animation (i.e. {1, 2, 4, 5})</param>
-    void CreateAnimation(string animationName, AnimationValues animationValue)
+    void CreateAnimation(string animationName, AnimationProperties animationProperty)
     {
-        animationSets.Add(animationName, animationValue);
+        animationSets.Add(animationName, animationProperty);
     }
 
     /// <summary>

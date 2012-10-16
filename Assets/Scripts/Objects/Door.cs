@@ -22,9 +22,9 @@ public class Door : LevelObject {
     private void UpdateDoorGraphic()
     {
         if( isOpen)
-            theGraphicHandler.theRenderer.material.color = Color.cyan;
+            graphicHandler.theRenderer.material.color = Color.cyan;
         else            
-            theGraphicHandler.theRenderer.material.color = Color.green;
+            graphicHandler.theRenderer.material.color = Color.green;
     }
 
     override internal void Use()

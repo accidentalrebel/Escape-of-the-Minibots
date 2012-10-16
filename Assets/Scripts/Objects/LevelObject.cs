@@ -4,7 +4,8 @@ using System.Collections;
 [RequireComponent(typeof(GraphicHandler))]
 public class LevelObject : MonoBehaviour {
 
-    protected GraphicHandler theGraphicHandler;
+    protected GraphicHandler graphicHandler;
+    protected SpriteManager spriteManger;
 	internal Vector3 startingPos;
 	
 	virtual protected void Awake()
@@ -20,9 +21,13 @@ public class LevelObject : MonoBehaviour {
 	
     virtual protected void Start()
     {
-        theGraphicHandler = gameObject.GetComponent<GraphicHandler>();
-        if (theGraphicHandler == null)
+        graphicHandler = gameObject.GetComponent<GraphicHandler>();
+        if (graphicHandler == null)
             Debug.LogError("theGraphicHandler at " + gameObject.name + "can not be found!");
+
+        spriteManger = gameObject.GetComponentInChildren<SpriteManager>();
+        if (spriteManger == null)
+            Debug.LogWarning("spriteManger at " + gameObject.name + " can not be found!");
     }
 
     virtual internal void Use()

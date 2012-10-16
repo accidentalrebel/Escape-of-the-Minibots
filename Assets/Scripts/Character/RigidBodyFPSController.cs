@@ -3,7 +3,6 @@ using System.Collections;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CapsuleCollider))]
-
 public class RigidBodyFPSController : MonoBehaviour
 {
     public float speed = 10.0f;
@@ -74,8 +73,14 @@ public class RigidBodyFPSController : MonoBehaviour
         float yInput = Input.GetAxis("Vertical");
         if (invertGravity)
             xInput = -xInput;
-        if (invertHorizontal)
+        if (invertHorizontal)        
             xInput = -xInput;
+
+        // We then handle the facing
+        if (xInput > 0)   // If a negative number
+            player.IsFacing = Minibot.Direction.Right;
+        else if ( xInput < 0)
+            player.IsFacing = Minibot.Direction.Left;
 
         // Calculate how fast we should be moving
         Vector3 targetVelocity = new Vector3(xInput, 0, yInput);

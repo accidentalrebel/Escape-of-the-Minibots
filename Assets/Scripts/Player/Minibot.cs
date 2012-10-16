@@ -5,12 +5,24 @@ public class Minibot : LevelObject {
 
     public enum Direction { Left, Right };
     private GameObject objectBeingCarried;
-    private Rigidbody theRigidBody;
+    private Rigidbody theRigidBody;    
 
     RigidBodyFPSController controller;
     private bool startingIsInvertedGravity;
     private bool startingIsInvertedHorizontal;
     public bool hasExited;
+    private Direction isFacing = Direction.Right;
+    public Direction IsFacing
+    {
+        set {
+            // We only set the value if there is achange in direction
+            if (isFacing != value)
+            {                   
+                isFacing = value;
+                HandleSpriteDirection();    // If there is, handle the sprite direction
+            }
+        }
+    }
 
     // ************************************************************************************
     // MAIN
@@ -170,5 +182,16 @@ public class Minibot : LevelObject {
     private void EnableMinibot()
     {        
         gameObject.SetActiveRecursively(true);
+    }
+
+    // ************************************************************************************
+    // SPRITE RELATED
+    // ************************************************************************************
+    private void HandleSpriteDirection()
+    {
+        if (isFacing == Direction.Left)
+            spriteManger.HandleSpriteOrientation(true);
+        else
+            spriteManger.HandleSpriteOrientation(false);
     }
 }

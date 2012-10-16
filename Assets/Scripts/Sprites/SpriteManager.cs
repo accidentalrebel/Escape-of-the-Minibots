@@ -113,6 +113,35 @@ public class SpriteManager : MonoBehaviour {
         StopCoroutine("Animate");
     }
 
+    public void HandleSpriteOrientation(bool flip)
+    {
+        int flipValue = 1;
+        Vector2 currentTextureScale = theRenderer.material.GetTextureScale("_MainTex");
+        Vector2 currentTextureOffset = theRenderer.material.GetTextureOffset("_MainTex");
+
+        // If we should flip it
+        if (flip && isFlipped == false)
+        {
+            currentTextureOffset.x += offsetDifference.x;
+            flipValue = -1;
+            isFlipped = true;
+        }
+        // If we should unflip it
+        else if ( !flip && isFlipped == true)
+        {
+            currentTextureOffset.x -= offsetDifference.x;
+            flipValue = 1;
+            isFlipped = false;
+        }
+
+        // We then set the textureOffset according to the new calculated offset
+        theRenderer.material.SetTextureOffset("_MainTex", currentTextureOffset);
+
+        // We then do the actual flipping
+        theRenderer.material.SetTextureScale("_MainTex"
+            , new Vector2((flipValue) * offsetDifference.x, offsetDifference.y));
+    }
+
     /// <summary>
     /// Plays the animation
     /// </summary>

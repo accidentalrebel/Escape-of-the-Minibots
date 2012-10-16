@@ -70,6 +70,7 @@
      <Compile Include="Assets\Scripts\Objects\Tile\Tile.cs" />
      <Compile Include="Assets\Scripts\Objects\TriggerableBlocks.cs" />
      <Compile Include="Assets\Scripts\Player\Minibot.cs" />
+     <Compile Include="Assets\Scripts\Sprites\SpriteManager.cs" />
      <None Include="Assets\Resources\Levels\19.xml" />
      <None Include="Assets\Resources\Levels\6.xml" />
      <None Include="Assets\Resources\Levels\8.xml" />
@@ -78,6 +79,7 @@
      <None Include="Assets\Resources\Levels\10.xml" />
      <None Include="Assets\Resources\Levels\2.xml" />
      <None Include="Assets\Resources\Levels\11.xml" />
+     <None Include="Assets\Resources\Levels\13.xml" />
      <None Include="Assets\Resources\Levels\template.xml" />
      <None Include="Assets\Resources\Levels\12.xml" />
      <None Include="Assets\Resources\Levels\17.xml" />

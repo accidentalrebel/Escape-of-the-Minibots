@@ -23,12 +23,23 @@ public class SpriteManager : MonoBehaviour {
         while (enableAnimation)
         {
             newOffset = theRenderer.material.GetTextureOffset("_MainTex");
-            newOffset.x += 0.25f;
+            newOffset.x += 0.25f;            
 
-            // If we exceed the offset
-            if ( newOffset.x >= 1 )
-                newOffset.x = 0;    // Go back to the first frame
+            // If we exceed the xoffset
+            if (newOffset.x >= 1)
+            {
+                newOffset.x = 0;        // Go back to the first frame
+                newOffset.y -= 0.25f;   // And then move the y offset
 
+                // We check if we exceed the yOffset
+                if (newOffset.y < 0)
+                {
+                    newOffset.x = 0;
+                    newOffset.y = 0.75f;
+                }
+            }
+
+            // We then apply the new offset
             theRenderer.material.SetTextureOffset
                 ("_MainTex", newOffset);
 

@@ -8,7 +8,9 @@ public class SpriteManager : MonoBehaviour {
     Renderer theRenderer;
     public bool enableAnimation = true;
     int totalNumberOfFrames;
+    public bool isFlipped = false;
 
+    Vector2 offsetDifference = new Vector2();
     Dictionary<int, Vector2> animationFrames = new Dictionary<int, Vector2>();
     Dictionary<string, AnimationProperties> animationSets = new Dictionary<string, AnimationProperties>();
 
@@ -46,8 +48,6 @@ public class SpriteManager : MonoBehaviour {
     /// <param name="numOfVerticalFrames">The number of vertical frames in the spritesheet</param>
     void Initialize(int numOfHorizontalFrames, int numOfVerticalFrames)
     {
-        Vector2 offsetDifference = new Vector2();
-
         // We get the offset difference, this is the difference of one from from another
         offsetDifference.x = (float)(1f / numOfHorizontalFrames);
         offsetDifference.y = (float)(1f / numOfVerticalFrames);
@@ -124,16 +124,31 @@ public class SpriteManager : MonoBehaviour {
         // We then get the animationFrameSets. This is the one that we will loop through for this animation. 
         int[] animationFrameSets = animationSets[currentAnimation].frameSet;
         float animationSpeed = animationSets[currentAnimation].animationSpeed;
+        int flipValue;
 
         // We make sure that animation is enabled
         while (enableAnimation)
         {
-            // This line of code does a couple of things
             // First it gets the currentAnimation frame in this set
-            // Then it gets the offsets for that particular frame
-            // And then it sets the textureOffset according to the offset received
-            theRenderer.material.SetTextureOffset("_MainTex", animationFrames[animationFrameSets[currentFrame - 1]]);
-                        
+            // Then it gets the offsets for that particular frame            
+            Vector2 newOffset = animationFrames[animationFrameSets[currentFrame - 1]];
+
+            // If the sprite is flipped
+            if (isFlipped)
+            {
+                newOffset.x += offsetDifference.x;  // Increase the x offset ( flipping actually moves the xOffset by one frame so we adjust it )
+                flipValue = -1;                     // We then set the flipvalue        
+            }
+            else
+                flipValue = 1;
+
+            // We then do the actual flipping
+            theRenderer.material.SetTextureScale("_MainTex"
+                , new Vector2((flipValue) * offsetDifference.x, offsetDifference.y));
+
+            // We then set the textureOffset according to the new calculated offset
+            theRenderer.material.SetTextureOffset("_MainTex", newOffset);
+
             yield return new WaitForSeconds(animationSpeed);    // Let's wait for a number of seconds
             currentFrame++;                                     // We then increase the currentFrame
 

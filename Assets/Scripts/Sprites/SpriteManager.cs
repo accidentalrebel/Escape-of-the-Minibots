@@ -113,6 +113,12 @@ public class SpriteManager : MonoBehaviour {
         StopCoroutine("Animate");
     }
 
+    /// <summary>
+    /// Flips the sprite orientation
+    /// This one is different from the one inside Animate as that gets the textureOffset according to its current frame
+    /// While this one just flips the current textureOffset that was calculated from Animate method
+    /// </summary>
+    /// <param name="flip">True if you want to flip the sprite. False if not.</param>
     public void HandleSpriteOrientation(bool flip)
     {
         int flipValue = 1;

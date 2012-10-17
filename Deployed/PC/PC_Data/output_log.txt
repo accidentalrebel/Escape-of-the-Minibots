@@ -5,7 +5,7 @@ Direct3D:
     Vendor:   ATI
     VRAM:     1014 MB (via DXGI)
     Caps:     Shader=30 DepthRT=1 NativeDepth=1 NativeShadow=1 DF16=1 DF24=1 INTZ=1 RAWZ=0 NULL=1 RESZ=1 SlowINTZ=1
-desktop: 1680x1050 60Hz; virtual: 1680x1818 at 0,0
+desktop: 1680x1050 60Hz; virtual: 1680x1050 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 Initialize engine version: 3.5.6f4
@@ -14,67 +14,1337 @@ Platform assembly: D:\Development\Projects\Minibots\Minibots\Deployed\PC\PC_Data
 Loading D:\Development\Projects\Minibots\Minibots\Deployed\PC\PC_Data\Managed\UnityEngine.dll into Unity Child Domain
 Platform assembly: D:\Development\Projects\Minibots\Minibots\Deployed\PC\PC_Data\Managed\Assembly-CSharp.dll (this message is harmless)
 Loading D:\Development\Projects\Minibots\Minibots\Deployed\PC\PC_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-- Completed reload, in  0.074 seconds
-Platform assembly: D:\Development\Projects\Minibots\Minibots\Deployed\PC\PC_Data\Managed\System.Xml.dll (this message is harmless)
-Xml does not exist!
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:LogWarning(Object)
-XMLAccessor:CheckIfFileExists(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLAccessor.cs:39)
-XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:53)
-XMLLevelReader:Start() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:40)
- 
-(Filename: D Line: 0)
-
-Error! File does not exist! Cannot load level!
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:LogWarning(Object)
-XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:55)
-XMLLevelReader:Start() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:40)
- 
-(Filename: D Line: 0)
-
-GfxDevice: creating device client; threaded=1
-Direct3D:
-    Version:  Direct3D 9.0c [aticfx32.dll 8.17.10.1132]
-    Renderer: ATI Radeon HD 5700 Series
-    Vendor:   ATI
-    VRAM:     1014 MB (via DXGI)
-    Caps:     Shader=30 DepthRT=1 NativeDepth=1 NativeShadow=1 DF16=1 DF24=1 INTZ=1 RAWZ=0 NULL=1 RESZ=1 SlowINTZ=1
-desktop: 1680x1050 60Hz; virtual: 1680x1818 at 0,0
-<RI> Initializing input.
-<RI> Input initialized.
-Initialize engine version: 3.5.6f4
-Begin MonoManager ReloadAssembly
-Platform assembly: D:\Development\Projects\Minibots\Minibots\Deployed\PC\PC_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading D:\Development\Projects\Minibots\Minibots\Deployed\PC\PC_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: D:\Development\Projects\Minibots\Minibots\Deployed\PC\PC_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading D:\Development\Projects\Minibots\Minibots\Deployed\PC\PC_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-- Completed reload, in  0.114 seconds
+- Completed reload, in  0.065 seconds
 Platform assembly: D:\Development\Projects\Minibots\Minibots\Deployed\PC\PC_Data\Managed\System.Xml.dll (this message is harmless)
 Platform assembly: D:\Development\Projects\Minibots\Minibots\Deployed\PC\PC_Data\Managed\System.dll (this message is harmless)
-exiting stage
+default is played
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
-Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:131)
-Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:77)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+SpriteManager:Awake() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:39)
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:68)
+XMLLevelReader:Start() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:40)
+ 
+(Filename: D Line: 0)
+
+walking is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+Minibot:InitializeSprite() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:85)
+Minibot:Start() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:39)
  
 (Filename: D Line: 0)
 
 exiting stage
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
-Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:131)
-Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:77)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:151)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
  
 (Filename: D Line: 0)
 
 LEVEL IS OVER!
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
-Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:74)
-Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:66)
-Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:134)
-Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:77)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:81)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+LOADING LEVEL NUMBER 2
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:117)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+default is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+SpriteManager:Awake() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:39)
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:68)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+walking is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+Minibot:InitializeSprite() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:85)
+Minibot:Start() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:39)
+ 
+(Filename: D Line: 0)
+
+exiting stage
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:151)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+LEVEL IS OVER!
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:81)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+LOADING LEVEL NUMBER 3
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:117)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+default is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+SpriteManager:Awake() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:39)
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:68)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+walking is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+Minibot:InitializeSprite() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:85)
+Minibot:Start() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:39)
+ 
+(Filename: D Line: 0)
+
+I DIED
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:LogWarning(Object)
+Minibot:Die() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:145)
+HazardTile:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Objects\Tile\HazardTile.cs:10)
+ 
+(Filename: D Line: 0)
+
+exiting stage
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:151)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+LEVEL IS OVER!
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:81)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+LOADING LEVEL NUMBER 4
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:117)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+default is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+SpriteManager:Awake() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:39)
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:68)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+walking is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+Minibot:InitializeSprite() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:85)
+Minibot:Start() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:39)
+ 
+(Filename: D Line: 0)
+
+exiting stage
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:151)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+LEVEL IS OVER!
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:81)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+LOADING LEVEL NUMBER 5
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:117)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+default is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+SpriteManager:Awake() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:39)
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:68)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+default is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+SpriteManager:Awake() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:39)
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:68)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+walking is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+Minibot:InitializeSprite() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:85)
+Minibot:Start() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:39)
+ 
+(Filename: D Line: 0)
+
+walking is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+Minibot:InitializeSprite() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:85)
+Minibot:Start() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:39)
+ 
+(Filename: D Line: 0)
+
+exiting stage
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:151)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+exiting stage
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:151)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+LEVEL IS OVER!
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:81)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+LOADING LEVEL NUMBER 6
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:117)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+default is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+SpriteManager:Awake() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:39)
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:68)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+default is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+SpriteManager:Awake() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:39)
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:68)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+walking is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+Minibot:InitializeSprite() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:85)
+Minibot:Start() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:39)
+ 
+(Filename: D Line: 0)
+
+walking is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+Minibot:InitializeSprite() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:85)
+Minibot:Start() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:39)
+ 
+(Filename: D Line: 0)
+
+exiting stage
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:151)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+exiting stage
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:151)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+LEVEL IS OVER!
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:81)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+LOADING LEVEL NUMBER 7
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:117)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+default is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+SpriteManager:Awake() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:39)
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:68)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+default is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+SpriteManager:Awake() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:39)
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:68)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+walking is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+Minibot:InitializeSprite() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:85)
+Minibot:Start() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:39)
+ 
+(Filename: D Line: 0)
+
+walking is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+Minibot:InitializeSprite() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:85)
+Minibot:Start() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:39)
+ 
+(Filename: D Line: 0)
+
+exiting stage
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:151)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+exiting stage
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:151)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+LEVEL IS OVER!
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:81)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+LOADING LEVEL NUMBER 8
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:117)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+default is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+SpriteManager:Awake() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:39)
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:68)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+default is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+SpriteManager:Awake() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:39)
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:68)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+walking is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+Minibot:InitializeSprite() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:85)
+Minibot:Start() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:39)
+ 
+(Filename: D Line: 0)
+
+walking is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+Minibot:InitializeSprite() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:85)
+Minibot:Start() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:39)
+ 
+(Filename: D Line: 0)
+
+Skipped rendering frame because GfxDevice is in invalid state (device lost)
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/Misc/Player.cpp Line: 1608)
+
+HandleD3DDeviceLost
+  HandleD3DDeviceLost: needs reset, doing it
+FullResetD3DDevice
+ResetD3DDevice
+dev->Reset
+D3Dwindow device not lost anymore
+exiting stage
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:151)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+exiting stage
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:151)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+LEVEL IS OVER!
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:81)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+LOADING LEVEL NUMBER 9
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:117)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+default is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+SpriteManager:Awake() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:39)
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:68)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+default is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+SpriteManager:Awake() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:39)
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:68)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+walking is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+Minibot:InitializeSprite() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:85)
+Minibot:Start() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:39)
+ 
+(Filename: D Line: 0)
+
+walking is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+Minibot:InitializeSprite() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:85)
+Minibot:Start() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:39)
+ 
+(Filename: D Line: 0)
+
+I DIED
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:LogWarning(Object)
+Minibot:Die() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:145)
+HazardTile:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Objects\Tile\HazardTile.cs:10)
+ 
+(Filename: D Line: 0)
+
+exiting stage
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:151)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+exiting stage
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:151)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+LEVEL IS OVER!
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:81)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+LOADING LEVEL NUMBER 10
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:117)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+default is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+SpriteManager:Awake() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:39)
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:68)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+default is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+SpriteManager:Awake() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:39)
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:68)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+walking is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+Minibot:InitializeSprite() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:85)
+Minibot:Start() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:39)
+ 
+(Filename: D Line: 0)
+
+walking is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+Minibot:InitializeSprite() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:85)
+Minibot:Start() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:39)
+ 
+(Filename: D Line: 0)
+
+exiting stage
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:151)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+exiting stage
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:151)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+LEVEL IS OVER!
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:81)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+LOADING LEVEL NUMBER 11
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:117)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+default is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+SpriteManager:Awake() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:39)
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:68)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+default is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+SpriteManager:Awake() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:39)
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:68)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+walking is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+Minibot:InitializeSprite() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:85)
+Minibot:Start() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:39)
+ 
+(Filename: D Line: 0)
+
+walking is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+Minibot:InitializeSprite() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:85)
+Minibot:Start() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:39)
+ 
+(Filename: D Line: 0)
+
+exiting stage
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:151)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+exiting stage
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:151)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+LEVEL IS OVER!
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:81)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+LOADING LEVEL NUMBER 12
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:117)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+default is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+SpriteManager:Awake() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:39)
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:68)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+default is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+SpriteManager:Awake() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:39)
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:68)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+walking is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+Minibot:InitializeSprite() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:85)
+Minibot:Start() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:39)
+ 
+(Filename: D Line: 0)
+
+walking is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+Minibot:InitializeSprite() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:85)
+Minibot:Start() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:39)
+ 
+(Filename: D Line: 0)
+
+exiting stage
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:151)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+exiting stage
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:151)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+LEVEL IS OVER!
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:81)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+LOADING LEVEL NUMBER 13
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:117)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+default is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+SpriteManager:Awake() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:39)
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:68)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+default is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+SpriteManager:Awake() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:39)
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:68)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+objectToActivate is not specified
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:LogWarning(Object)
+Switch:Awake() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Objects\Switch\Switch.cs:18)
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:159)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+objectToActivate is not specified
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:LogWarning(Object)
+Switch:Awake() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Objects\Switch\Switch.cs:18)
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:159)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+walking is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+Minibot:InitializeSprite() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:85)
+Minibot:Start() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:39)
+ 
+(Filename: D Line: 0)
+
+walking is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+Minibot:InitializeSprite() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:85)
+Minibot:Start() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:39)
+ 
+(Filename: D Line: 0)
+
+exiting stage
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:151)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+exiting stage
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:151)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+LEVEL IS OVER!
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:81)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+LOADING LEVEL NUMBER 14
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:117)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+default is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+SpriteManager:Awake() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:39)
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:68)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+default is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+SpriteManager:Awake() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:39)
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:68)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+objectToActivate is not specified
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:LogWarning(Object)
+Switch:Awake() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Objects\Switch\Switch.cs:18)
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:159)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+objectToActivate is not specified
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:LogWarning(Object)
+Switch:Awake() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Objects\Switch\Switch.cs:18)
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:159)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+walking is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+Minibot:InitializeSprite() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:85)
+Minibot:Start() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:39)
+ 
+(Filename: D Line: 0)
+
+walking is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+Minibot:InitializeSprite() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:85)
+Minibot:Start() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:39)
+ 
+(Filename: D Line: 0)
+
+exiting stage
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:151)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+exiting stage
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:151)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+LEVEL IS OVER!
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:81)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+LOADING LEVEL NUMBER 15
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:117)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+default is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+SpriteManager:Awake() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:39)
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:68)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+default is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+SpriteManager:Awake() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:39)
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:68)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+objectToActivate is not specified
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:LogWarning(Object)
+Switch:Awake() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Objects\Switch\Switch.cs:18)
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:159)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+walking is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+Minibot:InitializeSprite() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:85)
+Minibot:Start() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:39)
+ 
+(Filename: D Line: 0)
+
+walking is played
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+SpriteManager:Play(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Sprites\SpriteManager.cs:103)
+Minibot:InitializeSprite() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:85)
+Minibot:Start() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:39)
+ 
+(Filename: D Line: 0)
+
+I DIED
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:LogWarning(Object)
+Minibot:Die() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:145)
+HazardTile:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Objects\Tile\HazardTile.cs:10)
+ 
+(Filename: D Line: 0)
+
+exiting stage
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:151)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+exiting stage
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:151)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+exiting stage
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:151)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+LEVEL IS OVER!
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:81)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
+ 
+(Filename: D Line: 0)
+
+LOADING LEVEL NUMBER 16
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:117)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
  
 (Filename: D Line: 0)
 
@@ -83,12 +1353,12 @@ UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:LogWarning(Object)
 XMLAccessor:CheckIfFileExists(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLAccessor.cs:39)
 XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:53)
-Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:105)
-Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:89)
-Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:75)
-Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:66)
-Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:134)
-Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:77)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
  
 (Filename: D Line: 0)
 
@@ -96,12 +1366,12 @@ Error! File does not exist! Cannot load level!
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:LogWarning(Object)
 XMLLevelReader:LoadLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Levels\XMLLevelReader.cs:55)
-Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:105)
-Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:89)
-Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:75)
-Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:66)
-Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:134)
-Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:77)
+Main:LoadNextLevel(String) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:120)
+Main:GetNextLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:102)
+Main:LevelOver() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:88)
+Main:CheckIfLevelComplete() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Main\Main.cs:73)
+Minibot:ExitLevel() (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:154)
+Minibot:OnTriggerEnter(Collider) (at D:\Development\Projects\Minibots\Minibots\Assets\Scripts\Player\Minibot.cs:97)
  
 (Filename: D Line: 0)
 

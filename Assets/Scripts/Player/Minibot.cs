@@ -35,7 +35,9 @@ public class Minibot : LevelObject {
             Debug.LogError("theRigidBody is not found!");
 
         base.Start();
-	}    
+
+        InitializeSprite();
+	}
 	
     void Update()
     {
@@ -75,6 +77,12 @@ public class Minibot : LevelObject {
         controller.invertHorizontal = isInvertedHor;
         startingIsInvertedGravity = isInvertedGrav;
         startingIsInvertedHorizontal = isInvertedHor;
+    }
+
+    private void InitializeSprite()
+    {
+        spriteManager.CreateAnimation("walking", new SpriteManager.AnimationProperties(new int[] { 1, 3 }, 0.5f));    // We create a new walkign animation        
+        spriteManager.Play("walking");
     }    
 
     // ************************************************************************************
@@ -190,8 +198,8 @@ public class Minibot : LevelObject {
     private void HandleSpriteDirection()
     {
         if (isFacing == Direction.Left)
-            spriteManger.HandleSpriteOrientation(true);
+            spriteManager.HandleSpriteOrientation(true);
         else
-            spriteManger.HandleSpriteOrientation(false);
+            spriteManager.HandleSpriteOrientation(false);
     }
 }

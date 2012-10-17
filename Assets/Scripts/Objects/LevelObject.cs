@@ -5,7 +5,7 @@ using System.Collections;
 public class LevelObject : MonoBehaviour {
 
     protected GraphicHandler graphicHandler;
-    protected SpriteManager spriteManger;
+    protected SpriteManager spriteManager;
 	internal Vector3 startingPos;
 	
 	virtual protected void Awake()
@@ -25,9 +25,9 @@ public class LevelObject : MonoBehaviour {
         if (graphicHandler == null)
             Debug.LogError("theGraphicHandler at " + gameObject.name + "can not be found!");
 
-        spriteManger = gameObject.GetComponentInChildren<SpriteManager>();
-        if (spriteManger == null)
-            Debug.LogWarning("spriteManger at " + gameObject.name + " can not be found!");
+        spriteManager = gameObject.GetComponentInChildren<SpriteManager>();
+        //if (spriteManager == null)
+        //    Debug.LogWarning("spriteManger at " + gameObject.name + " can not be found!");
     }
 
     virtual internal void Use()

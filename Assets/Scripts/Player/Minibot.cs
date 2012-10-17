@@ -202,4 +202,19 @@ public class Minibot : LevelObject {
         else
             spriteManager.HandleSpriteOrientation(false);
     }
+
+    // ************************************************************************************
+    // OBJECT EDITING
+    // ************************************************************************************
+    internal override void GetEditableAttributes()
+    {
+        controller.InvertGravity = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 100, 20), controller.InvertGravity, "Invert Gravity");
+
+        // Save button
+        //if (GUI.Button(new Rect((Screen.width / 2) - 110, (Screen.height / 2) + 110, 100, 30), "Save"))
+        //{
+        //    Debug.Log("Save edits clicked");
+        //    controller.invertGravity = invertGravity;
+        //}
+    }
 }

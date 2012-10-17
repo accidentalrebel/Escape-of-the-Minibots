@@ -39,4 +39,9 @@ public class LevelObject : MonoBehaviour {
     {
         gameObject.transform.position = startingPos;        
     }
+
+    virtual internal void GetEditableAttributes()
+    {
+        Debug.LogWarning("Has not been overriden!");
+    }
 }

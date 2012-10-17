@@ -432,8 +432,6 @@ public class LevelEditor : MonoBehaviour {
 
     private void HandleEditingModeGUI()
     {
-        string invertGravity = "";
-
         // This handles the GUI for the editing mode
         if (currentMode == LevelEditorMode.EditingMode)
         {
@@ -441,21 +439,11 @@ public class LevelEditor : MonoBehaviour {
 
             if (objectToDisplay != null)
             {
-                GUI.Label(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 100, 20), "Invert gravity");
-                invertGravity = GUI.TextField(new Rect((Screen.width / 2) + 40, (Screen.height / 2) - 110, 100, 20), invertGravity);
-
-                GUI.Label(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 90, 100, 20), "Invert horizontal");
-                invertGravity = GUI.TextField(new Rect((Screen.width / 2) + 40, (Screen.height / 2) - 90, 100, 20), invertGravity);
+                objectToDisplay.GetComponent<LevelObject>().GetEditableAttributes();
             }
             else
             {
                 GUI.Label(new Rect((Screen.width / 2), (Screen.height / 2) - 110, 100, 30), "Nothing to edit");
-            }
-
-            // Save button
-            if (GUI.Button(new Rect((Screen.width / 2) - 110, (Screen.height / 2) + 110, 100, 30), "Save"))
-            {
-                Debug.Log("Save edits clicked");
             }
 
             // Cancel button

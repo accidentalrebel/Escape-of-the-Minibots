@@ -88,6 +88,7 @@
      <None Include="Assets\Resources\Levels\14.xml" />
      <None Include="Assets\Resources\Levels\4.xml" />
      <None Include="Assets\Resources\Levels\test.xml" />
+     <None Include="Assets\Resources\Levels\15.xml" />
      <None Include="Assets\Resources\Levels\9.xml" />
      <None Include="Assets\Resources\Levels\7.xml" />
   </ItemGroup>

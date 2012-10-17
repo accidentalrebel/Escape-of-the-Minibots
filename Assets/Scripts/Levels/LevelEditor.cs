@@ -59,10 +59,10 @@ public class LevelEditor : MonoBehaviour {
     void Update()
     {
         // Only allow map editing if the game is not simulating
-        if (!isSimulating)
+        if (!isSimulating && mapEditMode)
         {
             // If a mouse click is detected while in edit mode
-            if (mapEditMode && Input.GetMouseButtonDown(0) && GUIUtility.hotControl == 0)
+            if (Input.GetMouseButtonDown(0) && GUIUtility.hotControl == 0)
             {
                 // We get any levelObject at the position from where the mouse is clicked
                 Vector3 clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -97,9 +97,22 @@ public class LevelEditor : MonoBehaviour {
             }
 
             // Pressing the right mouse button deletes the object at mouse position
-            if (Input.GetMouseButtonDown(1) && GUIUtility.hotControl == 0 && mapEditMode)
+            else if (Input.GetMouseButtonDown(1) && GUIUtility.hotControl == 0)
             {
                 HandleLevelObjectDeletion();
+            }
+
+            // Pressing the middle mouse button edits the object at mouse position
+            else if (Input.GetMouseButtonDown(2) && GUIUtility.hotControl == 0)
+            {
+                // We get any levelObject at the position from where the mouse is clicked
+                Vector3 clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                LevelObject objectAtMousePosition = GetObjectAtPosition(clickPos);
+
+                // We open the attribute window
+                Debug.Log("Attribute window opened");
+                SetCurrentMode(LevelEditorMode.EditingMode);
+                PlaceInAttributeWindow(objectAtMousePosition);
             }
         }
 

@@ -31,7 +31,8 @@ public class LevelEditor : MonoBehaviour {
     XMLLevelWriter levelWriter;
     Renderer originMarkerRenderer;
     ObjectType objectToSpawn = ObjectType.None;
-    Map map;        
+    Map map;
+    LevelObject objectToDisplay;
 
     // ************************************************************************************
     // MAIN
@@ -79,6 +80,7 @@ public class LevelEditor : MonoBehaviour {
                     // We open the attribute window
                     Debug.Log("Attribute window opened");
                     SetCurrentMode(LevelEditorMode.EditingMode);
+                    PlaceInAttributeWindow(objectAtMousePosition);
                 }
             }
 
@@ -272,6 +274,15 @@ public class LevelEditor : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Places the values of received object onto the atribute window
+    /// </summary>
+    /// <param name="objectAtMousePosition"></param>
+    private void PlaceInAttributeWindow(LevelObject theObjectToDisplay)
+    {
+        objectToDisplay = theObjectToDisplay;
+    }
+
     // ************************************************************************************
     // GUI
     // ************************************************************************************
@@ -297,20 +308,7 @@ public class LevelEditor : MonoBehaviour {
 
         if (MapEditMode)
         {
-            if (currentMode == LevelEditorMode.EditingMode)
-            {
-                GUI.Box(new Rect((Screen.width / 2) - 150, (Screen.height / 2) - 150, 300, 300), "Edit Object");
-                // Spawning buttons
-                if (GUI.Button(new Rect((Screen.width / 2) - 110, (Screen.height / 2) + 110, 100, 30), "Save"))
-                {
-                    Debug.Log("Save edits clicked");                    
-                }
-                if (GUI.Button(new Rect((Screen.width / 2) + 10, (Screen.height / 2) + 110, 100, 30), "Close"))
-                {
-                    Debug.Log("Close window clicked");
-                    SetCurrentMode(LevelEditorMode.PlacementMode);
-                }
-            }
+            HandleEditingModeGUI();
 
             // Disable the GUI if the game is simulating
             if (isSimulating || currentMode != LevelEditorMode.PlacementMode)
@@ -428,6 +426,43 @@ public class LevelEditor : MonoBehaviour {
                 Debug.Log("Load map clicked");
                 map.ClearLevel();
                 levelReader.LoadLevel(levelFileName);
+            }
+        }
+    }
+
+    private void HandleEditingModeGUI()
+    {
+        string invertGravity = "";
+
+        // This handles the GUI for the editing mode
+        if (currentMode == LevelEditorMode.EditingMode)
+        {
+            GUI.Box(new Rect((Screen.width / 2) - 150, (Screen.height / 2) - 150, 300, 300), "Edit Object");
+
+            if (objectToDisplay != null)
+            {
+                GUI.Label(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 100, 20), "Invert gravity");
+                invertGravity = GUI.TextField(new Rect((Screen.width / 2) + 40, (Screen.height / 2) - 110, 100, 20), invertGravity);
+
+                GUI.Label(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 90, 100, 20), "Invert horizontal");
+                invertGravity = GUI.TextField(new Rect((Screen.width / 2) + 40, (Screen.height / 2) - 90, 100, 20), invertGravity);
+            }
+            else
+            {
+                GUI.Label(new Rect((Screen.width / 2), (Screen.height / 2) - 110, 100, 30), "Nothing to edit");
+            }
+
+            // Save button
+            if (GUI.Button(new Rect((Screen.width / 2) - 110, (Screen.height / 2) + 110, 100, 30), "Save"))
+            {
+                Debug.Log("Save edits clicked");
+            }
+
+            // Cancel button
+            if (GUI.Button(new Rect((Screen.width / 2) + 10, (Screen.height / 2) + 110, 100, 30), "Close"))
+            {
+                Debug.Log("Close window clicked");
+                SetCurrentMode(LevelEditorMode.PlacementMode);
             }
         }
     }

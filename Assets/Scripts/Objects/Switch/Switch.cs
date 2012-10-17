@@ -52,4 +52,17 @@ public class Switch : LevelObject {
         triggeredCollider = null;
         isTriggered = false;
     }
+
+    // ************************************************************************************
+    // OBJECT EDITING
+    // ************************************************************************************
+    internal override void GetEditableAttributes(LevelEditor levelEditor)
+    {
+        GUI.Label(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 100, 20), objectToActivate.name);
+        if (GUI.Button(new Rect((Screen.width / 2) - 30, (Screen.height / 2) - 110, 100, 20), "Link to Object"))
+        {
+            Debug.Log("Linking to object");
+            levelEditor.CurrentMode = LevelEditor.LevelEditorMode.PickToLinkMode;
+        }        
+    }
 }

@@ -52,7 +52,7 @@ public class Door : LevelObject {
     // ************************************************************************************
     // OBJECT EDITING
     // ************************************************************************************
-    internal override void GetEditableAttributes()
+    internal override void GetEditableAttributes(LevelEditor levelEditor)
     {
         IsOpen = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 110, 20), IsOpen, "Is Open?");
     }

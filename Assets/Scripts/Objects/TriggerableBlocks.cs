@@ -142,7 +142,7 @@ public class TriggerableBlocks : LevelObject {
     // ************************************************************************************
     // OBJECT EDITING
     // ************************************************************************************
-    internal override void GetEditableAttributes()
+    internal override void GetEditableAttributes(LevelEditor levelEditor)
     {
         GUI.Label(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 50, 20), "Width");
         BlockWidth = GUI.TextField(new Rect((Screen.width / 2) - 90, (Screen.height / 2) - 110, 100, 20), BlockWidth);

@@ -206,7 +206,7 @@ public class Minibot : LevelObject {
     // ************************************************************************************
     // OBJECT EDITING
     // ************************************************************************************
-    internal override void GetEditableAttributes()
+    internal override void GetEditableAttributes(LevelEditor levelEditor)
     {
         controller.InvertGravity = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 110, 20), controller.InvertGravity, "Invert Gravity");
         controller.invertHorizontal = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 90, 150, 20), controller.invertHorizontal, "Invert Horizontal");

@@ -5,7 +5,7 @@ public class LevelEditor : MonoBehaviour {
 
     enum ObjectType { None, Tile, Minibot, Box, Door, GravityInverter, Hazard, HorizontalInverter
         , MovingPlatform, StepSwitch, Switch, TriggerableBlock };
-    public enum LevelEditorMode { PlacementMode, DeletionMode, EditingMode, PickToEditMode, None };
+    public enum LevelEditorMode { PlacementMode, DeletionMode, EditingMode, PickToEditMode, PickToLinkMode, None };
 
     bool mapEditMode = false;
     public bool MapEditMode
@@ -25,6 +25,7 @@ public class LevelEditor : MonoBehaviour {
     public LevelEditorMode CurrentMode
     {
         get { return currentMode; }
+        set { currentMode = value; }
     }
     
     XMLLevelReader levelReader;
@@ -67,6 +68,7 @@ public class LevelEditor : MonoBehaviour {
                 Vector3 clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 LevelObject objectAtMousePosition = GetObjectAtPosition(clickPos);
 
+                // This handles the levelObjectPlacement
                 if (objectToSpawn != ObjectType.None                    // We check if we have something to spawn
                     && CurrentMode == LevelEditorMode.PlacementMode   // We also check if the current mode is objectPlacement
                     && objectAtMousePosition == null)                  // Finally we check if there is an object at the current position
@@ -74,13 +76,23 @@ public class LevelEditor : MonoBehaviour {
                     // If there is none, then continue the object placement
                     HandleLevelObjectPlacement();
                 }
+
+                // This handles the picking of level Objects for editing
                 else if (objectAtMousePosition != null
-                    && CurrentMode == LevelEditorMode.PickToEditMode )     // If there is an object
+                    && CurrentMode == LevelEditorMode.PickToEditMode
+                    && CurrentMode != LevelEditorMode.PickToLinkMode )     // If there is an object
                 {
                     // We open the attribute window
                     Debug.Log("Attribute window opened");
                     SetCurrentMode(LevelEditorMode.EditingMode);
                     PlaceInAttributeWindow(objectAtMousePosition);
+                }
+
+                // This handles the picking of level objects for linking
+                else if (CurrentMode == LevelEditorMode.PickToLinkMode)
+                {
+                    objectToDisplay.GetComponent<Switch>().objectToActivate = objectAtMousePosition;
+                    CurrentMode = LevelEditorMode.EditingMode;
                 }
             }
 
@@ -439,7 +451,7 @@ public class LevelEditor : MonoBehaviour {
 
             if (objectToDisplay != null)
             {
-                objectToDisplay.GetComponent<LevelObject>().GetEditableAttributes();
+                objectToDisplay.GetComponent<LevelObject>().GetEditableAttributes(this);
             }
             else
             {

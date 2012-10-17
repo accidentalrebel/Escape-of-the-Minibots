@@ -64,9 +64,8 @@ public class LevelEditor : MonoBehaviour {
             // If a mouse click is detected while in edit mode
             if (Input.GetMouseButtonDown(0) && GUIUtility.hotControl == 0)
             {
-                // We get any levelObject at the position from where the mouse is clicked
-                Vector3 clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                LevelObject objectAtMousePosition = GetObjectAtPosition(clickPos);
+                // We get any levelObject at the position from where the mouse is clicked                
+                LevelObject objectAtMousePosition = GetObjectAtMousePosition();
 
                 // This handles the levelObjectPlacement
                 if (objectToSpawn != ObjectType.None                    // We check if we have something to spawn
@@ -83,9 +82,7 @@ public class LevelEditor : MonoBehaviour {
                     && CurrentMode != LevelEditorMode.PickToLinkMode )     // If there is an object
                 {
                     // We open the attribute window
-                    Debug.Log("Attribute window opened");
-                    SetCurrentMode(LevelEditorMode.EditingMode);
-                    PlaceInAttributeWindow(objectAtMousePosition);
+                    OpenAttributeWindow(objectAtMousePosition);
                 }
 
                 // This handles the picking of level objects for linking
@@ -105,14 +102,10 @@ public class LevelEditor : MonoBehaviour {
             // Pressing the middle mouse button edits the object at mouse position
             else if (Input.GetMouseButtonDown(2) && GUIUtility.hotControl == 0)
             {
-                // We get any levelObject at the position from where the mouse is clicked
-                Vector3 clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                LevelObject objectAtMousePosition = GetObjectAtPosition(clickPos);
+                // We get any levelObject at the position from where the mouse is clicked                
+                LevelObject objectAtMousePosition = GetObjectAtMousePosition();
 
-                // We open the attribute window
-                Debug.Log("Attribute window opened");
-                SetCurrentMode(LevelEditorMode.EditingMode);
-                PlaceInAttributeWindow(objectAtMousePosition);
+                OpenAttributeWindow(objectAtMousePosition);
             }
         }
 
@@ -144,11 +137,9 @@ public class LevelEditor : MonoBehaviour {
     // ************************************************************************************
     // LEVEL EDITING
     // ************************************************************************************
-
     private void HandleLevelObjectDeletion()
     {
-        Vector3 clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        LevelObject clickedObject = GetObjectAtPosition(clickPos);
+        LevelObject clickedObject = GetObjectAtMousePosition();
         
         if (clickedObject == null)
             return;
@@ -167,11 +158,12 @@ public class LevelEditor : MonoBehaviour {
         }
     }
 
-    private LevelObject GetObjectAtPosition(Vector3 thePos)
+    private LevelObject GetObjectAtMousePosition()
     {
+        Vector3 clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         return map.GetLevelObjectAtPosition(new Vector3
-            (Mathf.Round(thePos.x)
-            , Mathf.Round(thePos.y), 0));
+            (Mathf.Round(clickPos.x)
+            , Mathf.Round(clickPos.y), 0));
     }
 
     private void HandleLevelObjectPlacement()
@@ -297,6 +289,17 @@ public class LevelEditor : MonoBehaviour {
                 (Mathf.Round(spawnPos.x)
                 , Mathf.Round(spawnPos.y), 0));
         }
+    }
+
+    // ************************************************************************************
+    // Attribute Window
+    // ************************************************************************************
+
+    private void OpenAttributeWindow(LevelObject objectAtMousePosition)
+    {
+        Debug.Log("Attribute window opened");
+        SetCurrentMode(LevelEditorMode.EditingMode);
+        PlaceInAttributeWindow(objectAtMousePosition);
     }
 
     /// <summary>

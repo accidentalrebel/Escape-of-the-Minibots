@@ -40,11 +40,12 @@ public class TriggerableBlocks : LevelObject {
         SetStatusOfChildTiles();
 	}
 	
-	internal void Initialize(Vector3 theStartingPos, bool theIsHidden)
+	internal void Initialize(Vector3 theStartingPos, bool theIsHidden, Vector2 theBlockSize)
 	{
 		base.Initialize(theStartingPos);
         isHidden = theIsHidden;
         startingIsHidden = isHidden;
+        UpdateBlockSize(theBlockSize);
 	}
 
     private void GenerateTiles()
@@ -87,6 +88,10 @@ public class TriggerableBlocks : LevelObject {
         SetStatusOfChildTiles();  
     }
 
+    /// <summary>
+    /// This sets the status of the child tiles if it is hidden or not
+    /// And how the graphic handler should handle it
+    /// </summary>
     private void SetStatusOfChildTiles()
     {
         foreach (GameObject child in childTiles)
@@ -104,6 +109,9 @@ public class TriggerableBlocks : LevelObject {
         }      
     }
 
+    /// <summary>
+    /// Destroys all child tiles
+    /// </summary>
     private void DestroyChildTiles()
     {
         foreach (GameObject child in childTiles)
@@ -112,24 +120,24 @@ public class TriggerableBlocks : LevelObject {
         }
     }
 
-    void OnDrawGizmos()
-    {
-        for (int yCoord = 0; yCoord < blockSize.y; yCoord++)
-        {
-            for (int xCoord = 0; xCoord < blockSize.x; xCoord++)
-            {
-                Gizmos.color = Color.blue;
-                Gizmos.DrawWireCube(new Vector3(transform.position.x + xCoord
-                        , transform.position.y + yCoord, 1), new Vector3(1, 1, 1));
-            }
-        }
-    }
-
-    internal override void ResetObject()
+    override internal void ResetObject()
     {
         isHidden = startingIsHidden;
         SetStatusOfChildTiles();  
     }
+
+    //void OnDrawGizmos()
+    //{
+    //    for (int yCoord = 0; yCoord < blockSize.y; yCoord++)
+    //    {
+    //        for (int xCoord = 0; xCoord < blockSize.x; xCoord++)
+    //        {
+    //            Gizmos.color = Color.blue;
+    //            Gizmos.DrawWireCube(new Vector3(transform.position.x + xCoord
+    //                    , transform.position.y + yCoord, 1), new Vector3(1, 1, 1));
+    //        }
+    //    }
+    //}
 
     // ************************************************************************************
     // OBJECT EDITING

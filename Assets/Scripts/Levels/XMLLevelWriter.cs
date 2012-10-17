@@ -136,7 +136,9 @@ public class XMLLevelWriter : XMLAccessor {
 			elemNew.SetAttribute("y", levelObjectScript.startingPos.y.ToString());
 			TriggerableBlocks tbScript = triggerableBlock.GetComponent<TriggerableBlocks>();
 			elemNew.SetAttribute("isHidden", BoolToString(tbScript.isHidden));
-			elemRoot.AppendChild(elemNew);		
+            elemNew.SetAttribute("width", tbScript.blockSize.x.ToString());
+            elemNew.SetAttribute("height", tbScript.blockSize.y.ToString());
+            elemRoot.AppendChild(elemNew);
 		}
 		
 		// We loop through all the stepSwitches

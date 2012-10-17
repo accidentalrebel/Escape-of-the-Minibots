@@ -137,7 +137,11 @@ public class XMLLevelReader : XMLAccessor {
 				newObject.GetComponent<TriggerableBlocks>().Initialize(new Vector3
 					( float.Parse(reader.GetAttribute("x"))
 					, float.Parse(reader.GetAttribute("y")), 0)
-                    , StringToBool(reader.GetAttribute("isHidden")));
+                    , StringToBool(reader.GetAttribute("isHidden"))
+                    , new Vector2(
+                        float.Parse(reader.GetAttribute("width"))
+                        , float.Parse(reader.GetAttribute("height")))
+                    );
 				
 				newObject.transform.parent = triggerableBlocksContainer.transform;
 			}

@@ -5,7 +5,7 @@ public class LevelEditor : MonoBehaviour {
 
     enum ObjectType { None, Tile, Minibot, Box, Door, GravityInverter, Hazard, HorizontalInverter
         , MovingPlatform, StepSwitch, Switch, TriggerableBlock };
-    enum LevelEditorMode { ObjectPlacement, ObjectDeletion, None };
+    public enum LevelEditorMode { ObjectPlacement, ObjectDeletion, None };
 
     bool mapEditMode = false;
     public bool MapEditMode
@@ -22,6 +22,15 @@ public class LevelEditor : MonoBehaviour {
     bool isSimulating = true;
 
     LevelEditorMode currentMode = LevelEditorMode.None;
+    public LevelEditorMode CurrentMode
+    {
+        set { 
+            currentMode = value;
+            StopSimulation();
+        }
+        get { return currentMode; }
+    }
+    
     XMLLevelReader levelReader;
     XMLLevelWriter levelWriter;
     Renderer originMarkerRenderer;
@@ -51,18 +60,24 @@ public class LevelEditor : MonoBehaviour {
 
     void Update()
     {
-        if (currentMode == LevelEditorMode.ObjectPlacement 
-            && objectToSpawn != ObjectType.None)
-        {
-            if (Input.GetMouseButtonDown(0) && GUIUtility.hotControl == 0 && mapEditMode)
+        // If a mouse click is detected while in edit mode
+        if (mapEditMode && Input.GetMouseButtonDown(0) && GUIUtility.hotControl == 0)
+        {            
+            // We get any levelObject at the position from where the mouse is clicked
+            Vector3 clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            LevelObject objectAtMousePosition = GetObjectAtPosition(clickPos);
+              
+            if (objectToSpawn != ObjectType.None                    // We check if we have something to spawn
+                && CurrentMode == LevelEditorMode.ObjectPlacement   // We also check if the current mode is objectPlacement
+                && objectAtMousePosition == null )                  // Finally we check if there is an object at the current position
             {
-                // We check if there is already an object at the clickPosition
-                Vector3 clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                if ( GetObjectAtPosition(clickPos) == null )
-                {
-                    // If there is none, then continue the object placement
-                    HandleLevelObjectPlacement();
-                }
+                // If there is none, then continue the object placement
+                HandleLevelObjectPlacement();
+            }
+            else if (objectAtMousePosition != null)     // If there is an object
+            {
+                // We open the attribute window
+                Debug.Log("Attribute window opened");
             }
         }
 
@@ -287,31 +302,31 @@ public class LevelEditor : MonoBehaviour {
             if (GUI.Button(new Rect(10, Screen.height - 70, 100, 30), "Tile"))
             {
                 Debug.Log("Spawn tile clicked");
-                currentMode = LevelEditorMode.ObjectPlacement;
+                CurrentMode = LevelEditorMode.ObjectPlacement;
                 objectToSpawn = ObjectType.Tile;
             }
             if (GUI.Button(new Rect(110, Screen.height - 70, 100, 30), "Hazard"))
             {
                 Debug.Log("Spawn hazard clicked");
-                currentMode = LevelEditorMode.ObjectPlacement;
+                CurrentMode = LevelEditorMode.ObjectPlacement;
                 objectToSpawn = ObjectType.Hazard;
             }
             if (GUI.Button(new Rect(210, Screen.height - 70, 100, 30), "Minibot"))
             {
                 Debug.Log("Spawn minibot clicked");
-                currentMode = LevelEditorMode.ObjectPlacement;
+                CurrentMode = LevelEditorMode.ObjectPlacement;
                 objectToSpawn = ObjectType.Minibot;
             }
             if (GUI.Button(new Rect(310, Screen.height - 70, 100, 30), "Box"))
             {
                 Debug.Log("Spawn box clicked");
-                currentMode = LevelEditorMode.ObjectPlacement;
+                CurrentMode = LevelEditorMode.ObjectPlacement;
                 objectToSpawn = ObjectType.Box;
             }
             if (GUI.Button(new Rect(410, Screen.height - 70, 100, 30), "Door"))
             {
                 Debug.Log("Spawn door clicked");
-                currentMode = LevelEditorMode.ObjectPlacement;
+                CurrentMode = LevelEditorMode.ObjectPlacement;
                 objectToSpawn = ObjectType.Door;
             }        
 
@@ -319,31 +334,31 @@ public class LevelEditor : MonoBehaviour {
             if (GUI.Button(new Rect(10, Screen.height - 40, 100, 30), "Switch"))
             {
                 Debug.Log("Spawn switch clicked");
-                currentMode = LevelEditorMode.ObjectPlacement;
+                CurrentMode = LevelEditorMode.ObjectPlacement;
                 objectToSpawn = ObjectType.Switch;
             }
             if (GUI.Button(new Rect(110, Screen.height - 40, 100, 30), "StepSwitch"))
             {
                 Debug.Log("Spawn stepSwitch clicked");
-                currentMode = LevelEditorMode.ObjectPlacement;
+                CurrentMode = LevelEditorMode.ObjectPlacement;
                 objectToSpawn = ObjectType.StepSwitch;
             }            
             if (GUI.Button(new Rect(210, Screen.height - 40, 100, 30), "GravInv"))
             {
                 Debug.Log("Spawn gravity inverter clicked");
-                currentMode = LevelEditorMode.ObjectPlacement;
+                CurrentMode = LevelEditorMode.ObjectPlacement;
                 objectToSpawn = ObjectType.GravityInverter;
             }            
             if (GUI.Button(new Rect(310, Screen.height - 40, 100, 30), "HorInv"))
             {
                 Debug.Log("Spawn horizontal inverter clicked");
-                currentMode = LevelEditorMode.ObjectPlacement;
+                CurrentMode = LevelEditorMode.ObjectPlacement;
                 objectToSpawn = ObjectType.HorizontalInverter;
             }
             if (GUI.Button(new Rect(410, Screen.height - 40, 100, 30), "TrigBlocks"))
             {
                 Debug.Log("Spawn triggerableBlocks clicked");
-                currentMode = LevelEditorMode.ObjectPlacement;
+                CurrentMode = LevelEditorMode.ObjectPlacement;
                 objectToSpawn = ObjectType.TriggerableBlock;
             }
             //if (GUI.Button(new Rect(510, Screen.height - 40, 100, 30), "MovPlatform"))

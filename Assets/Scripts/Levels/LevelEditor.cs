@@ -280,6 +280,9 @@ public class LevelEditor : MonoBehaviour {
 
         if (MapEditMode)
         {
+            // Make a background box for the spawning buttons
+            GUI.Box(new Rect(0, Screen.height-100, 520, 100), "Level Objects");
+
             // Spawning buttons
             if (GUI.Button(new Rect(10, Screen.height - 70, 100, 30), "Tile"))
             {

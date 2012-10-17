@@ -5,12 +5,12 @@ public class LevelEditor : MonoBehaviour {
 
     enum ObjectType { None, Tile, Minibot, Box, Door, GravityInverter, Hazard, HorizontalInverter
         , MovingPlatform, StepSwitch, Switch, TriggerableBlock };
-    public enum LevelEditorMode { ObjectPlacement, ObjectDeletion, None };
+    public enum LevelEditorMode { ObjectPlacement, ObjectDeletion, ObjectEditing, None };
 
     bool mapEditMode = false;
     public bool MapEditMode
     {
-        set { mapEditMode = value; }
+        set { mapEditMode = value;  }
         get{ return mapEditMode; }
     }
     bool saveMapMode = false;
@@ -21,7 +21,7 @@ public class LevelEditor : MonoBehaviour {
     }
     bool isSimulating = true;
 
-    LevelEditorMode currentMode = LevelEditorMode.None;
+    LevelEditorMode currentMode = LevelEditorMode.ObjectPlacement;
     public LevelEditorMode CurrentMode
     {
         get { return currentMode; }
@@ -73,10 +73,12 @@ public class LevelEditor : MonoBehaviour {
                     // If there is none, then continue the object placement
                     HandleLevelObjectPlacement();
                 }
-                else if (objectAtMousePosition != null)     // If there is an object
+                else if (objectAtMousePosition != null
+                    && CurrentMode != LevelEditorMode.ObjectEditing )     // If there is an object
                 {
                     // We open the attribute window
                     Debug.Log("Attribute window opened");
+                    SetCurrentMode(LevelEditorMode.ObjectEditing);
                 }
             }
 
@@ -86,11 +88,10 @@ public class LevelEditor : MonoBehaviour {
                 HandleLevelObjectDeletion();
             }
         }
- 
 
         // This only shows the origin marker when mapEditMode is enabled
         if (mapEditMode)
-            originMarkerRenderer.enabled = true;
+            originMarkerRenderer.enabled = true;            
         else
             originMarkerRenderer.enabled = false;
     }
@@ -290,11 +291,32 @@ public class LevelEditor : MonoBehaviour {
                 StartSimulation();
         }
 
+        GUI.enabled = true;
+
         MapEditMode = GUI.Toggle(new Rect(10, 50, 100, 20), MapEditMode, "Map Edit Mode");
 
         if (MapEditMode)
         {
-            GUI.enabled = !isSimulating;    // Disable the GUI if the game is simulating
+            if (currentMode == LevelEditorMode.ObjectEditing)
+            {
+                GUI.Box(new Rect((Screen.width / 2) - 150, (Screen.height / 2) - 150, 300, 300), "Edit Object");
+                // Spawning buttons
+                if (GUI.Button(new Rect((Screen.width / 2) - 110, (Screen.height / 2) + 110, 100, 30), "Save"))
+                {
+                    Debug.Log("Save edits clicked");                    
+                }
+                if (GUI.Button(new Rect((Screen.width / 2) + 10, (Screen.height / 2) + 110, 100, 30), "Close"))
+                {
+                    Debug.Log("Close window clicked");
+                    SetCurrentMode(LevelEditorMode.ObjectPlacement);
+                }
+            }
+
+            // Disable the GUI if the game is simulating
+            if (isSimulating || currentMode != LevelEditorMode.ObjectPlacement)
+                GUI.enabled = false;
+            else
+                GUI.enabled = true;
 
             // Make a background box for the spawning buttons
             GUI.Box(new Rect(0, Screen.height-100, 520, 100), "Level Objects");

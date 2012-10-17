@@ -56,31 +56,35 @@ public class LevelEditor : MonoBehaviour {
 
     void Update()
     {
-        // If a mouse click is detected while in edit mode
-        if (mapEditMode && Input.GetMouseButtonDown(0) && GUIUtility.hotControl == 0)
-        {            
-            // We get any levelObject at the position from where the mouse is clicked
-            Vector3 clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            LevelObject objectAtMousePosition = GetObjectAtPosition(clickPos);
-              
-            if (objectToSpawn != ObjectType.None                    // We check if we have something to spawn
-                && CurrentMode == LevelEditorMode.ObjectPlacement   // We also check if the current mode is objectPlacement
-                && objectAtMousePosition == null )                  // Finally we check if there is an object at the current position
-            {
-                // If there is none, then continue the object placement
-                HandleLevelObjectPlacement();
-            }
-            else if (objectAtMousePosition != null)     // If there is an object
-            {
-                // We open the attribute window
-                Debug.Log("Attribute window opened");
-            }
-        }
-
-        // Pressing the right mouse button deletes the object at mouse position
-        if (Input.GetMouseButtonDown(1) && GUIUtility.hotControl == 0 && mapEditMode)
+        // Only allow map editing if the game is not simulating
+        if (!isSimulating)
         {
-            HandleLevelObjectDeletion();
+            // If a mouse click is detected while in edit mode
+            if (mapEditMode && Input.GetMouseButtonDown(0) && GUIUtility.hotControl == 0)
+            {
+                // We get any levelObject at the position from where the mouse is clicked
+                Vector3 clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                LevelObject objectAtMousePosition = GetObjectAtPosition(clickPos);
+
+                if (objectToSpawn != ObjectType.None                    // We check if we have something to spawn
+                    && CurrentMode == LevelEditorMode.ObjectPlacement   // We also check if the current mode is objectPlacement
+                    && objectAtMousePosition == null)                  // Finally we check if there is an object at the current position
+                {
+                    // If there is none, then continue the object placement
+                    HandleLevelObjectPlacement();
+                }
+                else if (objectAtMousePosition != null)     // If there is an object
+                {
+                    // We open the attribute window
+                    Debug.Log("Attribute window opened");
+                }
+            }
+
+            // Pressing the right mouse button deletes the object at mouse position
+            if (Input.GetMouseButtonDown(1) && GUIUtility.hotControl == 0 && mapEditMode)
+            {
+                HandleLevelObjectDeletion();
+            }
         }
  
 
@@ -270,7 +274,6 @@ public class LevelEditor : MonoBehaviour {
     // ************************************************************************************
     // GUI
     // ************************************************************************************
-
     void OnGUI()
     {
         // Play and Stop Buttons
@@ -291,6 +294,8 @@ public class LevelEditor : MonoBehaviour {
 
         if (MapEditMode)
         {
+            GUI.enabled = !isSimulating;    // Disable the GUI if the game is simulating
+
             // Make a background box for the spawning buttons
             GUI.Box(new Rect(0, Screen.height-100, 520, 100), "Level Objects");
 
@@ -362,7 +367,10 @@ public class LevelEditor : MonoBehaviour {
             //    Debug.Log("Spawn moving platform clicked");
             //    objectToSpawn = ObjectType.MovingPlatform;
             //}
-            
+
+            // We then enable the GUI of the rest
+            GUI.enabled = true;
+
             // Clears the whole map
             if (GUI.Button(new Rect(Screen.width - 110, 10, 100, 30), "New Map"))
             {
@@ -401,8 +409,8 @@ public class LevelEditor : MonoBehaviour {
         currentMode = theNewMode;
 
         // We stop the simulation only if it is objectPlacement mode
-        if ( theNewMode == LevelEditorMode.ObjectPlacement )
-            StopSimulation();
+        //if ( theNewMode == LevelEditorMode.ObjectPlacement )
+        //    StopSimulation();
     }
 
     private void StartSimulation()

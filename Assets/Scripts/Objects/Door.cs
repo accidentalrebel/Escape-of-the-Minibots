@@ -4,6 +4,12 @@ using System.Collections;
 public class Door : LevelObject {
 
     public bool isOpen = false;
+    public bool IsOpen
+    {
+        set { isOpen = value; UpdateDoorGraphic(); }
+        get { return isOpen; }
+    }
+
     private bool startingIsOpen = true;
 
     override protected void Start()
@@ -41,5 +47,13 @@ public class Door : LevelObject {
     {
         isOpen = startingIsOpen;
         UpdateDoorGraphic();
+    }
+
+    // ************************************************************************************
+    // OBJECT EDITING
+    // ************************************************************************************
+    internal override void GetEditableAttributes()
+    {
+        IsOpen = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 110, 20), IsOpen, "Is Open?");
     }
 }

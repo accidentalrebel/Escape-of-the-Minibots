@@ -5,7 +5,7 @@ public class LevelEditor : MonoBehaviour {
 
     enum ObjectType { None, Tile, Minibot, Box, Door, GravityInverter, Hazard, HorizontalInverter
         , MovingPlatform, StepSwitch, Switch, TriggerableBlock };
-    public enum LevelEditorMode { ObjectPlacement, ObjectDeletion, ObjectEditing, None };
+    public enum LevelEditorMode { ObjectPlacement, ObjectDeletion, ObjectEditing, PickObjectToEdit, None };
 
     bool mapEditMode = false;
     public bool MapEditMode
@@ -74,7 +74,7 @@ public class LevelEditor : MonoBehaviour {
                     HandleLevelObjectPlacement();
                 }
                 else if (objectAtMousePosition != null
-                    && CurrentMode != LevelEditorMode.ObjectEditing )     // If there is an object
+                    && CurrentMode == LevelEditorMode.PickObjectToEdit )     // If there is an object
                 {
                     // We open the attribute window
                     Debug.Log("Attribute window opened");
@@ -320,6 +320,12 @@ public class LevelEditor : MonoBehaviour {
 
             // Make a background box for the spawning buttons
             GUI.Box(new Rect(0, Screen.height-100, 520, 100), "Level Objects");
+
+            if (GUI.Button(new Rect(10, Screen.height - 140, 100, 30), "Edit Object"))
+            {
+                Debug.Log("Edit tile clicked");
+                SetCurrentMode(LevelEditorMode.PickObjectToEdit);
+            }
 
             // Spawning buttons
             if (GUI.Button(new Rect(10, Screen.height - 70, 100, 30), "Tile"))

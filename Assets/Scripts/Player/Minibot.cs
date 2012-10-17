@@ -81,7 +81,7 @@ public class Minibot : LevelObject {
 
     private void InitializeSprite()
     {
-        spriteManager.CreateAnimation("walking", new SpriteManager.AnimationProperties(new int[] { 1, 3 }, 0.5f));    // We create a new walkign animation        
+        spriteManager.CreateAnimation("walking", new SpriteManager.AnimationProperties(new int[] { 1, 2, 3 }, 0.2f));    // We create a new walkign animation        
         spriteManager.Play("walking");
     }    
 

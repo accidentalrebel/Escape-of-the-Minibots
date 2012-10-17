@@ -149,8 +149,8 @@ public class XMLLevelWriter : XMLAccessor {
 			elemNew.SetAttribute("x", levelObjectScript.startingPos.x.ToString());
 			elemNew.SetAttribute("y", levelObjectScript.startingPos.y.ToString());
 			StepSwitch switchScript = stepSwitch.gameObject.GetComponent<StepSwitch>();
-			elemNew.SetAttribute("xPosOfObjectToActivate", switchScript.objectToActivate.transform.position.x.ToString());
-			elemNew.SetAttribute("yPosOfObjectToActivate", switchScript.objectToActivate.transform.position.y.ToString());
+			elemNew.SetAttribute("xPosOfObjectToActivate", switchScript.posOfObjectToActivate.x.ToString());
+			elemNew.SetAttribute("yPosOfObjectToActivate", switchScript.posOfObjectToActivate.y.ToString());
 			elemRoot.AppendChild(elemNew);	
 		}
 		
@@ -162,8 +162,8 @@ public class XMLLevelWriter : XMLAccessor {
 			elemNew.SetAttribute("x", levelObjectScript.startingPos.x.ToString());
 			elemNew.SetAttribute("y", levelObjectScript.startingPos.y.ToString());
 			Switch switchScript = aSwitch.gameObject.GetComponent<Switch>();
-			elemNew.SetAttribute("xPosOfObjectToActivate", switchScript.objectToActivate.transform.position.x.ToString());
-			elemNew.SetAttribute("yPosOfObjectToActivate", switchScript.objectToActivate.transform.position.y.ToString());
+			elemNew.SetAttribute("xPosOfObjectToActivate", switchScript.posOfObjectToActivate.x.ToString());
+			elemNew.SetAttribute("yPosOfObjectToActivate", switchScript.posOfObjectToActivate.y.ToString());
 			elemRoot.AppendChild(elemNew);	
 		}
           

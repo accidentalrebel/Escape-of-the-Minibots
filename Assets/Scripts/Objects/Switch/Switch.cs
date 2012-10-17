@@ -3,32 +3,39 @@ using System.Collections;
 
 public class Switch : LevelObject {
 
-    public LevelObject objectToActivate;
+    public Vector3 posOfObjectToActivate = Vector3.zero;
     protected bool isTriggered = false;
     protected Collider triggeredCollider;
-	private Map map;
+	protected Map map;
 
 	// Use this for initialization
 	override protected void Awake () {
 		base.Awake();
 		
 		map = Registry.map;
-		
-        if (objectToActivate == null)
-            Debug.LogWarning("objectToActivate is not specified");
 	}
 	
-	internal void Initialize(Vector3 theStartingPos, Vector2 posOfObjectToActivate)
+	internal void Initialize(Vector3 theStartingPos, Vector2 thePosOfObjectToActivate)
 	{
-		base.Initialize(theStartingPos);		
-		
-		LevelObject theObject = map.GetLevelObjectAtPosition
-			(new Vector3(posOfObjectToActivate.x, posOfObjectToActivate.y, 0));
-		if ( theObject != null )
-			objectToActivate = theObject;
-		else
-			Debug.LogError("There was no object at position specified!");
+		base.Initialize(theStartingPos);
+        posOfObjectToActivate = 
+            new Vector3(thePosOfObjectToActivate.x
+                , thePosOfObjectToActivate.y, 0);
 	}
+
+    internal void SetObjectToActivate(LevelObject theObject)
+    {
+        posOfObjectToActivate = 
+            new Vector3(theObject.gameObject.transform.position.x
+                , theObject.gameObject.transform.position.y, 0);
+    }
+
+    //internal void SetObjectToActivate(Vector2 posOfObjectToActivate)
+    //{
+    //    objectToActivate = map.GetLevelObjectAtPosition
+    //        (new Vector3(theObject.gameObject.transform.position.x
+    //            , theObject.gameObject.transform.position.y, 0));
+    //}
 	
 	// Update is called once per frame
 	void Update () {
@@ -36,7 +43,8 @@ public class Switch : LevelObject {
         {
             if (Input.GetKeyUp(KeyCode.X))
             {
-                objectToActivate.Use();
+                LevelObject objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate);
+                objectToUse.Use();
             }
         }
 	}
@@ -53,12 +61,23 @@ public class Switch : LevelObject {
         isTriggered = false;
     }
 
+    internal override void ResetObject()
+    {
+        base.ResetObject();
+    }
+
     // ************************************************************************************
     // OBJECT EDITING
     // ************************************************************************************
     internal override void GetEditableAttributes(LevelEditor levelEditor)
     {
-        GUI.Label(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 100, 20), objectToActivate.name);
+        string toDisplay;
+        if (posOfObjectToActivate != Vector3.zero)
+            toDisplay = "Linked";
+        else
+            toDisplay = "No Link";
+        GUI.Label(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 100, 20), toDisplay);
+
         if (GUI.Button(new Rect((Screen.width / 2) - 30, (Screen.height / 2) - 110, 100, 20), "Link to Object"))
         {
             Debug.Log("Linking to object");

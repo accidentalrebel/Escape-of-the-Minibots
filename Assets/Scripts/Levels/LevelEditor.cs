@@ -447,7 +447,7 @@ public class LevelEditor : MonoBehaviour {
             }
 
             // Cancel button
-            if (GUI.Button(new Rect((Screen.width / 2) + 10, (Screen.height / 2) + 110, 100, 30), "Close"))
+            if (GUI.Button(new Rect((Screen.width / 2) -50, (Screen.height / 2) + 110, 100, 30), "Close"))
             {
                 Debug.Log("Close window clicked");
                 SetCurrentMode(LevelEditorMode.PlacementMode);

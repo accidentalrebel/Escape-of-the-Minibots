@@ -24,10 +24,6 @@ public class LevelEditor : MonoBehaviour {
     LevelEditorMode currentMode = LevelEditorMode.None;
     public LevelEditorMode CurrentMode
     {
-        set { 
-            currentMode = value;
-            StopSimulation();
-        }
         get { return currentMode; }
     }
     
@@ -302,31 +298,31 @@ public class LevelEditor : MonoBehaviour {
             if (GUI.Button(new Rect(10, Screen.height - 70, 100, 30), "Tile"))
             {
                 Debug.Log("Spawn tile clicked");
-                CurrentMode = LevelEditorMode.ObjectPlacement;
+                SetCurrentMode(LevelEditorMode.ObjectPlacement);
                 objectToSpawn = ObjectType.Tile;
             }
             if (GUI.Button(new Rect(110, Screen.height - 70, 100, 30), "Hazard"))
             {
                 Debug.Log("Spawn hazard clicked");
-                CurrentMode = LevelEditorMode.ObjectPlacement;
+                SetCurrentMode(LevelEditorMode.ObjectPlacement);
                 objectToSpawn = ObjectType.Hazard;
             }
             if (GUI.Button(new Rect(210, Screen.height - 70, 100, 30), "Minibot"))
             {
                 Debug.Log("Spawn minibot clicked");
-                CurrentMode = LevelEditorMode.ObjectPlacement;
+                SetCurrentMode(LevelEditorMode.ObjectPlacement);
                 objectToSpawn = ObjectType.Minibot;
             }
             if (GUI.Button(new Rect(310, Screen.height - 70, 100, 30), "Box"))
             {
                 Debug.Log("Spawn box clicked");
-                CurrentMode = LevelEditorMode.ObjectPlacement;
+                SetCurrentMode(LevelEditorMode.ObjectPlacement);
                 objectToSpawn = ObjectType.Box;
             }
             if (GUI.Button(new Rect(410, Screen.height - 70, 100, 30), "Door"))
             {
                 Debug.Log("Spawn door clicked");
-                CurrentMode = LevelEditorMode.ObjectPlacement;
+                SetCurrentMode(LevelEditorMode.ObjectPlacement);
                 objectToSpawn = ObjectType.Door;
             }        
 
@@ -334,31 +330,31 @@ public class LevelEditor : MonoBehaviour {
             if (GUI.Button(new Rect(10, Screen.height - 40, 100, 30), "Switch"))
             {
                 Debug.Log("Spawn switch clicked");
-                CurrentMode = LevelEditorMode.ObjectPlacement;
+                SetCurrentMode(LevelEditorMode.ObjectPlacement);
                 objectToSpawn = ObjectType.Switch;
             }
             if (GUI.Button(new Rect(110, Screen.height - 40, 100, 30), "StepSwitch"))
             {
                 Debug.Log("Spawn stepSwitch clicked");
-                CurrentMode = LevelEditorMode.ObjectPlacement;
+                SetCurrentMode(LevelEditorMode.ObjectPlacement);
                 objectToSpawn = ObjectType.StepSwitch;
             }            
             if (GUI.Button(new Rect(210, Screen.height - 40, 100, 30), "GravInv"))
             {
                 Debug.Log("Spawn gravity inverter clicked");
-                CurrentMode = LevelEditorMode.ObjectPlacement;
+                SetCurrentMode(LevelEditorMode.ObjectPlacement);
                 objectToSpawn = ObjectType.GravityInverter;
             }            
             if (GUI.Button(new Rect(310, Screen.height - 40, 100, 30), "HorInv"))
             {
                 Debug.Log("Spawn horizontal inverter clicked");
-                CurrentMode = LevelEditorMode.ObjectPlacement;
+                SetCurrentMode(LevelEditorMode.ObjectPlacement);
                 objectToSpawn = ObjectType.HorizontalInverter;
             }
             if (GUI.Button(new Rect(410, Screen.height - 40, 100, 30), "TrigBlocks"))
             {
                 Debug.Log("Spawn triggerableBlocks clicked");
-                CurrentMode = LevelEditorMode.ObjectPlacement;
+                SetCurrentMode(LevelEditorMode.ObjectPlacement);
                 objectToSpawn = ObjectType.TriggerableBlock;
             }
             //if (GUI.Button(new Rect(510, Screen.height - 40, 100, 30), "MovPlatform"))
@@ -398,6 +394,15 @@ public class LevelEditor : MonoBehaviour {
                 levelReader.LoadLevel(levelFileName);
             }
         }
+    }
+
+    private void SetCurrentMode(LevelEditorMode theNewMode)
+    {
+        currentMode = theNewMode;
+
+        // We stop the simulation only if it is objectPlacement mode
+        if ( theNewMode == LevelEditorMode.ObjectPlacement )
+            StopSimulation();
     }
 
     private void StartSimulation()

@@ -262,37 +262,24 @@ public class LevelEditor : MonoBehaviour {
 
     void OnGUI()
     {
-        MapEditMode = GUI.Toggle(new Rect(10, 10, 100, 20), MapEditMode, "Map Edit Mode");
-        
+        // Play and Stop Buttons
+        string btnText = "";
+        if (isSimulating)
+            btnText = "Stop";
+        else
+            btnText = "Play";        
+        if (GUI.Button(new Rect(10, 10, 100, 30), btnText))
+        {
+            if (isSimulating)
+                StopSimulation();
+            else
+                StartSimulation();
+        }
+
+        MapEditMode = GUI.Toggle(new Rect(10, 50, 100, 20), MapEditMode, "Map Edit Mode");
+
         if (MapEditMode)
         {
-            // Play and Stop Buttons
-            string btnText = "";
-            if (isSimulating)
-                btnText = "Stop";
-            else
-                btnText = "Play";
-
-            if (GUI.Button(new Rect(10, 40, 100, 30), btnText))
-            {
-                if (isSimulating)
-                {
-                    StopSimulation();
-                }
-                else
-                {
-                    StartSimulation();
-                }
-            }
-
-            // Deletion button
-            //if (GUI.Button(new Rect(10, Screen.height - 110, 100, 30), "Delete Object"))
-            //{
-            //    Debug.Log("Delete button clicked");
-            //    StopSimulation();
-            //    currentMode = LevelEditorMode.ObjectDeletion;
-            //}
-            
             // Spawning buttons
             if (GUI.Button(new Rect(10, Screen.height - 70, 100, 30), "Tile"))
             {

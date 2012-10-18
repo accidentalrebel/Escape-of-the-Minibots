@@ -13,25 +13,26 @@ public class TriggerableBlocks : LevelObject {
     bool IsHidden
     {
         get { return isHidden; }
-        set { isHidden = value; SetStatusOfChildTiles(); }
+        set { isHidden = value; UpdateChildTiles(); }
     }
 
     string blockWidth = "1";
     string BlockWidth
     {
         get { return blockWidth; }
-        set { blockWidth = value; SetBlockSizeFromString(blockWidth, blockHeight); }
+        set { blockWidth = value; UpdateBlockSizeFromString(blockWidth, blockHeight); }
     }
 
     string blockHeight = "1";
     string BlockHeight
     {
         get { return blockHeight; }
-        set { blockHeight = value; SetBlockSizeFromString(blockWidth, blockHeight); }
+        set { blockHeight = value; UpdateBlockSizeFromString(blockWidth, blockHeight); }
     }
 
-    private void SetBlockSizeFromString(string theBlockWidth, string theBlockHeight)
+    private void UpdateBlockSizeFromString(string theBlockWidth, string theBlockHeight)
     {
+        
         float floatBlockWidth = 0, floatBlockHeight = 0;
         float.TryParse(theBlockWidth, out floatBlockWidth);
         float.TryParse(theBlockHeight, out floatBlockHeight);
@@ -43,19 +44,24 @@ public class TriggerableBlocks : LevelObject {
 	// Use this for initialization
 	protected new void Start () {
         GenerateTiles();
-        SetStatusOfChildTiles();
+        UpdateChildTiles();
 	}
 	
 	internal void Initialize(Vector3 theStartingPos, bool theIsHidden, Vector2 theBlockSize)
 	{
 		base.Initialize(theStartingPos);
+
         isHidden = theIsHidden;
         startingIsHidden = isHidden;
         UpdateBlockSize(theBlockSize);
+        
+        UpdateChildTiles();
 	}
 
     private void GenerateTiles()
     {
+        DestroyChildTiles();
+
         childTiles.Clear();
         for (int yCoord = 0; yCoord < blockSize.y; yCoord++)
         {
@@ -91,14 +97,14 @@ public class TriggerableBlocks : LevelObject {
         else
             isHidden = true;
 
-        SetStatusOfChildTiles();  
+        UpdateChildTiles();  
     }
 
     /// <summary>
     /// This sets the status of the child tiles if it is hidden or not
     /// And how the graphic handler should handle it
     /// </summary>
-    private void SetStatusOfChildTiles()
+    private void UpdateChildTiles()
     {
         foreach (GameObject child in childTiles)
         {
@@ -129,7 +135,7 @@ public class TriggerableBlocks : LevelObject {
     override internal void ResetObject()
     {
         isHidden = startingIsHidden;
-        SetStatusOfChildTiles();  
+        UpdateChildTiles();  
     }
 
     //void OnDrawGizmos()

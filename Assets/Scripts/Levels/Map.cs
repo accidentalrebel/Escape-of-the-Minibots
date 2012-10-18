@@ -137,17 +137,17 @@ public class Map : MonoBehaviour {
         }
 
         levelToCheck--;
-
-        // Don't allow to continue if less or equal to zero
-        if (levelToCheck <= 0)
+        while (levelToCheck > 0)
         {
-            return false ;
-        }
+            if (levelReader.CheckIfFileExists(levelToCheck.ToString()))
+            {   // If file exists
 
-        ClearLevel();
-        if (levelReader.CheckIfFileExists(levelToCheck.ToString()))
-        {
-            levelReader.LoadLevel(levelToCheck.ToString());
+                ClearLevel();       // Clear the kevek
+                levelReader.LoadLevel(levelToCheck.ToString());
+                break;              // We get out of this loop
+            }
+
+            levelToCheck--;
         }
 
         return true;

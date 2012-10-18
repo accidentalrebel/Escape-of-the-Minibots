@@ -93,20 +93,21 @@ public class Main : MonoBehaviour
     /// </summary>
     private void GetNextLevel()
     {
-        string nextLevelName = "";
-        int currentLevel;
+        map.GetNextLevel();
+        //string nextLevelName = "";
+        //int currentLevel;
 
-        int.TryParse(map.currentLevel, out currentLevel);    // We try to parse the loadedLevel name to int
-        nextLevelName = (currentLevel+=1).ToString();       // We increment the level number and set it as the next level
+        //int.TryParse(map.currentLevel, out currentLevel);    // We try to parse the loadedLevel name to int
+        //nextLevelName = (currentLevel+=1).ToString();       // We increment the level number and set it as the next level
 
-        if (map.levelReader.CheckIfFileExists(nextLevelName))
-        {
-            LoadNextLevel(nextLevelName);
-        }
-        else
-        {
-            Debug.Log("no more next level");
-        }
+        //if (map.levelReader.CheckIfFileExists(nextLevelName))
+        //{
+        //    LoadNextLevel(nextLevelName);
+        //}
+        //else
+        //{
+        //    Debug.Log("no more next level");
+        //}
     }
 
     /// <summary>

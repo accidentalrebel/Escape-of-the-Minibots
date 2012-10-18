@@ -43,6 +43,12 @@ public class Door : LevelObject {
         UpdateDoorGraphic();
     }
 
+    internal void CloseDoor()
+    {
+        isOpen = false; 
+        UpdateDoorGraphic();
+    }
+
     internal override void ResetObject()
     {
         isOpen = startingIsOpen;

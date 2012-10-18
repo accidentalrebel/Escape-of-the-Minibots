@@ -93,8 +93,12 @@ public class Minibot : LevelObject {
     {
         if (col.tag == "Door")
         {
-            if ( col.gameObject.GetComponent<Door>().isOpen )
+            Door theDoor = col.gameObject.GetComponent<Door>();
+            if (theDoor.isOpen)
+            {
+                theDoor.CloseDoor();
                 ExitLevel();
+            }
         }
     }
 

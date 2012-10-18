@@ -5,10 +5,16 @@ using System.Collections.Generic;
 //[ExecuteInEditMode]
 public class TriggerableBlocks : LevelObject {
 
-    public Vector2 blockSize;
-    public bool isHidden = false;
+    public Vector2 blockSize;    
     private bool startingIsHidden = false;
     private List<GameObject> childTiles = new List<GameObject>();
+
+    public bool isHidden = false;
+    bool IsHidden
+    {
+        get { return isHidden; }
+        set { isHidden = value; SetStatusOfChildTiles(); }
+    }
 
     string blockWidth = "1";
     string BlockWidth
@@ -149,5 +155,7 @@ public class TriggerableBlocks : LevelObject {
 
         GUI.Label(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 80, 50, 20), "Height");
         BlockHeight = GUI.TextField(new Rect((Screen.width / 2) - 90, (Screen.height / 2) - 80, 100, 20), BlockHeight);
+
+        IsHidden = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 50, 150, 20), IsHidden, "Is hidden?");
     }
 }

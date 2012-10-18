@@ -455,6 +455,17 @@ public class LevelEditor : MonoBehaviour {
                 map.ClearLevel();
                 levelReader.LoadLevel(levelFileName);
             }
+
+            if (GUI.Button(new Rect(Screen.width - 50, 240, 40, 30), ">>"))
+            {
+                Debug.Log("Previous map clicked");
+                map.GetNextLevel();
+            }
+
+            if (GUI.Button(new Rect(Screen.width - 110, 240, 40, 30), "<<"))
+            {
+                Debug.Log("Next map clicked");
+            }
         }
     }
 

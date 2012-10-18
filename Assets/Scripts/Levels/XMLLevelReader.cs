@@ -45,7 +45,13 @@ public class XMLLevelReader : XMLAccessor {
 		}
 	}   
 
-    internal void LoadLevel(string theLevelToLoad)
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="theLevelToLoad"></param>
+    /// <returns>True if levelLoad is successful. False if not.</returns>
+    internal bool LoadLevel(string theLevelToLoad)
     {
         string filepath = Application.dataPath + @"/Resources/Levels/" + theLevelToLoad + ".xml";
         
@@ -53,7 +59,7 @@ public class XMLLevelReader : XMLAccessor {
         if (!CheckIfFileExists(filepath))
         {
             Debug.LogWarning("Error! File does not exist! Cannot load level!");
-            return;
+            return false;
         }
 
         // If file exists, continue reading file
@@ -175,6 +181,8 @@ public class XMLLevelReader : XMLAccessor {
 
         // We tell the main that we have finished loading
         HasFinishedLoadingLevel(theLevelToLoad);
+
+        return true;
     }
 
     /// <summary>

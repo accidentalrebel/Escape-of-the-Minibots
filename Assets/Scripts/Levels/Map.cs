@@ -92,6 +92,27 @@ public class Map : MonoBehaviour {
     }
 
     // ************************************************************************************
+    // LEVEL LOADING
+    // ************************************************************************************
+
+    internal void GetNextLevel()
+    {
+        int levelToCheck = 0;
+        try
+        {
+            levelToCheck = int.Parse(currentLevel);
+        }
+        catch
+        {
+            Debug.LogWarning("Error in getting the next level! Could not parse currentLevel to int!");
+        }
+
+        levelToCheck++;
+        ClearLevel();
+        levelReader.LoadLevel(levelToCheck.ToString());
+    }
+
+    // ************************************************************************************
     // LEVEL MANIPULATION
     // ************************************************************************************
 
@@ -204,4 +225,6 @@ public class Map : MonoBehaviour {
 		
 		return null;
 	}
+
+    
 }

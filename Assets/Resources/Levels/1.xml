@@ -176,5 +176,4 @@
   <tile x="9" y="3" />
   <tile x="10" y="3" />
   <door x="17" y="4" isOpen="1" />
-  <triggerableBlock x="8" y="9" isHidden="1" width="6" height="1" />
 </tiles>

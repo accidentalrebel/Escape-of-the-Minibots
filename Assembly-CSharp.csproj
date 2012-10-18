@@ -72,6 +72,7 @@
      <Compile Include="Assets\Scripts\Player\Minibot.cs" />
      <Compile Include="Assets\Scripts\Sprites\SpriteManager.cs" />
      <None Include="Assets\Resources\Levels\16.xml" />
+     <None Include="Assets\Resources\Levels\20.xml" />
      <None Include="Assets\Resources\Levels\6.xml" />
      <None Include="Assets\Resources\Levels\8.xml" />
      <None Include="Assets\Resources\Levels\1.xml" />

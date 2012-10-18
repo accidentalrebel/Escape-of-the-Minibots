@@ -458,14 +458,14 @@ public class LevelEditor : MonoBehaviour {
 
             if (GUI.Button(new Rect(Screen.width - 50, 240, 40, 30), ">>"))
             {
-                Debug.Log("Previous map clicked");
-                map.GetNextLevel();
+                if ( map.GetNextLevel() )
+                    Debug.Log("Previous map clicked");
             }
 
             if (GUI.Button(new Rect(Screen.width - 110, 240, 40, 30), "<<"))
             {
-                Debug.Log("Next map clicked");
-                map.GetPreviousLevel();
+                if (map.GetPreviousLevel())
+                    Debug.Log("Next map clicked");
             }
         }
     }

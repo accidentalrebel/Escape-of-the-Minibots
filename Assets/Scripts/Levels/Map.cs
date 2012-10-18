@@ -95,7 +95,7 @@ public class Map : MonoBehaviour {
     // LEVEL LOADING
     // ************************************************************************************
 
-    internal void GetNextLevel()
+    internal bool GetNextLevel()
     {
         int levelToCheck = 0;
         try
@@ -110,9 +110,11 @@ public class Map : MonoBehaviour {
         levelToCheck++;
         ClearLevel();
         levelReader.LoadLevel(levelToCheck.ToString());
+
+        return true;
     }
 
-    internal void GetPreviousLevel()
+    internal bool GetPreviousLevel()
     {
         int levelToCheck = 0;
         try
@@ -129,11 +131,13 @@ public class Map : MonoBehaviour {
         // Don't allow to continue if less or equal to zero
         if (levelToCheck <= 0)
         {
-            return;
+            return false ;
         }
 
         ClearLevel();
         levelReader.LoadLevel(levelToCheck.ToString());
+
+        return true;
     }
 
     // ************************************************************************************

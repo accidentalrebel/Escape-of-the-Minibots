@@ -465,6 +465,7 @@ public class LevelEditor : MonoBehaviour {
             if (GUI.Button(new Rect(Screen.width - 110, 240, 40, 30), "<<"))
             {
                 Debug.Log("Next map clicked");
+                map.GetPreviousLevel();
             }
         }
     }

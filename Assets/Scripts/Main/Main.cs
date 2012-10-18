@@ -99,7 +99,14 @@ public class Main : MonoBehaviour
         int.TryParse(map.currentLevel, out currentLevel);    // We try to parse the loadedLevel name to int
         nextLevelName = (currentLevel+=1).ToString();       // We increment the level number and set it as the next level
 
-        LoadNextLevel(nextLevelName);        
+        if (map.levelReader.CheckIfFileExists(nextLevelName))
+        {
+            LoadNextLevel(nextLevelName);
+        }
+        else
+        {
+            Debug.Log("no more next level");
+        }
     }
 
     /// <summary>
@@ -116,8 +123,11 @@ public class Main : MonoBehaviour
 
         Debug.Log("LOADING LEVEL NUMBER " + nextLevelName);
 
-        map.ClearLevel();
-        map.levelReader.LoadLevel(nextLevelName);        
+        if (map.levelReader.CheckIfFileExists(nextLevelName))
+        {
+            map.ClearLevel();
+            map.levelReader.LoadLevel(nextLevelName);
+        }
     }
 
     // ************************************************************************************

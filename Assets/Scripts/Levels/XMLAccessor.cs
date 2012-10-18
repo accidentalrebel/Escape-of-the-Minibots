@@ -30,9 +30,11 @@ public class XMLAccessor : MonoBehaviour {
 		switchesContainer = Registry.map.switchesContainer;
 		triggerableBlocksContainer = Registry.map.triggerableBlocksContainer;
 	}
-	
-    protected bool CheckIfFileExists(string filepath)
+
+    internal bool CheckIfFileExists(string fileName)
     {
+        string filepath = Application.dataPath + @"/Resources/Levels/" + fileName + ".xml";
+
         // If file does not exist. Create the xml file.
         if (!File.Exists(filepath))
         {

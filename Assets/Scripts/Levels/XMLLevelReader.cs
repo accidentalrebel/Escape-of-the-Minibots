@@ -36,8 +36,11 @@ public class XMLLevelReader : XMLAccessor {
         pfTriggerableBlock = prefabHandler.pfTriggerableBlock;
 
         if (levelToLoad != "")
-        {            
-            LoadLevel(levelToLoad);
+        {
+            if (CheckIfFileExists(levelToLoad))
+            {
+                LoadLevel(levelToLoad);
+            }
         }
 		else
 		{
@@ -54,13 +57,6 @@ public class XMLLevelReader : XMLAccessor {
     internal bool LoadLevel(string theLevelToLoad)
     {
         string filepath = Application.dataPath + @"/Resources/Levels/" + theLevelToLoad + ".xml";
-        
-        // We check if the file exits
-        if (!CheckIfFileExists(filepath))
-        {
-            Debug.LogWarning("Error! File does not exist! Cannot load level!");
-            return false;
-        }
 
         // If file exists, continue reading file
         XmlReader reader = XmlReader.Create(filepath);

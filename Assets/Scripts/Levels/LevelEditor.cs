@@ -430,7 +430,10 @@ public class LevelEditor : MonoBehaviour {
             {
                 Debug.Log("New map clicked");
                 map.ClearLevel();
-                levelReader.LoadLevel("template");
+                if (levelReader.CheckIfFileExists("template"))
+                {
+                    levelReader.LoadLevel("template");
+                }
             }
             if (GUI.Button(new Rect(Screen.width - 110, 40, 100, 30), "Clear Map"))
             {
@@ -453,19 +456,22 @@ public class LevelEditor : MonoBehaviour {
             {
                 Debug.Log("Load map clicked");
                 map.ClearLevel();
-                levelReader.LoadLevel(levelFileName);
+                if (levelReader.CheckIfFileExists(levelFileName))
+                {
+                    levelReader.LoadLevel(levelFileName);
+                }
             }
 
             if (GUI.Button(new Rect(Screen.width - 50, 240, 40, 30), ">>"))
             {
                 if ( map.GetNextLevel() )
-                    Debug.Log("Previous map clicked");
+                    Debug.Log("Next map clicked");
             }
 
             if (GUI.Button(new Rect(Screen.width - 110, 240, 40, 30), "<<"))
             {
                 if (map.GetPreviousLevel())
-                    Debug.Log("Next map clicked");
+                    Debug.Log("Previous map clicked");
             }
         }
     }

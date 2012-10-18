@@ -8,10 +8,9 @@ public class XMLLevelWriter : XMLAccessor {
     internal void SaveLevel(string filename)
     {
         string filepath = Application.dataPath + @"/Resources/Levels/" + filename + ".xml";
-        Debug.Log(filepath);
 
         // We first check if file exists
-        if (!CheckIfFileExists(filepath))
+        if (!CheckIfFileExists(filename))
         {
             // if not, we create the file
             Debug.Log("Creating a new XML file.");

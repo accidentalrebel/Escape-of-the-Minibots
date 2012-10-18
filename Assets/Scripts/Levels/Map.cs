@@ -108,8 +108,18 @@ public class Map : MonoBehaviour {
         }
 
         levelToCheck++;
-        ClearLevel();
-        levelReader.LoadLevel(levelToCheck.ToString());
+        while (levelToCheck < 100)
+        {
+            if (levelReader.CheckIfFileExists(levelToCheck.ToString()))
+            {   // If file exists
+                
+                ClearLevel();       // Clear the kevek
+                levelReader.LoadLevel(levelToCheck.ToString());
+                break;              // We get out of this loop
+            }
+
+            levelToCheck++;
+        } 
 
         return true;
     }
@@ -135,7 +145,10 @@ public class Map : MonoBehaviour {
         }
 
         ClearLevel();
-        levelReader.LoadLevel(levelToCheck.ToString());
+        if (levelReader.CheckIfFileExists(levelToCheck.ToString()))
+        {
+            levelReader.LoadLevel(levelToCheck.ToString());
+        }
 
         return true;
     }

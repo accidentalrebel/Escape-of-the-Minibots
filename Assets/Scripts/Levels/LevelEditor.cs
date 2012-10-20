@@ -330,6 +330,9 @@ public class LevelEditor : MonoBehaviour {
                 StartSimulation();
         }
 
+        // Displays the current level
+        GUI.Label(new Rect(Screen.width - 80, 10, 70, 20), "Level: " + map.currentLevel);
+
         GUI.enabled = true;
 
         MapEditMode = GUI.Toggle(new Rect(10, 50, 100, 20), MapEditMode, "Map Edit Mode");
@@ -426,7 +429,7 @@ public class LevelEditor : MonoBehaviour {
             GUI.enabled = true;
 
             // Clears the whole map
-            if (GUI.Button(new Rect(Screen.width - 110, 10, 100, 30), "New Map"))
+            if (GUI.Button(new Rect(Screen.width - 110, 40, 100, 30), "New Map"))
             {
                 Debug.Log("New map clicked");
                 map.ClearLevel();
@@ -435,15 +438,15 @@ public class LevelEditor : MonoBehaviour {
                     levelReader.LoadLevel("template");
                 }
             }
-            if (GUI.Button(new Rect(Screen.width - 110, 40, 100, 30), "Clear Map"))
+            if (GUI.Button(new Rect(Screen.width - 110, 70, 100, 30), "Clear Map"))
             {
                 Debug.Log("Clear map clilcked");
                 map.ClearLevel();
             }
             
             // Save map mode
-            levelFileName = GUI.TextField(new Rect(Screen.width - 110, 90, 100, 30), levelFileName);
-            if (GUI.Button(new Rect(Screen.width - 110, 120, 100, 30), "Save Map"))
+            levelFileName = GUI.TextField(new Rect(Screen.width - 110, 120, 100, 30), levelFileName);
+            if (GUI.Button(new Rect(Screen.width - 110, 150, 100, 30), "Save Map"))
             {
                 Debug.Log("Save map clicked");
                 levelWriter.SaveLevel(levelFileName);
@@ -451,8 +454,8 @@ public class LevelEditor : MonoBehaviour {
             }
 
             // Load map mode
-            levelFileName = GUI.TextField(new Rect(Screen.width - 110, 170, 100, 30), levelFileName);
-            if (GUI.Button(new Rect(Screen.width - 110, 200, 100, 30), "Load Map"))
+            levelFileName = GUI.TextField(new Rect(Screen.width - 110, 200, 100, 30), levelFileName);
+            if (GUI.Button(new Rect(Screen.width - 110, 230, 100, 30), "Load Map"))
             {
                 Debug.Log("Load map clicked");
                 map.ClearLevel();
@@ -462,13 +465,13 @@ public class LevelEditor : MonoBehaviour {
                 }
             }
 
-            if (GUI.Button(new Rect(Screen.width - 50, 240, 40, 30), ">>"))
+            if (GUI.Button(new Rect(Screen.width - 50, 270, 40, 30), ">>"))
             {
                 if ( map.GetNextLevel() )
                     Debug.Log("Next map clicked");
             }
 
-            if (GUI.Button(new Rect(Screen.width - 110, 240, 40, 30), "<<"))
+            if (GUI.Button(new Rect(Screen.width - 110, 270, 40, 30), "<<"))
             {
                 if (map.GetPreviousLevel())
                     Debug.Log("Previous map clicked");

@@ -76,8 +76,9 @@
      <None Include="Assets\Resources\Levels\6.xml" />
      <None Include="Assets\Resources\Levels\8.xml" />
      <None Include="Assets\Resources\Levels\1.xml" />
-     <None Include="Assets\Resources\Levels\20.xml" />
+     <None Include="Assets\Resources\Levels\42.xml" />
      <None Include="Assets\Resources\Levels\10.xml" />
+     <None Include="Assets\Resources\Levels\41.xml" />
      <None Include="Assets\Resources\Levels\2.xml" />
      <None Include="Assets\Resources\Levels\11.xml" />
      <None Include="Assets\Resources\Levels\14.xml" />
@@ -89,7 +90,7 @@
      <None Include="Assets\Resources\Levels\3.xml" />
      <None Include="Assets\Resources\Levels\5.xml" />
      <None Include="Assets\Resources\Levels\15.xml" />
-     <None Include="Assets\Resources\Levels\19.xml" />
+     <None Include="Assets\Resources\Levels\40.xml" />
      <None Include="Assets\Resources\Levels\4.xml" />
      <None Include="Assets\Resources\Levels\test.xml" />
      <None Include="Assets\Resources\Levels\16.xml" />

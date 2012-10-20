@@ -72,7 +72,7 @@
      <Compile Include="Assets\Scripts\Player\Minibot.cs" />
      <Compile Include="Assets\Scripts\Sprites\SpriteManager.cs" />
      <None Include="Assets\Resources\Levels\13.xml" />
-     <None Include="Assets\Resources\Levels\17.xml" />
+     <None Include="Assets\Resources\Levels\18.xml" />
      <None Include="Assets\Resources\Levels\6.xml" />
      <None Include="Assets\Resources\Levels\8.xml" />
      <None Include="Assets\Resources\Levels\1.xml" />
@@ -86,7 +86,7 @@
      <None Include="Assets\Resources\Levels\12.xml" />
      <None Include="Assets\Resources\Levels\51.xml" />
      <None Include="Assets\Resources\Levels\50.xml" />
-     <None Include="Assets\Resources\Levels\18.xml" />
+     <None Include="Assets\Resources\Levels\17.xml" />
      <None Include="Assets\Resources\Levels\3.xml" />
      <None Include="Assets\Resources\Levels\5.xml" />
      <None Include="Assets\Resources\Levels\15.xml" />

@@ -108,6 +108,8 @@ public class RigidBodyFPSController : MonoBehaviour
                     rigidbody.velocity = new Vector3(velocity.x, -CalculateJumpVerticalSpeed(), velocity.z);
                 else
                     rigidbody.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
+
+                player.Jumped();                
             }
         }
 
@@ -136,6 +138,10 @@ public class RigidBodyFPSController : MonoBehaviour
     void OnCollisionStay(Collision col)
     {
         CheckIfGrounded();
+
+        // The following checks if the player has just landed from a jump
+        if (player.isJumping && grounded)
+            player.Grounded();  // If so, tell the player that he is now grounded
     }
 
     float CalculateJumpVerticalSpeed()

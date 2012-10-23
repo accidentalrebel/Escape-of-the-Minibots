@@ -11,6 +11,8 @@ public class Minibot : LevelObject {
     private bool startingIsInvertedGravity;
     private bool startingIsInvertedHorizontal;
     public bool hasExited;
+    internal bool isJumping = false;
+
     private Direction isFacing = Direction.Right;
     public Direction IsFacing
     {
@@ -82,6 +84,7 @@ public class Minibot : LevelObject {
     private void InitializeSprite()
     {
         spriteManager.CreateAnimation("walking", new SpriteManager.AnimationProperties(new int[] { 1, 2 }, 0.2f));    // We create a new walkign animation        
+        spriteManager.CreateAnimation("jumping", new SpriteManager.AnimationProperties(new int[] { 2 }, 1f));    // We create a new walkign animation        
         spriteManager.Play("walking");
     }    
 
@@ -105,6 +108,17 @@ public class Minibot : LevelObject {
     // ************************************************************************************
     // ACTIONS
     // ************************************************************************************
+    internal void Jumped()
+    {
+        spriteManager.Play("jumping");
+        isJumping = true;
+    }
+
+    internal void Grounded()
+    {
+        spriteManager.Play("walking");
+        isJumping = false;
+    }
 
     private void PickUp(GameObject objectAtSide)
     {
@@ -222,4 +236,6 @@ public class Minibot : LevelObject {
         //    controller.invertGravity = invertGravity;
         //}
     }
+
+    
 }

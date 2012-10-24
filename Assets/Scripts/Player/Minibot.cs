@@ -251,12 +251,5 @@ public class Minibot : LevelObject {
     {
         controller.InvertGravity = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 110, 20), controller.InvertGravity, "Invert Gravity");
         controller.invertHorizontal = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 90, 150, 20), controller.invertHorizontal, "Invert Horizontal");
-
-        // Save button
-        //if (GUI.Button(new Rect((Screen.width / 2) - 110, (Screen.height / 2) + 110, 100, 30), "Save"))
-        //{
-        //    Debug.Log("Save edits clicked");
-        //    controller.invertGravity = invertGravity;
-        //}
     }
 }

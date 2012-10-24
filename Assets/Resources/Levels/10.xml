@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <tiles>
-  <minibot x="5" y="11" invertGravity="0" invertHorizontal="0" />
-  <minibot x="12" y="4" invertGravity="0" invertHorizontal="0" />
+  <minibot x="13" y="4" invertGravity="0" invertHorizontal="0" />
+  <minibot x="7" y="11" invertGravity="0" invertHorizontal="0" />
   <tile x="0" y="0" />
   <tile x="1" y="0" />
   <tile x="2" y="0" />
@@ -122,54 +122,24 @@
   <tile x="11" y="0" />
   <tile x="13" y="0" />
   <tile x="14" y="0" />
-  <tile x="5" y="4" />
-  <tile x="5" y="3" />
-  <tile x="5" y="2" />
-  <tile x="14" y="2" />
-  <tile x="14" y="3" />
-  <tile x="14" y="4" />
-  <tile x="5" y="5" />
-  <tile x="5" y="6" />
-  <tile x="14" y="5" />
-  <tile x="14" y="6" />
   <tile x="2" y="6" />
-  <tile x="3" y="6" />
-  <tile x="4" y="6" />
-  <tile x="4" y="5" />
-  <tile x="3" y="5" />
   <tile x="2" y="5" />
   <tile x="1" y="5" />
   <tile x="1" y="6" />
   <tile x="1" y="4" />
   <tile x="2" y="4" />
-  <tile x="3" y="4" />
-  <tile x="4" y="4" />
-  <tile x="4" y="3" />
-  <tile x="3" y="3" />
   <tile x="2" y="3" />
   <tile x="1" y="3" />
   <tile x="1" y="2" />
   <tile x="2" y="2" />
-  <tile x="3" y="2" />
-  <tile x="4" y="2" />
-  <tile x="15" y="6" />
   <tile x="17" y="6" />
-  <tile x="16" y="6" />
   <tile x="18" y="6" />
   <tile x="18" y="5" />
   <tile x="17" y="5" />
-  <tile x="16" y="5" />
-  <tile x="15" y="5" />
-  <tile x="15" y="4" />
-  <tile x="16" y="4" />
   <tile x="17" y="4" />
   <tile x="18" y="4" />
   <tile x="18" y="3" />
   <tile x="17" y="3" />
-  <tile x="16" y="3" />
-  <tile x="15" y="3" />
-  <tile x="15" y="2" />
-  <tile x="16" y="2" />
   <tile x="17" y="2" />
   <tile x="18" y="2" />
   <tile x="1" y="9" />
@@ -192,16 +162,46 @@
   <tile x="18" y="11" />
   <tile x="18" y="10" />
   <tile x="18" y="9" />
-  <door x="14" y="9" isOpen="1" />
-  <door x="7" y="2" isOpen="1" />
-  <hazard x="3" y="13" />
-  <hazard x="3" y="12" />
-  <hazard x="3" y="11" />
-  <hazard x="3" y="10" />
-  <hazard x="3" y="9" />
-  <hazard x="16" y="13" />
-  <hazard x="16" y="12" />
-  <hazard x="16" y="11" />
-  <hazard x="16" y="10" />
-  <hazard x="16" y="9" />
+  <tile x="14" y="9" />
+  <tile x="14" y="10" />
+  <tile x="14" y="11" />
+  <tile x="14" y="12" />
+  <tile x="14" y="13" />
+  <tile x="5" y="13" />
+  <tile x="5" y="12" />
+  <tile x="5" y="11" />
+  <tile x="5" y="10" />
+  <tile x="5" y="9" />
+  <tile x="4" y="13" />
+  <tile x="3" y="13" />
+  <tile x="3" y="12" />
+  <tile x="4" y="12" />
+  <tile x="4" y="11" />
+  <tile x="3" y="11" />
+  <tile x="3" y="10" />
+  <tile x="4" y="10" />
+  <tile x="4" y="9" />
+  <tile x="3" y="9" />
+  <tile x="15" y="12" />
+  <tile x="16" y="13" />
+  <tile x="15" y="13" />
+  <tile x="16" y="12" />
+  <tile x="16" y="11" />
+  <tile x="15" y="11" />
+  <tile x="15" y="10" />
+  <tile x="16" y="10" />
+  <tile x="16" y="9" />
+  <tile x="15" y="9" />
+  <door x="12" y="9" isOpen="1" />
+  <door x="5" y="2" isOpen="1" />
+  <hazard x="3" y="6" />
+  <hazard x="3" y="5" />
+  <hazard x="3" y="4" />
+  <hazard x="3" y="3" />
+  <hazard x="3" y="2" />
+  <hazard x="16" y="6" />
+  <hazard x="16" y="5" />
+  <hazard x="16" y="4" />
+  <hazard x="16" y="3" />
+  <hazard x="16" y="2" />
 </tiles>

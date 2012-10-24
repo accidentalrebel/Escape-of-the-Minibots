@@ -13,7 +13,6 @@ public class LevelEditor : MonoBehaviour {
         set { mapEditMode = value;  }
         get{ return mapEditMode; }
     }
-    bool saveMapMode = false;
     string levelFileName;
     public string LevelFileName
     {

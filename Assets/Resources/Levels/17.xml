@@ -161,15 +161,13 @@
   <tile x="2" y="4" />
   <tile x="2" y="3" />
   <tile x="2" y="2" />
-  <tile x="4" y="9" />
-  <tile x="16" y="9" />
   <tile x="15" y="9" />
   <tile x="1" y="9" />
   <tile x="1" y="10" />
   <tile x="1" y="11" />
   <tile x="1" y="12" />
   <tile x="1" y="13" />
-  <tile x="5" y="9" />
+  <tile x="14" y="9" />
   <door x="10" y="2" isOpen="1" />
   <door x="10" y="9" isOpen="0" />
   <switch x="7" y="9" xPosOfObjectToActivate="10" yPosOfObjectToActivate="2" />

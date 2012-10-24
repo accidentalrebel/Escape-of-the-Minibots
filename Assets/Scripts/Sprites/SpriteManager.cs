@@ -122,7 +122,6 @@ public class SpriteManager : MonoBehaviour {
     public void HandleSpriteOrientation(bool flip)
     {
         int flipValue = 1;
-        Vector2 currentTextureScale = theRenderer.material.GetTextureScale("_MainTex");
         Vector2 currentTextureOffset = theRenderer.material.GetTextureOffset("_MainTex");
 
         // If we should flip it

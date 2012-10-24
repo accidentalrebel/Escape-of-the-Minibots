@@ -75,9 +75,11 @@
      <None Include="Assets\Resources\Levels\18.xml" />
      <None Include="Assets\Resources\Levels\60.xml" />
      <None Include="Assets\Resources\Levels\6.xml" />
-     <None Include="Assets\Resources\Levels\8.xml" />
+     <None Include="Assets\Resources\Levels\7.xml" />
      <None Include="Assets\Resources\Levels\1.xml" />
+     <None Include="Assets\Resources\Levels\52.xml" />
      <None Include="Assets\Resources\Levels\42.xml" />
+     <None Include="Assets\Resources\Levels\61.xml" />
      <None Include="Assets\Resources\Levels\10.xml" />
      <None Include="Assets\Resources\Levels\41.xml" />
      <None Include="Assets\Resources\Levels\2.xml" />
@@ -97,7 +99,7 @@
      <None Include="Assets\Resources\Levels\16.xml" />
      <None Include="Assets\Resources\Levels\99.xml" />
      <None Include="Assets\Resources\Levels\9.xml" />
-     <None Include="Assets\Resources\Levels\7.xml" />
+     <None Include="Assets\Resources\Levels\8.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -14,7 +14,7 @@ public class GravitySwitch : Switch
         {
             if (Input.GetKeyUp(KeyCode.X))
             {
-                triggeredCollider.gameObject.GetComponent<RigidBodyFPSController>().InvertTheGravity();
+                triggeredCollider.gameObject.GetComponent<MinibotController>().InvertTheGravity();
             }
         }
     }

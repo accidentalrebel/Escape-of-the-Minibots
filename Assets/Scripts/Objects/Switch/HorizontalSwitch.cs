@@ -19,7 +19,7 @@ public class HorizontalSwitch : Switch {
         {
             if (Input.GetKeyUp(KeyCode.X))
             { 
-                triggeredCollider.gameObject.GetComponent<RigidBodyFPSController>().InvertHorizontal();
+                triggeredCollider.gameObject.GetComponent<MinibotController>().InvertHorizontal();
             }
         }
     }

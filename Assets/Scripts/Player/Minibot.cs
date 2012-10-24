@@ -7,13 +7,15 @@ public class Minibot : LevelObject {
     private GameObject objectBeingCarried;
     private Rigidbody theRigidBody;    
 
-    RigidBodyFPSController controller;
+    MinibotController controller;
     private bool startingIsInvertedGravity;
     private bool startingIsInvertedHorizontal;
     public bool hasExited;
     internal bool isJumping = false;
 
     private Direction isFacing = Direction.Right;
+    private bool isStanding = true;
+    private bool isWalking = false;
     public Direction IsFacing
     {
         set {
@@ -74,7 +76,7 @@ public class Minibot : LevelObject {
         startingPos = startPos;        
         gameObject.transform.position = startingPos;
 
-        controller = gameObject.GetComponentInChildren<RigidBodyFPSController>();
+        controller = gameObject.GetComponentInChildren<MinibotController>();
         controller.InvertGravity = isInvertedGrav;
         controller.invertHorizontal = isInvertedHor;
         startingIsInvertedGravity = isInvertedGrav;
@@ -83,9 +85,10 @@ public class Minibot : LevelObject {
 
     private void InitializeSprite()
     {
-        spriteManager.CreateAnimation("walking", new SpriteManager.AnimationProperties(new int[] { 1, 2, 1, 3 }, 0.2f));    // We create a new walkign animation        
+        spriteManager.CreateAnimation("walking", new SpriteManager.AnimationProperties(new int[] { 2, 1, 3, 1 }, 0.2f));    // We create a new walkign animation        
         spriteManager.CreateAnimation("jumping", new SpriteManager.AnimationProperties(new int[] { 5, 6 }, 0.1f));    // We create a new walkign animation        
-        spriteManager.Play("walking");
+        spriteManager.CreateAnimation("standing", new SpriteManager.AnimationProperties(new int[] { 1 }, 10f));    // We create a new walkign animation        
+        spriteManager.Play("standing");
     }    
 
     // ************************************************************************************
@@ -118,6 +121,26 @@ public class Minibot : LevelObject {
     {
         spriteManager.Play("walking");
         isJumping = false;
+    }
+
+    internal void Standing()
+    {
+        if (isJumping == false && isStanding == false)
+        {
+            spriteManager.Play("standing");
+            isStanding = true;
+            isWalking = false;
+        }
+    }
+
+    internal void Walking()
+    {
+        if (isJumping == false && isWalking == false)
+        {
+            spriteManager.Play("walking");
+            isStanding = false;
+            isWalking = true;
+        }
     }
 
     private void PickUp(GameObject objectAtSide)
@@ -236,6 +259,4 @@ public class Minibot : LevelObject {
         //    controller.invertGravity = invertGravity;
         //}
     }
-
-    
 }

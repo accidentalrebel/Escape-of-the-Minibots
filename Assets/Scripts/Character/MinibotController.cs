@@ -3,7 +3,7 @@ using System.Collections;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CapsuleCollider))]
-public class RigidBodyFPSController : MonoBehaviour
+public class MinibotController : MonoBehaviour
 {
     public float speed = 10.0f;
     public float gravity = 10.0f;    
@@ -75,6 +75,12 @@ public class RigidBodyFPSController : MonoBehaviour
             xInput = -xInput;
         if (invertHorizontal)        
             xInput = -xInput;
+
+        // We then handle whether we play the standing or walking animation
+        if (xInput == 0)
+            player.Standing();
+        else
+            player.Walking();
 
         // We then handle the facing
         if (xInput > 0)   // If a negative number

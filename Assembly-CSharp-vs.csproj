@@ -73,6 +73,7 @@
      <Compile Include="Assets\Scripts\Sprites\SpriteManager.cs" />
      <None Include="Assets\Resources\Levels\13.xml" />
      <None Include="Assets\Resources\Levels\18.xml" />
+     <None Include="Assets\Resources\Levels\60.xml" />
      <None Include="Assets\Resources\Levels\6.xml" />
      <None Include="Assets\Resources\Levels\8.xml" />
      <None Include="Assets\Resources\Levels\1.xml" />

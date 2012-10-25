@@ -70,7 +70,6 @@
      <Compile Include="Assets\Scripts\Objects\Tile\HazardTile.cs" />
      <Compile Include="Assets\Scripts\Objects\Tile\Tile.cs" />
      <Compile Include="Assets\Scripts\Objects\TriggerableBlocks.cs" />
-     <Compile Include="Assets\Scripts\Objects\TriggerableHazard.cs" />
      <Compile Include="Assets\Scripts\Player\Minibot.cs" />
      <Compile Include="Assets\Scripts\Sprites\SpriteManager.cs" />
      <None Include="Assets\Resources\Levels\13.xml" />

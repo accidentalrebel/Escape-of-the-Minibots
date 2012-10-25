@@ -70,16 +70,12 @@ public class DynamicSizeObject : MonoBehaviour {
     private void GenerateTiles()
     {
         DestroyChildTiles();
-
         childTiles.Clear();
+
         for (int yCoord = 0; yCoord < blockSize.y; yCoord++)
         {
             for (int xCoord = 0; xCoord < blockSize.x; xCoord++)
             {
-                // We just skip to the next xCoord as we already have a block present
-                //if (yCoord == 0 && xCoord == 0)
-                //    xCoord++;
-
                 GameObject newTile
                     = (GameObject)Instantiate(objectToGenerate);
                 newTile.transform.position

@@ -14,6 +14,6 @@ public class TriggerableHazard : MonoBehaviour {
             return;
         }
 
-        //dynamicSizeComponent.Initialize(Registry.prefabHandler.pfTriggerableHazard);
+        dynamicSizeComponent.Initialize(Registry.prefabHandler.pfHazard);
     }
 }

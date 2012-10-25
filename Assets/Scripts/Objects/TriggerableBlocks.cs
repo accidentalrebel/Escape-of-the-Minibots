@@ -31,11 +31,33 @@ public class TriggerableBlocks : LevelObject {
     }
 
     private void UpdateBlockSizeFromString(string theBlockWidth, string theBlockHeight)
-    {
-        
+    {   
         float floatBlockWidth = 0, floatBlockHeight = 0;
         float.TryParse(theBlockWidth, out floatBlockWidth);
         float.TryParse(theBlockHeight, out floatBlockHeight);
+
+        // The following makes sure that the value is valid and remains valid
+        if (floatBlockWidth <= 0)
+        {
+            floatBlockWidth = 1;
+            blockWidth = "1";
+        }
+        else if (floatBlockWidth > 20)
+        {
+            floatBlockWidth = 20;
+            blockWidth = "20";
+        }
+
+        if (floatBlockHeight <= 0)
+        {
+            floatBlockHeight = 1;
+            blockHeight = "1";
+        }
+        else if (floatBlockHeight > 20)
+        {
+            floatBlockHeight = 20;
+            blockHeight = "20";
+        }
 
         blockSize = new Vector2(floatBlockWidth, floatBlockHeight);
         UpdateBlockSize(blockSize);
@@ -157,7 +179,7 @@ public class TriggerableBlocks : LevelObject {
     internal override void GetEditableAttributes(LevelEditor levelEditor)
     {
         GUI.Label(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 50, 20), "Width");
-        BlockWidth = GUI.TextField(new Rect((Screen.width / 2) - 90, (Screen.height / 2) - 110, 100, 20), BlockWidth);
+        BlockWidth = GUI.TextField(new Rect((Screen.width / 2) - 90, (Screen.height / 2) - 110, 100, 20), BlockWidth);        
 
         GUI.Label(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 80, 50, 20), "Height");
         BlockHeight = GUI.TextField(new Rect((Screen.width / 2) - 90, (Screen.height / 2) - 80, 100, 20), BlockHeight);

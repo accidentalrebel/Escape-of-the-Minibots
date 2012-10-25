@@ -9,6 +9,7 @@ public class PrefabHandler : MonoBehaviour {
     internal Object pfDoor;
     internal Object pfGravityInverter;
     internal Object pfHazard;
+    internal Object pfTriggerableHazard;
     internal Object pfHorizontalInverter;
     internal Object pfMovingPlatform;
     internal Object pfStepSwitch;
@@ -37,6 +38,9 @@ public class PrefabHandler : MonoBehaviour {
         pfHazard = Resources.Load(@"Prefabs/pfHazard");
         if (pfHazard == null)
             Debug.LogError("Can not find pfHazard prefab!");
+        pfTriggerableHazard = Resources.Load(@"Prefabs/pfTriggerableHazard");
+        if (pfTriggerableHazard == null)
+            Debug.LogError("Can not find pfTriggerableHazard prefab!");
         pfHorizontalInverter = Resources.Load(@"Prefabs/pfHorizontalInverter");
         if (pfHorizontalInverter == null)
             Debug.LogError("Can not find pfHorizontalInverter prefab!");

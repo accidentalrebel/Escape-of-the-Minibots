@@ -167,7 +167,7 @@ public class Minibot : LevelObject {
 
         if (Physics.Raycast(gameObject.transform.position, checkDirection, out hit, 0.6f))
         {
-            if (hit.collider.tag == "Tile"
+            if (hit.collider.tag == "Steppable"
                 || hit.collider.tag == "Movable")
             {
                 Debug.DrawLine(gameObject.transform.position, hit.point);

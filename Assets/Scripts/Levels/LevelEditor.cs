@@ -56,7 +56,9 @@ public class LevelEditor : MonoBehaviour {
     }
 
     void Update()
-    {
+    {        
+        //Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+
         // Only allow map editing if the game is not simulating
         if (!isSimulating && mapEditMode)
         {
@@ -168,7 +170,7 @@ public class LevelEditor : MonoBehaviour {
     private void HandleLevelObjectPlacement()
     {
         // We determine which prefab to spawn
-        Object prefabToSpawn = null;
+        Object prefabToSpawn = null;        
         Vector3 spawnPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Transform parentTransform = null;
 

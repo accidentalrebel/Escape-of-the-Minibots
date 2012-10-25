@@ -9,14 +9,14 @@ public class DynamicSizeObject : MonoBehaviour {
     private List<GameObject> childTiles = new List<GameObject>();
 
     string blockWidth = "1";
-    string BlockWidth
+    internal string BlockWidth
     {
         get { return blockWidth; }
         set { blockWidth = value; UpdateBlockSizeFromString(blockWidth, blockHeight); }
     }
 
     string blockHeight = "1";
-    string BlockHeight
+    internal string BlockHeight
     {
         get { return blockHeight; }
         set { blockHeight = value; UpdateBlockSizeFromString(blockWidth, blockHeight); }

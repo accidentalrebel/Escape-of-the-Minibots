@@ -4,36 +4,13 @@ using System.Xml;
 
 public class XMLLevelReader : XMLAccessor {
 
-    protected Object pfTile;
-    protected Object pfMinibot;
-    protected Object pfBox;
-    protected Object pfDoor;
-    protected Object pfGravityInverter;
-    protected Object pfHazard;
-    protected Object pfHorizontalInverter;
-    protected Object pfMovingPlatform;
-    protected Object pfStepSwitch;
-    protected Object pfSwitch;
-    protected Object pfTriggerableBlock;
-
-    public string levelToLoad = "1";    
+    public string levelToLoad = "1";
+    PrefabHandler prefabHandler;
 
 	// Use this for initialization
 	void Start () {
 
-        PrefabHandler prefabHandler = Registry.prefabHandler;
-
-        pfTile = prefabHandler.pfTile;
-        pfMinibot = prefabHandler.pfMinibot;
-        pfBox = prefabHandler.pfBox;
-        pfDoor = prefabHandler.pfDoor;
-        pfGravityInverter = prefabHandler.pfGravityInverter;
-        pfHazard = prefabHandler.pfHazard;
-        pfHorizontalInverter = prefabHandler.pfHorizontalInverter;
-        pfMovingPlatform = prefabHandler.pfMovingPlatform;
-        pfStepSwitch = prefabHandler.pfStepSwitch;
-        pfSwitch = prefabHandler.pfSwitch;
-        pfTriggerableBlock = prefabHandler.pfTriggerableBlock;
+        prefabHandler = Registry.prefabHandler;
 
         if (levelToLoad != "")
         {
@@ -67,7 +44,7 @@ public class XMLLevelReader : XMLAccessor {
         {
             if (reader.IsStartElement("minibot"))
             {
-                newObject = (GameObject)Instantiate(pfMinibot);
+                newObject = (GameObject)Instantiate(prefabHandler.pfMinibot);
                 newObject.GetComponent<Minibot>().Initialize(
                     new Vector3(float.Parse(reader.GetAttribute("x"))
                         , Mathf.Ceil(float.Parse(reader.GetAttribute("y"))), 0)
@@ -78,7 +55,7 @@ public class XMLLevelReader : XMLAccessor {
             }
             else if (reader.IsStartElement("tile"))
             {
-                newObject = (GameObject)Instantiate(pfTile);
+                newObject = (GameObject)Instantiate(prefabHandler.pfTile);
                 newObject.GetComponent<Tile>().Initialize
                     (new Vector3
                         (float.Parse(reader.GetAttribute("x"))
@@ -88,7 +65,7 @@ public class XMLLevelReader : XMLAccessor {
             }
 			else if (reader.IsStartElement("box"))
 			{
-				newObject = (GameObject)Instantiate(pfBox);
+                newObject = (GameObject)Instantiate(prefabHandler.pfBox);
 				newObject.GetComponent<Box>().Initialize(new Vector3
 					( float.Parse(reader.GetAttribute("x"))
 					, float.Parse(reader.GetAttribute("y")), 0));
@@ -97,7 +74,7 @@ public class XMLLevelReader : XMLAccessor {
 			}
 			else if (reader.IsStartElement("door"))
 			{
-				newObject = (GameObject)Instantiate(pfDoor);
+                newObject = (GameObject)Instantiate(prefabHandler.pfDoor);
 				newObject.GetComponent<Door>().Initialize(new Vector3
 					( float.Parse(reader.GetAttribute("x"))
 					, float.Parse(reader.GetAttribute("y")), 0)
@@ -107,7 +84,7 @@ public class XMLLevelReader : XMLAccessor {
 			}
 			else if (reader.IsStartElement("gravityInverter"))
 			{
-				newObject = (GameObject)Instantiate(pfGravityInverter);
+                newObject = (GameObject)Instantiate(prefabHandler.pfGravityInverter);
 				newObject.GetComponent<GravitySwitch>().Initialize(new Vector3
 					( float.Parse(reader.GetAttribute("x"))
 					, float.Parse(reader.GetAttribute("y")), 0));
@@ -116,7 +93,7 @@ public class XMLLevelReader : XMLAccessor {
 			}
 			else if (reader.IsStartElement("hazard"))
 			{
-				newObject = (GameObject)Instantiate(pfHazard);
+                newObject = (GameObject)Instantiate(prefabHandler.pfHazard);
                 newObject.GetComponent<HazardTile>().Initialize
                    (new Vector3
                        (float.Parse(reader.GetAttribute("x"))
@@ -126,7 +103,7 @@ public class XMLLevelReader : XMLAccessor {
 			}
 			else if (reader.IsStartElement("horizontalInverter"))
 			{
-				newObject = (GameObject)Instantiate(pfHorizontalInverter);
+                newObject = (GameObject)Instantiate(prefabHandler.pfHorizontalInverter);
 				newObject.GetComponent<HorizontalSwitch>().Initialize(new Vector3
 					( float.Parse(reader.GetAttribute("x"))
 					, float.Parse(reader.GetAttribute("y")), 0));
@@ -135,7 +112,7 @@ public class XMLLevelReader : XMLAccessor {
 			}			
 			else if (reader.IsStartElement("triggerableBlock"))
 			{
-				newObject = (GameObject)Instantiate(pfTriggerableBlock);
+                newObject = (GameObject)Instantiate(prefabHandler.pfTriggerableBlock);
 				newObject.GetComponent<TriggerableBlocks>().Initialize(new Vector3
 					( float.Parse(reader.GetAttribute("x"))
 					, float.Parse(reader.GetAttribute("y")), 0)
@@ -149,7 +126,7 @@ public class XMLLevelReader : XMLAccessor {
 			}
             else if (reader.IsStartElement("triggerableHazard"))
             {
-                newObject = (GameObject)Instantiate(Registry.prefabHandler.pfTriggerableHazard);
+                newObject = (GameObject)Instantiate(prefabHandler.pfTriggerableHazard);
                 newObject.GetComponent<TriggerableHazard>().Initialize(new Vector3
                     (float.Parse(reader.GetAttribute("x"))
                     , float.Parse(reader.GetAttribute("y")), 0)                    
@@ -162,7 +139,7 @@ public class XMLLevelReader : XMLAccessor {
             }
 			else if (reader.IsStartElement("stepSwitch"))
 			{
-				newObject = (GameObject)Instantiate(pfStepSwitch);
+                newObject = (GameObject)Instantiate(prefabHandler.pfStepSwitch);
 				newObject.GetComponent<StepSwitch>().Initialize(new Vector3
 					( float.Parse(reader.GetAttribute("x"))
 					, float.Parse(reader.GetAttribute("y")), 0)					
@@ -175,7 +152,7 @@ public class XMLLevelReader : XMLAccessor {
 			}
 			else if (reader.IsStartElement("switch"))
 			{
-				newObject = (GameObject)Instantiate(pfSwitch);
+                newObject = (GameObject)Instantiate(prefabHandler.pfSwitch);
 				newObject.GetComponent<Switch>().Initialize(new Vector3
 					( float.Parse(reader.GetAttribute("x"))
 					, float.Parse(reader.GetAttribute("y")), 0)					

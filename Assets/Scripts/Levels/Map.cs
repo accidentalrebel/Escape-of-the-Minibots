@@ -214,6 +214,10 @@ public class Map : MonoBehaviour {
         {
             GameObject.Destroy(triggerableBlock.gameObject);
         }
+        foreach (Transform triggerableHazard in triggerableHazardsContainer.transform)
+        {
+            GameObject.Destroy(triggerableHazard.gameObject);
+        }
         foreach (Transform aSwitch in switchesContainer.transform)
         {
             GameObject.Destroy(aSwitch.gameObject);

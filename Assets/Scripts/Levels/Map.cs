@@ -16,6 +16,7 @@ public class Map : MonoBehaviour {
 	internal GameObject stepSwitchesContainer;
 	internal GameObject switchesContainer;
 	internal GameObject triggerableBlocksContainer;
+    internal GameObject triggerableHazardsContainer;
     private List<Transform> levelObjectContainerList = new List<Transform>();
 
     internal XMLLevelReader levelReader;
@@ -66,6 +67,9 @@ public class Map : MonoBehaviour {
 		triggerableBlocksContainer = levelObjectsContainer.transform.FindChild("TriggerableBlocks").gameObject;
 		if (triggerableBlocksContainer == null)
 			Debug.LogError("triggerableBlocksContainer not found!");
+        triggerableHazardsContainer = levelObjectsContainer.transform.FindChild("TriggerableHazards").gameObject;
+        if (triggerableHazardsContainer == null)
+            Debug.LogError("triggerableHazardsContainer not found!");
         PopulateLevelObjectContainerList();
 
         levelReader = gameObject.GetComponent<XMLLevelReader>();

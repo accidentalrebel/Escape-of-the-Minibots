@@ -187,7 +187,7 @@ public class LevelEditor : MonoBehaviour {
         else if (objectToSpawn == ObjectType.TriggerableHazard)
         {
             prefabToSpawn = Registry.prefabHandler.pfTriggerableHazard;
-            parentTransform = Registry.map.hazardsContainer.transform;
+            parentTransform = Registry.map.triggerableHazardsContainer.transform;
         }
         else if (objectToSpawn == ObjectType.Minibot)
         {

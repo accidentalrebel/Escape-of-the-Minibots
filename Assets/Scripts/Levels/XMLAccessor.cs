@@ -15,6 +15,7 @@ public class XMLAccessor : MonoBehaviour {
 	protected GameObject stepSwitchesContainer;
 	protected GameObject switchesContainer;
 	protected GameObject triggerableBlocksContainer;
+    protected GameObject triggerableHazardsContainer;
 	
 	void Awake()
 	{
@@ -29,6 +30,7 @@ public class XMLAccessor : MonoBehaviour {
 		stepSwitchesContainer = Registry.map.stepSwitchesContainer;
 		switchesContainer = Registry.map.switchesContainer;
 		triggerableBlocksContainer = Registry.map.triggerableBlocksContainer;
+        triggerableHazardsContainer = Registry.map.triggerableHazardsContainer;
 	}
 
     internal bool CheckIfFileExists(string fileName)

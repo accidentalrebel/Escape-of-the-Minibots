@@ -92,6 +92,7 @@ public class Map : MonoBehaviour {
         levelObjectContainerList.Add(stepSwitchesContainer.transform);
         levelObjectContainerList.Add(gravityInvertersContainer.transform);
         levelObjectContainerList.Add(horizontalInvertersContainer.transform);
+        levelObjectContainerList.Add(triggerableHazardsContainer.transform);
         //levelObjectContainerList.Add(movingPlatformsContainer.transform);
     }
 

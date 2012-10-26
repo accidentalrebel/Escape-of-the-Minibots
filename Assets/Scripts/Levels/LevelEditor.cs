@@ -10,8 +10,8 @@ public class LevelEditor : MonoBehaviour {
     bool mapEditMode = false;
     public bool MapEditMode
     {
-        set { mapEditMode = value;  }
-        get{ return mapEditMode; }
+        set { mapEditMode = value; }
+        get { return mapEditMode; }
     }
     string levelFileName;
     public string LevelFileName
@@ -103,7 +103,7 @@ public class LevelEditor : MonoBehaviour {
             // Pressing the middle mouse button edits the object at mouse position
             else if (Input.GetMouseButtonDown(2) && GUIUtility.hotControl == 0)
             {
-                // We get any levelObject at the position from where the mouse is clicked                
+                // We get any levelObjsect at the position from where the mouse is clicked                
                 LevelObject objectAtMousePosition = GetObjectAtMousePosition();
 
                 OpenAttributeWindow(objectAtMousePosition);
@@ -112,9 +112,15 @@ public class LevelEditor : MonoBehaviour {
 
         // This only shows the origin marker when mapEditMode is enabled
         if (mapEditMode)
-            originMarkerRenderer.enabled = true;            
+        {
+            Camera.main.orthographic = true;
+            originMarkerRenderer.enabled = true;
+        }
         else
+        {
+            Camera.main.orthographic = false;
             originMarkerRenderer.enabled = false;
+        }
     }
     
     // ************************************************************************************

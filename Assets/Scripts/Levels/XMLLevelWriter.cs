@@ -139,6 +139,18 @@ public class XMLLevelWriter : XMLAccessor {
             elemNew.SetAttribute("height", tbScript.dynamicSizeComponent.blockSize.y.ToString());
             elemRoot.AppendChild(elemNew);
 		}
+
+        foreach (Transform triggerableHazard in triggerableHazardsContainer.transform)
+        {
+            elemNew = xmlDoc.CreateElement("triggerableHazard");
+            LevelObject levelObjectScript = triggerableHazard.gameObject.GetComponent<LevelObject>();
+            elemNew.SetAttribute("x", levelObjectScript.startingPos.x.ToString());
+            elemNew.SetAttribute("y", levelObjectScript.startingPos.y.ToString());
+            TriggerableHazard thScript = triggerableHazard.GetComponent<TriggerableHazard>();
+            elemNew.SetAttribute("width", thScript.dynamicSizeComponent.blockSize.x.ToString());
+            elemNew.SetAttribute("height", thScript.dynamicSizeComponent.blockSize.y.ToString());
+            elemRoot.AppendChild(elemNew);
+        }
 		
 		// We loop through all the stepSwitches
 		foreach (Transform stepSwitch in stepSwitchesContainer.transform )

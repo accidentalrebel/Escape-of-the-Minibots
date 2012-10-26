@@ -147,6 +147,19 @@ public class XMLLevelReader : XMLAccessor {
 				
 				newObject.transform.parent = triggerableBlocksContainer.transform;
 			}
+            else if (reader.IsStartElement("triggerableHazard"))
+            {
+                newObject = (GameObject)Instantiate(Registry.prefabHandler.pfTriggerableHazard);
+                newObject.GetComponent<TriggerableHazard>().Initialize(new Vector3
+                    (float.Parse(reader.GetAttribute("x"))
+                    , float.Parse(reader.GetAttribute("y")), 0)                    
+                    , new Vector2(
+                        float.Parse(reader.GetAttribute("width"))
+                        , float.Parse(reader.GetAttribute("height")))
+                    );
+
+                newObject.transform.parent = triggerableHazardsContainer.transform;
+            }
 			else if (reader.IsStartElement("stepSwitch"))
 			{
 				newObject = (GameObject)Instantiate(pfStepSwitch);

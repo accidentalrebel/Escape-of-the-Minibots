@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TriggerableHazard : LevelObject {
 
-    DynamicSizeObject dynamicSizeComponent;
+    internal DynamicSizeObject dynamicSizeComponent;
 
     // ************************************************************************************
     // MAIN

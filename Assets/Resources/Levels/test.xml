@@ -70,6 +70,7 @@
   <door x="17" y="1" isOpen="1" />
   <triggerableBlock x="7" y="11" isHidden="0" width="5" height="1" />
   <triggerableBlock x="11" y="3" isHidden="1" width="3" height="1" />
+  <triggerableHazard x="10" y="7" width="3" height="1" />
   <stepSwitch x="11" y="1" xPosOfObjectToActivate="17" yPosOfObjectToActivate="1" />
   <switch x="8" y="1" xPosOfObjectToActivate="11" yPosOfObjectToActivate="3" />
 </tiles>

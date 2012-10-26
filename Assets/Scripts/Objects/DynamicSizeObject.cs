@@ -6,7 +6,7 @@ public class DynamicSizeObject : MonoBehaviour {
 
     public Vector2 blockSize = new Vector2(1,1);
     Object objectToGenerate;
-    private List<GameObject> childTiles = new List<GameObject>();
+    internal List<GameObject> childTiles = new List<GameObject>();
 
     string blockWidth = "1";
     internal string BlockWidth
@@ -28,6 +28,13 @@ public class DynamicSizeObject : MonoBehaviour {
     internal void Initialize(Object theObjectToGenerate)
     {
         objectToGenerate = theObjectToGenerate;
+        GenerateTiles();
+    }
+
+    internal void Initialize(Object theObjectToGenerate, Vector2 theBlockSize)
+    {
+        objectToGenerate = theObjectToGenerate;
+        blockSize = theBlockSize;
         GenerateTiles();
     }
     

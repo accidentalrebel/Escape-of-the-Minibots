@@ -288,7 +288,7 @@ public class LevelEditor : MonoBehaviour {
         {
             spawnedObject.GetComponent<TriggerableBlocks>().Initialize(new Vector3
                 (Mathf.Round(spawnPos.x)
-                , Mathf.Round(spawnPos.y), 0));
+                , Mathf.Round(spawnPos.y), 0), false, new Vector2(1,1));
         }
     }
 

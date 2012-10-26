@@ -5,69 +5,33 @@ using System.Collections.Generic;
 //[ExecuteInEditMode]
 public class TriggerableBlocks : LevelObject {
 
-    public Vector2 blockSize;    
-    private bool startingIsHidden = false;
-    private List<GameObject> childTiles = new List<GameObject>();
+    internal DynamicSizeObject dynamicSizeComponent;
 
     public bool isHidden = false;
+    private bool startingIsHidden = false;
     bool IsHidden
     {
         get { return isHidden; }
         set { isHidden = value; UpdateChildTiles(); }
     }
 
-    string blockWidth = "1";
-    string BlockWidth
+    // ************************************************************************************
+    // MAIN
+    // ************************************************************************************
+    new void Awake()
     {
-        get { return blockWidth; }
-        set { blockWidth = value; UpdateBlockSizeFromString(blockWidth, blockHeight); }
+        dynamicSizeComponent = gameObject.GetComponent<DynamicSizeObject>();
+        if (dynamicSizeComponent == null)
+        {
+            Debug.LogError("dynamicSizeComponent not specified");
+            return;
+        }
     }
 
-    string blockHeight = "1";
-    string BlockHeight
+    new void Start()
     {
-        get { return blockHeight; }
-        set { blockHeight = value; UpdateBlockSizeFromString(blockWidth, blockHeight); }
+
     }
-
-    private void UpdateBlockSizeFromString(string theBlockWidth, string theBlockHeight)
-    {   
-        float floatBlockWidth = 0, floatBlockHeight = 0;
-        float.TryParse(theBlockWidth, out floatBlockWidth);
-        float.TryParse(theBlockHeight, out floatBlockHeight);
-
-        // The following makes sure that the value is valid and remains valid
-        if (floatBlockWidth <= 0)
-        {
-            floatBlockWidth = 1;
-            blockWidth = "1";
-        }
-        else if (floatBlockWidth > 20)
-        {
-            floatBlockWidth = 20;
-            blockWidth = "20";
-        }
-
-        if (floatBlockHeight <= 0)
-        {
-            floatBlockHeight = 1;
-            blockHeight = "1";
-        }
-        else if (floatBlockHeight > 20)
-        {
-            floatBlockHeight = 20;
-            blockHeight = "20";
-        }
-
-        blockSize = new Vector2(floatBlockWidth, floatBlockHeight);
-        UpdateBlockSize(blockSize);
-    }    
-
-	// Use this for initialization
-	protected new void Start () {
-        GenerateTiles();
-        UpdateChildTiles();
-	}
 	
 	internal void Initialize(Vector3 theStartingPos, bool theIsHidden, Vector2 theBlockSize)
 	{
@@ -75,42 +39,10 @@ public class TriggerableBlocks : LevelObject {
 
         isHidden = theIsHidden;
         startingIsHidden = isHidden;
-        UpdateBlockSize(theBlockSize);
+        dynamicSizeComponent.Initialize(Registry.prefabHandler.pfTriggerableTile, theBlockSize);
         
         UpdateChildTiles();
 	}
-
-    private void GenerateTiles()
-    {
-        DestroyChildTiles();
-
-        childTiles.Clear();
-        for (int yCoord = 0; yCoord < blockSize.y; yCoord++)
-        {
-            for (int xCoord = 0; xCoord < blockSize.x; xCoord++)
-            {
-                // We just skip to the next xCoord as we already have a block present
-                //if (yCoord == 0 && xCoord == 0)
-                //    xCoord++;
-
-                GameObject newTile 
-                    = (GameObject)Instantiate(Resources.Load(@"Prefabs/pfTriggerableTile"));
-                newTile.transform.position
-                    = new Vector3(transform.position.x + xCoord
-                        , transform.position.y + yCoord, 0);
-                newTile.transform.parent = this.transform;
-                childTiles.Add(newTile);
-            }
-        }
-    }
-
-    private void UpdateBlockSize(Vector2 newBlockSize)
-    {
-        blockSize = newBlockSize;
-
-        DestroyChildTiles();
-        GenerateTiles();
-    }
 
     override internal void Use()
     {
@@ -128,7 +60,7 @@ public class TriggerableBlocks : LevelObject {
     /// </summary>
     private void UpdateChildTiles()
     {
-        foreach (GameObject child in childTiles)
+        foreach (GameObject child in dynamicSizeComponent.childTiles)
         {
             if (isHidden)
             {
@@ -143,17 +75,6 @@ public class TriggerableBlocks : LevelObject {
         }      
     }
 
-    /// <summary>
-    /// Destroys all child tiles
-    /// </summary>
-    private void DestroyChildTiles()
-    {
-        foreach (GameObject child in childTiles)
-        {
-            GameObject.Destroy(child);
-        }
-    }
-
     override internal void ResetObject()
     {
         isHidden = startingIsHidden;
@@ -166,10 +87,10 @@ public class TriggerableBlocks : LevelObject {
     internal override void GetEditableAttributes(LevelEditor levelEditor)
     {
         GUI.Label(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 50, 20), "Width");
-        BlockWidth = GUI.TextField(new Rect((Screen.width / 2) - 90, (Screen.height / 2) - 110, 100, 20), BlockWidth);        
+        dynamicSizeComponent.BlockWidth = GUI.TextField(new Rect((Screen.width / 2) - 90, (Screen.height / 2) - 110, 100, 20), dynamicSizeComponent.BlockWidth);
 
         GUI.Label(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 80, 50, 20), "Height");
-        BlockHeight = GUI.TextField(new Rect((Screen.width / 2) - 90, (Screen.height / 2) - 80, 100, 20), BlockHeight);
+        dynamicSizeComponent.BlockHeight = GUI.TextField(new Rect((Screen.width / 2) - 90, (Screen.height / 2) - 80, 100, 20), dynamicSizeComponent.BlockHeight);
 
         IsHidden = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 50, 150, 20), IsHidden, "Is hidden?");
     }

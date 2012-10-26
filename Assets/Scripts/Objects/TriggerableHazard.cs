@@ -5,6 +5,9 @@ public class TriggerableHazard : LevelObject {
 
     DynamicSizeObject dynamicSizeComponent;
 
+    // ************************************************************************************
+    // MAIN
+    // ************************************************************************************
     void Start()
     {
         dynamicSizeComponent = gameObject.GetComponent<DynamicSizeObject>();

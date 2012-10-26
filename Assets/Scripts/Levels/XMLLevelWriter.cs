@@ -135,8 +135,8 @@ public class XMLLevelWriter : XMLAccessor {
 			elemNew.SetAttribute("y", levelObjectScript.startingPos.y.ToString());
 			TriggerableBlocks tbScript = triggerableBlock.GetComponent<TriggerableBlocks>();
 			elemNew.SetAttribute("isHidden", BoolToString(tbScript.isHidden));
-            elemNew.SetAttribute("width", tbScript.blockSize.x.ToString());
-            elemNew.SetAttribute("height", tbScript.blockSize.y.ToString());
+            elemNew.SetAttribute("width", tbScript.dynamicSizeComponent.blockSize.x.ToString());
+            elemNew.SetAttribute("height", tbScript.dynamicSizeComponent.blockSize.y.ToString());
             elemRoot.AppendChild(elemNew);
 		}
 		

@@ -14,7 +14,8 @@ public class PrefabHandler : MonoBehaviour {
     internal Object pfMovingPlatform;
     internal Object pfStepSwitch;
     internal Object pfSwitch;
-    internal Object pfTriggerableBlock;    
+    internal Object pfTriggerableBlock;
+    internal Object pfTriggerableTile;
 
 	// Use this for initialization
 	void Awake () {
@@ -55,11 +56,9 @@ public class PrefabHandler : MonoBehaviour {
             Debug.LogError("Can not find pfSwitch prefab!");
         pfTriggerableBlock = Resources.Load(@"Prefabs/pfTriggerableBlock");
         if (pfTriggerableBlock == null)
-            Debug.LogError("Can not find pfTriggerableBlock prefab!");	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	    
+            Debug.LogError("Can not find pfTriggerableBlock prefab!");
+        pfTriggerableTile = Resources.Load(@"Prefabs/pfTriggerableTile");
+        if (pfTriggerableTile == null)
+            Debug.LogError("Can not find pfTriggerableTile prefab!");	
 	}
 }

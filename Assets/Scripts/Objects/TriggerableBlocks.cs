@@ -44,16 +44,9 @@ public class TriggerableBlocks : LevelObject {
         UpdateChildTiles();
 	}
 
-    override internal void Use()
-    {
-        if (isHidden)
-            isHidden = false;
-        else
-            isHidden = true;
-
-        UpdateChildTiles();  
-    }
-
+    // ************************************************************************************
+    // CHILD TILES
+    // ************************************************************************************
     /// <summary>
     /// This sets the status of the child tiles if it is hidden or not
     /// And how the graphic handler should handle it
@@ -79,6 +72,19 @@ public class TriggerableBlocks : LevelObject {
     {
         isHidden = startingIsHidden;
         UpdateChildTiles();  
+    }
+
+    // ************************************************************************************
+    // USAGE
+    // ************************************************************************************
+    override internal void Use()
+    {
+        if (isHidden)
+            isHidden = false;
+        else
+            isHidden = true;
+
+        UpdateChildTiles();
     }
 
     // ************************************************************************************

@@ -8,7 +8,7 @@ public class TriggerableHazard : LevelObject {
     // ************************************************************************************
     // MAIN
     // ************************************************************************************
-    void Start()
+    new void Awake()
     {
         dynamicSizeComponent = gameObject.GetComponent<DynamicSizeObject>();
         if (dynamicSizeComponent == null)
@@ -16,8 +16,17 @@ public class TriggerableHazard : LevelObject {
             Debug.LogError("dynamicSizeComponent not specified");
             return;
         }
+    }
 
-        dynamicSizeComponent.Initialize(Registry.prefabHandler.pfHazard);
+    new void Start()
+    {
+
+    }
+
+    internal void Initialize(Vector3 theStartingPos, Vector2 theBlockSize)
+    {
+        base.Initialize(theStartingPos);
+        dynamicSizeComponent.Initialize(Registry.prefabHandler.pfHazard, theBlockSize);
     }
 
     // ************************************************************************************

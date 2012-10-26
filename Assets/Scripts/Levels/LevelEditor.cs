@@ -3,7 +3,7 @@ using System.Collections;
 
 public class LevelEditor : MonoBehaviour {
 
-    enum ObjectType { None, Tile, Minibot, Box, Door, GravityInverter, Hazard, HorizontalInverter
+    enum ObjectType { None, Tile, Minibot, Box, Door, GravityInverter, Hazard, TriggerableHazard, HorizontalInverter
         , MovingPlatform, StepSwitch, Switch, TriggerableBlock };
     public enum LevelEditorMode { PlacementMode, DeletionMode, EditingMode, PickToEditMode, PickToLinkMode, None };
 
@@ -184,6 +184,11 @@ public class LevelEditor : MonoBehaviour {
             prefabToSpawn = Registry.prefabHandler.pfHazard;
             parentTransform = Registry.map.hazardsContainer.transform;
         }
+        else if (objectToSpawn == ObjectType.TriggerableHazard)
+        {
+            prefabToSpawn = Registry.prefabHandler.pfTriggerableHazard;
+            parentTransform = Registry.map.hazardsContainer.transform;
+        }
         else if (objectToSpawn == ObjectType.Minibot)
         {
             prefabToSpawn = Registry.prefabHandler.pfMinibot;
@@ -239,6 +244,12 @@ public class LevelEditor : MonoBehaviour {
             spawnedObject.GetComponent<HazardTile>().Initialize(new Vector3
                   (Mathf.Round(spawnPos.x)
                   , Mathf.Round(spawnPos.y), 0));
+        }
+        else if (objectToSpawn == ObjectType.TriggerableHazard)
+        {
+            spawnedObject.GetComponent<TriggerableHazard>().Initialize(new Vector3
+                  (Mathf.Round(spawnPos.x)
+                  , Mathf.Round(spawnPos.y), 0), new Vector2(1, 1));
         }
         else if (objectToSpawn == ObjectType.Minibot)
         {
@@ -349,7 +360,7 @@ public class LevelEditor : MonoBehaviour {
                 GUI.enabled = true;
 
             // Make a background box for the spawning buttons
-            GUI.Box(new Rect(0, Screen.height-100, 520, 100), "Level Objects");
+            GUI.Box(new Rect(0, Screen.height-100, 620, 100), "Level Objects");
 
             if (GUI.Button(new Rect(10, Screen.height - 140, 100, 30), "Edit Object"))
             {
@@ -419,6 +430,12 @@ public class LevelEditor : MonoBehaviour {
                 Debug.Log("Spawn triggerableBlocks clicked");
                 SetCurrentMode(LevelEditorMode.PlacementMode);
                 objectToSpawn = ObjectType.TriggerableBlock;
+            }
+            if (GUI.Button(new Rect(510, Screen.height - 40, 100, 30), "TrigHazard"))
+            {
+                Debug.Log("Spawn triggerableHazard clicked");
+                SetCurrentMode(LevelEditorMode.PlacementMode);
+                objectToSpawn = ObjectType.TriggerableHazard;
             }
             //if (GUI.Button(new Rect(510, Screen.height - 40, 100, 30), "MovPlatform"))
             //{

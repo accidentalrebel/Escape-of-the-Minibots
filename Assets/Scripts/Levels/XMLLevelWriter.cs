@@ -147,6 +147,7 @@ public class XMLLevelWriter : XMLAccessor {
             elemNew.SetAttribute("x", levelObjectScript.startingPos.x.ToString());
             elemNew.SetAttribute("y", levelObjectScript.startingPos.y.ToString());
             TriggerableHazard thScript = triggerableHazard.GetComponent<TriggerableHazard>();
+            elemNew.SetAttribute("isHidden", BoolToString(thScript.isHidden));
             elemNew.SetAttribute("width", thScript.dynamicSizeComponent.blockSize.x.ToString());
             elemNew.SetAttribute("height", thScript.dynamicSizeComponent.blockSize.y.ToString());
             elemRoot.AppendChild(elemNew);

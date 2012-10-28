@@ -129,7 +129,8 @@ public class XMLLevelReader : XMLAccessor {
                 newObject = (GameObject)Instantiate(prefabHandler.pfTriggerableHazard);
                 newObject.GetComponent<TriggerableHazard>().Initialize(new Vector3
                     (float.Parse(reader.GetAttribute("x"))
-                    , float.Parse(reader.GetAttribute("y")), 0)                    
+                    , float.Parse(reader.GetAttribute("y")), 0)
+                    , StringToBool(reader.GetAttribute("isHidden"))
                     , new Vector2(
                         float.Parse(reader.GetAttribute("width"))
                         , float.Parse(reader.GetAttribute("height")))

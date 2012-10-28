@@ -250,13 +250,7 @@ public class LevelEditor : MonoBehaviour {
             spawnedObject.GetComponent<HazardTile>().Initialize(new Vector3
                   (Mathf.Round(spawnPos.x)
                   , Mathf.Round(spawnPos.y), 0));
-        }
-        else if (objectToSpawn == ObjectType.TriggerableHazard)
-        {
-            spawnedObject.GetComponent<TriggerableHazard>().Initialize(new Vector3
-                  (Mathf.Round(spawnPos.x)
-                  , Mathf.Round(spawnPos.y), 0), new Vector2(1, 1));
-        }
+        }        
         else if (objectToSpawn == ObjectType.Minibot)
         {
             spawnedObject.GetComponent<Minibot>().Initialize(new Vector3
@@ -306,6 +300,12 @@ public class LevelEditor : MonoBehaviour {
             spawnedObject.GetComponent<TriggerableBlocks>().Initialize(new Vector3
                 (Mathf.Round(spawnPos.x)
                 , Mathf.Round(spawnPos.y), 0), false, new Vector2(1,1));
+        }
+        else if (objectToSpawn == ObjectType.TriggerableHazard)
+        {
+            spawnedObject.GetComponent<TriggerableHazard>().Initialize(new Vector3
+                  (Mathf.Round(spawnPos.x)
+                  , Mathf.Round(spawnPos.y), 0), false, new Vector2(1, 1));
         }
     }
 

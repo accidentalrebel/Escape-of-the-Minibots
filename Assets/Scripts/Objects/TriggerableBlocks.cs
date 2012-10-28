@@ -9,6 +9,8 @@ public class TriggerableBlocks : LevelObject {
 
     public bool isHidden = false;
     private bool startingIsHidden = false;
+    internal Object prefabToSpawn;
+
     bool IsHidden
     {
         get { return isHidden; }
@@ -18,7 +20,7 @@ public class TriggerableBlocks : LevelObject {
     // ************************************************************************************
     // MAIN
     // ************************************************************************************
-    new void Awake()
+    virtual protected void Awake()
     {
         dynamicSizeComponent = gameObject.GetComponent<DynamicSizeObject>();
         if (dynamicSizeComponent == null)
@@ -26,11 +28,13 @@ public class TriggerableBlocks : LevelObject {
             Debug.LogError("dynamicSizeComponent not specified");
             return;
         }
+
+        prefabToSpawn = Registry.prefabHandler.pfTriggerableTile;        
     }
 
     new void Start()
     {
-
+        
     }
 	
 	internal void Initialize(Vector3 theStartingPos, bool theIsHidden, Vector2 theBlockSize)
@@ -39,7 +43,8 @@ public class TriggerableBlocks : LevelObject {
 
         isHidden = theIsHidden;
         startingIsHidden = isHidden;
-        dynamicSizeComponent.Initialize(Registry.prefabHandler.pfTriggerableTile, theBlockSize);
+        
+        dynamicSizeComponent.Initialize(prefabToSpawn, theBlockSize);
         
         UpdateChildTiles();
 	}

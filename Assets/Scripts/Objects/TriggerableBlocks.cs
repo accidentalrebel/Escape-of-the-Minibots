@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-//[ExecuteInEditMode]
 public class TriggerableBlocks : LevelObject {
 
     internal DynamicSizeObject dynamicSizeComponent;
@@ -32,7 +31,7 @@ public class TriggerableBlocks : LevelObject {
         prefabToSpawn = Registry.prefabHandler.pfTriggerableTile;        
     }
 
-    new void Start()
+    protected override void Start()
     {
         
     }

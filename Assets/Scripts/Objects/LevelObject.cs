@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(GraphicHandler))]
+//[RequireComponent(typeof(GraphicHandler))]
 public class LevelObject : MonoBehaviour {
 
     protected GraphicHandler graphicHandler;

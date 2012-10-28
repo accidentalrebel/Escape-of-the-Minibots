@@ -8,4 +8,9 @@ public class TriggerableHazard : TriggerableBlocks {
         base.Awake();
         prefabToSpawn = Registry.prefabHandler.pfHazard;
     }
+
+    protected override void Start()
+    {
+
+    }
 }

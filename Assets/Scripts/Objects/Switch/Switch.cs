@@ -3,7 +3,9 @@ using System.Collections;
 
 public class Switch : LevelObject {
 
-    public Vector3 posOfObjectToActivate = Vector3.zero;
+    public Vector3 posOfObjectToActivate1 = Vector3.zero;
+    public Vector3 posOfObjectToActivate2 = Vector3.zero;
+    public Vector3 posOfObjectToActivate3 = Vector3.zero;
     protected bool isTriggered = false;
     protected Collider triggeredCollider;
 	protected Map map;
@@ -14,18 +16,45 @@ public class Switch : LevelObject {
 		
 		map = Registry.map;
 	}
+
+    internal void Initialize(Vector3 theStartingPos, Vector2 thePosOfObjectToActivate1)
+    {
+        base.Initialize(theStartingPos);
+        posOfObjectToActivate1 =
+            new Vector3(thePosOfObjectToActivate1.x
+                , thePosOfObjectToActivate1.y, 0);       
+    }
+
+    internal void Initialize(Vector3 theStartingPos, Vector2 thePosOfObjectToActivate1
+        , Vector2 thePosOfObjectToActivate2)
+    {
+        base.Initialize(theStartingPos);
+        posOfObjectToActivate1 =
+            new Vector3(thePosOfObjectToActivate1.x
+                , thePosOfObjectToActivate1.y, 0);
+        posOfObjectToActivate2 =
+            new Vector3(thePosOfObjectToActivate2.x
+                , thePosOfObjectToActivate1.y, 0);       
+    }
 	
-	internal void Initialize(Vector3 theStartingPos, Vector2 thePosOfObjectToActivate)
+	internal void Initialize(Vector3 theStartingPos, Vector2 thePosOfObjectToActivate1
+        , Vector2 thePosOfObjectToActivate2, Vector2 thePosOfObjectToActivate3 )
 	{
 		base.Initialize(theStartingPos);
-        posOfObjectToActivate = 
-            new Vector3(thePosOfObjectToActivate.x
-                , thePosOfObjectToActivate.y, 0);
+        posOfObjectToActivate1 = 
+            new Vector3(thePosOfObjectToActivate1.x
+                , thePosOfObjectToActivate1.y, 0);
+        posOfObjectToActivate2 =
+            new Vector3(thePosOfObjectToActivate2.x
+                , thePosOfObjectToActivate1.y, 0);
+        posOfObjectToActivate3 =
+            new Vector3(thePosOfObjectToActivate3.x
+                , thePosOfObjectToActivate1.y, 0);
 	}
 
     internal void SetObjectToActivate(LevelObject theObject)
     {
-        posOfObjectToActivate = 
+        posOfObjectToActivate1 = 
             new Vector3(theObject.gameObject.transform.position.x
                 , theObject.gameObject.transform.position.y, 0);
     }
@@ -43,7 +72,7 @@ public class Switch : LevelObject {
         {
             if (Input.GetKeyUp(KeyCode.X))
             {
-                LevelObject objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate);
+                LevelObject objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate1);
                 objectToUse.Use();
             }
         }
@@ -72,7 +101,7 @@ public class Switch : LevelObject {
     internal override void GetEditableAttributes(LevelEditor levelEditor)
     {
         string toDisplay;
-        if (posOfObjectToActivate != Vector3.zero)
+        if (posOfObjectToActivate1 != Vector3.zero)
             toDisplay = "Linked";
         else
             toDisplay = "No Link";

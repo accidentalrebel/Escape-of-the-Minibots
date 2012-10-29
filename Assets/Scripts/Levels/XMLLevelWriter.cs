@@ -125,7 +125,6 @@ public class XMLLevelWriter : XMLAccessor {
 //			elemRoot.AppendChild(elemNew);	
 //		}
 		
-		
 		// We loop through all the triggerableBlocks
 		foreach (Transform triggerableBlock in triggerableBlocksContainer.transform )
 		{
@@ -161,8 +160,12 @@ public class XMLLevelWriter : XMLAccessor {
 			elemNew.SetAttribute("x", levelObjectScript.startingPos.x.ToString());
 			elemNew.SetAttribute("y", levelObjectScript.startingPos.y.ToString());
 			StepSwitch switchScript = stepSwitch.gameObject.GetComponent<StepSwitch>();
-			elemNew.SetAttribute("xPosOfObjectToActivate", switchScript.posOfObjectToActivate.x.ToString());
-			elemNew.SetAttribute("yPosOfObjectToActivate", switchScript.posOfObjectToActivate.y.ToString());
+			elemNew.SetAttribute("xPosOfObjectToActivate", switchScript.posOfObjectToActivate1.x.ToString());
+			elemNew.SetAttribute("yPosOfObjectToActivate", switchScript.posOfObjectToActivate1.y.ToString());
+            elemNew.SetAttribute("xPosOfObjectToActivate2", switchScript.posOfObjectToActivate2.x.ToString());
+            elemNew.SetAttribute("yPosOfObjectToActivate2", switchScript.posOfObjectToActivate2.y.ToString());
+            elemNew.SetAttribute("xPosOfObjectToActivate3", switchScript.posOfObjectToActivate3.x.ToString());
+            elemNew.SetAttribute("yPosOfObjectToActivate3", switchScript.posOfObjectToActivate3.y.ToString());
 			elemRoot.AppendChild(elemNew);	
 		}
 		
@@ -174,8 +177,12 @@ public class XMLLevelWriter : XMLAccessor {
 			elemNew.SetAttribute("x", levelObjectScript.startingPos.x.ToString());
 			elemNew.SetAttribute("y", levelObjectScript.startingPos.y.ToString());
 			Switch switchScript = aSwitch.gameObject.GetComponent<Switch>();
-			elemNew.SetAttribute("xPosOfObjectToActivate", switchScript.posOfObjectToActivate.x.ToString());
-			elemNew.SetAttribute("yPosOfObjectToActivate", switchScript.posOfObjectToActivate.y.ToString());
+			elemNew.SetAttribute("xPosOfObjectToActivate", switchScript.posOfObjectToActivate1.x.ToString());
+			elemNew.SetAttribute("yPosOfObjectToActivate", switchScript.posOfObjectToActivate1.y.ToString());
+            elemNew.SetAttribute("xPosOfObjectToActivate2", switchScript.posOfObjectToActivate2.x.ToString());
+            elemNew.SetAttribute("yPosOfObjectToActivate2", switchScript.posOfObjectToActivate2.y.ToString());
+            elemNew.SetAttribute("xPosOfObjectToActivate3", switchScript.posOfObjectToActivate3.x.ToString());
+            elemNew.SetAttribute("yPosOfObjectToActivate3", switchScript.posOfObjectToActivate3.y.ToString());
 			elemRoot.AppendChild(elemNew);	
 		}
           

@@ -141,26 +141,116 @@ public class XMLLevelReader : XMLAccessor {
 			else if (reader.IsStartElement("stepSwitch"))
 			{
                 newObject = (GameObject)Instantiate(prefabHandler.pfStepSwitch);
-				newObject.GetComponent<StepSwitch>().Initialize(new Vector3
-					( float.Parse(reader.GetAttribute("x"))
-					, float.Parse(reader.GetAttribute("y")), 0)					
-					, new Vector2
-					( float.Parse(reader.GetAttribute("xPosOfObjectToActivate"))
-					, float.Parse(reader.GetAttribute("yPosOfObjectToActivate"))
-					));
+
+                string xObjectToActivate1 = reader.GetAttribute("xPosOfObjectToActivate");
+                string yObjectToActivate1 = reader.GetAttribute("yPosOfObjectToActivate");                  
+                
+                string xObjectToActivate2 = reader.GetAttribute("xPosOfObjectToActivate2");
+                string yObjectToActivate2 = reader.GetAttribute("yPosOfObjectToActivate2");
+                
+                string xObjectToActivate3 = reader.GetAttribute("xPosOfObjectToActivate3");
+                string yObjectToActivate3 = reader.GetAttribute("yPosOfObjectToActivate3");
+
+                // If we only have one objectToActivate
+                if ( xObjectToActivate2 == null && yObjectToActivate2 == null)
+                {
+                    newObject.GetComponent<StepSwitch>().Initialize(new Vector3
+                    (float.Parse(reader.GetAttribute("x"))
+                    , float.Parse(reader.GetAttribute("y")), 0)
+                    , new Vector2
+                    (float.Parse(xObjectToActivate1)
+                    , float.Parse(yObjectToActivate1))
+                    );
+                }
+                // If we have two objects to ativate
+                else if (xObjectToActivate3 == null && yObjectToActivate3 == null)
+                {
+                    newObject.GetComponent<StepSwitch>().Initialize(new Vector3
+                    (float.Parse(reader.GetAttribute("x"))
+                    , float.Parse(reader.GetAttribute("y")), 0)
+                    , new Vector2
+                    (float.Parse(xObjectToActivate1)
+                    , float.Parse(yObjectToActivate1))
+                    , new Vector2
+                    (float.Parse(xObjectToActivate2)
+                    , float.Parse(yObjectToActivate2))
+                    );
+                }
+                // If we have three objects to activate
+                else
+                {
+                    newObject.GetComponent<StepSwitch>().Initialize(new Vector3
+                        (float.Parse(reader.GetAttribute("x"))
+                        , float.Parse(reader.GetAttribute("y")), 0)
+                        , new Vector2
+                        (float.Parse(xObjectToActivate1)
+                        , float.Parse(yObjectToActivate1))
+                        , new Vector2
+                        (float.Parse(xObjectToActivate2)
+                        , float.Parse(yObjectToActivate2))
+                        , new Vector2
+                        (float.Parse(xObjectToActivate3)
+                        , float.Parse(yObjectToActivate3))
+                        );
+                }
 				
 				newObject.transform.parent = stepSwitchesContainer.transform;
 			}
 			else if (reader.IsStartElement("switch"))
 			{
                 newObject = (GameObject)Instantiate(prefabHandler.pfSwitch);
-				newObject.GetComponent<Switch>().Initialize(new Vector3
-					( float.Parse(reader.GetAttribute("x"))
-					, float.Parse(reader.GetAttribute("y")), 0)					
-					, new Vector2
-					( float.Parse(reader.GetAttribute("xPosOfObjectToActivate"))
-					, float.Parse(reader.GetAttribute("yPosOfObjectToActivate"))
-					));
+
+                string xObjectToActivate1 = reader.GetAttribute("xPosOfObjectToActivate");
+                string yObjectToActivate1 = reader.GetAttribute("yPosOfObjectToActivate");
+
+                string xObjectToActivate2 = reader.GetAttribute("xPosOfObjectToActivate2");
+                string yObjectToActivate2 = reader.GetAttribute("yPosOfObjectToActivate2");
+
+                string xObjectToActivate3 = reader.GetAttribute("xPosOfObjectToActivate3");
+                string yObjectToActivate3 = reader.GetAttribute("yPosOfObjectToActivate3");
+
+                // If we only have one objectToActivate
+                if (xObjectToActivate2 == null && yObjectToActivate2 == null)
+                {
+                    newObject.GetComponent<Switch>().Initialize(new Vector3
+                    (float.Parse(reader.GetAttribute("x"))
+                    , float.Parse(reader.GetAttribute("y")), 0)
+                    , new Vector2
+                    (float.Parse(xObjectToActivate1)
+                    , float.Parse(yObjectToActivate1))
+                    );
+                }
+                // If we have two objects to ativate
+                else if (xObjectToActivate3 == null && yObjectToActivate3 == null)
+                {
+                    newObject.GetComponent<Switch>().Initialize(new Vector3
+                    (float.Parse(reader.GetAttribute("x"))
+                    , float.Parse(reader.GetAttribute("y")), 0)
+                    , new Vector2
+                    (float.Parse(xObjectToActivate1)
+                    , float.Parse(yObjectToActivate1))
+                    , new Vector2
+                    (float.Parse(xObjectToActivate2)
+                    , float.Parse(yObjectToActivate2))
+                    );
+                }
+                // If we have three objects to activate
+                else
+                {
+                    newObject.GetComponent<Switch>().Initialize(new Vector3
+                        (float.Parse(reader.GetAttribute("x"))
+                        , float.Parse(reader.GetAttribute("y")), 0)
+                        , new Vector2
+                        (float.Parse(xObjectToActivate1)
+                        , float.Parse(yObjectToActivate1))
+                        , new Vector2
+                        (float.Parse(xObjectToActivate2)
+                        , float.Parse(yObjectToActivate2))
+                        , new Vector2
+                        (float.Parse(xObjectToActivate3)
+                        , float.Parse(yObjectToActivate3))
+                        );
+                }
 				
 				newObject.transform.parent = switchesContainer.transform;
 			}			

@@ -10,13 +10,13 @@ public class StepSwitch : Switch {
 	
     void OnTriggerEnter(Collider col)
     {
-        LevelObject objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate);
+        LevelObject objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate1);
         objectToUse.Use();
     }
 
     void OnTriggerExit()
     {
-        LevelObject objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate);
+        LevelObject objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate1);
         objectToUse.Use();
     }
 }

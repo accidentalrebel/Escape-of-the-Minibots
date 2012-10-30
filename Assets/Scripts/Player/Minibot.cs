@@ -55,11 +55,11 @@ public class Minibot : LevelObject {
         if (Input.GetKeyDown(KeyCode.C)
             && objectBeingCarried ==  null )
         {
-            GameObject objectAtSide = GetObjectAtSide(Direction.Right);
-            if ( objectAtSide != null
-                && objectAtSide.tag == "Movable")
+            GameObject objectAtSide = GetObjectAtSide(isFacing);
+
+            if (objectAtSide != null
+                    && objectAtSide.tag == "Movable")
             {
-                Debug.Log("There's a box");
                 PickUp(objectAtSide);
             }
         }

@@ -151,7 +151,13 @@ public class Minibot : LevelObject {
 
     private void PutDown(GameObject objectToPutDown)
     {
-        objectBeingCarried.transform.position = transform.position + Vector3.right;
+        Vector3 putDownPosition = Vector3.zero;
+        if (isFacing == Direction.Left)
+            putDownPosition = transform.position + Vector3.left;
+        else if (isFacing == Direction.Right)
+            putDownPosition = transform.position + Vector3.right;
+
+        objectBeingCarried.transform.position = putDownPosition;
         objectToPutDown.GetComponent<Box>().PutDown();
         objectBeingCarried = null;
     }

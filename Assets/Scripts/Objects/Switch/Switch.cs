@@ -99,18 +99,33 @@ public class Switch : LevelObject {
     // OBJECT EDITING
     // ************************************************************************************
     internal override void GetEditableAttributes(LevelEditor levelEditor)
+    {       
+        HandleLinkGUI(posOfObjectToActivate1, 1, levelEditor);
+        HandleLinkGUI(posOfObjectToActivate2, 2, levelEditor);
+        HandleLinkGUI(posOfObjectToActivate3, 3, levelEditor);        
+    }
+
+    /// <summary>
+    /// Handles the GUI for the links
+    /// </summary>
+    /// <param name="posOfObjectToActivate"></param>
+    /// <param name="guiPosition"></param>
+    /// <param name="levelEditor"></param>
+    private void HandleLinkGUI(Vector3 posOfObjectToActivate, int guiPosition, LevelEditor levelEditor)
     {
         string toDisplay;
-        if (posOfObjectToActivate1 != Vector3.zero)
+
+        if (posOfObjectToActivate != Vector3.zero)
             toDisplay = "Linked";
         else
-            toDisplay = "No Link";
-        GUI.Label(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 100, 20), toDisplay);
+            toDisplay = "No Link";       
 
-        if (GUI.Button(new Rect((Screen.width / 2) - 30, (Screen.height / 2) - 110, 100, 20), "Link to Object"))
+        GUI.Label(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110 + (30 * (guiPosition - 1)), 100, 20), toDisplay);
+
+        if (GUI.Button(new Rect((Screen.width / 2) - 30, (Screen.height / 2) - 110 + (30 * (guiPosition - 1)), 100, 20), "Link to Object"))
         {
             Debug.Log("Linking to object");
             levelEditor.CurrentMode = LevelEditor.LevelEditorMode.PickToLinkMode;
-        }        
+        }
     }
 }

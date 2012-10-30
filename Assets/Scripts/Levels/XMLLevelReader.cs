@@ -213,10 +213,10 @@ public class XMLLevelReader : XMLAccessor {
                 if (xObjectToActivate2 == null && yObjectToActivate2 == null)
                 {
                     newObject.GetComponent<Switch>().Initialize(new Vector3
-                    (float.Parse(reader.GetAttribute("x"))
+                    ( float.Parse(reader.GetAttribute("x"))
                     , float.Parse(reader.GetAttribute("y")), 0)
                     , new Vector2
-                    (float.Parse(xObjectToActivate1)
+                    ( float.Parse(xObjectToActivate1)
                     , float.Parse(yObjectToActivate1))
                     );
                 }
@@ -224,13 +224,13 @@ public class XMLLevelReader : XMLAccessor {
                 else if (xObjectToActivate3 == null && yObjectToActivate3 == null)
                 {
                     newObject.GetComponent<Switch>().Initialize(new Vector3
-                    (float.Parse(reader.GetAttribute("x"))
+                    ( float.Parse(reader.GetAttribute("x"))
                     , float.Parse(reader.GetAttribute("y")), 0)
                     , new Vector2
-                    (float.Parse(xObjectToActivate1)
+                    ( float.Parse(xObjectToActivate1)
                     , float.Parse(yObjectToActivate1))
                     , new Vector2
-                    (float.Parse(xObjectToActivate2)
+                    ( float.Parse(xObjectToActivate2)
                     , float.Parse(yObjectToActivate2))
                     );
                 }
@@ -238,16 +238,16 @@ public class XMLLevelReader : XMLAccessor {
                 else
                 {
                     newObject.GetComponent<Switch>().Initialize(new Vector3
-                        (float.Parse(reader.GetAttribute("x"))
+                        ( float.Parse(reader.GetAttribute("x"))
                         , float.Parse(reader.GetAttribute("y")), 0)
                         , new Vector2
-                        (float.Parse(xObjectToActivate1)
+                        ( float.Parse(xObjectToActivate1)
                         , float.Parse(yObjectToActivate1))
                         , new Vector2
-                        (float.Parse(xObjectToActivate2)
+                        ( float.Parse(xObjectToActivate2)
                         , float.Parse(yObjectToActivate2))
                         , new Vector2
-                        (float.Parse(xObjectToActivate3)
+                        ( float.Parse(xObjectToActivate3)
                         , float.Parse(yObjectToActivate3))
                         );
                 }

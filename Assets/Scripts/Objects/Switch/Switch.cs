@@ -35,7 +35,7 @@ public class Switch : LevelObject {
                 , thePosOfObjectToActivate1.y, 0);
         posOfObjectToActivate2 =
             new Vector3(thePosOfObjectToActivate2.x
-                , thePosOfObjectToActivate1.y, 0);       
+                , thePosOfObjectToActivate2.y, 0);
     }
 	
 	internal void Initialize(Vector3 theStartingPos, Vector2 thePosOfObjectToActivate1
@@ -47,10 +47,10 @@ public class Switch : LevelObject {
                 , thePosOfObjectToActivate1.y, 0);
         posOfObjectToActivate2 =
             new Vector3(thePosOfObjectToActivate2.x
-                , thePosOfObjectToActivate1.y, 0);
+                , thePosOfObjectToActivate2.y, 0);
         posOfObjectToActivate3 =
             new Vector3(thePosOfObjectToActivate3.x
-                , thePosOfObjectToActivate1.y, 0);
+                , thePosOfObjectToActivate3.y, 0);
 	}
 
     internal void SetObjectToActivate(LevelObject theObject)
@@ -64,6 +64,8 @@ public class Switch : LevelObject {
             posOfObjectToActivate2 = thePosition;
         else if (objectNumToLinkTo == 3)
             posOfObjectToActivate3 = thePosition;
+
+        Debug.LogWarning(posOfObjectToActivate1 + ", " + posOfObjectToActivate2 + ", " + posOfObjectToActivate3);
 
         objectNumToLinkTo = 0;
     }

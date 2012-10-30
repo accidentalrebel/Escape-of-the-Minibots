@@ -6,6 +6,7 @@ public class Switch : LevelObject {
     public Vector3 posOfObjectToActivate1 = Vector3.zero;
     public Vector3 posOfObjectToActivate2 = Vector3.zero;
     public Vector3 posOfObjectToActivate3 = Vector3.zero;
+    internal int objectNumToLinkTo = 0;
     protected bool isTriggered = false;
     protected Collider triggeredCollider;
 	protected Map map;
@@ -54,9 +55,17 @@ public class Switch : LevelObject {
 
     internal void SetObjectToActivate(LevelObject theObject)
     {
-        posOfObjectToActivate1 = 
-            new Vector3(theObject.gameObject.transform.position.x
-                , theObject.gameObject.transform.position.y, 0);
+        Vector3 thePosition = new Vector3(theObject.gameObject.transform.position.x
+                    , theObject.gameObject.transform.position.y, 0);;
+
+        if (objectNumToLinkTo == 1)
+            posOfObjectToActivate1 = thePosition;                
+        else if (objectNumToLinkTo == 2)
+            posOfObjectToActivate2 = thePosition;
+        else if (objectNumToLinkTo == 3)
+            posOfObjectToActivate3 = thePosition;
+
+        objectNumToLinkTo = 0;
     }
 
     //internal void SetObjectToActivate(Vector2 posOfObjectToActivate)
@@ -72,8 +81,22 @@ public class Switch : LevelObject {
         {
             if (Input.GetKeyUp(KeyCode.X))
             {
-                LevelObject objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate1);
-                objectToUse.Use();
+                LevelObject objectToUse;
+                if (posOfObjectToActivate1 != Vector3.zero)
+                {
+                    objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate1);
+                    objectToUse.Use();
+                }
+                if (posOfObjectToActivate2 != Vector3.zero)
+                {
+                    objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate2);
+                    objectToUse.Use();
+                }
+                if (posOfObjectToActivate3 != Vector3.zero)
+                {
+                    objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate3);
+                    objectToUse.Use();
+                }
             }
         }
 	}
@@ -109,9 +132,9 @@ public class Switch : LevelObject {
     /// Handles the GUI for the links
     /// </summary>
     /// <param name="posOfObjectToActivate"></param>
-    /// <param name="guiPosition"></param>
+    /// <param name="objectLinkNumber"></param>
     /// <param name="levelEditor"></param>
-    private void HandleLinkGUI(Vector3 posOfObjectToActivate, int guiPosition, LevelEditor levelEditor)
+    private void HandleLinkGUI(Vector3 posOfObjectToActivate, int objectLinkNumber, LevelEditor levelEditor)
     {
         string toDisplay;
 
@@ -120,11 +143,12 @@ public class Switch : LevelObject {
         else
             toDisplay = "No Link";       
 
-        GUI.Label(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110 + (30 * (guiPosition - 1)), 100, 20), toDisplay);
+        GUI.Label(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110 + (30 * (objectLinkNumber - 1)), 100, 20), toDisplay);
 
-        if (GUI.Button(new Rect((Screen.width / 2) - 30, (Screen.height / 2) - 110 + (30 * (guiPosition - 1)), 100, 20), "Link to Object"))
+        if (GUI.Button(new Rect((Screen.width / 2) - 30, (Screen.height / 2) - 110 + (30 * (objectLinkNumber - 1)), 100, 20), "Link to Object"))
         {
             Debug.Log("Linking to object");
+            objectNumToLinkTo = objectLinkNumber;
             levelEditor.CurrentMode = LevelEditor.LevelEditorMode.PickToLinkMode;
         }
     }

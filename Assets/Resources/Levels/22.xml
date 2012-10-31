@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <tiles>
-  <minibot x="3" y="11" invertGravity="0" invertHorizontal="0" />
-  <minibot x="3" y="4" invertGravity="0" invertHorizontal="0" />
+  <minibot x="10" y="11" invertGravity="0" invertHorizontal="0" />
+  <minibot x="5" y="4" invertGravity="0" invertHorizontal="0" />
   <tile x="0" y="0" />
   <tile x="0" y="1" />
   <tile x="0" y="2" />
@@ -60,6 +60,9 @@
   <tile x="0" y="13" />
   <tile x="1" y="7" />
   <tile x="2" y="7" />
+  <tile x="12" y="7" />
+  <tile x="13" y="7" />
+  <tile x="14" y="7" />
   <tile x="18" y="1" />
   <tile x="17" y="1" />
   <tile x="16" y="1" />
@@ -69,9 +72,18 @@
   <tile x="1" y="1" />
   <tile x="1" y="8" />
   <tile x="2" y="8" />
+  <tile x="11" y="8" />
+  <tile x="12" y="8" />
+  <tile x="13" y="8" />
+  <tile x="14" y="8" />
+  <tile x="10" y="7" />
+  <tile x="11" y="7" />
+  <tile x="10" y="8" />
+  <tile x="9" y="7" />
   <tile x="10" y="0" />
   <tile x="10" y="1" />
   <tile x="11" y="1" />
+  <tile x="9" y="8" />
   <tile x="15" y="8" />
   <tile x="15" y="7" />
   <tile x="16" y="7" />
@@ -88,46 +100,63 @@
   <tile x="12" y="0" />
   <tile x="14" y="0" />
   <tile x="15" y="0" />
+  <tile x="8" y="7" />
+  <tile x="8" y="8" />
   <tile x="3" y="8" />
+  <tile x="3" y="7" />
+  <tile x="4" y="7" />
   <tile x="4" y="8" />
   <tile x="5" y="8" />
-  <tile x="4" y="7" />
-  <tile x="3" y="7" />
   <tile x="5" y="7" />
-  <tile x="5" y="1" />
-  <tile x="6" y="1" />
-  <tile x="7" y="1" />
-  <tile x="8" y="1" />
-  <tile x="9" y="1" />
-  <tile x="5" y="0" />
-  <tile x="6" y="0" />
-  <tile x="7" y="0" />
-  <tile x="8" y="0" />
-  <tile x="9" y="0" />
-  <tile x="14" y="8" />
-  <tile x="14" y="7" />
   <tile x="6" y="8" />
-  <tile x="7" y="8" />
   <tile x="6" y="7" />
+  <tile x="7" y="8" />
   <tile x="7" y="7" />
-  <tile x="8" y="8" />
-  <tile x="8" y="7" />
-  <tile x="9" y="8" />
-  <tile x="9" y="7" />
-  <tile x="10" y="8" />
-  <tile x="10" y="7" />
-  <tile x="12" y="8" />
-  <tile x="11" y="7" />
-  <tile x="11" y="8" />
-  <tile x="12" y="7" />
-  <tile x="13" y="8" />
-  <tile x="13" y="7" />
-  <hazard x="18" y="9" />
-  <hazard x="18" y="10" />
-  <hazard x="18" y="3" />
-  <hazard x="18" y="2" />
-  <triggerableBlock x="10" y="2" isHidden="1" width="1" height="5" />
-  <triggerableBlock x="10" y="9" isHidden="0" width="1" height="5" />
-  <switch x="7" y="9" xPosOfObjectToActivate="10" yPosOfObjectToActivate="9" xPosOfObjectToActivate2="10" yPosOfObjectToActivate2="2" xPosOfObjectToActivate3="0" yPosOfObjectToActivate3="0" />
-  <switch x="13" y="2" xPosOfObjectToActivate="10" yPosOfObjectToActivate="9" xPosOfObjectToActivate2="10" yPosOfObjectToActivate2="2" xPosOfObjectToActivate3="0" yPosOfObjectToActivate3="0" />
+  <tile x="9" y="1" />
+  <tile x="9" y="0" />
+  <tile x="8" y="0" />
+  <tile x="8" y="1" />
+  <tile x="7" y="1" />
+  <tile x="7" y="0" />
+  <tile x="6" y="0" />
+  <tile x="6" y="1" />
+  <tile x="5" y="1" />
+  <tile x="5" y="0" />
+  <tile x="2" y="9" />
+  <tile x="1" y="9" />
+  <tile x="2" y="10" />
+  <tile x="1" y="10" />
+  <tile x="1" y="11" />
+  <tile x="2" y="11" />
+  <tile x="2" y="12" />
+  <tile x="1" y="12" />
+  <tile x="1" y="13" />
+  <tile x="2" y="13" />
+  <tile x="17" y="9" />
+  <tile x="18" y="9" />
+  <tile x="18" y="10" />
+  <tile x="17" y="10" />
+  <tile x="17" y="11" />
+  <tile x="18" y="11" />
+  <tile x="18" y="12" />
+  <tile x="17" y="12" />
+  <tile x="17" y="13" />
+  <tile x="18" y="13" />
+  <door x="15" y="9" isOpen="0" />
+  <door x="2" y="2" isOpen="0" />
+  <hazard x="16" y="9" />
+  <hazard x="3" y="9" />
+  <hazard x="3" y="10" />
+  <hazard x="3" y="11" />
+  <hazard x="3" y="12" />
+  <hazard x="3" y="13" />
+  <hazard x="16" y="10" />
+  <hazard x="16" y="11" />
+  <hazard x="16" y="12" />
+  <hazard x="16" y="13" />
+  <triggerableBlock x="12" y="2" isHidden="0" width="1" height="5" />
+  <triggerableBlock x="7" y="2" isHidden="0" width="1" height="5" />
+  <switch x="13" y="9" xPosOfObjectToActivate="7" yPosOfObjectToActivate="2" xPosOfObjectToActivate2="0" yPosOfObjectToActivate2="0" xPosOfObjectToActivate3="0" yPosOfObjectToActivate3="0" />
+  <switch x="6" y="9" xPosOfObjectToActivate="12" yPosOfObjectToActivate="2" xPosOfObjectToActivate2="0" yPosOfObjectToActivate2="0" xPosOfObjectToActivate3="0" yPosOfObjectToActivate3="0" />
+  <switch x="14" y="2" xPosOfObjectToActivate="15" yPosOfObjectToActivate="9" xPosOfObjectToActivate2="2" yPosOfObjectToActivate2="2" xPosOfObjectToActivate3="0" yPosOfObjectToActivate3="0" />
 </tiles>

@@ -102,7 +102,9 @@ public class SpriteManager : MonoBehaviour {
     {
         Debug.Log(currentAnimation + " is played");
         StopCoroutine("Animate");                       // Stop coroutine if it is currently running
-        StartCoroutine("Animate", currentAnimation);    // Start animate coroutine
+
+        if ( gameObject.active != false )
+            StartCoroutine("Animate", currentAnimation);    // Start animate coroutine
     }
 
     /// <summary>

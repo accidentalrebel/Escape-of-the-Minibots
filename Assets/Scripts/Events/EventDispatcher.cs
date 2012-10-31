@@ -5,6 +5,7 @@ public class EventDispatcher : MonoBehaviour {
 
     public delegate void EventHandler();
     public event EventHandler UpdateMinibotCount;
+    public event EventHandler UpdateTimer;
 
     void Awake()
     {
@@ -14,5 +15,10 @@ public class EventDispatcher : MonoBehaviour {
     internal void OnUpdateMinibotCount()
     {
         UpdateMinibotCount();
+    }
+
+    internal void OnUpdateTimer()
+    {
+        UpdateTimer();
     }
 }

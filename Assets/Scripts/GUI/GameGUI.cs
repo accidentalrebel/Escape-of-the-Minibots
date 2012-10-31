@@ -22,10 +22,16 @@ public class GameGUI : GUILayout {
             Debug.LogError("txttimer is not found!");
 
         Registry.eventDispatcher.UpdateMinibotCount += ListenerMinibotExit;
+        Registry.eventDispatcher.UpdateTimer += ListenerTimerUpdate;
     }
 
     void ListenerMinibotExit()
     {
         Debug.LogWarning("LISTENER CALLED");
+    }
+
+    void ListenerTimerUpdate()
+    {
+        Debug.LogWarning("TIMER UPDATED");
     }
 }

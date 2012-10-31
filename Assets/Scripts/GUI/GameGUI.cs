@@ -20,5 +20,12 @@ public class GameGUI : GUILayout {
         txtTimer = gameObject.transform.FindChild("TextTimer").GetComponent<TextMesh>();
         if (txtTimer == null)
             Debug.LogError("txttimer is not found!");
+
+        Registry.eventDispatcher.UpdateMinibotCount += ListenerMinibotExit;
+    }
+
+    void ListenerMinibotExit()
+    {
+        Debug.LogWarning("LISTENER CALLED");
     }
 }

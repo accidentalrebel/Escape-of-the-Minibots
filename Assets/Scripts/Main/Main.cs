@@ -134,6 +134,19 @@ public class Main : MonoBehaviour
     // ************************************************************************************
     // HELPER FUNCTIONS
     // ************************************************************************************
+    internal int CountMinibotsLeft()
+    {
+        int count = 0;
+        foreach (Minibot minibot in minibotList)
+        {
+            if (minibot != null && minibot.hasExited == false)
+            {
+                count++;
+            }
+        }
+
+        return count;
+    }
 
     /// <summary>
     /// Restarts the game

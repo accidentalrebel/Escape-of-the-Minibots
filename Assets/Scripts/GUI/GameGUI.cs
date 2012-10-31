@@ -1,21 +1,24 @@
 using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(Main))]
-public class GameGUI : MonoBehaviour {
+public class GameGUI : GUILayout {
 
     Main main;
-
+    TextMesh txtMinibotCount;
+    TextMesh txtTimer;
+        
     void Start()
     {
-        main = gameObject.GetComponent<Main>();
+        main = Registry.main;
         if (main == null)
             Debug.LogError("main is not found!");
-    }
 
-    void OnGUI()
-    {
-        GUI.Label(new Rect((Screen.width / 2) - 110, 10, 100, 30), "Minibots Left: " + main.CountMinibotsLeft().ToString());
-        GUI.Label(new Rect((Screen.width / 2) + 10, 10, 100, 30), "00:00:00");
+        txtMinibotCount = gameObject.transform.FindChild("TextMinibotCount").GetComponent<TextMesh>();
+        if (txtMinibotCount == null)
+            Debug.LogError("txtMinibotCount is not found!");
+
+        txtTimer = gameObject.transform.FindChild("TextTimer").GetComponent<TextMesh>();
+        if (txtTimer == null)
+            Debug.LogError("txttimer is not found!");
     }
 }

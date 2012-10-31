@@ -47,6 +47,7 @@
      <Compile Include="Assets\Scripts\Character\CharacterMotor.cs" />
      <Compile Include="Assets\Scripts\Character\MinibotController.cs" />
      <Compile Include="Assets\Scripts\Character\PlatformInputController.cs" />
+     <Compile Include="Assets\Scripts\GUI\GUILayout.cs" />
      <Compile Include="Assets\Scripts\GUI\GUIManager.cs" />
      <Compile Include="Assets\Scripts\GUI\GameGUI.cs" />
      <Compile Include="Assets\Scripts\Levels\FileReader.cs" />

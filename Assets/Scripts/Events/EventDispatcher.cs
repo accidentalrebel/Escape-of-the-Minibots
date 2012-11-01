@@ -5,7 +5,7 @@ public class EventDispatcher : MonoBehaviour {
 
     public delegate void EventHandler();
     public delegate void EventHandlerString(string s);   
-    public event EventHandler UpdateTimer;
+    public event EventHandlerString UpdateTimer;
     public event EventHandler FinishedLevelLoading;
     public event EventHandlerString UpdateMinibotCount;
 
@@ -24,8 +24,8 @@ public class EventDispatcher : MonoBehaviour {
         FinishedLevelLoading();        
     }
 
-    internal void OnUpdateTimer()
+    internal void OnUpdateTimer(string s)
     {
-        UpdateTimer();
+        UpdateTimer(s);
     }
 }

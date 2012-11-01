@@ -27,12 +27,11 @@ public class GameGUI : GUILayout {
 
     void ListenerMinibotExit(string minibotCount)
     {
-        Debug.Log("Minibots left: " + minibotCount);
         txtMinibotCount.text = "Minibots left: " + minibotCount;
     }
 
-    void ListenerTimerUpdate()
+    void ListenerTimerUpdate(string time)
     {
-        Debug.LogWarning("TIMER UPDATED");
+        txtTimer.text = time;
     }
 }

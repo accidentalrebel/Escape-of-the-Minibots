@@ -62,6 +62,7 @@
      <Compile Include="Assets\Scripts\Main\Registry.cs" />
      <Compile Include="Assets\Scripts\Misc\GraphicHandler.cs" />
      <Compile Include="Assets\Scripts\Misc\PrefabHandler.cs" />
+     <Compile Include="Assets\Scripts\Misc\Timer.cs" />
      <Compile Include="Assets\Scripts\Objects\Box.cs" />
      <Compile Include="Assets\Scripts\Objects\Door.cs" />
      <Compile Include="Assets\Scripts\Objects\DynamicSizeObject.cs" />

@@ -9,16 +9,35 @@ public class Timer : MonoBehaviour {
 	// Use this for initialization
 	void Awake () 
     {
-        startTime = Time.time;        
+        startTime = Time.time;
 	}
 
-    void Update()
+    void Start()
     {
-        float timeElapsed = Time.time - startTime;
-        string minutes = Mathf.Floor(timeElapsed / 60).ToString("00");
-        string seconds = (timeElapsed % 60).ToString("00");
-        string milliseconds = ((timeElapsed * 100) % 100).ToString("00");
+        StartCoroutine("StartTimer");
+    }
 
-        Registry.eventDispatcher.OnUpdateTimer(minutes + ":" + seconds + ":" + milliseconds);
+    //void Update()
+    //{
+    //    float timeElapsed = Time.time - startTime;
+    //    string minutes = Mathf.Floor(timeElapsed / 60).ToString("00");
+    //    string seconds = (timeElapsed % 60).ToString("00");
+    //    string milliseconds = ((timeElapsed * 100) % 100).ToString("00");
+
+    //    Registry.eventDispatcher.OnUpdateTimer(minutes + ":" + seconds + ":" + milliseconds);
+    //}
+
+    IEnumerator StartTimer()
+    {
+        while (true)
+        {
+            float timeElapsed = Time.time - startTime;
+            string minutes = Mathf.Floor(timeElapsed / 60).ToString("00");
+            string seconds = (timeElapsed % 60).ToString("00");
+            string milliseconds = ((timeElapsed * 100) % 100).ToString("00");
+
+            Registry.eventDispatcher.OnUpdateTimer(minutes + ":" + seconds + ":" + milliseconds);
+            yield return new WaitForSeconds(0.01f);
+        }       
     }
 }

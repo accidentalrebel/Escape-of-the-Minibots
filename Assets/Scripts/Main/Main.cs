@@ -71,7 +71,9 @@ public class Main : MonoBehaviour
     /// </summary>
     internal void CheckIfLevelComplete()
     {
-        if ( CountMinibotsInLevel() <= 0 )
+        int minibotsLeft = CountMinibotsInLevel();
+        Registry.eventDispatcher.OnUpdateMinibotCount(minibotsLeft.ToString());
+        if ( minibotsLeft <= 0 )
             LevelOver();
     }
 

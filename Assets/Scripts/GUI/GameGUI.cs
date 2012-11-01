@@ -7,7 +7,7 @@ public class GameGUI : GUILayout {
     TextMesh txtMinibotCount;
     TextMesh txtTimer;
         
-    void Start()
+    void Awake()
     {
         main = Registry.main;
         if (main == null)
@@ -25,9 +25,10 @@ public class GameGUI : GUILayout {
         Registry.eventDispatcher.UpdateTimer += ListenerTimerUpdate;
     }
 
-    void ListenerMinibotExit()
+    void ListenerMinibotExit(string minibotCount)
     {
-        Debug.LogWarning("LISTENER CALLED");
+        Debug.Log("Minibots left: " + minibotCount);
+        txtMinibotCount.text = "Minibots left: " + minibotCount;
     }
 
     void ListenerTimerUpdate()

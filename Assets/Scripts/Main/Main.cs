@@ -23,8 +23,12 @@ public class Main : MonoBehaviour
         levelEditor = gameObject.GetComponent<LevelEditor>();
         if (levelEditor == null)
             Debug.LogWarning("Could not find level editor.");
+    }
 
-        minibotCountAtStart = CountMinibotsInLevel();
+    void Start()
+    {
+        minibotCountAtStart = CountMinibotsInLevel();        
+        Registry.eventDispatcher.OnUpdateMinibotCount(minibotCountAtStart.ToString());
     }
 
     void Update()

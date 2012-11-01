@@ -199,8 +199,6 @@ public class Minibot : LevelObject {
         hasExited = true;
         DisableMinibot();
         Registry.main.CheckIfLevelComplete();
-
-        Registry.eventDispatcher.OnUpdateMinibotCount();
     }
 
     override internal void ResetObject()

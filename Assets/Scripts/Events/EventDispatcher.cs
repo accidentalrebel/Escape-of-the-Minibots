@@ -4,17 +4,18 @@ using System.Collections;
 public class EventDispatcher : MonoBehaviour {
 
     public delegate void EventHandler();
-    public event EventHandler UpdateMinibotCount;
+    public delegate void EventHandlerString(string s);   
     public event EventHandler UpdateTimer;
+    public event EventHandlerString UpdateMinibotCount;
 
     void Awake()
     {
         Registry.eventDispatcher = this;        
     }
 
-    internal void OnUpdateMinibotCount()
+    internal void OnUpdateMinibotCount(string s)
     {
-        UpdateMinibotCount();
+        UpdateMinibotCount(s);
     }
 
     internal void OnUpdateTimer()

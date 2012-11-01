@@ -8,6 +8,8 @@ public class Main : MonoBehaviour
     internal LevelEditor levelEditor;
     List<Minibot> minibotList = new List<Minibot>();
 
+    int minibotCountAtStart;
+
     // ************************************************************************************
     // MAIN
     // ************************************************************************************
@@ -21,6 +23,8 @@ public class Main : MonoBehaviour
         levelEditor = gameObject.GetComponent<LevelEditor>();
         if (levelEditor == null)
             Debug.LogWarning("Could not find level editor.");
+
+        minibotCountAtStart = CountMinibotsInLevel();
     }
 
     void Update()
@@ -62,15 +66,8 @@ public class Main : MonoBehaviour
     /// </summary>
     internal void CheckIfLevelComplete()
     {
-        foreach (Minibot minibot in minibotList)
-        {
-            if (minibot != null && minibot.hasExited == false)
-            {
-                return;
-            }
-        }
-       
-        LevelOver();
+        if ( CountMinibotsInLevel() <= 0 )
+            LevelOver();
     }
 
     /// <summary>
@@ -134,7 +131,7 @@ public class Main : MonoBehaviour
     // ************************************************************************************
     // HELPER FUNCTIONS
     // ************************************************************************************
-    internal int CountMinibotsLeft()
+    internal int CountMinibotsInLevel()
     {
         int count = 0;
         foreach (Minibot minibot in minibotList)

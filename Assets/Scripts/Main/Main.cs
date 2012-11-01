@@ -23,12 +23,13 @@ public class Main : MonoBehaviour
         levelEditor = gameObject.GetComponent<LevelEditor>();
         if (levelEditor == null)
             Debug.LogWarning("Could not find level editor.");
+
+        Registry.eventDispatcher.FinishedLevelLoading += FinishedLevelLoading;
     }
 
     void Start()
     {
-        minibotCountAtStart = CountMinibotsInLevel();        
-        Registry.eventDispatcher.OnUpdateMinibotCount(minibotCountAtStart.ToString());
+        
     }
 
     void Update()
@@ -95,20 +96,6 @@ public class Main : MonoBehaviour
     private void GetNextLevel()
     {
         map.GetNextLevel();
-        //string nextLevelName = "";
-        //int currentLevel;
-
-        //int.TryParse(map.currentLevel, out currentLevel);    // We try to parse the loadedLevel name to int
-        //nextLevelName = (currentLevel+=1).ToString();       // We increment the level number and set it as the next level
-
-        //if (map.levelReader.CheckIfFileExists(nextLevelName))
-        //{
-        //    LoadNextLevel(nextLevelName);
-        //}
-        //else
-        //{
-        //    Debug.Log("no more next level");
-        //}
     }
 
     /// <summary>
@@ -130,6 +117,12 @@ public class Main : MonoBehaviour
             map.ClearLevel();
             map.levelReader.LoadLevel(nextLevelName);
         }
+    }
+
+    void FinishedLevelLoading()
+    {
+        minibotCountAtStart = CountMinibotsInLevel();
+        Registry.eventDispatcher.OnUpdateMinibotCount(minibotCountAtStart.ToString());
     }
 
     // ************************************************************************************

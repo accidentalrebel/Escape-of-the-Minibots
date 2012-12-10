@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\GUI\GUILayout.cs" />
      <Compile Include="Assets\Scripts\GUI\GUIManager.cs" />
      <Compile Include="Assets\Scripts\GUI\GameGUI.cs" />
+     <Compile Include="Assets\Scripts\GUI\MenuLevelRecap.cs" />
      <Compile Include="Assets\Scripts\Levels\FileReader.cs" />
      <Compile Include="Assets\Scripts\Levels\LevelEditor.cs" />
      <Compile Include="Assets\Scripts\Levels\LevelLoader.cs" />

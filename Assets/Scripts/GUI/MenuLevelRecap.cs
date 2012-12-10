@@ -3,9 +3,11 @@ using System.Collections;
 
 public class MenuLevelRecap : MonoBehaviour {
 
-    bool isVisible = false;
-    public int menuWidth = 400;
-    public int menuHeight = 400;
+    public bool isVisible = false;
+    public float menuWidth = 400;
+    public float menuHeight = 400;
+    public float buttonWidth = 150;
+    public float buttonHeight = 50;
 
 	// Use this for initialization
 	void Start () {
@@ -21,10 +23,20 @@ public class MenuLevelRecap : MonoBehaviour {
     {
         if (isVisible)
         {
+            float centerPosition = (Screen.width / 2);
+            float topPosition = (Screen.height / 2) - (menuHeight / 2);
             GUI.Box(new Rect
-                ( (Screen.width / 2) - (menuWidth / 2)
-                , (Screen.height / 2) - (menuHeight / 2)
+                ( centerPosition - (menuWidth / 2)
+                , topPosition
                 , menuWidth, menuHeight), "Test");
+            
+            GUI.skin.label.alignment = TextAnchor.UpperCenter;
+            GUI.Button(new Rect
+                ( centerPosition - (buttonWidth / 2)
+                , topPosition
+                , buttonWidth, buttonHeight), "Test");
+            GUI.skin.label.alignment = TextAnchor.UpperLeft;
+            
         }
     }
 }

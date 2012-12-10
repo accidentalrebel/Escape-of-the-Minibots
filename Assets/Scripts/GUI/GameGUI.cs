@@ -4,8 +4,8 @@ using System.Collections;
 public class GameGUI : GUILayout {
 
     Main main;
-    TextMesh txtMinibotCount;
-    TextMesh txtTimer;
+    public TextMesh txtMinibotCount;
+    public TextMesh txtTimer;
         
     void Awake()
     {
@@ -13,24 +13,22 @@ public class GameGUI : GUILayout {
         if (main == null)
             Debug.LogError("main is not found!");
 
-        txtMinibotCount = gameObject.transform.FindChild("TextMinibotCount").GetComponent<TextMesh>();
         if (txtMinibotCount == null)
-            Debug.LogError("txtMinibotCount is not found!");
+            Debug.LogError("txtMinibotCount was not specified!");
 
-        txtTimer = gameObject.transform.FindChild("TextTimer").GetComponent<TextMesh>();
         if (txtTimer == null)
-            Debug.LogError("txttimer is not found!");
+            Debug.LogError("txttimer was not specified!");
 
-        Registry.eventDispatcher.UpdateMinibotCount += ListenerMinibotExit;
-        Registry.eventDispatcher.UpdateTimer += ListenerTimerUpdate;
+        Registry.eventDispatcher.EUpdateMinibotCount += LMinibotExit;
+        Registry.eventDispatcher.EUpdateTimer += LTimerUpdate;
     }
 
-    void ListenerMinibotExit(string minibotCount)
+    void LMinibotExit(string minibotCount)
     {
         txtMinibotCount.text = "Minibots left: " + minibotCount;
     }
 
-    void ListenerTimerUpdate(string time)
+    void LTimerUpdate(string time)
     {
         txtTimer.text = time;
     }

@@ -10,6 +10,7 @@ public class Timer : MonoBehaviour {
 	void Awake () 
     {
         startTime = Time.time;
+        Registry.eventDispatcher.ELevelCompleted += LLevelCompleted;
 	}
 
     void Start()
@@ -17,15 +18,10 @@ public class Timer : MonoBehaviour {
         StartCoroutine("StartTimer");
     }
 
-    //void Update()
-    //{
-    //    float timeElapsed = Time.time - startTime;
-    //    string minutes = Mathf.Floor(timeElapsed / 60).ToString("00");
-    //    string seconds = (timeElapsed % 60).ToString("00");
-    //    string milliseconds = ((timeElapsed * 100) % 100).ToString("00");
-
-    //    Registry.eventDispatcher.OnUpdateTimer(minutes + ":" + seconds + ":" + milliseconds);
-    //}
+    void LLevelCompleted()
+    {
+        StopCoroutine("StartTimer");
+    }
 
     IEnumerator StartTimer()
     {

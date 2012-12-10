@@ -24,7 +24,7 @@ public class Main : MonoBehaviour
         if (levelEditor == null)
             Debug.LogWarning("Could not find level editor.");
 
-        Registry.eventDispatcher.FinishedLevelLoading += FinishedLevelLoading;
+        Registry.eventDispatcher.EFinishedLevelLoading += FinishedLevelLoading;
     }
 
     void Start()
@@ -41,7 +41,7 @@ public class Main : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Q))
         {
-            LevelOver();
+            LevelCompleted();
         } 
     }
 
@@ -74,16 +74,17 @@ public class Main : MonoBehaviour
         int minibotsLeft = CountMinibotsInLevel();
         Registry.eventDispatcher.OnUpdateMinibotCount(minibotsLeft.ToString());
         if ( minibotsLeft <= 0 )
-            LevelOver();
+            LevelCompleted();
     }
 
     /// <summary>
     /// This method handles what would happen when the level is over
     /// </summary>
-    private void LevelOver()
+    private void LevelCompleted()
     {
         Debug.Log("LEVEL IS OVER!");
 
+        Registry.eventDispatcher.OnLevelComplete();
         // Just restart the game if in mapEditMode
         if ( levelEditor != null 
             && levelEditor.MapEditMode == true)

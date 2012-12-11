@@ -198,7 +198,7 @@ public class Minibot : LevelObject {
         Debug.Log("exiting stage");
         hasExited = true;
         DisableMinibot();
-        Registry.main.CheckIfLevelComplete();
+        Registry.main.OnMinibotExit();
     }
 
     override internal void ResetObject()

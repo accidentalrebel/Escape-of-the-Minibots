@@ -14,11 +14,6 @@ public class EventDispatcher : MonoBehaviour {
         Registry.eventDispatcher = this;        
     }
 
-    internal void OnUpdateMinibotCount(string s)
-    {
-        EUpdateMinibotCount(s);
-    }
-
     internal void OnFinishLevelLoading()
     {
         EFinishedLevelLoading();        

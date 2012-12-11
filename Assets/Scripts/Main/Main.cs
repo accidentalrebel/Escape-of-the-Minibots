@@ -6,6 +6,7 @@ public class Main : MonoBehaviour
 {
     public delegate void EventHandler();
     public event EventHandler ELevelCompleted;
+    public event EventHandler EUpdateMinibotCount;
 
     Map map;
     internal LevelEditor levelEditor;
@@ -72,10 +73,11 @@ public class Main : MonoBehaviour
     /// <summary>
     /// Checks if all the minibots in the level has succesfully exited the level
     /// </summary>
-    internal void CheckIfLevelComplete()
+    internal void OnMinibotExit()
     {
+        EUpdateMinibotCount();   
         int minibotsLeft = CountMinibotsInLevel();
-        Registry.eventDispatcher.OnUpdateMinibotCount(minibotsLeft.ToString());
+
         if ( minibotsLeft <= 0 )
             LevelCompleted();
     }
@@ -128,7 +130,7 @@ public class Main : MonoBehaviour
     void FinishedLevelLoading()
     {
         minibotCountAtStart = CountMinibotsInLevel();
-        Registry.eventDispatcher.OnUpdateMinibotCount(minibotCountAtStart.ToString());
+        EUpdateMinibotCount();        
     }
 
     // ************************************************************************************

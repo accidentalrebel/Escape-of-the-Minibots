@@ -18,14 +18,14 @@ public class GameGUI : GUILayout {
 
         if (txtTimer == null)
             Debug.LogError("txttimer was not specified!");
-
-        Registry.eventDispatcher.EUpdateMinibotCount += LMinibotExit;
+        
         Registry.eventDispatcher.EUpdateTimer += LTimerUpdate;
+        main.EUpdateMinibotCount += UpdateMinibotCount;
     }
 
-    void LMinibotExit(string minibotCount)
+    void UpdateMinibotCount()
     {
-        txtMinibotCount.text = "Minibots left: " + minibotCount;
+        txtMinibotCount.text = main.CountMinibotsInLevel().ToString();
     }
 
     void LTimerUpdate(string time)

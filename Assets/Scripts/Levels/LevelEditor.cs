@@ -8,6 +8,7 @@ public class LevelEditor : MonoBehaviour {
     public enum LevelEditorMode { PlacementMode, DeletionMode, EditingMode, PickToEditMode, PickToLinkMode, None };
 
     bool mapEditMode = false;
+
     public bool MapEditMode
     {
         set { mapEditMode = value; }

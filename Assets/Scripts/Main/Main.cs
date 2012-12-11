@@ -61,7 +61,14 @@ public class Main : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Q))
         {
             LevelCompleted();
-        } 
+        }
+        else if (Input.GetKeyDown(KeyCode.L))
+        {
+            if ( !levelEditor.enabled )
+                levelEditor.enabled = true;
+            else
+                levelEditor.enabled = false;
+        }
     }
 
     // ************************************************************************************

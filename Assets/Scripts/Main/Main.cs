@@ -9,6 +9,7 @@ public class Main : MonoBehaviour
     public event EventHandler EUpdateMinibotCount;
 
     Map map;
+    internal Timer timer;
     internal LevelEditor levelEditor;
     List<Minibot> minibotList = new List<Minibot>();
 
@@ -22,13 +23,14 @@ public class Main : MonoBehaviour
     {
         Registry.main = this;
         map = Registry.map;
+        timer = GetComponent<Timer>();
+        if (timer == null)
+            Debug.LogError("Timer not found!");
 
         // Level editor is optional
         levelEditor = gameObject.GetComponent<LevelEditor>();
         if (levelEditor == null)
             Debug.LogWarning("Could not find level editor.");
-
-        Registry.eventDispatcher.EFinishedLevelLoading += FinishedLevelLoading;
     }
 
     void Start()
@@ -127,7 +129,7 @@ public class Main : MonoBehaviour
         }
     }
 
-    void FinishedLevelLoading()
+    internal void FinishedLevelLoading()
     {
         minibotCountAtStart = CountMinibotsInLevel();
         EUpdateMinibotCount();        

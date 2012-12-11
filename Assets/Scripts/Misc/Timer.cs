@@ -3,8 +3,11 @@ using System.Collections;
 
 public class Timer : MonoBehaviour {
 
+    public delegate void EventHandler(string currentTime);
+    public event EventHandler ETimerTick;
+
     float startTime;
-    
+    string currentTime;    
 
 	// Use this for initialization
 	void Awake () 
@@ -26,13 +29,14 @@ public class Timer : MonoBehaviour {
     IEnumerator StartTimer()
     {
         while (true)
-        {
+        {            
             float timeElapsed = Time.time - startTime;
             string minutes = Mathf.Floor(timeElapsed / 60).ToString("00");
             string seconds = (timeElapsed % 60).ToString("00");
             string milliseconds = ((timeElapsed * 100) % 60).ToString("00");
 
-            Registry.eventDispatcher.OnUpdateTimer(minutes + ":" + seconds + ":" + milliseconds);
+            currentTime = minutes + ":" + seconds + ":" + milliseconds;
+            ETimerTick(currentTime);
             yield return new WaitForSeconds(0.01f);
         }       
     }

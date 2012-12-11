@@ -270,7 +270,6 @@ public class XMLLevelReader : XMLAccessor {
         Registry.map.currentLevel = theCurrentLevel;
         Registry.main.levelEditor.LevelFileName = theCurrentLevel;
         Registry.main.GetMinibotsInLevel();
-
-        Registry.eventDispatcher.OnFinishLevelLoading();
+        Registry.main.FinishedLevelLoading();
     }
 }

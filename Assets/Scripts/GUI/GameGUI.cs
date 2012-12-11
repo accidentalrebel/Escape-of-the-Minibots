@@ -4,6 +4,7 @@ using System.Collections;
 public class GameGUI : GUILayout {
 
     Main main;
+    Timer timer;
     public TextMesh txtMinibotCount;
     public TextMesh txtTimer;
         
@@ -18,18 +19,20 @@ public class GameGUI : GUILayout {
 
         if (txtTimer == null)
             Debug.LogError("txttimer was not specified!");
-        
-        Registry.eventDispatcher.EUpdateTimer += LTimerUpdate;
+
+        timer = Registry.main.timer;
+        timer.ETimerTick += OnTimerTick;
+
         main.EUpdateMinibotCount += UpdateMinibotCount;
+    }
+
+    void OnTimerTick(string currentTime)
+    {
+        txtTimer.text = currentTime;
     }
 
     void UpdateMinibotCount()
     {
         txtMinibotCount.text = main.CountMinibotsInLevel().ToString();
-    }
-
-    void LTimerUpdate(string time)
-    {
-        txtTimer.text = time;
     }
 }

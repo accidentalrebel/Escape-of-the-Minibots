@@ -47,10 +47,12 @@
      <Compile Include="Assets\Scripts\Character\CharacterMotor.cs" />
      <Compile Include="Assets\Scripts\Character\MinibotController.cs" />
      <Compile Include="Assets\Scripts\Character\PlatformInputController.cs" />
-     <Compile Include="Assets\Scripts\GUI\GUILayout.cs" />
-     <Compile Include="Assets\Scripts\GUI\GUIManager.cs" />
-     <Compile Include="Assets\Scripts\GUI\GameGUI.cs" />
-     <Compile Include="Assets\Scripts\GUI\MenuLevelRecap.cs" />
+     <Compile Include="Assets\Scripts\GUI\MainGame\GUILayout.cs" />
+     <Compile Include="Assets\Scripts\GUI\MainGame\GUIManager.cs" />
+     <Compile Include="Assets\Scripts\GUI\MainGame\GameGUI.cs" />
+     <Compile Include="Assets\Scripts\GUI\MainGame\MenuLevelRecap.cs" />
+     <Compile Include="Assets\Scripts\GUI\MainMenu\MainMenu.cs" />
+     <Compile Include="Assets\Scripts\GUI\Menu.cs" />
      <Compile Include="Assets\Scripts\Levels\FileReader.cs" />
      <Compile Include="Assets\Scripts\Levels\LevelEditor.cs" />
      <Compile Include="Assets\Scripts\Levels\LevelLoader.cs" />

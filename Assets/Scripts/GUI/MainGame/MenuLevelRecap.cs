@@ -1,26 +1,19 @@
 using UnityEngine;
 using System.Collections;
 
-public class MenuLevelRecap : MonoBehaviour {
-
-    public bool isVisible = false;
-    public float menuWidth = 400;
-    public float menuHeight = 400;
-    public float buttonWidth = 150;
-    public float buttonHeight = 50;
+public class MenuLevelRecap : Menu {
 
 	// Use this for initialization
-	void Start () {
+	protected override void Start () {
+        base.Start();
+        
         Registry.main.ELevelCompleted += LevelCompleted;
 	}
 
-    void LevelCompleted()
+    protected override void Update()
     {
-        isVisible = true;
-    }
+        base.Update();
 
-    void Update()
-    {
         if (isVisible)
         {
             if (Input.GetKeyDown(KeyCode.Z))
@@ -32,6 +25,23 @@ public class MenuLevelRecap : MonoBehaviour {
                 RestartLevel();
             }
         }
+    }
+
+    void LevelCompleted()
+    {
+        isVisible = true;
+    }
+
+    private void RestartLevel()
+    {
+        Registry.main.RestartLevel();
+        isVisible = false;
+    }
+
+    private void GoToNextLevel()
+    {
+        Registry.main.GoToNextLevel();
+        isVisible = false;
     }
 
     void OnGUI()
@@ -64,17 +74,5 @@ public class MenuLevelRecap : MonoBehaviour {
 
             GUI.skin.label.alignment = TextAnchor.UpperLeft;            
         }
-    }
-
-    private void RestartLevel()
-    {
-        Registry.main.RestartLevel();
-        isVisible = false;
-    }
-
-    private void GoToNextLevel()
-    {
-        Registry.main.GoToNextLevel();
-        isVisible = false;
     }
 }

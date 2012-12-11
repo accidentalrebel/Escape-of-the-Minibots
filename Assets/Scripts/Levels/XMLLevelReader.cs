@@ -7,24 +7,12 @@ public class XMLLevelReader : XMLAccessor {
     public string levelToLoad = "1";
     PrefabHandler prefabHandler;
 
-	// Use this for initialization
-	void Start () {
-
+    	// Use this for initialization
+	override protected void Awake () 
+    {        
         prefabHandler = Registry.prefabHandler;
-
-        if (levelToLoad != "")
-        {
-            if (CheckIfFileExists(levelToLoad))
-            {
-                LoadLevel(levelToLoad);
-            }
-        }
-		else
-		{
-			Debug.LogWarning("No levelToLoad is specified");	
-		}
+        base.Awake();
 	}   
-
 
     /// <summary>
     /// 

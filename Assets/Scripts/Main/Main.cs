@@ -12,6 +12,7 @@ public class Main : MonoBehaviour
     Map map;
     internal Timer timer;
     internal LevelEditor levelEditor;
+    Settings settings;
     List<Minibot> minibotList = new List<Minibot>();
 
     int minibotCountAtStart;
@@ -28,6 +29,14 @@ public class Main : MonoBehaviour
         if (timer == null)
             Debug.LogError("Timer not found!");
 
+        GameObject settingsGO = GameObject.Find("Settings");
+        if (settingsGO != null)
+        {
+            settings = settingsGO.GetComponent<Settings>();
+            if ( settings == null)
+                Debug.LogWarning("Settings not found!");
+        }
+
         // Level editor is optional
         levelEditor = gameObject.GetComponent<LevelEditor>();
         if (levelEditor == null)
@@ -36,7 +45,10 @@ public class Main : MonoBehaviour
 
     void Start()
     {
-        
+        if ( settings != null )
+            map.levelReader.LoadLevel(settings.InitialLevelToLoad.ToString());
+        else
+            map.levelReader.LoadLevel("1");
     }
 
     void Update()

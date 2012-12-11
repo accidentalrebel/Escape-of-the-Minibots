@@ -5,6 +5,7 @@ public class MainMenuManager : MonoBehaviour {
 
     FrontMenu frontMenu;
     LevelSelectionMenu levelSelectionMenu;
+    Settings settings;
 
 	// Use this for initialization
 	void Start () {
@@ -16,8 +17,13 @@ public class MainMenuManager : MonoBehaviour {
         if (levelSelectionMenu == null)
             Debug.LogError("LevelSelectionMenu not found!");
 
+        settings = GameObject.Find("Settings").GetComponent<Settings>();
+        if (settings == null)
+            Debug.LogError("Settings not found!");
+
         frontMenu.Show();
         frontMenu.EGoToLevelSelection += LGoToLevelSelection;
+        levelSelectionMenu.ELoadLevel += LLoadLevel;
 	}
 
     private void LGoToLevelSelection()
@@ -25,5 +31,12 @@ public class MainMenuManager : MonoBehaviour {
         frontMenu.Hide();
         levelSelectionMenu.Show();
         Debug.Log("Going to level selection screen");
+    }
+
+    private void LLoadLevel(int i)
+    {
+        Debug.Log("Loading level " + i.ToString());
+        settings.InitialLevelToLoad = i;
+        Application.LoadLevel("MainGame");
     }
 }

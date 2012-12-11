@@ -17,7 +17,7 @@ public class XMLAccessor : MonoBehaviour {
 	protected GameObject triggerableBlocksContainer;
     protected GameObject triggerableHazardsContainer;
 	
-	void Awake()
+	virtual protected void Awake()
 	{
 		tilesContainer = Registry.map.tilesContainer;
 		minibotsContainer = Registry.map.minibotsContainer;

@@ -3,6 +3,9 @@ using System.Collections;
 
 public class LevelSelectionMenu : Menu {
 
+    public delegate void EventHandler(int i);
+    public event EventHandler ELoadLevel;
+
     Vector2 scrollPosition;
 
     protected override void Start()
@@ -29,7 +32,10 @@ public class LevelSelectionMenu : Menu {
             
             for (int i = 0; i < 15; i++)
             {
-                GUI.Button(new Rect((menuWidth / 2) - (buttonWidth / 2) - 20, (initialYPos * i) + 10, 200, 30), "Button");
+                if (GUI.Button(new Rect((menuWidth / 2) - (buttonWidth / 2) - 20, (initialYPos * i) + 10, 200, 30), "Level " + (i+1).ToString()))
+                {
+                    ELoadLevel(i + 1);
+                }
             }
 
             GUI.EndScrollView();

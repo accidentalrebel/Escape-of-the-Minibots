@@ -19,7 +19,7 @@ public class PrefabHandler : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-        Registry.prefabHandler = this;
+        Registry.prefabHandler = this;        
 
         pfTile = Resources.Load(@"Prefabs/pfTile");
         if (pfTile == null)

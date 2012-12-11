@@ -115,6 +115,7 @@
      <None Include="Assets\Resources\Levels\20.xml" />
      <None Include="Assets\Resources\LevelsBackup\19.xml" />
      <None Include="Assets\Resources\LevelsBackup\11.xml" />
+     <None Include="Assets\Resources\Levels\27.xml" />
      <None Include="Assets\Resources\LevelsBackup\50.xml" />
      <None Include="Assets\Resources\Levels\10.xml" />
      <None Include="Assets\Resources\Levels\41.xml" />
@@ -139,6 +140,7 @@
      <None Include="Assets\Resources\Levels\40.xml" />
      <None Include="Assets\Resources\Levels\21.xml" />
      <None Include="Assets\Resources\Levels\4.xml" />
+     <None Include="Assets\Resources\Levels\26.xml" />
      <None Include="Assets\Resources\Levels\test.xml" />
      <None Include="Assets\Resources\LevelsBackup\40.xml" />
      <None Include="Assets\Resources\LevelsBackup\61.xml" />

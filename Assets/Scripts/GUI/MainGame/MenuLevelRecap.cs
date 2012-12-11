@@ -41,7 +41,7 @@ public class MenuLevelRecap : Menu {
     private void GoToNextLevel()
     {
         Registry.main.GoToNextLevel();
-        Show();
+        Hide();
     }
 
     void OnGUI()

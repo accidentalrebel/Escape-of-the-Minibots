@@ -5,7 +5,7 @@ using System.IO;
 
 public class LevelList : MonoBehaviour {
 
-    List<string> levelList = new List<string>();
+    internal List<string> members = new List<string>();
 
 	// Use this for initialization
 	void Start () {
@@ -15,14 +15,17 @@ public class LevelList : MonoBehaviour {
 
         foreach (FileInfo file in info)
         {
-            levelList.Add(file.Name.Substring(0, file.Name.Length - file.Extension.Length));
+            string theString = file.Name.Substring(0, file.Name.Length - file.Extension.Length);
+            
+            // We pad with zeroes
+            if (theString.Length == 1)
+                theString = "00" + theString;
+            else if (theString.Length == 2)
+                theString = "0" + theString;
+               
+            members.Add(theString);
         }
 
-        levelList.Sort();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+        members.Sort();
 	}
 }

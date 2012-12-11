@@ -7,16 +7,34 @@ public class StepSwitch : Switch {
 	{
 		base.Initialize(theStartingPos);		
 	}
+
+    void Trigger()
+    {
+        LevelObject objectToUse;
+        if (posOfObjectToActivate1 != Vector3.zero)
+        {
+            objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate1);
+            objectToUse.Use();
+        }
+        if (posOfObjectToActivate2 != Vector3.zero)
+        {
+            objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate2);
+            objectToUse.Use();
+        }
+        if (posOfObjectToActivate3 != Vector3.zero)
+        {
+            objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate3);
+            objectToUse.Use();
+        }
+    }
 	
     void OnTriggerEnter(Collider col)
     {
-        LevelObject objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate1);
-        objectToUse.Use();
+        Trigger();
     }
 
     void OnTriggerExit()
     {
-        LevelObject objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate1);
-        objectToUse.Use();
+        Trigger();
     }
 }

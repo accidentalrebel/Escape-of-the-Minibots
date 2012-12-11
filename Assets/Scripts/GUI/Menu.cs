@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Menu : MonoBehaviour {
 
-    public bool isVisible = false;
+    protected bool isVisible = false;
     public float menuWidth = 400;
     public float menuHeight = 400;
     public float buttonWidth = 150;
@@ -19,4 +19,14 @@ public class Menu : MonoBehaviour {
 	virtual protected void Update () {
 	
 	}
+
+    internal void Show()
+    {
+        isVisible = true;
+    }
+
+    internal void Hide()
+    {
+        isVisible = false;
+    }
 }

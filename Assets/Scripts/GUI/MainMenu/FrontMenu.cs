@@ -1,7 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
-public class MainMenu : Menu {
+public class FrontMenu : Menu {
+
+    public delegate void EventHandler();
+    public event EventHandler EGoToLevelSelection;
 
 	// Use this for initialization
 	protected override void Start () 
@@ -48,6 +51,6 @@ public class MainMenu : Menu {
 
     private void GoToLevelSelection()
     {
-        throw new System.NotImplementedException();
+        EGoToLevelSelection();
     }
 }

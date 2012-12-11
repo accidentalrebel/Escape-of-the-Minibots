@@ -29,19 +29,19 @@ public class MenuLevelRecap : Menu {
 
     void LevelCompleted()
     {
-        isVisible = true;
+        Show();
     }
 
     private void RestartLevel()
     {
         Registry.main.RestartLevel();
-        isVisible = false;
+        Hide();
     }
 
     private void GoToNextLevel()
     {
         Registry.main.GoToNextLevel();
-        isVisible = false;
+        Show();
     }
 
     void OnGUI()

@@ -19,6 +19,21 @@ public class MenuLevelRecap : MonoBehaviour {
         isVisible = true;
     }
 
+    void Update()
+    {
+        if (isVisible)
+        {
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                GoToNextLevel();
+            }
+            else if (Input.GetKeyDown(KeyCode.X))
+            {
+                RestartLevel();
+            }
+        }
+    }
+
     void OnGUI()
     {
         if (isVisible)
@@ -31,11 +46,34 @@ public class MenuLevelRecap : MonoBehaviour {
                 , menuWidth, menuHeight), "Test");
             
             GUI.skin.label.alignment = TextAnchor.UpperCenter;
-            GUI.Button(new Rect
-                ( centerPosition - (buttonWidth / 2)
-                , topPosition
-                , buttonWidth, buttonHeight), "Test");
+            if (GUI.Button(new Rect
+                ( centerPosition - buttonWidth - 10
+                , (Screen.height / 2) + (menuHeight / 2) - buttonHeight - 10
+                , buttonWidth, buttonHeight), "Restart"))
+            {
+                RestartLevel();
+            }
+
+            if (GUI.Button(new Rect
+                ( centerPosition + 10
+                , (Screen.height / 2) + (menuHeight / 2) - buttonHeight - 10
+                , buttonWidth, buttonHeight), "Next Level"))
+            {
+                GoToNextLevel();
+            }
+
             GUI.skin.label.alignment = TextAnchor.UpperLeft;            
         }
+    }
+
+    private void RestartLevel()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    private void GoToNextLevel()
+    {
+        Registry.main.GoToNextLevel();
+        isVisible = false;
     }
 }

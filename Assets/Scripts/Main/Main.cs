@@ -91,21 +91,20 @@ public class Main : MonoBehaviour
     {
         Debug.Log("LEVEL IS OVER!");
         ELevelCompleted();
-
-        // Just restart the game if in mapEditMode
-        if ( levelEditor != null 
-            && levelEditor.MapEditMode == true)
-            RestartGame();
-        else // Else go to next level
-            GetNextLevel();
     }
+
 
     /// <summary>
     /// Gets the name of the level that would go next after this level
     /// </summary>
-    private void GetNextLevel()
+    internal void GoToNextLevel()
     {
-        map.GetNextLevel();
+        // Just restart the game if in mapEditMode
+        if (levelEditor != null
+            && levelEditor.MapEditMode == true)
+            RestartGame();
+        else // Else go to next level
+            map.GetNextLevel();
     }
 
     /// <summary>

@@ -52,6 +52,7 @@
      <Compile Include="Assets\Scripts\GUI\MainGame\GameGUI.cs" />
      <Compile Include="Assets\Scripts\GUI\MainGame\MenuLevelRecap.cs" />
      <Compile Include="Assets\Scripts\GUI\MainMenu\FrontMenu.cs" />
+     <Compile Include="Assets\Scripts\GUI\MainMenu\LevelSelectionMenu.cs" />
      <Compile Include="Assets\Scripts\GUI\MainMenu\MainMenuManager.cs" />
      <Compile Include="Assets\Scripts\GUI\Menu.cs" />
      <Compile Include="Assets\Scripts\Levels\FileReader.cs" />

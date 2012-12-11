@@ -6,24 +6,10 @@ public class FrontMenu : Menu {
     public delegate void EventHandler();
     public event EventHandler EGoToLevelSelection;
 
-	// Use this for initialization
-	protected override void Start () 
-    {
-        base.Start();
-	}
-
-    protected override void Update()
-    {
-        base.Update();
-    }
-
     void OnGUI()
     {
         if (isVisible)
         {
-            float centerPosition = (Screen.width / 2);
-            float leftPosition = centerPosition - (menuWidth /2 );
-            float topPosition = (Screen.height / 2) - (menuHeight / 2);
             GUI.Box(new Rect
                 (centerPosition - (menuWidth / 2)
                 , topPosition

@@ -68,7 +68,8 @@ public class MenuLevelRecap : MonoBehaviour {
 
     private void RestartLevel()
     {
-        throw new System.NotImplementedException();
+        Registry.main.RestartLevel();
+        isVisible = false;
     }
 
     private void GoToNextLevel()

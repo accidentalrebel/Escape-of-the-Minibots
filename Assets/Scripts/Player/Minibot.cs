@@ -190,7 +190,7 @@ public class Minibot : LevelObject {
     internal void Die()
     {
         Debug.LogWarning("I DIED");
-        Registry.main.RestartGame();
+        Registry.main.RestartLevel();
     }
 
     void ExitLevel()

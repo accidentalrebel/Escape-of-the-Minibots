@@ -43,7 +43,7 @@ public class Main : MonoBehaviour
         // If we press the R key, the level restarts
         if (Input.GetKeyDown(KeyCode.R))
         {
-            RestartGame();
+            RestartLevel();
         }
         else if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -90,20 +90,20 @@ public class Main : MonoBehaviour
     private void LevelCompleted()
     {
         Debug.Log("LEVEL IS OVER!");
-        ELevelCompleted();
+        
+        // Just restart the game automatically if in mapEditMode
+        if (levelEditor != null
+            && levelEditor.MapEditMode == true)
+            RestartLevel();
+        else
+            ELevelCompleted();
     }
-
 
     /// <summary>
     /// Gets the name of the level that would go next after this level
     /// </summary>
     internal void GoToNextLevel()
     {
-        // Just restart the game if in mapEditMode
-        if (levelEditor != null
-            && levelEditor.MapEditMode == true)
-            RestartGame();
-        else // Else go to next level
             map.GetNextLevel();
     }
 
@@ -154,7 +154,7 @@ public class Main : MonoBehaviour
     /// <summary>
     /// Restarts the game
     /// </summary>
-    internal void RestartGame()
+    internal void RestartLevel()
     {
         map.RestartLevel();
     }

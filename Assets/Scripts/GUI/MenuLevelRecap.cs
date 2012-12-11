@@ -43,7 +43,7 @@ public class MenuLevelRecap : MonoBehaviour {
             GUI.Box(new Rect
                 ( centerPosition - (menuWidth / 2)
                 , topPosition
-                , menuWidth, menuHeight), "Test");
+                , menuWidth, menuHeight), "Level Completed");
             
             GUI.skin.label.alignment = TextAnchor.UpperCenter;
             if (GUI.Button(new Rect

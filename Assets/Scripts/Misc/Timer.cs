@@ -12,8 +12,8 @@ public class Timer : MonoBehaviour {
 	// Use this for initialization
 	void Awake () 
     {
-        startTime = Time.time;
         Registry.main.ELevelCompleted += LLevelCompleted;
+        Registry.main.ELevelLoaded += ResetTimer;
 	}
 
     void Start()
@@ -24,6 +24,13 @@ public class Timer : MonoBehaviour {
     void LLevelCompleted()
     {
         StopCoroutine("StartTimer");
+    }
+
+    void ResetTimer()
+    {
+        Debug.Log("Timer reset");
+        startTime = Time.time;
+        StartCoroutine("StartTimer");
     }
 
     IEnumerator StartTimer()

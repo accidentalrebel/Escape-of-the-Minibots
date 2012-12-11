@@ -33,6 +33,6 @@ public class GameGUI : GUILayout {
 
     void UpdateMinibotCount()
     {
-        txtMinibotCount.text = main.CountMinibotsInLevel().ToString();
+        txtMinibotCount.text = "Minibots left: " + main.CountMinibotsInLevel().ToString();
     }
 }

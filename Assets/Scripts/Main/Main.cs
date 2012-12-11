@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class Main : MonoBehaviour
 {
+    public delegate void EventHandler();
+    public event EventHandler ELevelCompleted;
+
     Map map;
     internal LevelEditor levelEditor;
     List<Minibot> minibotList = new List<Minibot>();
@@ -83,8 +86,8 @@ public class Main : MonoBehaviour
     private void LevelCompleted()
     {
         Debug.Log("LEVEL IS OVER!");
+        ELevelCompleted();
 
-        Registry.eventDispatcher.OnLevelComplete();
         // Just restart the game if in mapEditMode
         if ( levelEditor != null 
             && levelEditor.MapEditMode == true)

@@ -10,7 +10,7 @@ public class Timer : MonoBehaviour {
 	void Awake () 
     {
         startTime = Time.time;
-        Registry.eventDispatcher.ELevelCompleted += LLevelCompleted;
+        Registry.main.ELevelCompleted += LLevelCompleted;
 	}
 
     void Start()

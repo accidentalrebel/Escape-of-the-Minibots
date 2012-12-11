@@ -8,7 +8,6 @@ public class EventDispatcher : MonoBehaviour {
     public event EventHandlerString EUpdateTimer;
     public event EventHandler EFinishedLevelLoading;
     public event EventHandlerString EUpdateMinibotCount;
-    public event EventHandler ELevelCompleted;
 
     void Awake()
     {
@@ -28,10 +27,5 @@ public class EventDispatcher : MonoBehaviour {
     internal void OnUpdateTimer(string s)
     {
         EUpdateTimer(s);
-    }
-
-    internal void OnLevelComplete()
-    {
-        ELevelCompleted();
     }
 }

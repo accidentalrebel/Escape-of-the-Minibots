@@ -11,10 +11,10 @@ public class MenuLevelRecap : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Registry.eventDispatcher.ELevelCompleted += ShowMenu;
+        Registry.main.ELevelCompleted += LevelCompleted;
 	}
 
-    void ShowMenu()
+    void LevelCompleted()
     {
         isVisible = true;
     }
@@ -35,8 +35,7 @@ public class MenuLevelRecap : MonoBehaviour {
                 ( centerPosition - (buttonWidth / 2)
                 , topPosition
                 , buttonWidth, buttonHeight), "Test");
-            GUI.skin.label.alignment = TextAnchor.UpperLeft;
-            
+            GUI.skin.label.alignment = TextAnchor.UpperLeft;            
         }
     }
 }

@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\GUI\Menu.cs" />
      <Compile Include="Assets\Scripts\Levels\FileReader.cs" />
      <Compile Include="Assets\Scripts\Levels\LevelEditor.cs" />
+     <Compile Include="Assets\Scripts\Levels\LevelList.cs" />
      <Compile Include="Assets\Scripts\Levels\LevelLoader.cs" />
      <Compile Include="Assets\Scripts\Levels\Map.cs" />
      <Compile Include="Assets\Scripts\Levels\XMLAccessor.cs" />

@@ -7,6 +7,7 @@ public class MinibotInputHandler : MonoBehaviour {
     internal bool MoveRight
     {
         get { return moveRight; }
+        set { moveRight = value; }
     }
 
 	// Use this for initialization

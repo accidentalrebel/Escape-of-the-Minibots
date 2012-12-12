@@ -79,11 +79,13 @@ public class ReplayManager : MonoBehaviour {
             {
                 if (currentEvent.eventType == ReplayEvent.EventType.PressedRight)
                 {
+                    Registry.inputHandler.MoveRight = true;
                     Debug.Log("Pressed RIGHT");
                 }
                 else if (currentEvent.eventType == ReplayEvent.EventType.ReleasedRight)
                 {
                     Debug.Log("Released RIGHT");
+                    Registry.inputHandler.MoveRight = false;
                 }
                 index++;
             }

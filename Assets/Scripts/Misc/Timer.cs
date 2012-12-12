@@ -13,7 +13,7 @@ public class Timer : MonoBehaviour {
 	void Awake () 
     {
         Registry.main.ELevelCompleted += LLevelCompleted;
-        Registry.main.ELevelLoaded += ResetTimer;
+        Registry.main.ELevelStarted += ResetTimer;
 	}
 
     void Start()

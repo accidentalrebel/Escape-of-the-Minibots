@@ -6,7 +6,7 @@ public class Main : MonoBehaviour
 {
     public delegate void EventHandler();
     public event EventHandler ELevelCompleted;
-    public event EventHandler ELevelLoaded;
+    public event EventHandler ELevelStarted;
     public event EventHandler EUpdateMinibotCount;
 
     Map map;
@@ -88,6 +88,12 @@ public class Main : MonoBehaviour
         }
     }
 
+    internal void StartLevel()
+    {
+        EUpdateMinibotCount();
+        ELevelStarted();
+    }
+
     // ************************************************************************************
     // END GAME LOGIC
     // ************************************************************************************
@@ -147,13 +153,7 @@ public class Main : MonoBehaviour
             map.levelReader.LoadLevel(nextLevelName);
         }
     }
-
-    internal void FinishedLevelLoading()
-    {
-        EUpdateMinibotCount();
-        ELevelLoaded();
-    }
-
+    
     // ************************************************************************************
     // HELPER FUNCTIONS
     // ************************************************************************************
@@ -177,7 +177,6 @@ public class Main : MonoBehaviour
     internal void RestartLevel()
     {
         map.RestartLevel();
-        EUpdateMinibotCount();
-        ELevelLoaded();
+        StartLevel();
     }
 }

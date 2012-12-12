@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class ReplayEvent {
+public class ReplayEvent : ScriptableObject {
 
     public enum EventType { PressedLeft, ReleasedLeft, PressedRight, ReleasedRight, PressedJump, ReleasedJump, PressedUse, PressedPickUp };
 

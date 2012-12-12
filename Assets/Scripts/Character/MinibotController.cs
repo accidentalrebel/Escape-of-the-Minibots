@@ -92,10 +92,6 @@ public class MinibotController : MonoBehaviour
         {
             player.IsFacing = Minibot.Direction.Left;
         }
-        else
-        {
-            xInput = 0;
-        }
 
         // Calculate how fast we should be moving
         Vector3 targetVelocity = new Vector3(xInput, 0, yInput);

@@ -3,10 +3,14 @@ using System.Collections;
 
 public class ReplayEvent : ScriptableObject {
 
-    float timeTriggered;
+    public enum EventType { PressedLeft, ReleasedLeft, PressedRight, ReleasedRight, PressedJump, ReleasedJump, PressedUse, PressedPickUp };
 
-    internal void Initialize(float theTimeTriggered)
+    float timeTriggered;
+    EventType eventType;
+
+    internal void Initialize(float theTimeTriggered, EventType theEventType)
     {
         timeTriggered = theTimeTriggered;
+        eventType = theEventType;
     }
 }

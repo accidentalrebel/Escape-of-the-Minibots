@@ -6,7 +6,6 @@ public class ReplayManager : MonoBehaviour {
 
     Main main;
     List<ReplayEvent> replayList = new List<ReplayEvent>();
-    private bool canRecord;
 
 	// Use this for initialization
 	void Awake () 
@@ -16,24 +15,41 @@ public class ReplayManager : MonoBehaviour {
             Debug.LogError("main is not found!");
 
         main.ELevelStarted += LLevelStarted;
+        main.ELevelCompleted += LLevelCompleted;
 	}
 
     void LLevelStarted()
     {
         Debug.LogWarning("level has started");
-        canRecord = true;
+        StartCoroutine("RecordEvents");
     }
 
-    void Update()
+    void LLevelCompleted()
     {
-        if (canRecord)
+        Debug.LogWarning("level was completed");
+        StopCoroutine("RecordEvents");
+    }
+
+    IEnumerator RecordEvents()
+    {
+        while (true)
         {
-            if (Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKeyDown(KeyCode.D)
+                || Input.GetKeyDown(KeyCode.RightArrow))
             {
                 ReplayEvent newEvent = new ReplayEvent();
-                newEvent.Initialize(Time.time);
+                newEvent.Initialize(Time.time, ReplayEvent.EventType.PressedRight);
                 replayList.Add(newEvent);
             }
+            else if (Input.GetKeyUp(KeyCode.D)
+                || Input.GetKeyUp(KeyCode.RightArrow))
+            {
+                ReplayEvent newEvent = new ReplayEvent();
+                newEvent.Initialize(Time.time, ReplayEvent.EventType.ReleasedRight);
+                replayList.Add(newEvent);
+            }
+
+            yield return new WaitForFixedUpdate();
         }
     }
 }

@@ -83,10 +83,19 @@ public class MinibotController : MonoBehaviour
             player.Walking();
 
         // We then handle the facing
-        if (xInput > 0)   // If a negative number
+        if (Registry.inputHandler.MoveRight)
+        {
             player.IsFacing = Minibot.Direction.Right;
-        else if ( xInput < 0)
+            xInput = 1;
+        }
+        else if (xInput < 0)
+        {
             player.IsFacing = Minibot.Direction.Left;
+        }
+        else
+        {
+            xInput = 0;
+        }
 
         // Calculate how fast we should be moving
         Vector3 targetVelocity = new Vector3(xInput, 0, yInput);

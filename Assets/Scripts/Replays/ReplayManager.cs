@@ -7,10 +7,13 @@ public class ReplayManager : MonoBehaviour {
     Main main;
     List<ReplayEvent> replayList = new List<ReplayEvent>();
     float startTime;
+    internal bool isReplayMode = false;
 
 	// Use this for initialization
 	void Awake () 
     {
+        Registry.replayManager = this;
+
         main = GetComponent<Main>();
         if (main == null)
             Debug.LogError("main is not found!");
@@ -23,12 +26,19 @@ public class ReplayManager : MonoBehaviour {
     {
         Debug.LogWarning("level has started");
         startTime = Time.time;
+
+        isReplayMode = false;
+        StopCoroutine("PlayReplay");
         StartCoroutine("RecordEvents");
     }
 
     void LLevelCompleted()
     {
-        Debug.LogWarning("level was completed");
+        Debug.LogWarning("level was completed");        
+    }
+
+    internal void StartReplay()
+    {
         StopCoroutine("RecordEvents");
         startTime = Time.time;
         StartCoroutine("PlayReplay");
@@ -59,6 +69,7 @@ public class ReplayManager : MonoBehaviour {
 
     IEnumerator PlayReplay()
     {
+        isReplayMode = true;
         int index = 0;
         while (index < replayList.Count)
         {
@@ -80,6 +91,7 @@ public class ReplayManager : MonoBehaviour {
             yield return new WaitForFixedUpdate();            
         }
 
+        isReplayMode = false;
         Debug.LogWarning("Replay has ended");
     }
 }

@@ -99,8 +99,7 @@ public class SpriteManager : MonoBehaviour {
     /// </summary>
     /// <param name="currentAnimation">The name of the animation to play</param>
     public void Play(string currentAnimation)
-    {
-        Debug.Log(currentAnimation + " is played");
+    {        
         StopCoroutine("Animate");                       // Stop coroutine if it is currently running
 
         if ( gameObject.active != false )

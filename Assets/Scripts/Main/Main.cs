@@ -179,4 +179,10 @@ public class Main : MonoBehaviour
         map.RestartLevel();
         StartLevel();
     }
+
+    internal void PlayReplay()
+    {
+        map.RestartLevel();
+        StartLevel();
+    }
 }

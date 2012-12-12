@@ -46,6 +46,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Character\CharacterMotor.cs" />
      <Compile Include="Assets\Scripts\Character\MinibotController.cs" />
+     <Compile Include="Assets\Scripts\Character\MinibotList.cs" />
      <Compile Include="Assets\Scripts\Character\PlatformInputController.cs" />
      <Compile Include="Assets\Scripts\GUI\MainGame\GUILayout.cs" />
      <Compile Include="Assets\Scripts\GUI\MainGame\GUIManager.cs" />
@@ -83,6 +84,7 @@
      <Compile Include="Assets\Scripts\Objects\TriggerableBlocks.cs" />
      <Compile Include="Assets\Scripts\Objects\TriggerableHazard.cs" />
      <Compile Include="Assets\Scripts\Player\Minibot.cs" />
+     <Compile Include="Assets\Scripts\Player\MinibotInputHandler.cs" />
      <Compile Include="Assets\Scripts\Replays\ReplayEvent.cs" />
      <Compile Include="Assets\Scripts\Replays\ReplayManager.cs" />
      <Compile Include="Assets\Scripts\Sprites\SpriteManager.cs" />

@@ -112,7 +112,7 @@ public class MinibotController : MonoBehaviour
         if (grounded)
         {
             // Jump
-            if (canJump && Input.GetButton("Jump"))
+            if (canJump && Registry.inputHandler.JumpButton)
             {
                 if ( invertGravity )
                     rigidbody.velocity = new Vector3(velocity.x, -CalculateJumpVerticalSpeed(), velocity.z);

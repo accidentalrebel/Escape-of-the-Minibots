@@ -81,7 +81,7 @@ public class Switch : LevelObject {
 	void Update () {
         if (isTriggered)
         {
-            if (Input.GetKeyUp(KeyCode.X))
+            if (Registry.inputHandler.UseButton)
             {
                 LevelObject objectToUse;
                 if (posOfObjectToActivate1 != Vector3.zero)

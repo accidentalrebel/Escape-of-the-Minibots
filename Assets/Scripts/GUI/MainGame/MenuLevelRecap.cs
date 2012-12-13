@@ -16,11 +16,11 @@ public class MenuLevelRecap : Menu {
 
         if (isVisible)
         {
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (Registry.inputHandler.JumpButton)
             {
                 GoToNextLevel();
             }
-            else if (Input.GetKeyDown(KeyCode.X))
+            else if (Registry.inputHandler.UseButton)
             {
                 RestartLevel();
             }

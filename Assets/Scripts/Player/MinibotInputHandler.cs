@@ -11,9 +11,13 @@ public class MinibotInputHandler : MonoBehaviour {
     internal float YAxis
     { get { return yAxis; } }
 
-    bool jumpButton = false;
+    bool jumpButton = false;    
     internal bool JumpButton
     { get { return jumpButton; } }
+
+    bool useButton = false ;
+    internal bool UseButton
+    { get { return useButton; } }
 
 	// Use this for initialization
 	void Start () {
@@ -25,5 +29,6 @@ public class MinibotInputHandler : MonoBehaviour {
         xAxis = Input.GetAxis("Horizontal");
         yAxis = Input.GetAxis("Vertical");
         jumpButton = Input.GetButton("Jump");
+        useButton = Input.GetKeyDown(KeyCode.X);
 	}
 }

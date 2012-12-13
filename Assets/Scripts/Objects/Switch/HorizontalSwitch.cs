@@ -17,7 +17,7 @@ public class HorizontalSwitch : Switch {
     {
         if (isTriggered)
         {
-            if (Input.GetKeyUp(KeyCode.X))
+            if (Registry.inputHandler.UseButton)
             { 
                 triggeredCollider.gameObject.GetComponent<MinibotController>().InvertHorizontal();
             }

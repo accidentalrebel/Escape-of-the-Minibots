@@ -3,11 +3,15 @@ using System.Collections;
 
 public class MinibotInputHandler : MonoBehaviour {
 
-    bool moveRight = false;
-    internal bool MoveRight
+    float xAxis = 0;
+    internal float XAxis
     {
-        get { return moveRight; }
-        set { moveRight = value; }
+        get { return xAxis; }
+    }
+    float yAxis = 0;
+    internal float YAxis
+    {
+        get { return yAxis; }
     }
 
 	// Use this for initialization
@@ -17,13 +21,7 @@ public class MinibotInputHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            moveRight = true;
-        }
-        else if (Input.GetKeyUp(KeyCode.D))
-        {
-            moveRight = false;
-        }
+        xAxis = Input.GetAxis("Horizontal");
+        yAxis = Input.GetAxis("Vertical");
 	}
 }

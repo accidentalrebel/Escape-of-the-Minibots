@@ -24,10 +24,6 @@ public class MenuLevelRecap : Menu {
             {
                 RestartLevel();
             }
-            else if (Input.GetKeyDown(KeyCode.C))
-            {
-                PlayReplay();
-            }
         }
     }
 
@@ -45,13 +41,6 @@ public class MenuLevelRecap : Menu {
     private void GoToNextLevel()
     {
         Registry.main.GoToNextLevel();
-        Hide();
-    }
-
-    private void PlayReplay()
-    {
-        Registry.main.PlayReplay();
-        Registry.replayManager.StartReplay();
         Hide();
     }
 

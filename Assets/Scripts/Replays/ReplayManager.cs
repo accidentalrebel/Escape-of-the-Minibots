@@ -12,7 +12,7 @@ public class ReplayManager : MonoBehaviour {
 	// Use this for initialization
 	void Awake () 
     {
-        Registry.replayManager = this;
+        //Registry.replayManager = this;
 
         main = GetComponent<Main>();
         if (main == null)
@@ -86,12 +86,12 @@ public class ReplayManager : MonoBehaviour {
                 if (currentEvent.eventType == ReplayEvent.EventType.PressedRight)
                 {
                     Debug.Log("Pressed at " + (Time.time - startTime).ToString());
-                    Registry.inputHandler.MoveRight = true;
+                    //Registry.inputHandler.XAxis = true;
                 }
                 else if (currentEvent.eventType == ReplayEvent.EventType.ReleasedRight)
                 {
                     Debug.Log("Released at " + (Time.time - startTime).ToString());
-                    Registry.inputHandler.MoveRight = false;
+                    //Registry.inputHandler.XAxis = false;
                 }
                 index++;
             }

@@ -69,8 +69,8 @@ public class MinibotController : MonoBehaviour
 
     void FixedUpdate()
     {
-        float xInput = Input.GetAxis("Horizontal");
-        float yInput = Input.GetAxis("Vertical");
+        float xInput = Registry.inputHandler.XAxis;
+        float yInput = Registry.inputHandler.YAxis;
         if (invertGravity)
             xInput = -xInput;
         if (invertHorizontal)        
@@ -83,10 +83,9 @@ public class MinibotController : MonoBehaviour
             player.Walking();
 
         // We then handle the facing
-        if (Registry.inputHandler.MoveRight)
+        if (xInput > 0)
         {
             player.IsFacing = Minibot.Direction.Right;
-            xInput = 1;
         }
         else if (xInput < 0)
         {

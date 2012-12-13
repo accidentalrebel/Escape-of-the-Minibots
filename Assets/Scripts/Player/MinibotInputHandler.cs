@@ -17,16 +17,13 @@ public class MinibotInputHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if ( !Registry.replayManager.isReplayMode)
+        if (Input.GetKeyDown(KeyCode.D))
         {
-            if (Input.GetKeyDown(KeyCode.D))
-            {
-                moveRight = true;
-            }
-            else if (Input.GetKeyUp(KeyCode.D))
-            {
-                moveRight = false;
-            }
+            moveRight = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.D))
+        {
+            moveRight = false;
         }
 	}
 }

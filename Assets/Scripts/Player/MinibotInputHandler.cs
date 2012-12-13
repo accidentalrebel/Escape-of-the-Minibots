@@ -19,6 +19,10 @@ public class MinibotInputHandler : MonoBehaviour {
     internal bool UseButton
     { get { return useButton; } }
 
+    bool pickupButton = false;
+    internal bool PickupButton
+    { get { return pickupButton; } }
+
 	// Use this for initialization
 	void Start () {
         Registry.inputHandler = this;
@@ -30,5 +34,6 @@ public class MinibotInputHandler : MonoBehaviour {
         yAxis = Input.GetAxis("Vertical");
         jumpButton = Input.GetButton("Jump");
         useButton = Input.GetKeyDown(KeyCode.X);
+        pickupButton = Input.GetKeyDown(KeyCode.C);
 	}
 }

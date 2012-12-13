@@ -45,14 +45,14 @@ public class Minibot : LevelObject {
 	
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C)
+        if ( Registry.inputHandler.PickupButton
             && objectBeingCarried != null)
         {
             PutDown(objectBeingCarried);
         }
 
         // Handles the picking up of objects
-        if (Input.GetKeyDown(KeyCode.C)
+        if (Registry.inputHandler.PickupButton
             && objectBeingCarried ==  null )
         {
             GameObject objectAtSide = GetObjectAtSide(isFacing);

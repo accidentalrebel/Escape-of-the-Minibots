@@ -92,6 +92,8 @@ public class Main : MonoBehaviour
     {
         EUpdateMinibotCount();
         ELevelStarted();
+
+        Registry.replayManager.StartRecording();
     }
 
     // ************************************************************************************

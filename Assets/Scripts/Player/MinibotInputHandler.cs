@@ -31,6 +31,7 @@ public class MinibotInputHandler : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         xAxis = Input.GetAxis("Horizontal");
+
         if (Input.GetKeyDown(KeyCode.D))
             Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedRight);
 

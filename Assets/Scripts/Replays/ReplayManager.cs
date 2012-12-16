@@ -25,4 +25,25 @@ public class ReplayManager : MonoBehaviour {
         newEvent.Initialize(eventTime - startTime, eventType);
         eventList.Add(newEvent);
     }
+
+    internal void StartReplay()
+    {
+        StartCoroutine("Replay");
+    }
+
+    IEnumerator Replay()
+    {
+        int index = 0;
+        float replayStartTime = Time.time;
+        while ( index < eventList.Count )
+        {
+            ReplayEvent currentEvent = eventList[index];
+            yield return new WaitForSeconds(replayStartTime + currentEvent.timeTriggered - Time.time);
+            Debug.Log("Moved right!");
+
+            index++;
+        }
+
+        Debug.LogWarning("Replay has ended");
+    }
 }

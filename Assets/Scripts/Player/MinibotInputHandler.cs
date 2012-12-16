@@ -3,6 +3,8 @@ using System.Collections;
 
 public class MinibotInputHandler : MonoBehaviour {
 
+    public float axisSensitivity = 0.1f;
+
     float xAxis = 0;
     internal float XAxis
     { get { return xAxis; } }
@@ -24,7 +26,6 @@ public class MinibotInputHandler : MonoBehaviour {
     { get { return pickupButton; } }
 
     private bool hasPressedRight = false;
-    private float simulatedXAxis = 0;
     private bool hasPressedLeft;
 
 	// Use this for initialization
@@ -65,7 +66,7 @@ public class MinibotInputHandler : MonoBehaviour {
             ReleasedLeft();
         }
 
-        HandleSimulatedAxis();
+        HandleAxis();
 
         //yAxis = Input.GetAxis("Vertical");
         jumpButton = Input.GetButton("Jump");
@@ -73,30 +74,28 @@ public class MinibotInputHandler : MonoBehaviour {
         pickupButton = Input.GetKeyDown(KeyCode.C);
 	}
 
-    private void HandleSimulatedAxis()
+    private void HandleAxis()
     {
         if ( hasPressedRight)
-            simulatedXAxis += 0.1f;
+            xAxis += axisSensitivity;
         else if (hasPressedLeft)
-            simulatedXAxis -= 0.1f;        
+            xAxis -= axisSensitivity;        
         // If no keys are pressed
         else
         {
-            if (simulatedXAxis > 0.1f)
-                simulatedXAxis -= 0.1f;
-            else if (simulatedXAxis < -0.1f)
-                simulatedXAxis += 0.1f;
+            if (xAxis > axisSensitivity)
+                xAxis -= axisSensitivity;
+            else if (xAxis < -axisSensitivity)
+                xAxis += axisSensitivity;
             else
-                simulatedXAxis = 0;
+                xAxis = 0;
         }
 
         // We cap the values to 1 and -1
-        if (simulatedXAxis > 1)
-            simulatedXAxis = 1;
-        else if (simulatedXAxis < -1)
-            simulatedXAxis = -1;
-
-        xAxis = simulatedXAxis;
+        if (xAxis > 1)
+            xAxis = 1;
+        else if (xAxis < -1)
+            xAxis = -1;
     }
 
     internal void PressedRight()

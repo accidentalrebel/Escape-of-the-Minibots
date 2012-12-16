@@ -69,11 +69,26 @@ public class MinibotInputHandler : MonoBehaviour {
         HandleAxis();
 
         //yAxis = Input.GetAxis("Vertical");
-        jumpButton = Input.GetButton("Jump");
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            if (!Registry.replayManager.isReplayMode)
+                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedJump);
+
+            PressedJump();
+        }
+        else if (Input.GetButtonUp("Jump"))
+        {
+            if (!Registry.replayManager.isReplayMode)
+                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedJump);
+
+            ReleasedJump();
+        }
+        
         useButton = Input.GetKeyDown(KeyCode.X);
         pickupButton = Input.GetKeyDown(KeyCode.C);
 	}
-
+        
     private void HandleAxis()
     {
         if ( hasPressedRight)
@@ -116,5 +131,15 @@ public class MinibotInputHandler : MonoBehaviour {
     internal void ReleasedLeft()
     {
         hasPressedLeft = false;
+    }
+
+    internal void PressedJump()
+    {
+        jumpButton = true;
+    }
+
+    internal void ReleasedJump()
+    {
+        jumpButton = false;
     }
 }

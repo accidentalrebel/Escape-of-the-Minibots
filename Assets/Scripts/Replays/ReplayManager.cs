@@ -16,7 +16,7 @@ public class ReplayManager : MonoBehaviour {
 
     internal void StartRecording()
     {
-        startTime = Time.time;
+        startTime = Time.time;        
     }
 
     internal void AddEvent(float eventTime, ReplayEvent.EventType eventType)
@@ -61,6 +61,16 @@ public class ReplayManager : MonoBehaviour {
             {
                 Debug.Log("Released left at " + (Time.time - replayStartTime).ToString());
                 Registry.inputHandler.ReleasedLeft();
+            }
+            else if (currentEvent.eventType == ReplayEvent.EventType.PressedJump)
+            {
+                Debug.Log("Pressed jump at " + (Time.time - replayStartTime).ToString());
+                Registry.inputHandler.PressedJump();
+            }
+            else if (currentEvent.eventType == ReplayEvent.EventType.ReleasedJump)
+            {
+                Debug.Log("Released jump at " + (Time.time - replayStartTime).ToString());
+                Registry.inputHandler.ReleasedJump();
             }
 
             index++;

@@ -52,6 +52,16 @@ public class ReplayManager : MonoBehaviour {
                 Debug.Log("Released right at " + (Time.time - replayStartTime).ToString());
                 Registry.inputHandler.ReleasedRight();
             }
+            else if (currentEvent.eventType == ReplayEvent.EventType.PressedLeft)
+            {
+                Debug.Log("Pressed left at " + (Time.time - replayStartTime).ToString());
+                Registry.inputHandler.PressedLeft();
+            }
+            else if (currentEvent.eventType == ReplayEvent.EventType.ReleasedLeft)
+            {
+                Debug.Log("Released left at " + (Time.time - replayStartTime).ToString());
+                Registry.inputHandler.ReleasedLeft();
+            }
 
             index++;
         }

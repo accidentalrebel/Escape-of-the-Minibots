@@ -25,6 +25,7 @@ public class MinibotInputHandler : MonoBehaviour {
 
     private bool hasPressedRight = false;
     private float simulatedXAxis = 0;
+    private bool hasPressedLeft;
 
 	// Use this for initialization
 	void Start () {
@@ -49,6 +50,20 @@ public class MinibotInputHandler : MonoBehaviour {
             
             ReleasedRight();
         }
+        else if (Input.GetKeyDown(KeyCode.A))
+        {
+            if ( !Registry.replayManager.isReplayMode )
+                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedLeft);
+            
+            PressedLeft();            
+        }
+        else if (Input.GetKeyUp(KeyCode.A))
+        {
+            if (!Registry.replayManager.isReplayMode)
+                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedLeft);
+            
+            ReleasedLeft();
+        }
 
         HandleSimulatedAxis();
 
@@ -60,20 +75,26 @@ public class MinibotInputHandler : MonoBehaviour {
 
     private void HandleSimulatedAxis()
     {
-        if (hasPressedRight)
-        {
+        if ( hasPressedRight)
             simulatedXAxis += 0.1f;
-
-            if (simulatedXAxis > 1)
-                simulatedXAxis = 1;
-        }
+        else if (hasPressedLeft)
+            simulatedXAxis -= 0.1f;        
+        // If no keys are pressed
         else
         {
-            simulatedXAxis -= 0.1f;
-            
-            if (simulatedXAxis < 0)
+            if (simulatedXAxis > 0.1f)
+                simulatedXAxis -= 0.1f;
+            else if (simulatedXAxis < -0.1f)
+                simulatedXAxis += 0.1f;
+            else
                 simulatedXAxis = 0;
         }
+
+        // We cap the values to 1 and -1
+        if (simulatedXAxis > 1)
+            simulatedXAxis = 1;
+        else if (simulatedXAxis < -1)
+            simulatedXAxis = -1;
 
         xAxis = simulatedXAxis;
     }
@@ -86,5 +107,15 @@ public class MinibotInputHandler : MonoBehaviour {
     internal void ReleasedRight()
     {
         hasPressedRight = false;
+    }
+
+    internal void PressedLeft()
+    {
+        hasPressedLeft = true;
+    }
+
+    internal void ReleasedLeft()
+    {
+        hasPressedLeft = false;
     }
 }

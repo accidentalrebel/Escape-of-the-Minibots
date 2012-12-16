@@ -33,32 +33,26 @@ public class MinibotInputHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        HandleSimulatedAxis();
-        //if (hasPressedRight == false)
-        //    xAxis = Input.GetAxis("Horizontal");
-        //else
-        //    xAxis = 1;
-        xAxis = simulatedXAxis;
-        if (Registry.replayManager.isReplayMode)
+        
+        if (Input.GetKeyDown(KeyCode.D))
         {
-            xAxis = simulatedXAxis;
-        }
-        else
-        {
-            if (Input.GetKeyDown(KeyCode.D))
-            {
+            if ( !Registry.replayManager.isReplayMode )
                 Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedRight);
-                PressedRight();
-                
-            }
-            else if (Input.GetKeyUp(KeyCode.D))
-            {
+            
+            PressedRight();
+            
+        }
+        else if (Input.GetKeyUp(KeyCode.D))
+        {
+            if (!Registry.replayManager.isReplayMode)
                 Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedRight);
-                ReleasedRight();
-            }
+            
+            ReleasedRight();
         }
 
-        yAxis = Input.GetAxis("Vertical");
+        HandleSimulatedAxis();
+
+        //yAxis = Input.GetAxis("Vertical");
         jumpButton = Input.GetButton("Jump");
         useButton = Input.GetKeyDown(KeyCode.X);
         pickupButton = Input.GetKeyDown(KeyCode.C);
@@ -73,6 +67,15 @@ public class MinibotInputHandler : MonoBehaviour {
             if (simulatedXAxis > 1)
                 simulatedXAxis = 1;
         }
+        else
+        {
+            simulatedXAxis -= 0.1f;
+            
+            if (simulatedXAxis < 0)
+                simulatedXAxis = 0;
+        }
+
+        xAxis = simulatedXAxis;
     }
 
     internal void PressedRight()
@@ -83,6 +86,5 @@ public class MinibotInputHandler : MonoBehaviour {
     internal void ReleasedRight()
     {
         hasPressedRight = false;
-        simulatedXAxis = 0;
     }
 }

@@ -31,6 +31,9 @@ public class MinibotInputHandler : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         xAxis = Input.GetAxis("Horizontal");
+        if (Input.GetKeyDown(KeyCode.D))
+            Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedRight);
+
         yAxis = Input.GetAxis("Vertical");
         jumpButton = Input.GetButton("Jump");
         useButton = Input.GetKeyDown(KeyCode.X);

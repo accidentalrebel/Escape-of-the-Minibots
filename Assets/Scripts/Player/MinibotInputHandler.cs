@@ -24,6 +24,7 @@ public class MinibotInputHandler : MonoBehaviour {
     { get { return pickupButton; } }
 
     private bool hasPressedRight = false;
+    private float simulatedXAxis = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -32,32 +33,28 @@ public class MinibotInputHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        HandleSimulatedAxis();
         //if (hasPressedRight == false)
         //    xAxis = Input.GetAxis("Horizontal");
         //else
         //    xAxis = 1;
+        xAxis = simulatedXAxis;
         if (Registry.replayManager.isReplayMode)
         {
-            if (hasPressedRight)
-            {
-                xAxis = 1;
-            }
-            else
-            {
-                xAxis = 0;
-            }
+            xAxis = simulatedXAxis;
         }
         else
         {
             if (Input.GetKeyDown(KeyCode.D))
             {
                 Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedRight);
-                xAxis = 1;
+                PressedRight();
+                
             }
             else if (Input.GetKeyUp(KeyCode.D))
             {
                 Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedRight);
-                xAxis = 0;
+                ReleasedRight();
             }
         }
 
@@ -67,6 +64,17 @@ public class MinibotInputHandler : MonoBehaviour {
         pickupButton = Input.GetKeyDown(KeyCode.C);
 	}
 
+    private void HandleSimulatedAxis()
+    {
+        if (hasPressedRight)
+        {
+            simulatedXAxis += 0.1f;
+
+            if (simulatedXAxis > 1)
+                simulatedXAxis = 1;
+        }
+    }
+
     internal void PressedRight()
     {
         hasPressedRight = true;
@@ -75,5 +83,6 @@ public class MinibotInputHandler : MonoBehaviour {
     internal void ReleasedRight()
     {
         hasPressedRight = false;
+        simulatedXAxis = 0;
     }
 }

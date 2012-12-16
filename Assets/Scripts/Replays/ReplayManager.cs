@@ -23,6 +23,7 @@ public class ReplayManager : MonoBehaviour {
     {
         ReplayEvent newEvent = new ReplayEvent();
         newEvent.Initialize(eventTime - startTime, eventType);
+        Debug.Log("Logged event at " + (eventTime - startTime).ToString());
         eventList.Add(newEvent);
     }
 
@@ -33,17 +34,29 @@ public class ReplayManager : MonoBehaviour {
 
     IEnumerator Replay()
     {
+        isReplayMode = true;
         int index = 0;
         float replayStartTime = Time.time;
         while ( index < eventList.Count )
         {
             ReplayEvent currentEvent = eventList[index];
             yield return new WaitForSeconds(replayStartTime + currentEvent.timeTriggered - Time.time);
-            Debug.Log("Moved right!");
+
+            if (currentEvent.eventType == ReplayEvent.EventType.PressedRight)
+            {
+                Debug.Log("Moved right at " + (Time.time - replayStartTime).ToString());
+                Registry.inputHandler.PressedRight();
+            }
+            else if (currentEvent.eventType == ReplayEvent.EventType.ReleasedRight)
+            {
+                Debug.Log("Released right at " + (Time.time - replayStartTime).ToString());
+                Registry.inputHandler.ReleasedRight();
+            }
 
             index++;
         }
 
+        isReplayMode = false;
         Debug.LogWarning("Replay has ended");
     }
 }

@@ -27,6 +27,7 @@ public class MenuLevelRecap : Menu {
             else if (Registry.inputHandler.PickupButton)
             {
                 Registry.replayManager.StartReplay();
+                RestartLevel();
             }
         }
     }

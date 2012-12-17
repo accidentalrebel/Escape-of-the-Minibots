@@ -78,7 +78,7 @@ public class Switch : LevelObject {
     //}
 	
 	// Update is called once per frame
-	void Update () {
+	void LateUpdate () {
         if (isTriggered)
         {
             if (Registry.inputHandler.UseButton)

@@ -23,7 +23,6 @@ public class ReplayManager : MonoBehaviour {
     {
         ReplayEvent newEvent = new ReplayEvent();
         newEvent.Initialize(eventTime - startTime, eventType);
-        Debug.Log("Logged event at " + (eventTime - startTime).ToString());
         eventList.Add(newEvent);
     }
 
@@ -44,39 +43,37 @@ public class ReplayManager : MonoBehaviour {
 
             if (currentEvent.eventType == ReplayEvent.EventType.PressedRight)
             {
-                Debug.Log("Moved right at " + (Time.time - replayStartTime).ToString());
                 Registry.inputHandler.PressedRight();
             }
             else if (currentEvent.eventType == ReplayEvent.EventType.ReleasedRight)
             {
-                Debug.Log("Released right at " + (Time.time - replayStartTime).ToString());
                 Registry.inputHandler.ReleasedRight();
             }
             else if (currentEvent.eventType == ReplayEvent.EventType.PressedLeft)
             {
-                Debug.Log("Pressed left at " + (Time.time - replayStartTime).ToString());
                 Registry.inputHandler.PressedLeft();
             }
             else if (currentEvent.eventType == ReplayEvent.EventType.ReleasedLeft)
             {
-                Debug.Log("Released left at " + (Time.time - replayStartTime).ToString());
                 Registry.inputHandler.ReleasedLeft();
             }
             else if (currentEvent.eventType == ReplayEvent.EventType.PressedJump)
             {
-                Debug.Log("Pressed jump at " + (Time.time - replayStartTime).ToString());
                 Registry.inputHandler.PressedJump();
             }
             else if (currentEvent.eventType == ReplayEvent.EventType.ReleasedJump)
             {
-                Debug.Log("Released jump at " + (Time.time - replayStartTime).ToString());
                 Registry.inputHandler.ReleasedJump();
+            }
+            else if (currentEvent.eventType == ReplayEvent.EventType.PressedUse)
+            {
+                Registry.inputHandler.PressedUse();
             }
 
             index++;
         }
 
         isReplayMode = false;
-        Debug.LogWarning("Replay has ended");
+        Debug.Log("Replay has ended");
     }
 }

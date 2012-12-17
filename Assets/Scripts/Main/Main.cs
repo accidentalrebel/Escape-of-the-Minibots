@@ -14,6 +14,7 @@ public class Main : MonoBehaviour
     internal LevelEditor levelEditor;
     Settings settings;
     List<Minibot> minibotList = new List<Minibot>();
+    public string mapToLoad = "1";
 
     int minibotCountAtStart;
 
@@ -48,7 +49,7 @@ public class Main : MonoBehaviour
         if ( settings != null )
             map.levelReader.LoadLevel(settings.InitialLevelToLoad.ToString());
         else
-            map.levelReader.LoadLevel("1");
+            map.levelReader.LoadLevel(mapToLoad);
     }
 
     void Update()

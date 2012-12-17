@@ -35,7 +35,6 @@ public class MinibotInputHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
         if (Input.GetKeyDown(KeyCode.D))
         {
             if ( !Registry.replayManager.isReplayMode )
@@ -62,15 +61,10 @@ public class MinibotInputHandler : MonoBehaviour {
         {
             if (!Registry.replayManager.isReplayMode)
                 Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedLeft);
-            
+
             ReleasedLeft();
         }
-
-        HandleAxis();
-
-        //yAxis = Input.GetAxis("Vertical");
-
-        if (Input.GetButtonDown("Jump"))
+        else if (Input.GetButtonDown("Jump"))
         {
             if (!Registry.replayManager.isReplayMode)
                 Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedJump);
@@ -84,10 +78,23 @@ public class MinibotInputHandler : MonoBehaviour {
 
             ReleasedJump();
         }
+        else if (Input.GetKeyDown(KeyCode.X))
+        {
+            if (!Registry.replayManager.isReplayMode)
+                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedUse);
+
+            PressedUse();
+        }
+
+        HandleAxis();
         
-        useButton = Input.GetKeyDown(KeyCode.X);
         pickupButton = Input.GetKeyDown(KeyCode.C);
 	}
+
+    void LateUpdate()
+    {
+        useButton = false;
+    }
         
     private void HandleAxis()
     {
@@ -141,5 +148,15 @@ public class MinibotInputHandler : MonoBehaviour {
     internal void ReleasedJump()
     {
         jumpButton = false;
+    }
+
+    internal void PressedUse()
+    {        
+        useButton = true;
+    }
+
+    internal void ReleasedUse()
+    {
+        useButton = false;
     }
 }

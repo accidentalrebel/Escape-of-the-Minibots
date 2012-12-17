@@ -31,6 +31,12 @@ public class ReplayManager : MonoBehaviour {
         StartCoroutine("Replay");
     }
 
+    internal void StopReplay()
+    {
+        StopCoroutine("Replay");
+        isReplayMode = false;
+    }
+
     IEnumerator Replay()
     {
         isReplayMode = true;

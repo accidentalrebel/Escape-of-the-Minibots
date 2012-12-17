@@ -12,6 +12,7 @@ public class Main : MonoBehaviour
     Map map;
     internal Timer timer;
     internal LevelEditor levelEditor;
+    internal bool levelActive = false;
     Settings settings;
     List<Minibot> minibotList = new List<Minibot>();
     public string mapToLoad = "1";
@@ -94,6 +95,7 @@ public class Main : MonoBehaviour
         EUpdateMinibotCount();
         ELevelStarted();
 
+        levelActive = true;
         Registry.replayManager.StartRecording();
     }
 
@@ -119,6 +121,7 @@ public class Main : MonoBehaviour
     private void LevelCompleted()
     {
         Debug.Log("LEVEL IS OVER!");
+        levelActive = false;
         
         // Just restart the game automatically if in mapEditMode
         if (levelEditor != null
@@ -178,12 +181,6 @@ public class Main : MonoBehaviour
     /// Restarts the game
     /// </summary>
     internal void RestartLevel()
-    {
-        map.RestartLevel();
-        StartLevel();
-    }
-
-    internal void PlayReplay()
     {
         map.RestartLevel();
         StartLevel();

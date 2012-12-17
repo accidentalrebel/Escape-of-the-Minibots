@@ -31,70 +31,86 @@ public class MinibotInputHandler : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Registry.inputHandler = this;
+        Registry.main.ELevelCompleted += ResetInput;
+        Registry.main.ELevelStarted += ResetInput;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            if ( !Registry.replayManager.isReplayMode )
-                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedRight);
-            
-            PressedRight();
-            
-        }
-        else if (Input.GetKeyUp(KeyCode.D))
-        {
-            if (!Registry.replayManager.isReplayMode)
-                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedRight);
-            
-            ReleasedRight();
-        }
-        else if (Input.GetKeyDown(KeyCode.A))
-        {
-            if ( !Registry.replayManager.isReplayMode )
-                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedLeft);
-            
-            PressedLeft();            
-        }
-        else if (Input.GetKeyUp(KeyCode.A))
-        {
-            if (!Registry.replayManager.isReplayMode)
-                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedLeft);
 
-            ReleasedLeft();
-        }
-        else if (Input.GetButtonDown("Jump"))
+        if (!Registry.replayManager.isReplayMode)
         {
-            if (!Registry.replayManager.isReplayMode)
-                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedJump);
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                if (!Registry.replayManager.isReplayMode)
+                    Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedRight);
 
-            PressedJump();
-        }
-        else if (Input.GetButtonUp("Jump"))
-        {
-            if (!Registry.replayManager.isReplayMode)
-                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedJump);
+                PressedRight();
 
-            ReleasedJump();
-        }
-        else if (Input.GetKeyDown(KeyCode.X))
-        {
-            if (!Registry.replayManager.isReplayMode)
-                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedUse);
+            }
+            else if (Input.GetKeyUp(KeyCode.D))
+            {
+                if (!Registry.replayManager.isReplayMode)
+                    Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedRight);
 
-            PressedUse();
-        }
-        else if (Input.GetKeyDown(KeyCode.C))
-        {
-            if (!Registry.replayManager.isReplayMode)
-                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedPickUp);
+                ReleasedRight();
+            }
+            else if (Input.GetKeyDown(KeyCode.A))
+            {
+                if (!Registry.replayManager.isReplayMode)
+                    Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedLeft);
 
-            PressedPickUp();
+                PressedLeft();
+            }
+            else if (Input.GetKeyUp(KeyCode.A))
+            {
+                if (!Registry.replayManager.isReplayMode)
+                    Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedLeft);
+
+                ReleasedLeft();
+            }
+            else if (Input.GetButtonDown("Jump"))
+            {
+                if (!Registry.replayManager.isReplayMode)
+                    Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedJump);
+
+                PressedJump();
+            }
+            else if (Input.GetButtonUp("Jump"))
+            {
+                if (!Registry.replayManager.isReplayMode)
+                    Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedJump);
+
+                ReleasedJump();
+            }
+            else if (Input.GetKeyDown(KeyCode.X))
+            {
+                if (!Registry.replayManager.isReplayMode)
+                    Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedUse);
+
+                PressedUse();
+            }
+            else if (Input.GetKeyDown(KeyCode.C))
+            {
+                if (!Registry.replayManager.isReplayMode)
+                    Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedPickUp);
+
+                PressedPickUp();
+            }
         }
 
         HandleAxis();
 	}
+
+    void ResetInput()
+    {
+        hasPressedLeft = false;
+        hasPressedRight = false;
+        useButton = false;
+        pickupButton = false;
+        xAxis = 0;
+        jumpButton = false;
+    }
 
     void LateUpdate()
     {

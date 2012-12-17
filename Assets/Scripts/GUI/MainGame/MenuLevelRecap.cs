@@ -16,17 +16,12 @@ public class MenuLevelRecap : Menu {
 
         if (isVisible)
         {
-            if (Registry.inputHandler.JumpButton)
+            if (Input.GetKeyDown(KeyCode.Z))
             {
                 GoToNextLevel();
             }
-            else if (Registry.inputHandler.UseButton)
+            else if (Input.GetKeyDown(KeyCode.X))
             {
-                RestartLevel();
-            }
-            else if (Input.GetKeyDown(KeyCode.C))
-            {
-                Registry.replayManager.StartReplay();
                 RestartLevel();
             }
         }
@@ -35,17 +30,21 @@ public class MenuLevelRecap : Menu {
     void LevelCompleted()
     {
         Show();
+        Registry.replayManager.StartReplay();
+        Registry.main.RestartLevel();
     }
 
     private void RestartLevel()
     {
+        Registry.replayManager.StopReplay();
         Registry.main.RestartLevel();
         Hide();
     }
 
     private void GoToNextLevel()
     {
-        Registry.main.GoToNextLevel();
+        Registry.replayManager.StopReplay();
+        Registry.main.GoToNextLevel();        
         Hide();
     }
 

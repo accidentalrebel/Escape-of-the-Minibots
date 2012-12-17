@@ -4,20 +4,25 @@ using System;
 
 public class PlayTestManager : MonoBehaviour {
 
+    public bool enableSendingPlaytestData = true;
+
     void Start()
     {
-        Registry.playtestManager = this;
+        Registry.playtestManager = this;        
     }
 
     internal void SendPlaytestData()
     {
-        string replayData = Registry.replayManager.GetReplayDataString();
-        string username = "Karlo";
-        string completionTime = "8888";
-        string timeStamp = DateTime.Now.Month + "-" + DateTime.Now.Day + "-" + DateTime.Now.Year + "-" + DateTime.Now.Hour + DateTime.Now.Minute;
-        string fileData = Registry.map.currentLevel + "^" + timeStamp + "^" + completionTime + "^" + username + "^" + replayData;
-        string level = Registry.map.currentLevel;
-        StartCoroutine(UploadData(level, fileData, username, timeStamp));
+        if (enableSendingPlaytestData)
+        {
+            string replayData = Registry.replayManager.GetReplayDataString();
+            string username = "Karlo";
+            string completionTime = "8888";
+            string timeStamp = DateTime.Now.Month + "-" + DateTime.Now.Day + "-" + DateTime.Now.Year + "-" + DateTime.Now.Hour + DateTime.Now.Minute;
+            string fileData = Registry.map.currentLevel + "^" + timeStamp + "^" + completionTime + "^" + username + "^" + replayData;
+            string level = Registry.map.currentLevel;
+            StartCoroutine(UploadData(level, fileData, username, timeStamp));
+        }
     }
 
     public IEnumerator UploadData(string level, string fileData, string username, string timeStamp)

@@ -18,6 +18,7 @@ public class MenuLevelRecap : Menu {
         {
             if (Input.GetKeyDown(KeyCode.Z))
             {
+                Debug.Log(Registry.replayManager.GetReplayData());
                 GoToNextLevel();
             }
             else if (Input.GetKeyDown(KeyCode.X))

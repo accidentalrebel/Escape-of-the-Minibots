@@ -90,4 +90,15 @@ public class ReplayManager : MonoBehaviour {
         isReplayMode = false;
         Debug.Log("Replay has ended");
     }
+
+    internal string GetReplayData()
+    {
+        string replayData = "";
+        foreach ( ReplayEvent replayEvent in eventList )
+        {
+            replayData += (replayEvent.timeTriggered.ToString("f4") + "@" + ((int)replayEvent.eventType).ToString()) + "#";
+        }
+
+        return replayData;
+    }
 }

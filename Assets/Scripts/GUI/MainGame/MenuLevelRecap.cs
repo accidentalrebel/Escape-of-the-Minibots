@@ -17,8 +17,7 @@ public class MenuLevelRecap : Menu {
         if (isVisible)
         {
             if (Input.GetKeyDown(KeyCode.Z))
-            {
-                Debug.Log(Registry.replayManager.GetReplayData());
+            {                
                 GoToNextLevel();
             }
             else if (Input.GetKeyDown(KeyCode.X))
@@ -37,6 +36,7 @@ public class MenuLevelRecap : Menu {
 
     private void RestartLevel()
     {
+        Registry.playtestManager.SendPlaytestData();
         Registry.replayManager.StopReplay();
         Registry.main.RestartLevel();
         Hide();
@@ -44,6 +44,7 @@ public class MenuLevelRecap : Menu {
 
     private void GoToNextLevel()
     {
+        Registry.playtestManager.SendPlaytestData();
         Registry.replayManager.StopReplay();
         Registry.main.GoToNextLevel();        
         Hide();

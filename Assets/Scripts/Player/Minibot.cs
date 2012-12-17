@@ -42,8 +42,17 @@ public class Minibot : LevelObject {
 
         InitializeSprite();
 	}
-	
+
     void Update()
+    {
+        // Handles the carrying of the object
+        if (objectBeingCarried != null)
+        {
+            objectBeingCarried.transform.position = transform.position + Vector3.up;
+        }
+    }
+	
+    void LateUpdate()
     {
         if ( Registry.inputHandler.PickupButton
             && objectBeingCarried != null)
@@ -62,12 +71,6 @@ public class Minibot : LevelObject {
             {
                 PickUp(objectAtSide);
             }
-        }
-
-        // Handles the carrying of the object
-        if (objectBeingCarried != null)
-        {
-            objectBeingCarried.transform.position = transform.position + Vector3.up;
         }
     }
     

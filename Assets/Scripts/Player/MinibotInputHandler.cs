@@ -85,15 +85,21 @@ public class MinibotInputHandler : MonoBehaviour {
 
             PressedUse();
         }
+        else if (Input.GetKeyDown(KeyCode.C))
+        {
+            if (!Registry.replayManager.isReplayMode)
+                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedPickUp);
+
+            PressedPickUp();
+        }
 
         HandleAxis();
-        
-        pickupButton = Input.GetKeyDown(KeyCode.C);
 	}
 
     void LateUpdate()
     {
         useButton = false;
+        pickupButton = false;
     }
         
     private void HandleAxis()
@@ -155,8 +161,8 @@ public class MinibotInputHandler : MonoBehaviour {
         useButton = true;
     }
 
-    internal void ReleasedUse()
+    internal void PressedPickUp()
     {
-        useButton = false;
+        pickupButton = true;
     }
 }

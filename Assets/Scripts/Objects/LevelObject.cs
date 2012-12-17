@@ -30,7 +30,7 @@ public class LevelObject : MonoBehaviour {
         //    Debug.LogWarning("spriteManger at " + gameObject.name + " can not be found!");
     }
 
-    virtual internal void Use(bool status)
+    virtual internal void Use(bool setToValue)
     {
         Debug.LogWarning("Has not been overriden!");
     }

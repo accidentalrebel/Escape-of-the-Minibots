@@ -33,9 +33,9 @@ public class Door : LevelObject {
             graphicHandler.theRenderer.material.color = Color.green;
     }
 
-    override internal void Use(bool status)
+    override internal void Use(bool setToValue)
     {
-        isOpen = status;
+        isOpen = setToValue;
         UpdateDoorGraphic();
     }
 

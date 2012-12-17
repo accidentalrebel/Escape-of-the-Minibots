@@ -233,14 +233,14 @@ public class Minibot : LevelObject {
     // Hides graphic and then doesn't allow movement.
     private void DisableMinibot()
     {
-        gameObject.SetActiveRecursively(false);
+        gameObject.SetActive(false);
     }
 
     // Disables this current minibsot
     // Shows graphic and then allows movement.
     private void EnableMinibot()
     {        
-        gameObject.SetActiveRecursively(true);
+        gameObject.SetActive(true);
     }
 
     // ************************************************************************************

@@ -19,7 +19,7 @@ public class TriggerableBlocks : LevelObject {
     // ************************************************************************************
     // MAIN
     // ************************************************************************************
-    virtual protected void Awake()
+    override protected void Awake()
     {
         dynamicSizeComponent = gameObject.GetComponent<DynamicSizeObject>();
         if (dynamicSizeComponent == null)
@@ -81,10 +81,9 @@ public class TriggerableBlocks : LevelObject {
     // ************************************************************************************
     // USAGE
     // ************************************************************************************
-    override internal void Use(bool status)
+    override internal void Use(bool setToValue)
     {
-        isHidden = status;
-
+        isHidden = setToValue;
         UpdateChildTiles();
     }
 

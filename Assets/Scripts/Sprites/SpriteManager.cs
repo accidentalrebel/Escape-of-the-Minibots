@@ -102,7 +102,7 @@ public class SpriteManager : MonoBehaviour {
     {        
         StopCoroutine("Animate");                       // Stop coroutine if it is currently running
 
-        if ( gameObject.active != false )
+        if ( gameObject.activeSelf != false )
             StartCoroutine("Animate", currentAnimation);    // Start animate coroutine
     }
 

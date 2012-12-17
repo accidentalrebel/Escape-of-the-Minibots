@@ -30,11 +30,25 @@ public class StepSwitch : Switch {
 	
     void OnTriggerEnter(Collider col)
     {
-        Trigger();
+        if (!isTriggered)
+        {
+            Debug.Log("OnTriggerEnter");
+            Trigger();
+        }
     }
 
     void OnTriggerExit()
     {
-        Trigger();
+        if (isTriggered)
+        {
+            Trigger();
+            Debug.Log("OnTriggerExit");
+        }
+    }
+
+    internal override void ResetObject()
+    {        
+        base.ResetObject();
+        isTriggered = false;
     }
 }

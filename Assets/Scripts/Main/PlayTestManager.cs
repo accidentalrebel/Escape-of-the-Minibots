@@ -13,8 +13,9 @@ public class PlayTestManager : MonoBehaviour {
     {
         string replayData = Registry.replayManager.GetReplayDataString();
         string username = "Karlo";
+        string completionTime = "8888";
         string timeStamp = DateTime.Now.Month + "-" + DateTime.Now.Day + "-" + DateTime.Now.Year + "-" + DateTime.Now.Hour + DateTime.Now.Minute;
-        string fileData = Registry.map.currentLevel + "^" + username + "^" + replayData;
+        string fileData = Registry.map.currentLevel + "^" + timeStamp + "^" + completionTime + "^" + username + "^" + replayData;
         string level = Registry.map.currentLevel;
         StartCoroutine(UploadData(level, fileData, username, timeStamp));
     }

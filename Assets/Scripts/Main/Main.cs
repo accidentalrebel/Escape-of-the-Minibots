@@ -96,6 +96,7 @@ public class Main : MonoBehaviour
         ELevelStarted();
 
         levelActive = true;
+                
         Registry.replayManager.StartRecording();
     }
 

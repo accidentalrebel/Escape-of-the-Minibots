@@ -16,7 +16,11 @@ public class ReplayManager : MonoBehaviour {
 
     internal void StartRecording()
     {
-        startTime = Time.time;        
+        if (isReplayMode)
+            return;
+
+        startTime = Time.time;
+        eventList.Clear();
     }
 
     internal void AddEvent(float eventTime, ReplayEvent.EventType eventType)
@@ -35,7 +39,7 @@ public class ReplayManager : MonoBehaviour {
     {
         StopCoroutine("Replay");
         isReplayMode = false;
-    }
+    }    
 
     IEnumerator Replay()
     {

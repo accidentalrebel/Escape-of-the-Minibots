@@ -93,11 +93,13 @@ public class Main : MonoBehaviour
     internal void StartLevel()
     {
         EUpdateMinibotCount();
-        ELevelStarted();
-
         levelActive = true;
-                
-        Registry.replayManager.StartRecording();
+
+        if (!Registry.replayManager.isReplayMode)
+        {
+            ELevelStarted();
+            Registry.replayManager.StartRecording();
+        }
     }
 
     // ************************************************************************************

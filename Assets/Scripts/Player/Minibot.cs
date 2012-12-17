@@ -206,6 +206,7 @@ public class Minibot : LevelObject {
 
     override internal void ResetObject()
     {
+        Debug.Log("Moved minibot");
         // We drop anything that minibot is carrying
         if (objectBeingCarried != null)
             objectBeingCarried = null;

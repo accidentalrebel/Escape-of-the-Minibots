@@ -87,17 +87,17 @@ public class Switch : LevelObject {
                 if (posOfObjectToActivate1 != Vector3.zero)
                 {
                     objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate1);
-                    objectToUse.Use();
+                    objectToUse.Use(isTriggered);
                 }
                 if (posOfObjectToActivate2 != Vector3.zero)
                 {
                     objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate2);
-                    objectToUse.Use();
+                    objectToUse.Use(isTriggered);
                 }
                 if (posOfObjectToActivate3 != Vector3.zero)
                 {
                     objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate3);
-                    objectToUse.Use();
+                    objectToUse.Use(isTriggered);
                 }
             }
         }

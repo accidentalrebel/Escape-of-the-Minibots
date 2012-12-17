@@ -13,7 +13,7 @@ public class PlayTestManager : MonoBehaviour {
     {
         string replayData = Registry.replayManager.GetReplayDataString();
         string username = "Karlo";
-        string timeStamp = DateTime.Now.ToShortDateString() + "-" + DateTime.Now.Hour.ToString("00") + DateTime.Now.Minute;
+        string timeStamp = DateTime.Now.Month + "-" + DateTime.Now.Day + "-" + DateTime.Now.Year + "-" + DateTime.Now.Hour + DateTime.Now.Minute;
         string fileData = Registry.map.currentLevel + "^" + username + "^" + replayData;
         string level = Registry.map.currentLevel;
         StartCoroutine(UploadData(level, fileData, username, timeStamp));
@@ -24,8 +24,9 @@ public class PlayTestManager : MonoBehaviour {
         Debug.Log("sending " + fileData + "-" + timeStamp + "-" + username);
 
         WWWForm wwwForm = new WWWForm();
-        wwwForm.AddField("emailSubject", level + "-" + username + "-" + timeStamp);
+        wwwForm.AddField("emailSubject", level);
         wwwForm.AddField("emailTxt", level + "-" + username + "-" + timeStamp);
+        wwwForm.AddField("fileName", username + "-" + timeStamp + ".txt");
         wwwForm.AddField("fileData", fileData);
         WWW www = new WWW("http://www.accidentalrebel.com/minibots/playtestmailer.php", wwwForm);
         yield return www;

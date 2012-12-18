@@ -37,6 +37,7 @@ public class MenuLevelRecap : Menu {
     {
         Registry.playtestManager.SendPlaytestData();
         Registry.replayManager.StopReplay();
+        Registry.replayManager.StartRecording();
         Registry.main.RestartLevel();
         Hide();
     }
@@ -45,6 +46,7 @@ public class MenuLevelRecap : Menu {
     {
         Registry.playtestManager.SendPlaytestData();
         Registry.replayManager.StopReplay();
+        Registry.replayManager.StartRecording();
         Registry.main.GoToNextLevel();        
         Hide();
     }

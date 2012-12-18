@@ -122,7 +122,6 @@ public class Main : MonoBehaviour
 
         EUpdateMinibotCount();                          // We update the Minibot Count
         ELevelStarted();
-        Registry.replayManager.StartRecording();
     }
 
     /// <summary>

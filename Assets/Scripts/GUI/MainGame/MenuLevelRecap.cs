@@ -30,8 +30,7 @@ public class MenuLevelRecap : Menu {
     void LevelCompleted()
     {
         Show();
-        Registry.replayManager.StartReplay();
-        Registry.main.RestartLevel();
+        Registry.main.StartReplay();
     }
 
     private void RestartLevel()

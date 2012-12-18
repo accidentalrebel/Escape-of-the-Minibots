@@ -7,7 +7,7 @@ public class ReplayManager : MonoBehaviour {
     Main main;
     List<ReplayEvent> eventList = new List<ReplayEvent>();
     float startTime;
-    internal bool isReplayMode = false;
+    bool isPlayingReplay = false;
 
     void Awake()
     {
@@ -16,7 +16,7 @@ public class ReplayManager : MonoBehaviour {
 
     internal void StartRecording()
     {
-        if (isReplayMode)
+        if (isPlayingReplay)
             return;
 
         startTime = Time.time;
@@ -38,12 +38,12 @@ public class ReplayManager : MonoBehaviour {
     internal void StopReplay()
     {
         StopCoroutine("Replay");
-        isReplayMode = false;
+        isPlayingReplay = false;
     }    
 
     IEnumerator Replay()
     {
-        isReplayMode = true;
+        isPlayingReplay = true;
         int index = 0;
         float replayStartTime = Time.time;
         while ( index < eventList.Count )
@@ -87,7 +87,7 @@ public class ReplayManager : MonoBehaviour {
             index++;
         }
 
-        isReplayMode = false;
+        isPlayingReplay = false;
         Debug.Log("Replay has ended");
     }
 

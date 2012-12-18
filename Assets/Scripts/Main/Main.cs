@@ -64,12 +64,14 @@ public class Main : MonoBehaviour
         // If we press the R key, the level restarts
         if (Input.GetKeyDown(KeyCode.R))
         {
-            RestartLevel();
+            if ( !isReplayMode )
+                RestartLevel(); 
         }
         // Automatically finish the level
         else if (Input.GetKeyDown(KeyCode.Q))
         {
-            LevelCompleted();
+            if (!isReplayMode)
+                LevelCompleted();   
         }
         // Show/Hide the level editor
         else if (Input.GetKeyDown(KeyCode.L))

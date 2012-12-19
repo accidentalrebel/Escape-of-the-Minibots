@@ -6,7 +6,7 @@ public class PlayTestManager : MonoBehaviour {
 
     public bool enableSendingPlaytestData = true;
 
-    void Start()
+    void Awake()
     {
         Registry.playtestManager = this;        
     }

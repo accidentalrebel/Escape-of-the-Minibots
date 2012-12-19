@@ -8,6 +8,10 @@ public class Main : MonoBehaviour
     public event EventHandler ELevelCompleted;
     public event EventHandler ELevelStarted;
     public event EventHandler EUpdateMinibotCount;
+
+    public string engineVersion = "Alpha 5.0";
+    public string mapPackVersion = "Alpha 3.0";
+
     public string mapToLoad = "1";
     
     internal Timer timer;

@@ -87,6 +87,16 @@ public class TriggerableBlocks : LevelObject {
         UpdateChildTiles();
     }
 
+    override internal void Use()
+    {
+        if (isHidden)
+            isHidden = false;
+        else
+            isHidden = true;
+
+        UpdateChildTiles();
+    }
+
     // ************************************************************************************
     // OBJECT EDITING
     // ************************************************************************************

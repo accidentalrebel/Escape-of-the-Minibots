@@ -35,6 +35,11 @@ public class LevelObject : MonoBehaviour {
         Debug.LogWarning("Has not been overriden!");
     }
 
+    virtual internal void Use()
+    {
+        Debug.LogWarning("Has not been overridden!");
+    }
+
     virtual internal void ResetObject()
     {
         gameObject.transform.position = startingPos;        

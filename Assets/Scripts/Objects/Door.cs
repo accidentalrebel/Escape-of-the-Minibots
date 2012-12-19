@@ -39,6 +39,16 @@ public class Door : LevelObject {
         UpdateDoorGraphic();
     }
 
+    internal override void Use()
+    {
+        if (isOpen)
+            isOpen = false;
+        else
+            isOpen = true;
+
+        UpdateDoorGraphic();
+    }
+
     internal void CloseDoor()
     {
         isOpen = false; 

@@ -78,7 +78,8 @@ public class Switch : LevelObject {
     //}
 	
 	// Update is called once per frame
-	void LateUpdate () {
+	void LateUpdate () 
+    {
         if (isTriggered)
         {
             if (Registry.inputHandler.UseButton)
@@ -87,17 +88,17 @@ public class Switch : LevelObject {
                 if (posOfObjectToActivate1 != Vector3.zero)
                 {
                     objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate1);
-                    objectToUse.Use(isTriggered);
+                    objectToUse.Use();
                 }
                 if (posOfObjectToActivate2 != Vector3.zero)
                 {
                     objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate2);
-                    objectToUse.Use(isTriggered);
+                    objectToUse.Use();
                 }
                 if (posOfObjectToActivate3 != Vector3.zero)
                 {
                     objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate3);
-                    objectToUse.Use(isTriggered);
+                    objectToUse.Use();
                 }
             }
         }

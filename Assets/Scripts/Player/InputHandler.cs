@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class MinibotInputHandler : MonoBehaviour {
+public class InputHandler : MonoBehaviour {
 
     public float axisSensitivity = 0.1f;
 

@@ -493,13 +493,17 @@ public class LevelEditor : MonoBehaviour {
             if (GUI.Button(new Rect(Screen.width - 50, 270, 40, 30), ">>"))
             {
                 if ( map.GetNextLevel() )
+                {
                     Debug.Log("Next map clicked");
+                }
             }
 
             if (GUI.Button(new Rect(Screen.width - 110, 270, 40, 30), "<<"))
             {
                 if (map.GetPreviousLevel())
+                {
                     Debug.Log("Previous map clicked");
+                }
             }
         }
     }
@@ -540,12 +544,16 @@ public class LevelEditor : MonoBehaviour {
 
     private void StartSimulation()
     {
+        Registry.replayManager.StartRecording();
+        
         Time.timeScale = 1;
         isSimulating = true;
     }
 
     private void StopSimulation()
     {
+        Registry.replayManager.StopRecording();
+
         Time.timeScale = 0;
         isSimulating = false;
         map.RestartLevel();

@@ -8,6 +8,7 @@ public class ReplayManager : MonoBehaviour {
     List<ReplayEvent> eventList = new List<ReplayEvent>();
     float startTime;
     bool isPlayingReplay = false;
+    internal bool canRecord = true;
 
     void Awake()
     {
@@ -19,15 +20,25 @@ public class ReplayManager : MonoBehaviour {
         if (isPlayingReplay)
             return;
 
+        canRecord = true;
         startTime = Time.time;
+        eventList.Clear();
+    }
+
+    internal void StopRecording()
+    {
+        canRecord = false;
         eventList.Clear();
     }
 
     internal void AddEvent(float eventTime, ReplayEvent.EventType eventType)
     {
-        ReplayEvent newEvent = new ReplayEvent();
-        newEvent.Initialize(eventTime - startTime, eventType);
-        eventList.Add(newEvent);
+        if (canRecord)
+        {
+            ReplayEvent newEvent = new ReplayEvent();
+            newEvent.Initialize(eventTime - startTime, eventType);
+            eventList.Add(newEvent);
+        }
     }
 
     internal void StartReplay()

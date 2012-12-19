@@ -75,10 +75,14 @@ public class Main : MonoBehaviour
         // Show/Hide the level editor
         else if (Input.GetKeyDown(KeyCode.L))
         {
-            if ( !levelEditor.enabled )
+            if (!levelEditor.enabled)
+            {
                 levelEditor.enabled = true;
+            }
             else
+            {
                 levelEditor.enabled = false;
+            }
         }
     }
 
@@ -119,6 +123,9 @@ public class Main : MonoBehaviour
     /// </summary>
     internal void StartLevel()
     {
+        Registry.replayManager.StopReplay();
+        Registry.replayManager.StartRecording();
+
         isReplayMode = false;
 
         EUpdateMinibotCount();                          // We update the Minibot Count

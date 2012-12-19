@@ -11,14 +11,14 @@ public class PlayTestManager : MonoBehaviour {
         Registry.playtestManager = this;        
     }
 
-    internal void SendPlaytestData()
+    internal void SendPlaytestData(string theCompletionTime)
     {
         if (enableSendingPlaytestData)
         {
             string replayData = Registry.replayManager.GetReplayDataString();
             string username = "Karlo";
-            string completionTime = "8888";
-            string timeStamp = DateTime.Now.Month + "-" + DateTime.Now.Day + "-" + DateTime.Now.Year + "-" + DateTime.Now.Hour + DateTime.Now.Minute;
+            string completionTime = theCompletionTime;
+            string timeStamp = DateTime.Now.Month + "-" + DateTime.Now.Day + "-" + DateTime.Now.Year + "-" + DateTime.Now.Hour + "-" + DateTime.Now.Minute;
             string fileData = username + "^" + Registry.map.currentLevel + "^" + timeStamp + "^" + completionTime + "^" + replayData;
             string level = Registry.map.currentLevel;
             StartCoroutine(UploadData(level, fileData, username, timeStamp));

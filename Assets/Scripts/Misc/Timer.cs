@@ -7,7 +7,9 @@ public class Timer : MonoBehaviour {
     public event EventHandler ETimerTick;
 
     float startTime;
-    string currentTime;    
+    string currentTime;
+    internal string CurrentTime
+    { get { return currentTime; } }
 
 	// Use this for initialization
 	void Awake () 

@@ -123,6 +123,7 @@ public class Main : MonoBehaviour
     /// </summary>
     internal void StartLevel()
     {
+        Registry.playtestManager.SendPlaytestData(Registry.main.timer.CurrentTime);    
         Registry.replayManager.StopReplay();
         Registry.replayManager.StartRecording();
 

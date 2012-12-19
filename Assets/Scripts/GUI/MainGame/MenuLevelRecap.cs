@@ -35,14 +35,13 @@ public class MenuLevelRecap : Menu {
 
     private void RestartLevel()
     {
-        Registry.playtestManager.SendPlaytestData();        
+            
         Registry.main.RestartLevel();
         Hide();
     }
 
     private void GoToNextLevel()
     {
-        Registry.playtestManager.SendPlaytestData();
         Registry.main.GoToNextLevel();        
         Hide();
     }

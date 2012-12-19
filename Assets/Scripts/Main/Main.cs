@@ -58,14 +58,13 @@ public class Main : MonoBehaviour
             map.levelReader.LoadLevel(mapToLoad);
     }
 
-    void Update()
+    void LateUpdate()
     {      
         // The following are debug keys
         // If we press the R key, the level restarts
-        if (Input.GetKeyDown(KeyCode.R))
+        if ( Registry.inputHandler.ResetButton )
         {
-            if ( !isReplayMode )
-                RestartLevel(); 
+            RestartLevel(); 
         }
         // Automatically finish the level
         else if (Input.GetKeyDown(KeyCode.Q))

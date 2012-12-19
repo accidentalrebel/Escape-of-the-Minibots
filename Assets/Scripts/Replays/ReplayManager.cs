@@ -83,6 +83,10 @@ public class ReplayManager : MonoBehaviour {
             {
                 Registry.inputHandler.PressedPickUp();
             }
+            else if (currentEvent.eventType == ReplayEvent.EventType.PressedReset)
+            {
+                Registry.inputHandler.PressedReset();
+            }
 
             index++;
         }

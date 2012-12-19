@@ -25,8 +25,12 @@ public class InputHandler : MonoBehaviour {
     internal bool PickupButton
     { get { return pickupButton; } }
 
+    private bool resetButton = false;
+    internal bool ResetButton
+    { get { return resetButton; } }
+
     private bool hasPressedRight = false;
-    private bool hasPressedLeft;
+    private bool hasPressedLeft = false;
 
 	// Use this for initialization
 	void Start () {
@@ -81,11 +85,16 @@ public class InputHandler : MonoBehaviour {
                 Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedPickUp);
                 PressedPickUp();
             }
+            else if (Input.GetKeyDown(KeyCode.R))
+            {
+                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedReset);
+                PressedReset();
+            }
         }
 
         HandleAxis();
 	}
-
+    
     void ResetInput()
     {
         hasPressedLeft = false;
@@ -100,6 +109,7 @@ public class InputHandler : MonoBehaviour {
     {
         useButton = false;
         pickupButton = false;
+        resetButton = false;
     }
         
     private void HandleAxis()
@@ -164,5 +174,10 @@ public class InputHandler : MonoBehaviour {
     internal void PressedPickUp()
     {
         pickupButton = true;
+    }
+
+    internal void PressedReset()
+    {
+        resetButton = true;
     }
 }

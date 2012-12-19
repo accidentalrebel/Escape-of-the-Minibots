@@ -6,6 +6,16 @@ public class FrontMenu : Menu {
     public delegate void EventHandler();
     public event EventHandler EGoToLevelSelection;
 
+    public Settings settings;
+
+    protected override void Start()
+    {
+        base.Start();
+
+        if (settings == null)
+            Debug.Log("Settings not specified!");
+    }
+
     void OnGUI()
     {
         if (isVisible)
@@ -21,7 +31,19 @@ public class FrontMenu : Menu {
                 ( leftPosition
                 , topPosition + 50
                 , menuWidth, 150), "Escape of the Minibots");
+            GUI.skin.label.fontSize = 12;
+
+            GUI.Label(new Rect
+                ( leftPosition
+                , (Screen.height / 2) + (menuHeight / 2) - buttonHeight - 100
+                , menuWidth, 150), "Enter Username:");
+
             GUI.skin.label.fontSize = 11;
+
+            settings.currentUser = GUI.TextField(new Rect
+                ( centerPosition - (buttonWidth / 2)
+                , (Screen.height / 2) + (menuHeight / 2) - buttonHeight - 70
+                , buttonWidth, 20), settings.currentUser);
 
             if (GUI.Button(new Rect
                 ( centerPosition - (buttonWidth / 2)

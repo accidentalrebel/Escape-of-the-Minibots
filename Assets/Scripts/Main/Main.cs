@@ -13,6 +13,7 @@ public class Main : MonoBehaviour
     public string mapPackVersion = "Alpha 3.0";
 
     public string mapToLoad = "1";
+    public string currentUser = "User";
     
     internal Timer timer;
     internal LevelEditor levelEditor;
@@ -54,12 +55,13 @@ public class Main : MonoBehaviour
     void Start()
     {
         // If we have a settings file ( If we booted the game from the Main Menu Scene )
-        if ( settings != null )
-            map.levelReader.LoadLevel(settings.InitialLevelToLoad.ToString());
+        if (settings != null)
+        {
+            mapToLoad = settings.InitialLevelToLoad.ToString();
+            currentUser = settings.currentUser;
+        }
 
-        // IF we don't ( If we booted the game from the Main Game Scene )
-        else
-            map.levelReader.LoadLevel(mapToLoad);
+        map.levelReader.LoadLevel(mapToLoad);
     }
 
     void LateUpdate()
@@ -183,7 +185,7 @@ public class Main : MonoBehaviour
         else
         {
             if ( !isReplayMode )
-                Registry.playtestManager.SendPlaytestData(timer.CurrentTime, engineVersion, mapPackVersion);    
+                Registry.playtestManager.SendPlaytestData(currentUser, timer.CurrentTime, engineVersion, mapPackVersion);    
 
             ELevelCompleted();
         }

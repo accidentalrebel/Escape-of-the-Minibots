@@ -34,14 +34,13 @@ public class MenuLevelRecap : Menu {
     }
 
     private void RestartLevel()
-    {
-            
+    {        
         Registry.main.RestartLevel();
         Hide();
     }
 
     private void GoToNextLevel()
-    {
+    {        
         Registry.main.GoToNextLevel();        
         Hide();
     }

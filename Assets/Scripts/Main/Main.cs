@@ -126,8 +126,7 @@ public class Main : MonoBehaviour
     /// Starts a new level
     /// </summary>
     internal void StartLevel()
-    {
-        Registry.playtestManager.SendPlaytestData(Registry.main.timer.CurrentTime);    
+    {        
         Registry.replayManager.StopReplay();
         Registry.replayManager.StartRecording();
 
@@ -172,7 +171,12 @@ public class Main : MonoBehaviour
             && levelEditor.MapEditMode == true)
             RestartLevel();
         else
+        {
+            if ( !isReplayMode )
+                Registry.playtestManager.SendPlaytestData(timer.CurrentTime, engineVersion, mapPackVersion);    
+
             ELevelCompleted();
+        }
     }
 
     // ************************************************************************************

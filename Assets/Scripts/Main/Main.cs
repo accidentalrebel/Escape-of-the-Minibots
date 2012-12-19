@@ -145,6 +145,16 @@ public class Main : MonoBehaviour
         StartLevel();
     }
 
+    /// <summary>
+    /// Resets level. Only called when minibot dies.
+    /// </summary>
+    internal void ResetLevel()
+    {
+        map.RestartLevel();
+        EUpdateMinibotCount();                          // We update the Minibot Count
+        ELevelStarted();
+    }
+
     // ************************************************************************************
     // END GAME LOGIC
     // ************************************************************************************

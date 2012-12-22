@@ -45,12 +45,15 @@ public class FrontMenu : Menu {
                 , (Screen.height / 2) + (menuHeight / 2) - buttonHeight - 70
                 , buttonWidth, 20), settings.currentUser);
 
-            if (GUI.Button(new Rect
-                ( centerPosition - (buttonWidth / 2)
-                , (Screen.height / 2) + (menuHeight / 2) - buttonHeight - 20
-                , buttonWidth, buttonHeight), "Start Game"))
+            if (settings.currentUser != "")
             {
-                GoToLevelSelection();
+                if (GUI.Button(new Rect
+                    (centerPosition - (buttonWidth / 2)
+                    , (Screen.height / 2) + (menuHeight / 2) - buttonHeight - 20
+                    , buttonWidth, buttonHeight), "Start Game"))
+                {
+                    GoToLevelSelection();
+                }
             }
 
             GUI.skin.label.alignment = TextAnchor.UpperLeft;

@@ -66,6 +66,7 @@
      <Compile Include="Assets\Scripts\Levels\XMLLevelWriter.cs" />
      <Compile Include="Assets\Scripts\Main\Main.cs" />
      <Compile Include="Assets\Scripts\Main\PlayTestManager.cs" />
+     <Compile Include="Assets\Scripts\Main\ProfileManager.cs" />
      <Compile Include="Assets\Scripts\Main\Registry.cs" />
      <Compile Include="Assets\Scripts\Main\Settings.cs" />
      <Compile Include="Assets\Scripts\Misc\GraphicHandler.cs" />

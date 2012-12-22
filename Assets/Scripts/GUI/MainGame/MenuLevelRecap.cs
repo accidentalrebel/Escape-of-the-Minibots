@@ -3,10 +3,11 @@ using System.Collections;
 
 public class MenuLevelRecap : Menu {
 
+    string levelComment = "";
+
 	// Use this for initialization
 	protected override void Start () {
-        base.Start();
-        
+        base.Start();        
         Registry.main.ELevelCompleted += LevelCompleted;
 	}
 
@@ -30,17 +31,24 @@ public class MenuLevelRecap : Menu {
     void LevelCompleted()
     {
         Show();
+        levelComment = "";
         Registry.main.StartReplay();
     }
 
     private void RestartLevel()
-    {        
+    {
+        Registry.playtestManager.SendPlaytestData(Registry.main.currentUser
+                , Registry.main.timer.CurrentTime, Registry.main.engineVersion
+                , Registry.main.mapPackVersion, levelComment);
         Registry.main.RestartLevel();
         Hide();
     }
 
     private void GoToNextLevel()
-    {        
+    {
+        Registry.playtestManager.SendPlaytestData(Registry.main.currentUser
+                , Registry.main.timer.CurrentTime, Registry.main.engineVersion
+                , Registry.main.mapPackVersion, levelComment);
         Registry.main.GoToNextLevel();        
         Hide();
     }
@@ -55,6 +63,18 @@ public class MenuLevelRecap : Menu {
                 ( centerPosition - (menuWidth / 2)
                 , topPosition
                 , menuWidth, menuHeight), "Level Completed");
+
+            GUI.skin.label.alignment = TextAnchor.UpperCenter;
+            GUI.Label(new Rect
+                ( leftPosition
+                , topPosition + 30
+                , menuWidth, 50), "Message to the developer");
+            GUI.skin.label.alignment = TextAnchor.UpperLeft;   
+
+            levelComment = GUI.TextArea(new Rect
+                ( centerPosition - (menuWidth / 2) + 10
+                , topPosition + 50
+                , menuWidth - 20, 200), levelComment);
             
             GUI.skin.label.alignment = TextAnchor.UpperCenter;
             if (GUI.Button(new Rect

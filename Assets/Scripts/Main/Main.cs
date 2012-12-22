@@ -184,9 +184,6 @@ public class Main : MonoBehaviour
             RestartLevel();
         else
         {
-            if ( !isReplayMode )
-                Registry.playtestManager.SendPlaytestData(currentUser, timer.CurrentTime, engineVersion, mapPackVersion);    
-
             ELevelCompleted();
         }
     }

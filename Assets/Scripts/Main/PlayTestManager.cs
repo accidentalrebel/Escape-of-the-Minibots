@@ -11,7 +11,7 @@ public class PlayTestManager : MonoBehaviour {
         Registry.playtestManager = this;        
     }
 
-    internal void SendPlaytestData(string currentUser, string theCompletionTime, string engineVersion, string mapPackVersion)
+    internal void SendPlaytestData(string currentUser, string theCompletionTime, string engineVersion, string mapPackVersion, string levelComment)
     {
         if (enableSendingPlaytestData)
         {
@@ -19,8 +19,8 @@ public class PlayTestManager : MonoBehaviour {
             string username = currentUser;
             string completionTime = theCompletionTime;
             string timeStamp = DateTime.Now.Month + "-" + DateTime.Now.Day + "-" + DateTime.Now.Year + "-" + DateTime.Now.Hour + "-" + DateTime.Now.Minute;
-            string fileData = username + "^" + timeStamp + "^" + engineVersion + "^" + mapPackVersion + "^" 
-                + Registry.map.currentLevel + "^" + completionTime + "^" + replayData;
+            string fileData = username + "^" + timeStamp + "^" + engineVersion + "^" + mapPackVersion + "^"
+                + Registry.map.currentLevel + "^" + completionTime + "^" + levelComment + "^" + replayData;
             string level = Registry.map.currentLevel;
             StartCoroutine(UploadData(level, fileData, username, timeStamp));
         }

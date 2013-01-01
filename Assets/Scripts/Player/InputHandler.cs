@@ -44,23 +44,26 @@ public class InputHandler : MonoBehaviour {
 
         if (!Registry.main.isReplayMode)
         {
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKeyDown(KeyCode.D)
+                || Input.GetKeyDown(KeyCode.RightArrow))
             {
                 Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedRight);
                 PressedRight();
-
             }
-            else if (Input.GetKeyUp(KeyCode.D))
+            else if (Input.GetKeyUp(KeyCode.D)
+                || Input.GetKeyUp(KeyCode.RightArrow))
             {
                 Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedRight);
                 ReleasedRight();
             }
-            else if (Input.GetKeyDown(KeyCode.A))
+            else if (Input.GetKeyDown(KeyCode.A)
+                || Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedLeft);
                 PressedLeft();
             }
-            else if (Input.GetKeyUp(KeyCode.A))
+            else if (Input.GetKeyUp(KeyCode.A)
+                || Input.GetKeyUp(KeyCode.LeftArrow))
             {
                 Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedLeft);
                 ReleasedLeft();

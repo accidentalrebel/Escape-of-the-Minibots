@@ -31,12 +31,12 @@ public class MenuLevelRecap : Menu {
     void LevelCompleted()
     {
         Show();
-        levelComment = "";
         Registry.main.StartReplay();
     }
 
     private void RestartLevel()
     {
+        levelComment = "";
         Registry.playtestManager.SendPlaytestData(Registry.main.currentUser
                 , Registry.main.timer.CurrentTime, Registry.main.engineVersion
                 , Registry.main.mapPackVersion, levelComment);
@@ -46,6 +46,7 @@ public class MenuLevelRecap : Menu {
 
     private void GoToNextLevel()
     {
+        levelComment = "";
         Registry.playtestManager.SendPlaytestData(Registry.main.currentUser
                 , Registry.main.timer.CurrentTime, Registry.main.engineVersion
                 , Registry.main.mapPackVersion, levelComment);

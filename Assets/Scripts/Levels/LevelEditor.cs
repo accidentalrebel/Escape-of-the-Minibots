@@ -350,7 +350,7 @@ public class LevelEditor : MonoBehaviour {
         }
 
         // Displays the current level
-        GUI.Label(new Rect(Screen.width - 80, 10, 70, 20), "Level: " + map.currentLevel);
+        // GUI.Label(new Rect(Screen.width - 80, 10, 70, 20), "Level: " + map.currentLevel);
 
         GUI.enabled = true;
 

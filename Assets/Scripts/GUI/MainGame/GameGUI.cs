@@ -8,6 +8,7 @@ public class GameGUI : GUILayout {
     public TextMesh txtMinibotCount;
     public TextMesh txtTimer;
     public TextMesh txtVersions;
+    public TextMesh txtCurrentLevel;
         
     void Awake()
     {
@@ -24,10 +25,14 @@ public class GameGUI : GUILayout {
         if (txtVersions == null)
             Debug.LogError("txtVersions was not specified!");
 
+        if (txtCurrentLevel == null)
+            Debug.LogError("txtCurrentLevel was not specified!");
+
         timer = Registry.main.timer;
         timer.ETimerTick += OnTimerTick;
 
         main.EUpdateMinibotCount += UpdateMinibotCount;
+        main.ELevelStarted += LevelStarted;
     }
 
     void Start()
@@ -43,5 +48,10 @@ public class GameGUI : GUILayout {
     void UpdateMinibotCount()
     {
         txtMinibotCount.text = "Minibots left: " + main.CountMinibotsInLevel().ToString();
+    }
+
+    void LevelStarted()
+    {
+        txtCurrentLevel.text = "Level: " + Registry.map.currentLevel;
     }
 }

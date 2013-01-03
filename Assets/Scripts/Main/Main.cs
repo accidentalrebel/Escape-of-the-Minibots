@@ -107,7 +107,7 @@ public class Main : MonoBehaviour
     /// Loads the next level
     /// </summary>
     /// <param name="nextLevelName"></param>
-    private void LoadNextLevel(string nextLevelName)
+    internal void LoadNextLevel(string nextLevelName)
     {        
         if (nextLevelName == "")
         {

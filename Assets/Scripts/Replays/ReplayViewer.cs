@@ -25,10 +25,9 @@ public class ReplayViewer : MonoBehaviour {
         string levelComment = data[6];
         string replayData = data[7];
 
+        Registry.main.LoadNextLevel(thisLevel);
         ConvertToEvents(replayData);
-        //Registry.main.mapToLoad = thisLevel;
-        //Registry.main.StartLevel();
-        Registry.main.StartReplay();
+        Registry.main.StartReplay();        
     }
 
     /// <summary>

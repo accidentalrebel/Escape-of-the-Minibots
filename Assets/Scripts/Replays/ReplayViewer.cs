@@ -25,6 +25,27 @@ public class ReplayViewer : MonoBehaviour {
         string levelComment = data[6];
         string replayData = data[7];
 
-        Debug.Log("replay data is " + replayData);
+        ConvertToEvents(replayData);
+        //Registry.main.mapToLoad = thisLevel;
+        //Registry.main.StartLevel();
+        Registry.main.StartReplay();
+    }
+
+    /// <summary>
+    /// Converts the replayData in the form of a string to actual events which is added to the replayManager
+    /// </summary>
+    /// <param name="replayData"></param>
+    private void ConvertToEvents(string replayData)
+    {
+        string[] eventStrings = replayData.Split('#');                          // We split each to eventStrings
+        foreach (string eventString in eventStrings)                            // Each event string has two parameters ( Timestamp and the eventType )
+        {
+            if (eventString != "")                                              // This is in place so that it would skip null values
+            {
+                string[] eventDetails = eventString.Split('%');                 // We split the eventString so we can access the two parameters
+                Registry.replayManager.AddEvent(float.Parse(eventDetails[0]),   // We convert the first parameter to float
+                    ((ReplayEvent.EventType)(int.Parse(eventDetails[1]))));     // We convert the second parameter to ReplayEvent.EventType
+            }
+        }
     }	
 }

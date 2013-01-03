@@ -8,11 +8,23 @@ public class ReplayViewer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	    
+        if ( isEnabled )
+            DecodeReplayAsset();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	    
-	}    
+
+    private void DecodeReplayAsset()
+    {        
+        string[] data = replayAsset.text.Split('^');
+
+        string username = data[0];
+        string dateStamp = data[1];
+        string engineVersion = data[2];
+        string mapPackVersion = data[3];
+        string thisLevel = data[4];
+        string timeFinished = data[5];
+        string levelComment = data[6];
+        string replayData = data[7];
+
+        Debug.Log("replay data is " + replayData);
+    }	
 }

@@ -42,7 +42,7 @@ public class InputHandler : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (!Registry.main.isReplayMode)
+        if (!Registry.main.isReplayMode && !Registry.replayManager.replayViewer.isEnabled)
         {
             if (Input.GetKeyDown(KeyCode.D)
                 || Input.GetKeyDown(KeyCode.RightArrow))

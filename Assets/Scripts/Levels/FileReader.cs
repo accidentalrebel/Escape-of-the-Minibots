@@ -4,9 +4,9 @@ using System.IO;
 
 public static class FileReader
 {
-    public static string GetData(string filename)
+    public static string GetData(string filepath)
     {
-        StreamReader file = new StreamReader(Application.dataPath + @"\Levels\" + filename + ".txt");
+        StreamReader file = new StreamReader(filepath);
         string fileContent = file.ReadToEnd();
         file.Close();
 

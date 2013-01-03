@@ -6,13 +6,23 @@ public class ReplayManager : MonoBehaviour {
 
     Main main;
     List<ReplayEvent> eventList = new List<ReplayEvent>();
+
     float startTime;
     bool isPlayingReplay = false;
+
     internal bool canRecord = true;
+    internal ReplayViewer replayViewer;
 
     void Awake()
     {
         Registry.replayManager = this;
+    }
+
+    void Start()
+    {
+        replayViewer = GetComponent<ReplayViewer>();
+        if (replayViewer == null)
+            Debug.LogError("replayViewer is not found!");
     }
 
     internal void StartRecording()
@@ -105,6 +115,61 @@ public class ReplayManager : MonoBehaviour {
         isPlayingReplay = false;
         Debug.Log("Replay has ended");
     }
+
+    //IEnumerator Replay(string replayData)
+    //{
+    //    isPlayingReplay = true;
+    //    int index = 0;
+    //    float replayStartTime = Time.time;
+        
+        //for( int i = 0 ; i < replayData.
+        //{
+        //    ReplayEvent currentEvent = eventList[index];
+        //    yield return new WaitForSeconds(replayStartTime + currentEvent.timeTriggered - Time.time);
+
+        //    if (currentEvent.eventType == ReplayEvent.EventType.PressedRight)
+        //    {
+        //        Registry.inputHandler.PressedRight();
+        //    }
+        //    else if (currentEvent.eventType == ReplayEvent.EventType.ReleasedRight)
+        //    {
+        //        Registry.inputHandler.ReleasedRight();
+        //    }
+        //    else if (currentEvent.eventType == ReplayEvent.EventType.PressedLeft)
+        //    {
+        //        Registry.inputHandler.PressedLeft();
+        //    }
+        //    else if (currentEvent.eventType == ReplayEvent.EventType.ReleasedLeft)
+        //    {
+        //        Registry.inputHandler.ReleasedLeft();
+        //    }
+        //    else if (currentEvent.eventType == ReplayEvent.EventType.PressedJump)
+        //    {
+        //        Registry.inputHandler.PressedJump();
+        //    }
+        //    else if (currentEvent.eventType == ReplayEvent.EventType.ReleasedJump)
+        //    {
+        //        Registry.inputHandler.ReleasedJump();
+        //    }
+        //    else if (currentEvent.eventType == ReplayEvent.EventType.PressedUse)
+        //    {
+        //        Registry.inputHandler.PressedUse();
+        //    }
+        //    else if (currentEvent.eventType == ReplayEvent.EventType.PressedPickUp)
+        //    {
+        //        Registry.inputHandler.PressedPickUp();
+        //    }
+        //    else if (currentEvent.eventType == ReplayEvent.EventType.PressedReset)
+        //    {
+        //        Registry.inputHandler.PressedReset();
+        //    }
+
+        //    index++;
+        //}
+
+    //    isPlayingReplay = false;
+    //    Debug.Log("Replay has ended");
+    //}
 
     internal string GetReplayDataString()
     {

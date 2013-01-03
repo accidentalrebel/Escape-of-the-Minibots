@@ -20,8 +20,8 @@ public class LevelLoader : MonoBehaviour {
 	}
 
     private string GetLevelData(string levelLabel)
-    {       
-        return FileReader.GetData(levelLabel);
+    {
+        return FileReader.GetData(Application.dataPath + @"\Levels\" + levelLabel + ".txt");
     }
 
     private void BuildLevel(string levelData)

@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{EB820643-D9F9-7EE7-8DA5-6630FC80D3BD}</ProjectGuid>
+	<ProjectGuid>{8606E3B5-384B-E3D4-B471-0805F2989EF8}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -18,7 +18,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE;ENABLE_MICROPHONE;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;ENABLE_AUDIO_FMOD;ENABLE_NETWORK;ENABLE_MONO;ENABLE_PHYSICS;ENABLE_TERRAIN;ENABLE_CACHING;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_CLOTH;ENABLE_MOVIES;ENABLE_AUDIO;ENABLE_WWW;ENABLE_SHADOWS;ENABLE_DUCK_TYPING;UNITY_4_0_0;UNITY_4_0;UNITY_STANDALONE_WIN;UNITY_64;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_TEAM_LICENSE</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_NETWORK;ENABLE_MONO;ENABLE_PHYSICS;ENABLE_TERRAIN;ENABLE_CACHING;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_CLOTH;ENABLE_MOVIES;ENABLE_AUDIO;ENABLE_WWW;ENABLE_SHADOWS;ENABLE_DUCK_TYPING;UNITY_4_1_5;UNITY_4_1;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -37,10 +37,10 @@
     <Reference Include="System.XML" />
 	<Reference Include="System.Core" />
 	<Reference Include="UnityEngine">
-	  <HintPath>D:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>D:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -93,21 +93,42 @@
      <Compile Include="Assets\Scripts\Sprites\SpriteManager.cs" />
      <None Include="Assets\Resources\Levels\13.xml" />
      <None Include="Assets\Replays\Jerel\12-1-1-2013-21-22.txt" />
+     <None Include="Assets\Replays\BEdelman\15-1-5-2013-21-3.txt" />
+     <None Include="Assets\Replays\BEdelman\1-1-5-2013-21-1.txt" />
+     <None Include="Assets\Replays\BEdelman\17-1-5-2013-21-5.txt" />
      <None Include="Assets\Resources\Levels\18.xml" />
+     <None Include="Assets\Replays\BEdelman\40-1-5-2013-21-11.txt" />
+     <None Include="Assets\Replays\BEdelman\14-1-5-2013-21-3.txt" />
      <None Include="Assets\Replays\Jerel\1-1-1-2013-21-16.txt" />
      <None Include="Assets\Replays\Jerel\13-1-1-2013-21-27.txt" />
+     <None Include="Assets\Replays\BEdelman\50-1-5-2013-21-13.txt" />
+     <None Include="Assets\Replays\BEdelman\20-1-5-2013-21-8.txt" />
      <None Include="Assets\Resources\Levels\60.xml" />
+     <None Include="Assets\Replays\BEdelman\111-1-9-2013-1-7.txt" />
+     <None Include="Assets\Resources\Levels\108.xml" />
+     <None Include="Assets\Resources\Levels\101.xml" />
+     <None Include="Assets\Replays\BEdelman\27-1-5-2013-21-11.txt" />
+     <None Include="Assets\Replays\BEdelman\12-1-5-2013-21-2.txt" />
+     <None Include="Assets\Replays\BEdelman\22-1-5-2013-21-9.txt" />
      <None Include="Assets\Replays\Jerel\27-1-1-2013-22-20.txt" />
+     <None Include="Assets\Resources\Levels\112.xml" />
      <None Include="Assets\Resources\Levels\6.xml" />
      <None Include="Assets\Replays\Jerel\22-1-1-2013-22-2.txt" />
      <None Include="Assets\Resources\Levels\25.xml" />
+     <None Include="Assets\Replays\BEdelman\4-1-5-2013-21-1.txt" />
+     <None Include="Assets\Replays\BEdelman\21-1-5-2013-21-8.txt" />
      <None Include="Assets\Resources\Levels\7.xml" />
      <None Include="Assets\Replays\Jerel\26-1-1-2013-22-18.txt" />
      <None Include="Assets\Resources\Levels\1.xml" />
+     <None Include="Assets\Resources\Levels\111.xml" />
+     <None Include="Assets\Replays\BEdelman\19-1-5-2013-21-7.txt" />
+     <None Include="Assets\Replays\BEdelman\99-1-5-2013-21-16.txt" />
+     <None Include="Assets\Replays\BEdelman\10-1-5-2013-21-2.txt" />
      <None Include="Assets\Replays\Jerel\25-1-1-2013-22-9.txt" />
      <None Include="Assets\Resources\Levels\19.xml" />
      <None Include="Assets\Replays\Jerel\14-1-1-2013-21-27.txt" />
      <None Include="Assets\Resources\Levels\22.xml" />
+     <None Include="Assets\Replays\BEdelman\6-1-5-2013-21-2.txt" />
      <None Include="Assets\Resources\Levels\52.xml" />
      <None Include="Assets\Replays\Jerel\20-1-1-2013-22-0.txt" />
      <None Include="Assets\Replays\Jerel\42-1-1-2013-22-22.txt" />
@@ -115,6 +136,7 @@
      <None Include="Assets\Resources\Levels\61.xml" />
      <None Include="Assets\Resources\Levels\20.xml" />
      <None Include="Assets\Replays\Jerel\2-1-1-2013-21-16.txt" />
+     <None Include="Assets\Replays\BEdelman\13-1-5-2013-21-3.txt" />
      <None Include="Assets\Resources\Levels\27.xml" />
      <None Include="Assets\Replays\Jerel\40-1-1-2013-22-21.txt" />
      <None Include="Assets\Replays\Jerel\11-1-1-2013-21-21.txt" />
@@ -127,6 +149,7 @@
      <None Include="Assets\Resources\Levels\14.xml" />
      <None Include="Assets\Resources\Levels\template.xml" />
      <None Include="Assets\Resources\Levels\12.xml" />
+     <None Include="Assets\Replays\BEdelman\16-1-5-2013-21-4.txt" />
      <None Include="Assets\Replays\Jerel\8-1-1-2013-21-21.txt" />
      <None Include="Assets\Replays\Jerel\3-1-1-2013-21-20.txt" />
      <None Include="Assets\Resources\Levels\51.xml" />
@@ -137,22 +160,39 @@
      <None Include="Assets\Replays\Jerel\7-1-1-2013-21-20.txt" />
      <None Include="Assets\Resources\Levels\5.xml" />
      <None Include="Assets\Resources\Levels\15.xml" />
+     <None Include="Assets\Resources\Levels\107.xml" />
+     <None Include="Assets\Replays\BEdelman\103-1-9-2013-1-9.txt" />
+     <None Include="Assets\Replays\BEdelman\8-1-5-2013-21-2.txt" />
      <None Include="Assets\Replays\Jerel\16-1-1-2013-21-33.txt" />
      <None Include="Assets\Replays\Jerel\5-1-1-2013-21-20.txt" />
      <None Include="Assets\Replays\Jerel\18-1-1-2013-21-50.txt" />
+     <None Include="Assets\Replays\BEdelman\18-1-5-2013-21-7.txt" />
      <None Include="Assets\Resources\Levels\40.xml" />
      <None Include="Assets\Resources\Levels\21.xml" />
+     <None Include="Assets\Replays\BEdelman\26-1-5-2013-21-11.txt" />
      <None Include="Assets\Resources\Levels\4.xml" />
      <None Include="Assets\Resources\Levels\26.xml" />
      <None Include="Assets\Resources\Levels\test.xml" />
      <None Include="Assets\Replays\Jerel\21-1-1-2013-22-0.txt" />
+     <None Include="Assets\Replays\BEdelman\25-1-5-2013-21-10.txt" />
      <None Include="Assets\Replays\Jerel\10-1-1-2013-21-21.txt" />
+     <None Include="Assets\Replays\BEdelman\11-1-5-2013-21-2.txt" />
      <None Include="Assets\Resources\Levels\16.xml" />
      <None Include="Assets\Replays\Jerel\4-1-1-2013-21-20.txt" />
+     <None Include="Assets\Replays\BEdelman\5-1-5-2013-21-1.txt" />
+     <None Include="Assets\Replays\BEdelman\112-1-9-2013-1-5.txt" />
+     <None Include="Assets\Replays\BEdelman\9-1-5-2013-21-2.txt" />
      <None Include="Assets\Resources\Levels\test2.xml" />
+     <None Include="Assets\Replays\BEdelman\108-1-9-2013-1-8.txt" />
      <None Include="Assets\Resources\Levels\99.xml" />
+     <None Include="Assets\Replays\BEdelman\7-1-5-2013-21-2.txt" />
+     <None Include="Assets\Replays\BEdelman\2-1-5-2013-21-1.txt" />
+     <None Include="Assets\Replays\BEdelman\41-1-5-2013-21-11.txt" />
      <None Include="Assets\Resources\Levels\9.xml" />
+     <None Include="Assets\Replays\BEdelman\42-1-5-2013-21-12.txt" />
+     <None Include="Assets\Resources\Levels\103.xml" />
      <None Include="Assets\Replays\Jerel\17-1-1-2013-21-38.txt" />
+     <None Include="Assets\Replays\BEdelman\3-1-5-2013-21-1.txt" />
      <None Include="Assets\Replays\Jerel\9-1-1-2013-21-21.txt" />
      <None Include="Assets\Resources\Levels\8.xml" />
      <None Include="Assets\Replays\Jerel\15-1-1-2013-21-29.txt" />

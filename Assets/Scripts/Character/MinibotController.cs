@@ -9,75 +9,41 @@ public class MinibotController : MonoBehaviour
     public float gravity = 10.0f;    
     public float maxVelocityChange = 10.0f;    
     public float jumpHeight = 2.0f;
+
     public bool canJump = true;
     public bool invertGravity = false;
     public bool invertHorizontal = false;
 
-    internal bool InvertGravity
-    {
-        set { 
-            invertGravity = value; 
-            UpdateGravity(); 
-        }
-        get { return invertGravity; }
-    }
-
-    private void UpdateGravity()
-    {
-        if (invertGravity == true && gravity > 0)
-            gravity = -gravity;
-        else if (invertGravity == false && gravity < 0)
-            gravity = -gravity;
-    }
-
-    private bool grounded = false;
-    private CapsuleCollider capsule;
+    private bool isGrounded = false;
+    private CapsuleCollider capsuleCollider;
     private Minibot player;
 
     void Awake()
     {
         rigidbody.freezeRotation = true;
         rigidbody.useGravity = false;
-        capsule = GetComponent<CapsuleCollider>();
-        if (capsule == null)
-            Debug.LogError("capsule was not found!");
-        player = GetComponent<Minibot>();
+
+        capsuleCollider = GetComponent<CapsuleCollider>();
+        if (capsuleCollider == null)
+            Debug.LogError("capsule collider was not found!");
+        
+		player = GetComponent<Minibot>();
         if (player == null)
             Debug.LogError("player not found!");
 
         if (invertGravity)
-            UpdateGravity();
+            UpdateGravityStatus();
     }
 
     void FixedUpdate()
     {
-        float xInput = Registry.inputHandler.XAxis;
-        float yInput = Registry.inputHandler.YAxis;
-        if (invertGravity)
-            xInput = -xInput;
-        if (invertHorizontal)        
-            xInput = -xInput;
+		float yInput = Registry.inputHandler.YAxis;
+		float xInput = AdjustXInput(Registry.inputHandler.XAxis);
 
-        // We then handle whether we play the standing or walking animation
-        if (xInput == 0)
-            player.Standing();
-        else
-            player.Walking();
+        HandleIfStandingOrWalking(xInput);
+		HandlePlayerFacing(xInput);
 
-        // We then handle the facing
-        if (xInput > 0)
-        {
-            player.IsFacing = Minibot.Direction.Right;
-        }
-        else if (xInput < 0)
-        {
-            player.IsFacing = Minibot.Direction.Left;
-        }
-
-        // Calculate how fast we should be moving
-        Vector3 targetVelocity = new Vector3(xInput, 0, yInput);
-        targetVelocity = transform.TransformDirection(targetVelocity);
-        targetVelocity *= speed;
+		Vector3 targetVelocity = CalculateTargetVelocity(xInput, yInput);
 
         // Apply a force that attempts to reach our target velocity
         Vector3 velocity = rigidbody.velocity;
@@ -86,26 +52,81 @@ public class MinibotController : MonoBehaviour
         velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
         velocityChange.y = 0;
 
-        if (CheckIfCanMove(velocityChange))
-        {
+		CheckIfGrounded();
+		
+		// The following checks if the player has just landed from a jump
+		if (player.isJumping && isGrounded)
+			player.Grounded();  // If so, tell the player that he is now grounded
+
+        if (CheckIfCanMove(velocityChange)) {
             rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
         }
 
-		if (grounded && canJump && Registry.inputHandler.JumpButton)
-        {
+		if (Registry.inputHandler.JumpButton && isGrounded && canJump ) {
 	        if ( invertGravity )
 	            rigidbody.velocity = new Vector3(velocity.x, -CalculateJumpVerticalSpeed(), velocity.z);
 	        else
 	            rigidbody.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
 
-	        player.Jumped();                       
+	        player.Jump();                       
         }
 
-        // We apply gravity manually for more tuning control
         rigidbody.AddForce(new Vector3(0, -gravity * rigidbody.mass, 0));
-
-        grounded = false;
+		isGrounded = false;
     }
+
+	Vector3 CalculateTargetVelocity (float xInput, float yInput)
+	{
+		Vector3 targetVelocity = new Vector3(xInput, 0, yInput);
+		targetVelocity = transform.TransformDirection(targetVelocity);
+		targetVelocity *= speed;
+
+		return targetVelocity;
+	}
+
+	void HandlePlayerFacing (float xInput)
+	{
+		if (xInput > 0) {
+			player.IsFacing = Minibot.Direction.Right;
+		}
+		else if (xInput < 0) {
+			player.IsFacing = Minibot.Direction.Left;
+		}
+	}
+
+	void HandleIfStandingOrWalking (float xInput)
+	{
+		if (xInput == 0)
+			player.Standing();
+		else
+			player.Walking();
+	}
+
+	float AdjustXInput(float xInput)
+	{
+		if (invertGravity)
+			xInput = -xInput;
+		if (invertHorizontal)
+			xInput = -xInput;
+
+		return xInput;
+	}
+
+	internal bool InvertGravity
+	{
+		set { 
+			invertGravity = value; 
+			UpdateGravityStatus(); 
+		}
+		get { return invertGravity; }
+	}
+	
+	private void UpdateGravityStatus()
+	{
+		if ((invertGravity == true && gravity > 0)
+		    || (invertGravity == false && gravity < 0))
+			gravity = -gravity;
+	}
 
 	internal void InvertHorizontal()
 	{
@@ -122,32 +143,19 @@ public class MinibotController : MonoBehaviour
 		else
 			invertGravity = true;
 		
-		UpdateGravity();
+		UpdateGravityStatus();
 	}
 
     private bool CheckIfCanMove(Vector3 velocityChange)
     {
-        if ( velocityChange.x < 0 )
-        {
-            if (player.GetObjectAtSide(Minibot.Direction.Left) != null)
-                return false;
-        }
-        else if (velocityChange.x > 0)
-        {
-            if (player.GetObjectAtSide(Minibot.Direction.Right) != null)
-                return false;
-        }
+        if (( velocityChange.x < 0
+		    && player.GetObjectAtSide(Minibot.Direction.Left) != null )
+        	|| 
+		    (velocityChange.x > 0
+		    && player.GetObjectAtSide(Minibot.Direction.Right) != null))
+			return false;
 
         return true;
-    }
-
-    void OnCollisionStay(Collision col)
-    {
-        CheckIfGrounded();
-
-        // The following checks if the player has just landed from a jump
-        if (player.isJumping && grounded)
-            player.Grounded();  // If so, tell the player that he is now grounded
     }
 
     float CalculateJumpVerticalSpeed()
@@ -176,8 +184,11 @@ public class MinibotController : MonoBehaviour
                 || hit.collider.tag == "Movable")
             {
                 Debug.DrawLine(gameObject.transform.position, hit.point);
-                grounded = true;
+                isGrounded = true;
+				return;
             }
         }
+
+		isGrounded = false;
     }
 }

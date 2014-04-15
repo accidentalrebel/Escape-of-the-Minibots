@@ -114,7 +114,7 @@ public class Minibot : LevelObject {
     // ************************************************************************************
     // ACTIONS
     // ************************************************************************************
-    internal void Jumped()
+    internal void Jump()
     {
         spriteManager.Play("jumping");
         isJumping = true;
@@ -174,7 +174,7 @@ public class Minibot : LevelObject {
         else
             checkDirection = Vector3.right;
 
-        if (Physics.Raycast(gameObject.transform.position, checkDirection, out hit, 0.6f))
+        if (Physics.Raycast(gameObject.transform.position, checkDirection, out hit, 0.5f))
         {
             if (hit.collider.tag == "Steppable"
                 || hit.collider.tag == "Movable")

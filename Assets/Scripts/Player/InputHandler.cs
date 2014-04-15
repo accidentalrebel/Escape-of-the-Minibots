@@ -56,7 +56,8 @@ public class InputHandler : MonoBehaviour {
                 Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedRight);
                 ReleasedRight();
             }
-            else if (Input.GetKeyDown(KeyCode.A)
+            
+			if (Input.GetKeyDown(KeyCode.A)
                 || Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedLeft);
@@ -68,7 +69,8 @@ public class InputHandler : MonoBehaviour {
                 Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedLeft);
                 ReleasedLeft();
             }
-            else if (Input.GetButtonDown("Jump"))
+            
+			if (Input.GetButtonDown("Jump"))
             {
                 Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedJump);
                 PressedJump();
@@ -78,7 +80,8 @@ public class InputHandler : MonoBehaviour {
                 Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedJump);
                 ReleasedJump();
             }
-            else if (Input.GetKeyDown(KeyCode.X))
+            
+			if (Input.GetKeyDown(KeyCode.X))
             {
                 Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedUse);
                 PressedUse();

@@ -51,8 +51,6 @@ public class MinibotController : MonoBehaviour
         velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
         velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
         velocityChange.y = 0;
-
-		CheckIfGrounded();
 		
 		// The following checks if the player has just landed from a jump
 		if (player.isJumping && isGrounded)
@@ -82,6 +80,16 @@ public class MinibotController : MonoBehaviour
 		targetVelocity *= speed;
 
 		return targetVelocity;
+	}
+
+	void OnCollisionStay(Collision col)
+	{
+		CheckIfGrounded();
+	}
+
+	void OnCollisionExit(Collision col)
+	{
+		CheckIfGrounded();
 	}
 
 	void HandlePlayerFacing (float xInput)

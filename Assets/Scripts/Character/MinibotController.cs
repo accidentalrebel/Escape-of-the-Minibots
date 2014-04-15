@@ -39,8 +39,7 @@ public class MinibotController : MonoBehaviour
     {
 		float yInput = Registry.inputHandler.YAxis;
 		float xInput = AdjustXInput(Registry.inputHandler.XAxis);
-
-        HandleIfStandingOrWalking(xInput);
+		
 		HandlePlayerFacing(xInput);
 
 		Vector3 targetVelocity = CalculateTargetVelocity(xInput, yInput);
@@ -51,10 +50,11 @@ public class MinibotController : MonoBehaviour
         velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
         velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
         velocityChange.y = 0;
-		
-		// The following checks if the player has just landed from a jump
+
 		if (player.isJumping && isGrounded)
-			player.Grounded();  // If so, tell the player that he is now grounded
+			player.OnReachedGround();
+
+		HandlePlayerSprite(xInput);
 
         if (CheckIfCanMove(velocityChange)) {
             rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
@@ -102,12 +102,15 @@ public class MinibotController : MonoBehaviour
 		}
 	}
 
-	void HandleIfStandingOrWalking (float xInput)
+	void HandlePlayerSprite (float xInput)
 	{
-		if (xInput == 0)
-			player.Standing();
+		if ( player.isJumping )
+			return;
+
+		if (xInput != 0 )
+			player.Walk();
 		else
-			player.Walking();
+			player.Stand();
 	}
 
 	float AdjustXInput(float xInput)

@@ -120,30 +120,41 @@ public class Minibot : LevelObject {
         isJumping = true;
     }
 
-    internal void Grounded()
+    internal void OnReachedGround()
     {
         spriteManager.Play("walking");
         isJumping = false;
     }
 
-    internal void Standing()
+	public bool CheckIfCanStand()
+	{
+		if (isJumping == false && isStanding == false)
+			return true;
+		return false;
+	}
+
+    internal void Stand()
     {
-        if (isJumping == false && isStanding == false)
-        {
-            spriteManager.Play("standing");
-            isStanding = true;
-            isWalking = false;
-        }
+    	spriteManager.Play("standing");
+    	isStanding = true;
+    	isWalking = false;
     }
 
-    internal void Walking()
+	public bool CheckIfCanWalk()
+	{
+		if (isJumping == false && isWalking == false)
+			return true;
+		return false;
+	}
+
+    internal void Walk()
     {
-        if (isJumping == false && isWalking == false)
-        {
-            spriteManager.Play("walking");
-            isStanding = false;
-            isWalking = true;
-        }
+		if ( CheckIfCanWalk() )
+		{
+		    spriteManager.Play("walking");
+		    isStanding = false;
+		    isWalking = true;
+		}
     }
 
     private void PickUp(GameObject objectAtSide)

@@ -49,24 +49,6 @@ public class MinibotController : MonoBehaviour
             UpdateGravity();
     }
 
-    internal void InvertHorizontal()
-    {
-        if (invertHorizontal)
-            invertHorizontal = false;
-        else
-            invertHorizontal = true;
-    }
-
-    internal void InvertTheGravity()
-    {
-        if (invertGravity)
-            invertGravity = false;
-        else
-            invertGravity = true;
-
-        UpdateGravity();
-    }
-
     void FixedUpdate()
     {
         float xInput = Registry.inputHandler.XAxis;
@@ -109,18 +91,14 @@ public class MinibotController : MonoBehaviour
             rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
         }
 
-        if (grounded)
+		if (grounded && canJump && Registry.inputHandler.JumpButton)
         {
-            // Jump
-            if (canJump && Registry.inputHandler.JumpButton)
-            {
-                if ( invertGravity )
-                    rigidbody.velocity = new Vector3(velocity.x, -CalculateJumpVerticalSpeed(), velocity.z);
-                else
-                    rigidbody.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
+	        if ( invertGravity )
+	            rigidbody.velocity = new Vector3(velocity.x, -CalculateJumpVerticalSpeed(), velocity.z);
+	        else
+	            rigidbody.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
 
-                player.Jumped();                
-            }
+	        player.Jumped();                       
         }
 
         // We apply gravity manually for more tuning control
@@ -128,6 +106,24 @@ public class MinibotController : MonoBehaviour
 
         grounded = false;
     }
+
+	internal void InvertHorizontal()
+	{
+		if (invertHorizontal)
+			invertHorizontal = false;
+		else
+			invertHorizontal = true;
+	}
+	
+	internal void InvertTheGravity()
+	{
+		if (invertGravity)
+			invertGravity = false;
+		else
+			invertGravity = true;
+		
+		UpdateGravity();
+	}
 
     private bool CheckIfCanMove(Vector3 velocityChange)
     {

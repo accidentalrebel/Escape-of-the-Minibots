@@ -1,20 +1,25 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Objects\LevelObject.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\Minibot.cs">
     <Files>
-      <File FileName="Assets\Scripts\Replays\ReplayManager.cs" Line="51" Column="10" />
-      <File FileName="Assets\Scripts\Player\Minibot.cs" Line="69" Column="24" />
-      <File FileName="Assets\Scripts\Objects\LevelObject.cs" Line="15" Column="70" />
+      <File FileName="Assets\Scripts\Main\Main.cs" Line="159" Column="2" />
+      <File FileName="Assets\Scripts\Objects\Door.cs" Line="4" Column="18" />
+      <File FileName="Assets\Scripts\Player\Minibot.cs" Line="211" Column="6" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Scripts" expanded="True">
-              <Node name="Objects" expanded="True">
-                <Node name="LevelObject.cs" selected="True" />
+              <Node name="GUI" expanded="True">
+                <Node name="MainGame" expanded="True" />
               </Node>
-              <Node name="Player" expanded="True" />
+              <Node name="Main" expanded="True" />
+              <Node name="Misc" expanded="True" />
+              <Node name="Objects" expanded="True" />
+              <Node name="Player" expanded="True">
+                <Node name="Minibot.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>

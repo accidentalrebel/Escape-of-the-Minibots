@@ -15,6 +15,16 @@ public class Door : LevelObject {
 
     private bool startingIsOpen = true;
 
+	protected override void Awake ()
+	{
+		base.Awake ();
+
+		if ( openTexture == null )
+			Debug.LogError("openTexture not initialized!");
+		if ( closedTexture == null )
+			Debug.LogError("closedTexture not initialized!");
+	}
+
     override protected void Start()
     {
         base.Start();

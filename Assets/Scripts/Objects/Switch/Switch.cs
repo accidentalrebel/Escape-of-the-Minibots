@@ -6,6 +6,10 @@ public class Switch : LevelObject {
     public Vector3 posOfObjectToActivate1 = Vector3.zero;
     public Vector3 posOfObjectToActivate2 = Vector3.zero;
     public Vector3 posOfObjectToActivate3 = Vector3.zero;
+
+	public Texture triggeredTexture;
+	public Texture untriggeredTexture;
+
     internal int objectNumToLinkTo = 0;
     protected bool isTriggered = false;
     protected Collider triggeredCollider;
@@ -16,6 +20,11 @@ public class Switch : LevelObject {
 		base.Awake();
 		
 		map = Registry.map;
+
+		if ( triggeredTexture == null )
+			Debug.LogError("triggeredTexture not initialized!");
+		if ( untriggeredTexture == null )
+			Debug.LogError("untriggeredTexture not initialized!");
 	}
 
     internal void Initialize(Vector3 theStartingPos, Vector2 thePosOfObjectToActivate1)
@@ -84,6 +93,8 @@ public class Switch : LevelObject {
         {
             if (Registry.inputHandler.UseButton)
             {
+				UpdateSwitchGraphic();
+
                 LevelObject objectToUse;
                 if (posOfObjectToActivate1 != Vector3.zero)
                 {
@@ -114,12 +125,22 @@ public class Switch : LevelObject {
     {
         triggeredCollider = null;
         isTriggered = false;
+
+		UpdateSwitchGraphic();
     }
 
     internal override void ResetObject()
     {
         base.ResetObject();
     }
+
+	void UpdateSwitchGraphic ()
+	{
+		if ( isTriggered )
+			graphicHandler.theRenderer.material.SetTexture("_MainTex", triggeredTexture);
+		else
+			graphicHandler.theRenderer.material.SetTexture("_MainTex", untriggeredTexture);
+	}
 
     // ************************************************************************************
     // OBJECT EDITING

@@ -4,6 +4,9 @@ using System.Collections;
 public class Door : LevelObject {
 
     public bool isOpen = false;
+	public Texture openTexture;
+	public Texture closedTexture;
+
     public bool IsOpen
     {
         set { isOpen = value; UpdateDoorGraphic(); }
@@ -28,9 +31,9 @@ public class Door : LevelObject {
     private void UpdateDoorGraphic()
     {
         if( isOpen)
-            graphicHandler.theRenderer.material.color = Color.cyan;
+			graphicHandler.theRenderer.material.SetTexture("_MainTex", openTexture);
         else            
-            graphicHandler.theRenderer.material.color = Color.green;
+			graphicHandler.theRenderer.material.SetTexture("_MainTex", closedTexture);
     }
 
     override internal void Use(bool setToValue)

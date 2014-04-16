@@ -134,7 +134,7 @@ public class Switch : LevelObject {
         base.ResetObject();
     }
 
-	void UpdateSwitchGraphic ()
+	virtual protected void UpdateSwitchGraphic ()
 	{
 		if ( isTriggered )
 			graphicHandler.theRenderer.material.SetTexture("_MainTex", triggeredTexture);

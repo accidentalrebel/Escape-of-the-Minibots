@@ -13,6 +13,7 @@ public class LevelObject : MonoBehaviour {
 		startingPos = gameObject.transform.position;
 
 		spriteManager = gameObject.GetComponentInChildren<SpriteManager>();
+		graphicHandler = gameObject.GetComponent<GraphicHandler>();
 	}
 	
 	virtual internal void Initialize(Vector3 theStartingPos)
@@ -20,11 +21,10 @@ public class LevelObject : MonoBehaviour {
 		startingPos = theStartingPos;
 		gameObject.transform.position = startingPos;
 	}
-	
-    virtual protected void Start()
-    {
-        graphicHandler = gameObject.GetComponent<GraphicHandler>();
-    }
+
+	virtual protected void Start() {
+
+	}
 
     virtual internal void Use(bool setToValue)
     {

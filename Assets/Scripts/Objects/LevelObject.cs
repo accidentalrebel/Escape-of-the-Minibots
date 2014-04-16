@@ -11,6 +11,10 @@ public class LevelObject : MonoBehaviour {
 	virtual protected void Awake()
 	{
 		startingPos = gameObject.transform.position;
+
+		spriteManager = gameObject.GetComponentInChildren<SpriteManager>();
+		if (spriteManager == null)
+			Debug.LogWarning("spriteManger at " + gameObject.name + " can not be found!");
 	}
 	
 	virtual internal void Initialize(Vector3 theStartingPos)
@@ -24,10 +28,6 @@ public class LevelObject : MonoBehaviour {
         graphicHandler = gameObject.GetComponent<GraphicHandler>();
         if (graphicHandler == null)
             Debug.LogError("theGraphicHandler at " + gameObject.name + "can not be found!");
-
-        spriteManager = gameObject.GetComponentInChildren<SpriteManager>();
-        //if (spriteManager == null)
-        //    Debug.LogWarning("spriteManger at " + gameObject.name + " can not be found!");
     }
 
     virtual internal void Use(bool setToValue)

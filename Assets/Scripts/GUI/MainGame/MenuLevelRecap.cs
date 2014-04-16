@@ -15,8 +15,7 @@ public class MenuLevelRecap : Menu {
     {
         base.Update();
 
-        if (isVisible)
-        {
+        if (isVisible) {
             if (Input.GetKeyDown(KeyCode.Z)
 			    || Input.GetKeyDown(KeyCode.Space)) {                
                 GoToNextLevel();

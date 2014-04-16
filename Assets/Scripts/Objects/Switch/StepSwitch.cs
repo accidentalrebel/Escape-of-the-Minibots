@@ -40,18 +40,22 @@ public class StepSwitch : Switch {
 	
     void OnTriggerEnter(Collider col)
     {
-        Debug.Log("OnTriggerEnter");
-		isTriggered = true;
-		Trigger();
-		UpdateSwitchGraphic();
+		if (col.tag == "Player") {
+	        Debug.Log("OnTriggerEnter");
+			isTriggered = true;
+			Trigger();
+			UpdateSwitchGraphic();
+		}
     }
 
     void OnTriggerExit(Collider col)
-    {        
-        Debug.Log("OnTriggerExit");
-		isTriggered = false;
-		Trigger();
-		UpdateSwitchGraphic();
+    {     
+		if (col.tag == "Player") {
+	        Debug.Log("OnTriggerExit");
+			isTriggered = false;
+			Trigger();
+			UpdateSwitchGraphic();
+		}
     }
 
     internal override void ResetObject()

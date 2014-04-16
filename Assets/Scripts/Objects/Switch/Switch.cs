@@ -117,8 +117,10 @@ public class Switch : LevelObject {
 
     void OnTriggerEnter(Collider col)
     {
-        triggeredCollider = col;
-        isTriggered = true;
+		if (col.tag == "Player") {
+	        triggeredCollider = col;
+	        isTriggered = true;
+		}
     }
 
     void OnTriggerExit()

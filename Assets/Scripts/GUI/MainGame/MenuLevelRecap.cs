@@ -17,12 +17,11 @@ public class MenuLevelRecap : Menu {
 
         if (isVisible)
         {
-            if (Input.GetKeyDown(KeyCode.Z))
-            {                
+            if (Input.GetKeyDown(KeyCode.Z)
+			    || Input.GetKeyDown(KeyCode.Space)) {                
                 GoToNextLevel();
             }
-            else if (Input.GetKeyDown(KeyCode.X))
-            {
+            else if (Input.GetKeyDown(KeyCode.X)) {
                 RestartLevel();
             }
         }

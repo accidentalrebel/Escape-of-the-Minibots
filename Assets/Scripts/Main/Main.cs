@@ -18,7 +18,7 @@ public class Main : MonoBehaviour
     internal Timer timer;
     internal LevelEditor levelEditor;
 
-    internal bool isReplayMode = false;
+    public bool isReplayMode = false;
     int minibotCountAtStart;
 
     Map map;

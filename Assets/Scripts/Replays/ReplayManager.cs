@@ -45,7 +45,7 @@ public class ReplayManager : MonoBehaviour {
     {
         if (canRecord)
         {
-            ReplayEvent newEvent = new ReplayEvent();
+            ReplayEvent newEvent = (ReplayEvent) ScriptableObject.CreateInstance("ReplayEvent");
             newEvent.Initialize(eventTime - startTime, eventType);
             eventList.Add(newEvent);
         }

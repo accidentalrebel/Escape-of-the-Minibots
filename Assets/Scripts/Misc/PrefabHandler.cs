@@ -3,61 +3,48 @@ using System.Collections;
 
 public class PrefabHandler : MonoBehaviour {
 
-    internal Object pfTile;
-    internal Object pfMinibot;
-    internal Object pfBox;
-    internal Object pfDoor;
-    internal Object pfGravityInverter;
-    internal Object pfHazard;
-    internal Object pfTriggerableHazard;
-    internal Object pfHorizontalInverter;
-    internal Object pfMovingPlatform;
-    internal Object pfStepSwitch;
-    internal Object pfSwitch;
-    internal Object pfTriggerableBlock;
-    internal Object pfTriggerableTile;
+    public Object pfTile;
+    public Object pfMinibot;
+    public Object pfBox;
+    public Object pfDoor;
+    public Object pfGravityInverter;
+    public Object pfHazard;
+    public Object pfTriggerableHazard;
+    public Object pfHorizontalInverter;
+    public Object pfMovingPlatform;
+    public Object pfStepSwitch;
+    public Object pfSwitch;
+    public Object pfTriggerableBlock;
+    public Object pfTriggerableTile;
 
 	// Use this for initialization
 	void Awake () {
         Registry.prefabHandler = this;        
 
-        pfTile = Resources.Load(@"Prefabs/pfTile");
         if (pfTile == null)
             Debug.LogError("Can not find pfTile prefab!");
-        pfMinibot = Resources.Load(@"Prefabs/pfMinibot");
         if (pfMinibot == null)
-            Debug.LogError("Can not find pfMinibot prefab!");
-        pfBox = Resources.Load(@"Prefabs/pfBox");
+            Debug.LogError("Can not find pfMinibot prefab!");     
         if (pfBox == null)
-            Debug.LogError("Can not find pfBox prefab!");
-        pfDoor = Resources.Load(@"Prefabs/pfDoor");
+			Debug.LogError("Can not find pfBox prefab!");
         if (pfDoor == null)
             Debug.LogError("Can not find pfDoor prefab!");
-        pfGravityInverter = Resources.Load(@"Prefabs/pfGravityInverter");
         if (pfGravityInverter == null)
-            Debug.LogError("Can not find pfGravityInverter prefab!");
-        pfHazard = Resources.Load(@"Prefabs/pfHazard");
+            Debug.LogError("Can not find pfGravityInverter prefab!");       
         if (pfHazard == null)
-            Debug.LogError("Can not find pfHazard prefab!");
-        pfTriggerableHazard = Resources.Load(@"Prefabs/pfTriggerableHazard");
+            Debug.LogError("Can not find pfHazard prefab!");        
         if (pfTriggerableHazard == null)
-            Debug.LogError("Can not find pfTriggerableHazard prefab!");
-        pfHorizontalInverter = Resources.Load(@"Prefabs/pfHorizontalInverter");
+            Debug.LogError("Can not find pfTriggerableHazard prefab!");        
         if (pfHorizontalInverter == null)
-            Debug.LogError("Can not find pfHorizontalInverter prefab!");
-        pfMovingPlatform = Resources.Load(@"Prefabs/pfMovingPlatform");
+            Debug.LogError("Can not find pfHorizontalInverter prefab!");        
         if (pfMovingPlatform == null)
-            Debug.LogError("Can not find pfMovingPlatform prefab!");
-        pfStepSwitch = Resources.Load(@"Prefabs/pfStepSwitch");
+            Debug.LogError("Can not find pfMovingPlatform prefab!");        
         if (pfStepSwitch == null)
-            Debug.LogError("Can not find pfStepSwitch prefab!");
-        pfSwitch = Resources.Load(@"Prefabs/pfSwitch");
+            Debug.LogError("Can not find pfStepSwitch prefab!");        
         if (pfSwitch == null)
-            Debug.LogError("Can not find pfSwitch prefab!");
-        pfTriggerableBlock = Resources.Load(@"Prefabs/pfTriggerableBlock");
+            Debug.LogError("Can not find pfSwitch prefab!");        
         if (pfTriggerableBlock == null)
-            Debug.LogError("Can not find pfTriggerableBlock prefab!");
-        pfTriggerableTile = Resources.Load(@"Prefabs/pfTriggerableTile");
+            Debug.LogError("Can not find pfTriggerableBlock prefab!");        
         if (pfTriggerableTile == null)
             Debug.LogError("Can not find pfTriggerableTile prefab!");	
 	}

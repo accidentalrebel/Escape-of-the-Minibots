@@ -239,15 +239,31 @@ public class Minibot : LevelObject {
             checkDirection = Vector3.right;
 
 		Vector3 feetRaycastPosition = gameObject.transform.position - Vector3.up / 2.5f;
+
 		if (Physics.Raycast(feetRaycastPosition, checkDirection, out hit, rayLength))
         {
             if (hit.collider.tag == "Steppable"
                 || hit.collider.tag == "Box")
             {
-				Debug.DrawLine(feetRaycastPosition, hit.point, new Color(255, 0, 255));
+#if UNITY_EDITOR
+				Debug.DrawLine(feetRaycastPosition, feetRaycastPosition + checkDirection, new Color(255, 0, 255));
+#endif
                 return hit.collider.gameObject;
             }
         }
+
+		Vector3 headRaycastPosition = gameObject.transform.position - Vector3.down / 2.5f;
+		if ( Physics.Raycast(headRaycastPosition, checkDirection, out hit, rayLength))
+		{
+			if (hit.collider.tag == "Steppable"
+			   || hit.collider.tag == "Box")
+			{
+#if UNITY_EDITOR
+				Debug.DrawLine(headRaycastPosition, headRaycastPosition + checkDirection, new Color(255, 0, 255));
+#endif
+				return hit.collider.gameObject;
+			}
+		}
 
         return null;
     }

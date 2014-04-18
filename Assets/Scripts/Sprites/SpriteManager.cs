@@ -5,14 +5,13 @@ using System.Collections.Generic;
 [RequireComponent(typeof(Renderer))]
 public class SpriteManager : MonoBehaviour {
 
-    Renderer theRenderer;
-    public bool enableAnimation = true;
-    int totalNumberOfFrames;
-    public bool isFlipped = false;
-
-    Vector2 offsetDifference = new Vector2();
-    Dictionary<int, Vector2> animationFrames = new Dictionary<int, Vector2>();
-    Dictionary<string, AnimationProperties> animationSets = new Dictionary<string, AnimationProperties>();
+	private bool enableAnimation = true;   
+	private Renderer theRenderer;   
+    private int totalNumberOfFrames;
+    private bool _isHorizontallyFlipped = false;
+    private Vector2 offsetDifference = new Vector2();
+    private Dictionary<int, Vector2> animationFrames = new Dictionary<int, Vector2>();
+    private Dictionary<string, AnimationProperties> animationSets = new Dictionary<string, AnimationProperties>();
 
     public struct AnimationProperties
     {
@@ -92,39 +91,23 @@ public class SpriteManager : MonoBehaviour {
         StopCoroutine("Animate");
     }
 
-	//TODO: Change to setFlippedX
-   	public void HandleSpriteOrientation(bool flip)
+   	public void SetFlippedX(bool flipValue)
     {
-        int flipValue = 1;
-        Vector2 currentTextureOffset = theRenderer.material.GetTextureOffset("_MainTex");
+		Vector3 currentScale = transform.localScale;
+		float currentXScale = Mathf.Abs(currentScale.x);
 
-        // If we should flip it
-        if (flip && isFlipped == false)
-        {
-            currentTextureOffset.x += offsetDifference.x;
-            flipValue = -1;
-            isFlipped = true;
-        }
-        // If we should unflip it
-        else if ( !flip && isFlipped == true)
-        {
-            currentTextureOffset.x -= offsetDifference.x;
-            flipValue = 1;
-            isFlipped = false;
-        }
-
-        theRenderer.material.SetTextureOffset("_MainTex", currentTextureOffset);
-
-        theRenderer.material.SetTextureScale("_MainTex"
-            , new Vector2((flipValue) * offsetDifference.x, offsetDifference.y));
+		if ( flipValue && !_isHorizontallyFlipped )
+			transform.localScale = new Vector3(-currentXScale, currentScale.y, currentScale.z);
+		else
+			transform.localScale = new Vector3(currentXScale, currentScale.y, currentScale.z);
     }
 
-	public void SetFlippedY(bool isFlipped = true)
+	public void SetFlippedY(bool flipValue)
 	{
 		Vector3 currentScale = transform.localScale;
 		float currentYScale = Mathf.Abs(currentScale.y);
 
-		if ( isFlipped )
+		if ( flipValue )
 			transform.localScale = new Vector3(currentScale.x, -currentYScale, currentScale.z);
 		else
 			transform.localScale = new Vector3(currentScale.x, currentYScale, currentScale.z);
@@ -147,7 +130,7 @@ public class SpriteManager : MonoBehaviour {
             Vector2 newOffset = animationFrames[animationFrameSets[currentFrame - 1]];
 
             // If the sprite is flipped
-            if (isFlipped)
+            if (_isHorizontallyFlipped)
             {
                 newOffset.x += offsetDifference.x;  // Increase the x offset ( flipping actually moves the xOffset by one frame so we adjust it )
                 flipValue = -1;                     // We then set the flipvalue        
@@ -178,6 +161,6 @@ public class SpriteManager : MonoBehaviour {
 	public void Reset ()
 	{
 		SetFlippedY(false);
-		HandleSpriteOrientation(false);
+		SetFlippedX(false);
 	}
 }

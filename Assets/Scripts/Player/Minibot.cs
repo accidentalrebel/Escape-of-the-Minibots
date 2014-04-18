@@ -284,9 +284,9 @@ public class Minibot : LevelObject {
     private void HandleSpriteDirection()
     {
         if (_isFacing == Direction.Left)
-            _spriteManager.HandleSpriteOrientation(true);
+            _spriteManager.SetFlippedX(true);
         else
-            _spriteManager.HandleSpriteOrientation(false);
+            _spriteManager.SetFlippedX(false);
     }
 
 	public void setFacingValueWithXinput (float xInput)

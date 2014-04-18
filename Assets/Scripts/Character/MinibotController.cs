@@ -71,13 +71,8 @@ public class MinibotController : MonoBehaviour
 		_playerScript.setFacingValueWithXinput(xInput);
 
 		Vector3 targetVelocity = CalculateTargetVelocity(xInput, yInput);
-
-        // Apply a force that attempts to reach our target velocity
-        Vector3 velocity = rigidbody.velocity;
-        Vector3 velocityChange = (targetVelocity - velocity);
-        velocityChange.x = Mathf.Clamp(velocityChange.x, -_maxVelocityChange, _maxVelocityChange);
-        velocityChange.z = Mathf.Clamp(velocityChange.z, -_maxVelocityChange, _maxVelocityChange);
-        velocityChange.y = 0;
+        Vector3 currentVelocity = rigidbody.velocity;
+		Vector3 velocityChange = getForceThatCanReachTargetVelocity(currentVelocity, targetVelocity);
 
 		if (_playerScript.IsJumping && _isGrounded)
 			_playerScript.OnReachedGround();
@@ -96,9 +91,9 @@ public class MinibotController : MonoBehaviour
 
 		if (Registry.inputHandler.JumpButton && _isGrounded && _canJump ) {
 	        if ( _isInvertedVertically )
-	            rigidbody.velocity = new Vector3(velocity.x, -CalculateJumpVerticalSpeed(), velocity.z);
+	            rigidbody.velocity = new Vector3(currentVelocity.x, -CalculateJumpVerticalSpeed(), currentVelocity.z);
 	        else
-	            rigidbody.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
+	            rigidbody.velocity = new Vector3(currentVelocity.x, CalculateJumpVerticalSpeed(), currentVelocity.z);
 
 	        _playerScript.Jump();                       
         }
@@ -106,6 +101,16 @@ public class MinibotController : MonoBehaviour
         rigidbody.AddForce(new Vector3(0, -_gravity * rigidbody.mass, 0));
 		_isGrounded = false;
     }
+
+	Vector3 getForceThatCanReachTargetVelocity (Vector3 currentVelocity, Vector3 targetVelocity)
+	{
+		Vector3 adjustedVelocity = (targetVelocity - currentVelocity);
+		adjustedVelocity.x = Mathf.Clamp(adjustedVelocity.x, -_maxVelocityChange, _maxVelocityChange);
+		adjustedVelocity.z = Mathf.Clamp(adjustedVelocity.z, -_maxVelocityChange, _maxVelocityChange);
+		adjustedVelocity.y = 0;
+
+		return adjustedVelocity;
+	}
 
 	// ************************************************************************************
 	// VELOCITY

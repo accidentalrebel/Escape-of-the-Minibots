@@ -72,37 +72,31 @@ public class MinibotController : MonoBehaviour
 
 		Vector3 targetVelocity = CalculateTargetVelocity(xInput, yInput);
         Vector3 currentVelocity = rigidbody.velocity;
-		Vector3 velocityChange = getForceThatCanReachTargetVelocity(currentVelocity, targetVelocity);
+		Vector3 velocityChange = GetForceThatCanReachTargetVelocity(currentVelocity, targetVelocity);
 
 		if (_playerScript.IsJumping && _isGrounded)
 			_playerScript.OnReachedGround();
 
 		_playerScript.setPlayerAnimationsWithXInput(xInput);
 
-        if (CheckIfCanMove(velocityChange)) {
-            rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
-        }
+        if (CheckIfCanMove(velocityChange))
+			ApplyHorizontalForce(velocityChange);
 		else
-		{
-			Vector3 tVelocity = rigidbody.velocity;
-			tVelocity.x = 0;
-			rigidbody.velocity = tVelocity;
-		}
+			RemoveHorizontalForce();
 
 		if (Registry.inputHandler.JumpButton && _isGrounded && _canJump ) {
-	        if ( _isInvertedVertically )
-	            rigidbody.velocity = new Vector3(currentVelocity.x, -CalculateJumpVerticalSpeed(), currentVelocity.z);
-	        else
-	            rigidbody.velocity = new Vector3(currentVelocity.x, CalculateJumpVerticalSpeed(), currentVelocity.z);
-
-	        _playerScript.Jump();                       
+			ApplyJumpForces(currentVelocity);  
+			_playerScript.Jump(); 
         }
 
-        rigidbody.AddForce(new Vector3(0, -_gravity * rigidbody.mass, 0));
+		ApplyGravity();
 		_isGrounded = false;
     }
 
-	Vector3 getForceThatCanReachTargetVelocity (Vector3 currentVelocity, Vector3 targetVelocity)
+	// ************************************************************************************
+	// FORCES
+	// ************************************************************************************
+	Vector3 GetForceThatCanReachTargetVelocity (Vector3 currentVelocity, Vector3 targetVelocity)
 	{
 		Vector3 adjustedVelocity = (targetVelocity - currentVelocity);
 		adjustedVelocity.x = Mathf.Clamp(adjustedVelocity.x, -_maxVelocityChange, _maxVelocityChange);
@@ -110,6 +104,31 @@ public class MinibotController : MonoBehaviour
 		adjustedVelocity.y = 0;
 
 		return adjustedVelocity;
+	}
+
+	void ApplyJumpForces (Vector3 currentVelocity)
+	{
+		if ( _isInvertedVertically )
+			rigidbody.velocity = new Vector3(currentVelocity.x, -CalculateJumpVerticalSpeed(), currentVelocity.z);
+		else
+			rigidbody.velocity = new Vector3(currentVelocity.x, CalculateJumpVerticalSpeed(), currentVelocity.z);		 
+	}
+
+	void ApplyHorizontalForce (Vector3 velocityChange)
+	{
+		rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
+	}
+
+	void RemoveHorizontalForce ()
+	{
+		Vector3 tVelocity = rigidbody.velocity;
+		tVelocity.x = 0;
+		rigidbody.velocity = tVelocity;
+	}
+
+	void ApplyGravity ()
+	{
+		rigidbody.AddForce(new Vector3(0, -_gravity * rigidbody.mass, 0));
 	}
 
 	// ************************************************************************************

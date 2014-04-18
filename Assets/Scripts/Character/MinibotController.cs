@@ -42,6 +42,10 @@ public class MinibotController : MonoBehaviour
 		get { return _isInvertedVertically; }
 	}
 
+
+	// ************************************************************************************
+	// MAIN
+	// ************************************************************************************
     void Awake()
     {
         rigidbody.freezeRotation = true;
@@ -103,6 +107,9 @@ public class MinibotController : MonoBehaviour
 		_isGrounded = false;
     }
 
+	// ************************************************************************************
+	// VELOCITY
+	// ************************************************************************************
 	Vector3 CalculateTargetVelocity (float xInput, float yInput)
 	{
 		Vector3 targetVelocity = new Vector3(xInput, 0, yInput);
@@ -112,6 +119,9 @@ public class MinibotController : MonoBehaviour
 		return targetVelocity;
 	}
 
+	// ************************************************************************************
+	// TRIGGERS
+	// ************************************************************************************
 	void OnCollisionStay(Collision col)
 	{
 		CheckIfGrounded();
@@ -122,6 +132,9 @@ public class MinibotController : MonoBehaviour
 		CheckIfGrounded();
 	}
 
+	// ************************************************************************************
+	// STATUS
+	// ************************************************************************************
 	float AdjustXInput(float xInput)
 	{
 		if (_isInvertedVertically)
@@ -157,6 +170,9 @@ public class MinibotController : MonoBehaviour
 		UpdateGravityStatus();
 	}
 
+	// ************************************************************************************
+	// HELPER FUNCTIONS
+	// ************************************************************************************
     private bool CheckIfCanMove(Vector3 velocityChange)
     {
         if (( velocityChange.x < 0
@@ -203,6 +219,9 @@ public class MinibotController : MonoBehaviour
 		_isGrounded = false;
     }
 
+	// ************************************************************************************
+	// RELEASE
+	// ************************************************************************************
 	public void Reset (bool initHorizontalValue, bool initVerticalValue)
 	{
 		_isInvertedHorizontally = initHorizontalValue;		

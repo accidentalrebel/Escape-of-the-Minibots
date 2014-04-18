@@ -163,13 +163,13 @@ public class Minibot : LevelObject {
 		}
     }
 
-    private void PickUp(GameObject objectAtSide)
+    public void PickUp(GameObject objectAtSide)
     {
         objectBeingCarried = objectAtSide;
         objectBeingCarried.GetComponent<Box>().PickUp();
     }
 
-    private void PutDown(GameObject objectToPutDown)
+	public void PutDown(GameObject objectToPutDown)
     {
         Vector3 putDownPosition = Vector3.zero;
         if (isFacing == Direction.Left)
@@ -207,13 +207,13 @@ public class Minibot : LevelObject {
     // SPAWNING
     // ************************************************************************************
 
-    void Die()
+    public void Die()
     {
         Debug.LogWarning("I DIED");
         Registry.main.ResetLevel();
     }
 
-    void ExitLevel()
+	public void ExitLevel()
     {
         Debug.Log("exiting stage");
         hasExited = true;

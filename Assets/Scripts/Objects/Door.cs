@@ -46,13 +46,13 @@ public class Door : LevelObject {
 			graphicHandler.theRenderer.material.SetTexture("_MainTex", closedTexture);
     }
 
-    override protected void Use(bool setToValue)
+    override public void Use(bool setToValue)
     {
         isOpen = setToValue;
         UpdateDoorGraphic();
     }
 
-    override protected void Use()
+    override public void Use()
     {
         if (isOpen)
             isOpen = false;
@@ -62,7 +62,7 @@ public class Door : LevelObject {
         UpdateDoorGraphic();
     }
 
-    void CloseDoor()
+    public void CloseDoor()
     {
         isOpen = false; 
         UpdateDoorGraphic();

@@ -19,12 +19,12 @@ public class Box : LevelObject {
 		base.Initialize(theStartingPos);
 	}
 
-    void PickUp()
+	public void PickUp()
     {
         theRigidBody.useGravity = false;
     }
 
-    void PutDown()
+	public void PutDown()
     {
         theRigidBody.useGravity = true;
     }

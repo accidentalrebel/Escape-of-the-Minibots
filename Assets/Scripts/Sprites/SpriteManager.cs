@@ -14,7 +14,7 @@ public class SpriteManager : MonoBehaviour {
     Dictionary<int, Vector2> animationFrames = new Dictionary<int, Vector2>();
     Dictionary<string, AnimationProperties> animationSets = new Dictionary<string, AnimationProperties>();
 
-   struct AnimationProperties
+    public struct AnimationProperties
     {
         public int[] frameSet;          // The frameSet that contains the frame numbers that this animation should loop through
         public float animationSpeed;    // The animation speed of this animation
@@ -35,7 +35,7 @@ public class SpriteManager : MonoBehaviour {
         Play("default");
 	}
 
-    void Initialize(int numOfHorizontalFrames, int numOfVerticalFrames)
+	public void Initialize(int numOfHorizontalFrames, int numOfVerticalFrames)
     {
         // We get the offset difference, this is the difference of one from from another
         offsetDifference.x = (float)(1f / numOfHorizontalFrames);
@@ -74,12 +74,7 @@ public class SpriteManager : MonoBehaviour {
         CreateAnimation("default", new AnimationProperties(defaultFrameSet, 0.5f));        // We create the default animation for default        
     }
 
-    /// <summary>
-    /// This creates a new animation
-    /// </summary>
-    /// <param name="animationName">The name of the new animation set</param>
-    /// <param name="frameSet">the frames to use for this animation (i.e. {1, 2, 4, 5})</param>
-    void CreateAnimation(string animationName, AnimationProperties animationProperty)
+    public void CreateAnimation(string animationName, AnimationProperties animationProperty)
     {
         animationSets.Add(animationName, animationProperty);
     }
@@ -97,7 +92,7 @@ public class SpriteManager : MonoBehaviour {
         StopCoroutine("Animate");
     }
 
-   public void HandleSpriteOrientation(bool flip)
+   	public void HandleSpriteOrientation(bool flip)
     {
         int flipValue = 1;
         Vector2 currentTextureOffset = theRenderer.material.GetTextureOffset("_MainTex");

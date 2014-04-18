@@ -19,8 +19,8 @@ public class Map : MonoBehaviour {
     public GameObject triggerableHazardsContainer;
     private List<Transform> levelObjectContainerList = new List<Transform>();
 
-    XMLLevelReader levelReader;
-    XMLLevelWriter levelWriter;
+    public XMLLevelReader levelReader;
+    public XMLLevelWriter levelWriter;
     public string currentLevel = "";    
 
     // ************************************************************************************

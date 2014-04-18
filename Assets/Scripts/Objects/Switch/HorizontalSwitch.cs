@@ -19,7 +19,7 @@ public class HorizontalSwitch : Switch {
         {
             if (Registry.inputHandler.UseButton)
             { 
-                triggeredCollider.gameObject.GetComponent<MinibotController>().InvertHorizontal();
+                triggeredCollider.gameObject.GetComponent<MinibotController>().InvertHorizontally();
             }
         }
     }

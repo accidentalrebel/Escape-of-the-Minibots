@@ -101,7 +101,7 @@ public class InputHandler : MonoBehaviour {
         HandleAxis();
 	}
     
-    void ResetInput()
+	public void ResetInput()
     {
         hasPressedLeft = false;
         hasPressedRight = false;
@@ -142,47 +142,47 @@ public class InputHandler : MonoBehaviour {
             xAxis = -1;
     }
 
-    void PressedRight()
+	public void PressedRight()
     {
         hasPressedRight = true;
     }
 
-    void ReleasedRight()
+	public void ReleasedRight()
     {
         hasPressedRight = false;
     }
 
-    void PressedLeft()
+	public void PressedLeft()
     {
         hasPressedLeft = true;
     }
 
-    void ReleasedLeft()
+	public void ReleasedLeft()
     {
         hasPressedLeft = false;
     }
 
-    void PressedJump()
+	public void PressedJump()
     {
         jumpButton = true;
     }
 
-    void ReleasedJump()
+	public void ReleasedJump()
     {
         jumpButton = false;
     }
 
-    void PressedUse()
+	public void PressedUse()
     {        
         useButton = true;
     }
 
-    void PressedPickUp()
+	public void PressedPickUp()
     {
         pickupButton = true;
     }
 
-    void PressedReset()
+	public void PressedReset()
     {
         resetButton = true;
     }

@@ -11,7 +11,7 @@ public class ReplayManager : MonoBehaviour {
     bool isPlayingReplay = false;
 
     bool canRecord = true;
-    ReplayViewer replayViewer;
+    public ReplayViewer replayViewer;
 
     void Awake()
     {
@@ -56,7 +56,7 @@ public class ReplayManager : MonoBehaviour {
         StartCoroutine("Replay");
     }
 
-    void StopReplay()
+    public void StopReplay()
     {
         StopCoroutine("Replay");
         isPlayingReplay = false;
@@ -116,7 +116,7 @@ public class ReplayManager : MonoBehaviour {
         Debug.Log("Replay has ended");
     }
     
-    string GetReplayDataString()
+    public string GetReplayDataString()
     {
         string replayData = "";
         foreach ( ReplayEvent replayEvent in eventList )

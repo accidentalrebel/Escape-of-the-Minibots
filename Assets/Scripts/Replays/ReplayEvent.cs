@@ -5,10 +5,10 @@ public class ReplayEvent: ScriptableObject {
 
     public enum EventType { PressedLeft, ReleasedLeft, PressedRight, ReleasedRight, PressedJump, ReleasedJump, PressedUse, ReleasedUse, PressedPickUp, ReleasedPickUp, PressedReset };
 
-    float timeTriggered;
-    EventType eventType;
+	public float timeTriggered;
+	public EventType eventType;
 
-    void Initialize(float theTimeTriggered, EventType theEventType)
+	public void Initialize(float theTimeTriggered, EventType theEventType)
     {
         timeTriggered = theTimeTriggered;
         eventType = theEventType;

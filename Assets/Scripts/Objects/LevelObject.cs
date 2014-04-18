@@ -26,12 +26,12 @@ public class LevelObject : MonoBehaviour {
 
 	}
 
-    virtual protected void Use(bool setToValue)
+    virtual public void Use(bool setToValue)
     {
         Debug.LogWarning("Has not been overriden!");
     }
 
-    virtual protected void Use()
+	virtual public void Use()
     {
         Debug.LogWarning("Has not been overridden!");
     }

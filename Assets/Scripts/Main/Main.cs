@@ -22,7 +22,7 @@ public class Main : MonoBehaviour
 	public int minibotCountAtStart;
 
     Map map;
-    Settings settings;
+    public Settings settings;
     List<Minibot> minibotList = new List<Minibot>();
 
     // ************************************************************************************

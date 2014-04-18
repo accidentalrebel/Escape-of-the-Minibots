@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 public class TriggerableBlocks : LevelObject {
 
-    DynamicSizeObject dynamicSizeComponent;
+    public DynamicSizeObject dynamicSizeComponent;
 
     public bool isHidden = false;
     private bool startingIsHidden = false;
-    Object prefabToSpawn;
+    protected Object prefabToSpawn;
 
     bool IsHidden
     {
@@ -81,13 +81,13 @@ public class TriggerableBlocks : LevelObject {
     // ************************************************************************************
     // USAGE
     // ************************************************************************************
-    override protected void Use(bool setToValue)
+    override public void Use(bool setToValue)
     {
         isHidden = setToValue;
         UpdateChildTiles();
     }
 
-    override protected void Use()
+    override public void Use()
     {
         if (isHidden)
             isHidden = false;

@@ -22,7 +22,6 @@ public class MinibotController : MonoBehaviour
     
 	private bool _canJump = true;
 	private bool _isGrounded = false;
-	private bool _isInvertedVertically = false;    
 	private bool _isInvertedHorizontally = false;
 	public bool IsInvertedHorizontally {
 		get {
@@ -31,6 +30,16 @@ public class MinibotController : MonoBehaviour
 		set {
 				_isInvertedHorizontally = value;
 		}
+	}
+
+	private bool _isInvertedVertically = false;    
+	internal bool IsInvertedVertically
+	{
+		set { 
+			_isInvertedVertically = value; 
+			UpdateGravityStatus(); 
+		}
+		get { return _isInvertedVertically; }
 	}
 
     void Awake()
@@ -142,15 +151,6 @@ public class MinibotController : MonoBehaviour
 			xInput = -xInput;
 
 		return xInput;
-	}
-
-	internal bool SetInvertGravity
-	{
-		set { 
-			_isInvertedVertically = value; 
-			UpdateGravityStatus(); 
-		}
-		get { return _isInvertedVertically; }
 	}
 	
 	private void UpdateGravityStatus()

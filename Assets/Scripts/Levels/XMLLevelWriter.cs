@@ -45,7 +45,7 @@ public class XMLLevelWriter : XMLAccessor {
             MinibotController controllerScipt
                 = minibot.GetComponent<MinibotController>();
             string value = "";
-            value = BoolToString(controllerScipt.SetInvertGravity);
+            value = BoolToString(controllerScipt.IsInvertedVertically);
             elemNew.SetAttribute("invertGravity", value);            
 
             value = BoolToString(controllerScipt.IsInvertedHorizontally);

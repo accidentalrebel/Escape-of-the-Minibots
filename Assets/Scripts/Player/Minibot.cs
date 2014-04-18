@@ -97,7 +97,7 @@ public class Minibot : LevelObject {
 	public void InvertVerticalOrientation()
 	{
 		controller.InvertVertically();
-		spriteManager.SetFlippedY(true);
+		spriteManager.SetFlippedY(controller.IsInvertedVertically);
 	}
 
     // ************************************************************************************

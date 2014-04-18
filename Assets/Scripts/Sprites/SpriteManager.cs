@@ -120,13 +120,13 @@ public class SpriteManager : MonoBehaviour {
 
 	public void SetFlippedY(bool isFlipped = true)
 	{
-		//if ( isFlipped )
-		{
-			Debug.Log ("SETTING FLIPPED Y");
-			Vector3 currentScale = transform.localScale;
-			Debug.Log ("Current scale is " + currentScale);
-			transform.localScale = new Vector3(currentScale.x, -0.5f, currentScale.y);
-		}
+		Vector3 currentScale = transform.localScale;
+		float currentYScale = Mathf.Abs(currentScale.y);
+
+		if ( isFlipped )
+			transform.localScale = new Vector3(currentScale.x, -currentYScale, currentScale.z);
+		else
+			transform.localScale = new Vector3(currentScale.x, currentYScale, currentScale.z);
 	}
 
     IEnumerator Animate(string currentAnimation)

@@ -225,7 +225,7 @@ public class MinibotController : MonoBehaviour
         else
             checkDirection = Vector3.down;
 
-        if (Physics.Raycast(gameObject.transform.position, checkDirection , out hit, 0.6f))
+		if (Physics.Raycast(gameObject.transform.position, checkDirection , out hit, 0.6f))
         {
             if (hit.collider.tag == "Steppable"
                 || hit.collider.tag == "Player"

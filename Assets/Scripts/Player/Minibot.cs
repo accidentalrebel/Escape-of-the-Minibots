@@ -230,8 +230,7 @@ public class Minibot : LevelObject {
 	}
 
     public GameObject GetObjectAtSide(Direction direction, float rayLength)
-    {
-        RaycastHit hit;
+    {        
         Vector3 checkDirection;
         if (direction == Direction.Left)
             checkDirection = Vector3.left;
@@ -239,34 +238,35 @@ public class Minibot : LevelObject {
             checkDirection = Vector3.right;
 
 		Vector3 feetRaycastPosition = gameObject.transform.position - Vector3.up / 2.5f;
-
-		if (Physics.Raycast(feetRaycastPosition, checkDirection, out hit, rayLength))
-        {
-            if (hit.collider.tag == "Steppable"
-                || hit.collider.tag == "Box")
-            {
-#if UNITY_EDITOR
-				Debug.DrawLine(feetRaycastPosition, feetRaycastPosition + checkDirection, new Color(255, 0, 255));
-#endif
-                return hit.collider.gameObject;
-            }
-        }
+		GameObject collidedGameObject = GetCollisionFromPosition(feetRaycastPosition, checkDirection, rayLength);
+		if ( collidedGameObject != null )
+			return collidedGameObject;
 
 		Vector3 headRaycastPosition = gameObject.transform.position - Vector3.down / 2.5f;
-		if ( Physics.Raycast(headRaycastPosition, checkDirection, out hit, rayLength))
+		collidedGameObject = GetCollisionFromPosition(headRaycastPosition, checkDirection, rayLength);
+		if ( collidedGameObject != null )
+			return collidedGameObject;
+
+        return null;
+    }
+
+	GameObject GetCollisionFromPosition (Vector3 startingPosition, Vector3 checkDirection, float rayLength)
+	{
+		RaycastHit hit;
+		if ( Physics.Raycast(startingPosition, checkDirection, out hit, rayLength))
 		{
 			if (hit.collider.tag == "Steppable"
-			   || hit.collider.tag == "Box")
+			    || hit.collider.tag == "Box")
 			{
 #if UNITY_EDITOR
-				Debug.DrawLine(headRaycastPosition, headRaycastPosition + checkDirection, new Color(255, 0, 255));
+				Debug.DrawLine(startingPosition, startingPosition + checkDirection, new Color(255, 0, 255));
 #endif
 				return hit.collider.gameObject;
 			}
 		}
 
-        return null;
-    }
+		return null;
+	}
 
     // ************************************************************************************
     // SPAWNING

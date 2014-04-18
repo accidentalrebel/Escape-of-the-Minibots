@@ -96,6 +96,15 @@ public class MinibotController : MonoBehaviour
 	// ************************************************************************************
 	// FORCES
 	// ************************************************************************************
+	Vector3 CalculateTargetVelocity (float xInput, float yInput)
+	{
+		Vector3 targetVelocity = new Vector3(xInput, 0, yInput);
+		targetVelocity = transform.TransformDirection(targetVelocity);
+		targetVelocity *= _speed;
+		
+		return targetVelocity;
+	}
+
 	Vector3 GetForceThatCanReachTargetVelocity (Vector3 currentVelocity, Vector3 targetVelocity)
 	{
 		Vector3 adjustedVelocity = (targetVelocity - currentVelocity);
@@ -129,18 +138,6 @@ public class MinibotController : MonoBehaviour
 	void ApplyGravity ()
 	{
 		rigidbody.AddForce(new Vector3(0, -_gravity * rigidbody.mass, 0));
-	}
-
-	// ************************************************************************************
-	// VELOCITY
-	// ************************************************************************************
-	Vector3 CalculateTargetVelocity (float xInput, float yInput)
-	{
-		Vector3 targetVelocity = new Vector3(xInput, 0, yInput);
-		targetVelocity = transform.TransformDirection(targetVelocity);
-		targetVelocity *= _speed;
-
-		return targetVelocity;
 	}
 
 	// ************************************************************************************

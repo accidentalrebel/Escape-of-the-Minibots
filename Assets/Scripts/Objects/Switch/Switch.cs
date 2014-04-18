@@ -39,27 +39,17 @@ public class Switch : LevelObject {
         , Vector2 thePosOfObjectToActivate2)
     {
         base.Initialize(theStartingPos);
-        posOfObjectToActivate1 =
-            new Vector3(thePosOfObjectToActivate1.x
-                , thePosOfObjectToActivate1.y, 0);
-        posOfObjectToActivate2 =
-            new Vector3(thePosOfObjectToActivate2.x
-                , thePosOfObjectToActivate2.y, 0);
+        posOfObjectToActivate1 = new Vector3(thePosOfObjectToActivate1.x, thePosOfObjectToActivate1.y, 0);
+        posOfObjectToActivate2 = new Vector3(thePosOfObjectToActivate2.x, thePosOfObjectToActivate2.y, 0);
     }
 	
 	public void Initialize(Vector3 theStartingPos, Vector2 thePosOfObjectToActivate1
         , Vector2 thePosOfObjectToActivate2, Vector2 thePosOfObjectToActivate3 )
 	{
 		base.Initialize(theStartingPos);
-        posOfObjectToActivate1 = 
-            new Vector3(thePosOfObjectToActivate1.x
-                , thePosOfObjectToActivate1.y, 0);
-        posOfObjectToActivate2 =
-            new Vector3(thePosOfObjectToActivate2.x
-                , thePosOfObjectToActivate2.y, 0);
-        posOfObjectToActivate3 =
-            new Vector3(thePosOfObjectToActivate3.x
-                , thePosOfObjectToActivate3.y, 0);
+        posOfObjectToActivate1 = new Vector3(thePosOfObjectToActivate1.x, thePosOfObjectToActivate1.y, 0);
+        posOfObjectToActivate2 = new Vector3(thePosOfObjectToActivate2.x, thePosOfObjectToActivate2.y, 0);
+        posOfObjectToActivate3 = new Vector3(thePosOfObjectToActivate3.x, thePosOfObjectToActivate3.y, 0);
 	}
 
     public void SetObjectToActivate(LevelObject theObject)
@@ -78,34 +68,38 @@ public class Switch : LevelObject {
 
         objectNumToLinkTo = 0;
     }
-	
-	// Update is called once per frame
+
 	void LateUpdate () 
     {
         if (isTriggered)
         {
             if (Registry.inputHandler.UseButton)
             {
-				UpdateSwitchGraphic();
-
-                LevelObject objectToUse;
-                if (posOfObjectToActivate1 != Vector3.zero)
-                {
-                    objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate1);
-                    objectToUse.Use();
-                }
-                if (posOfObjectToActivate2 != Vector3.zero)
-                {
-                    objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate2);
-                    objectToUse.Use();
-                }
-                if (posOfObjectToActivate3 != Vector3.zero)
-                {
-                    objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate3);
-                    objectToUse.Use();
-                }
+				Use();
             }
         }
+	}
+
+	public override void Use ()
+	{
+		UpdateSwitchGraphic();
+		
+		LevelObject objectToUse;
+		if (posOfObjectToActivate1 != Vector3.zero)
+		{
+			objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate1);
+			objectToUse.Use();
+		}
+		if (posOfObjectToActivate2 != Vector3.zero)
+		{
+			objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate2);
+			objectToUse.Use();
+		}
+		if (posOfObjectToActivate3 != Vector3.zero)
+		{
+			objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate3);
+			objectToUse.Use();
+		}
 	}
 
     void OnTriggerEnter(Collider col)
@@ -147,12 +141,6 @@ public class Switch : LevelObject {
         HandleLinkGUI(posOfObjectToActivate3, 3, levelEditor);        
     }
 
-    /// <summary>
-    /// Handles the GUI for the links
-    /// </summary>
-    /// <param name="posOfObjectToActivate"></param>
-    /// <param name="objectLinkNumber"></param>
-    /// <param name="levelEditor"></param>
     private void HandleLinkGUI(Vector3 posOfObjectToActivate, int objectLinkNumber, LevelEditor levelEditor)
     {
         string toDisplay;

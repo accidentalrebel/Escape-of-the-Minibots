@@ -37,6 +37,11 @@ public class StepSwitch : Switch {
             objectToUse.Use(status);
         }
     }
+
+	public override void Use ()
+	{
+		// Intentionally left blank
+	}
 	
     void OnTriggerEnter(Collider col)
     {

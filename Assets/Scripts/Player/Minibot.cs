@@ -71,7 +71,7 @@ public class Minibot : LevelObject {
         if ( Registry.inputHandler.PickupButton
             && _objectBeingCarried != null)
         {
-            PutDown(_objectBeingCarried);
+            PutDownCarriedObject(_objectBeingCarried);
         }
 
         // Handles the picking up of objects
@@ -83,7 +83,7 @@ public class Minibot : LevelObject {
             if (objectAtSide != null
                     && objectAtSide.tag == "Box")
             {
-                PickUp(objectAtSide);
+                PickUpObject(objectAtSide);
             }
         }
     }
@@ -193,23 +193,26 @@ public class Minibot : LevelObject {
 		}
     }
 
-    public void PickUp(GameObject objectAtSide)
+    public void PickUpObject(GameObject objectAtSide)
     {
         _objectBeingCarried = objectAtSide;
         _objectBeingCarried.GetComponent<Box>().PickUp();
     }
 
-	public void PutDown(GameObject objectToPutDown)
-    {
-        Vector3 putDownPosition = Vector3.zero;
-        if (_isFacing == Direction.Left)
-            putDownPosition = transform.position + Vector3.left;
-        else if (_isFacing == Direction.Right)
-            putDownPosition = transform.position + Vector3.right;
+	public void PutDownCarriedObject(GameObject objectToPutDown)
+    {     
+		if ( GetObjectAtSide(_isFacing) == null )
+		{
+			Vector3 putDownPosition;
+			if (_isFacing == Direction.Left)
+				putDownPosition = transform.position + Vector3.left;
+			else		
+				putDownPosition = transform.position + Vector3.right;
 
-        _objectBeingCarried.transform.position = putDownPosition;
-        objectToPutDown.GetComponent<Box>().PutDown();
-        _objectBeingCarried = null;
+	        _objectBeingCarried.transform.position = putDownPosition;
+	        objectToPutDown.GetComponent<Box>().PutDown();
+	        _objectBeingCarried = null;
+		}
     }
 
     public GameObject GetObjectAtSide(Direction direction)

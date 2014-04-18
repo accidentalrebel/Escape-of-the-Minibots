@@ -26,8 +26,7 @@ public class Minibot : LevelObject {
             // We only set the value if there is achange in direction
             if (isFacing != value)
             {                   
-                isFacing = value;
-                HandleSpriteDirection();    // If there is, handle the sprite direction
+                isFacing = value;                
             }
         }
     }
@@ -267,6 +266,29 @@ public class Minibot : LevelObject {
         else
             spriteManager.HandleSpriteOrientation(false);
     }
+
+	public void setFacingValueWithXinput (float xInput)
+	{
+		if (xInput > 0) {
+			IsFacing = Minibot.Direction.Right;
+		}
+		else if (xInput < 0) {
+			IsFacing = Minibot.Direction.Left;
+		}
+
+		HandleSpriteDirection();
+	}
+	
+	public void setPlayerAnimationsWithXInput (float xInput)
+	{
+		if ( isJumping )
+			return;
+		
+		if (xInput != 0 )
+			Walk();
+		else
+			Stand();
+	}
 
     // ************************************************************************************
     // OBJECT EDITING

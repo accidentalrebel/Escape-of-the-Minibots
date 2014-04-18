@@ -64,7 +64,7 @@ public class MinibotController : MonoBehaviour
 		float yInput = Registry.inputHandler.YAxis;
 		float xInput = AdjustXInput(Registry.inputHandler.XAxis);
 		
-		HandlePlayerFacingAccordingToXInput(xInput);
+		_playerScript.setFacingValueWithXinput(xInput);
 
 		Vector3 targetVelocity = CalculateTargetVelocity(xInput, yInput);
 
@@ -78,7 +78,7 @@ public class MinibotController : MonoBehaviour
 		if (_playerScript.isJumping && _isGrounded)
 			_playerScript.OnReachedGround();
 
-		HandlePlayerSprite(xInput);
+		_playerScript.setPlayerAnimationsWithXInput(xInput);
 
         if (CheckIfCanMove(velocityChange)) {
             rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
@@ -120,28 +120,6 @@ public class MinibotController : MonoBehaviour
 	void OnCollisionExit(Collision col)
 	{
 		CheckIfGrounded();
-	}
-
-	// TODO: Move this to SpriteManager class
-	void HandlePlayerFacingAccordingToXInput (float xInput)
-	{
-		if (xInput > 0) {
-			_playerScript.IsFacing = Minibot.Direction.Right;
-		}
-		else if (xInput < 0) {
-			_playerScript.IsFacing = Minibot.Direction.Left;
-		}
-	}
-
-	void HandlePlayerSprite (float xInput)
-	{
-		if ( _playerScript.isJumping )
-			return;
-
-		if (xInput != 0 )
-			_playerScript.Walk();
-		else
-			_playerScript.Stand();
 	}
 
 	float AdjustXInput(float xInput)

@@ -3,34 +3,41 @@ using System.Collections;
 
 public class Minibot : LevelObject {
 
-    public enum Direction { Left, Right };
-    private GameObject 			_objectBeingCarried;
-    private Rigidbody 			_theRigidBody;    
-    private MinibotController 	_controller;
-
-	[SerializeField]
-    private bool _initVerticalOrientation;
-    
-	[SerializeField]
-	private bool _initHorizontalOrientation;
-    
-	private bool _hasExited;
+	public enum Direction { Left, Right };
 	public bool HasExited {
 		get {
 			return _hasExited;
 		}
 	}
 
-    private bool _isJumping = false;
 	public bool IsJumping {
 		get {
 			return _isJumping;
 		}
 	}
 
-    private Direction _isFacing = Direction.Right;
+	[SerializeField]
+	private float normalRayLength = 0.5f;
+
+	[SerializeField]
+	private float dropRayLength = 1.5f;
+
+	[SerializeField]
+	private bool _initVerticalOrientation;
+	
+	[SerializeField]
+	private bool _initHorizontalOrientation;
+	   
+    private GameObject 			_objectBeingCarried;
+    private Rigidbody 			_theRigidBody;    
+    private MinibotController 	_controller;
+    
+	private bool _hasExited;
+	private bool _isJumping = false;
     private bool _isStanding = true;
     private bool _isWalking = false;
+	private Direction _isFacing = Direction.Right;
+
     public Direction IsFacing
     {
         set {
@@ -78,7 +85,7 @@ public class Minibot : LevelObject {
         if (Registry.inputHandler.PickupButton
             && _objectBeingCarried ==  null )
         {
-            GameObject objectAtSide = GetObjectAtSide(_isFacing);
+			GameObject objectAtSide = GetObjectAtSide(_isFacing, normalRayLength);
 
             if (objectAtSide != null
                     && objectAtSide.tag == "Box")
@@ -201,7 +208,7 @@ public class Minibot : LevelObject {
 
 	public void PutDownCarriedObject(GameObject objectToPutDown)
     {     
-		if ( GetObjectAtSide(_isFacing) == null )
+		if ( GetObjectAtSide(_isFacing, dropRayLength) == null )
 		{
 			Vector3 putDownPosition;
 			if (_isFacing == Direction.Left)
@@ -215,7 +222,12 @@ public class Minibot : LevelObject {
 		}
     }
 
-    public GameObject GetObjectAtSide(Direction direction)
+	public GameObject GetObjectAtSide(Direction direction)
+	{
+		return GetObjectAtSide(direction, normalRayLength);
+	}
+
+    public GameObject GetObjectAtSide(Direction direction, float rayLength)
     {
         RaycastHit hit;
         Vector3 checkDirection;
@@ -224,7 +236,7 @@ public class Minibot : LevelObject {
         else
             checkDirection = Vector3.right;
 
-        if (Physics.Raycast(gameObject.transform.position, checkDirection, out hit, 0.5f))
+        if (Physics.Raycast(gameObject.transform.position, checkDirection, out hit, rayLength))
         {
             if (hit.collider.tag == "Steppable"
                 || hit.collider.tag == "Box")
@@ -233,6 +245,7 @@ public class Minibot : LevelObject {
                 return hit.collider.gameObject;
             }
         }
+
         return null;
     }
 

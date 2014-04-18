@@ -129,7 +129,7 @@ public class MinibotController : MonoBehaviour
 		return xInput;
 	}
 
-	internal bool InvertGravity
+	internal bool SetInvertGravity
 	{
 		set { 
 			isInvertedVertically = value; 

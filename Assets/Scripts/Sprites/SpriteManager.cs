@@ -14,10 +14,7 @@ public class SpriteManager : MonoBehaviour {
     Dictionary<int, Vector2> animationFrames = new Dictionary<int, Vector2>();
     Dictionary<string, AnimationProperties> animationSets = new Dictionary<string, AnimationProperties>();
 
-    /// <summary>
-    /// This is a struct that holds an animation's properties
-    /// </summary>
-    internal struct AnimationProperties
+   internal struct AnimationProperties
     {
         public int[] frameSet;          // The frameSet that contains the frame numbers that this animation should loop through
         public float animationSpeed;    // The animation speed of this animation
@@ -29,7 +26,6 @@ public class SpriteManager : MonoBehaviour {
         }
     }
 
-	// Use this for initialization
 	void Awake () {
         theRenderer = gameObject.GetComponent<Renderer>().renderer;
         if (theRenderer == null)
@@ -39,12 +35,6 @@ public class SpriteManager : MonoBehaviour {
         Play("default");
 	}
 
-    /// <summary>
-    /// This initializes the sprite sheet. 
-    /// It determines all the frames in the sheet and assigns a frame offset to each one.
-    /// </summary>
-    /// <param name="numOfHorizontalFrames">The number of horizontal frames in the spritesheet</param>
-    /// <param name="numOfVerticalFrames">The number of vertical frames in the spritesheet</param>
     void Initialize(int numOfHorizontalFrames, int numOfVerticalFrames)
     {
         // We get the offset difference, this is the difference of one from from another
@@ -94,10 +84,6 @@ public class SpriteManager : MonoBehaviour {
         animationSets.Add(animationName, animationProperty);
     }
 
-    /// <summary>
-    /// Plays the specified animation. Stops previous animation.    
-    /// </summary>
-    /// <param name="currentAnimation">The name of the animation to play</param>
     public void Play(string currentAnimation)
     {        
         StopCoroutine("Animate");                       // Stop coroutine if it is currently running
@@ -106,21 +92,12 @@ public class SpriteManager : MonoBehaviour {
             StartCoroutine("Animate", currentAnimation);    // Start animate coroutine
     }
 
-    /// <summary>
-    /// Stops any running coroutines
-    /// </summary>
     public void Stop()
     {
         StopCoroutine("Animate");
     }
 
-    /// <summary>
-    /// Flips the sprite orientation
-    /// This one is different from the one inside Animate as that gets the textureOffset according to its current frame
-    /// While this one just flips the current textureOffset that was calculated from Animate method
-    /// </summary>
-    /// <param name="flip">True if you want to flip the sprite. False if not.</param>
-    public void HandleSpriteOrientation(bool flip)
+   public void HandleSpriteOrientation(bool flip)
     {
         int flipValue = 1;
         Vector2 currentTextureOffset = theRenderer.material.GetTextureOffset("_MainTex");
@@ -140,18 +117,23 @@ public class SpriteManager : MonoBehaviour {
             isFlipped = false;
         }
 
-        // We then set the textureOffset according to the new calculated offset
         theRenderer.material.SetTextureOffset("_MainTex", currentTextureOffset);
 
-        // We then do the actual flipping
         theRenderer.material.SetTextureScale("_MainTex"
             , new Vector2((flipValue) * offsetDifference.x, offsetDifference.y));
     }
 
-    /// <summary>
-    /// Plays the animation
-    /// </summary>
-    /// <returns></returns>
+	public void SetFlippedY(bool isFlipped = true)
+	{
+		//if ( isFlipped )
+		{
+			Debug.Log ("SETTING FLIPPED Y");
+			Vector3 currentScale = transform.localScale;
+			Debug.Log ("Current scale is " + currentScale);
+			transform.localScale = new Vector3(currentScale.x, -0.5f, currentScale.y);
+		}
+	}
+
     IEnumerator Animate(string currentAnimation)
     {
         int currentFrame = 1;

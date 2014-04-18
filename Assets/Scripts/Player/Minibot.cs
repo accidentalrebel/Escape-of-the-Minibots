@@ -80,7 +80,7 @@ public class Minibot : LevelObject {
         gameObject.transform.position = startingPos;
 
         controller = gameObject.GetComponentInChildren<MinibotController>();
-        controller.InvertGravity = isInvertedGrav;
+        controller.SetInvertGravity = isInvertedGrav;
         controller.isInvertedHorizontally = isInvertedHor;
         startingIsInvertedGravity = isInvertedGrav;
         startingIsInvertedHorizontal = isInvertedHor;
@@ -97,6 +97,7 @@ public class Minibot : LevelObject {
 	public void InvertVerticalOrientation()
 	{
 		controller.InvertVertically();
+		spriteManager.SetFlippedY(true);
 	}
 
     // ************************************************************************************
@@ -235,7 +236,7 @@ public class Minibot : LevelObject {
         base.ResetObject();
 
         // We then reset the controller values to its starting values
-        controller.InvertGravity = startingIsInvertedGravity;
+        controller.SetInvertGravity = startingIsInvertedGravity;
         controller.isInvertedHorizontally = startingIsInvertedHorizontal;
 
         // If object is inactive, activate it        
@@ -275,7 +276,7 @@ public class Minibot : LevelObject {
     // ************************************************************************************
     internal override void GetEditableAttributes(LevelEditor levelEditor)
     {
-        controller.InvertGravity = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 110, 20), controller.InvertGravity, "Invert Gravity");
+        controller.SetInvertGravity = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 110, 20), controller.SetInvertGravity, "Invert Gravity");
         controller.isInvertedHorizontally = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 90, 150, 20), controller.isInvertedHorizontally, "Invert Horizontal");
     }
 }

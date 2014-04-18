@@ -81,7 +81,7 @@ public class Minibot : LevelObject {
 
         controller = gameObject.GetComponentInChildren<MinibotController>();
         controller.InvertGravity = isInvertedGrav;
-        controller.invertHorizontal = isInvertedHor;
+        controller.isInvertedHorizontally = isInvertedHor;
         startingIsInvertedGravity = isInvertedGrav;
         startingIsInvertedHorizontal = isInvertedHor;
     }
@@ -92,7 +92,12 @@ public class Minibot : LevelObject {
         spriteManager.CreateAnimation("jumping", new SpriteManager.AnimationProperties(new int[] { 5, 6 }, 0.1f));    // We create a new walkign animation        
         spriteManager.CreateAnimation("standing", new SpriteManager.AnimationProperties(new int[] { 1 }, 10f));    // We create a new walkign animation        
         spriteManager.Play("standing");
-    }    
+    }  
+
+	public void InvertVerticalOrientation()
+	{
+		controller.InvertVertically();
+	}
 
     // ************************************************************************************
     // TRIGGERS
@@ -231,7 +236,7 @@ public class Minibot : LevelObject {
 
         // We then reset the controller values to its starting values
         controller.InvertGravity = startingIsInvertedGravity;
-        controller.invertHorizontal = startingIsInvertedHorizontal;
+        controller.isInvertedHorizontally = startingIsInvertedHorizontal;
 
         // If object is inactive, activate it        
         EnableMinibot();
@@ -271,6 +276,6 @@ public class Minibot : LevelObject {
     internal override void GetEditableAttributes(LevelEditor levelEditor)
     {
         controller.InvertGravity = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 110, 20), controller.InvertGravity, "Invert Gravity");
-        controller.invertHorizontal = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 90, 150, 20), controller.invertHorizontal, "Invert Horizontal");
+        controller.isInvertedHorizontally = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 90, 150, 20), controller.isInvertedHorizontally, "Invert Horizontal");
     }
 }

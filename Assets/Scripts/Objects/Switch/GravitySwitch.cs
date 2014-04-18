@@ -7,14 +7,17 @@ public class GravitySwitch : Switch
 	{
 		base.Initialize(theStartingPos);
 	}
-
-    void Update()
+    
+	void LateUpdate()
     {
         if (isTriggered)
         {
             if (Registry.inputHandler.UseButton)
             {
-                triggeredCollider.gameObject.GetComponent<MinibotController>().InvertTheGravity();
+				Debug.Log ("IS INVERTING");
+
+				Minibot minibotScript = triggeredCollider.gameObject.GetComponent<Minibot>();
+				minibotScript.InvertVerticalOrientation();
             }
         }
     }

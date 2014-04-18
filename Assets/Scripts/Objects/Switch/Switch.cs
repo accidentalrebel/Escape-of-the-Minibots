@@ -22,9 +22,9 @@ public class Switch : LevelObject {
 		map = Registry.map;
 
 		if ( triggeredTexture == null )
-			Debug.LogError("triggeredTexture not initialized!");
+			Debug.LogWarning("triggeredTexture not initialized!");
 		if ( untriggeredTexture == null )
-			Debug.LogError("untriggeredTexture not initialized!");
+			Debug.LogWarning("untriggeredTexture not initialized!");
 	}
 
     internal void Initialize(Vector3 theStartingPos, Vector2 thePosOfObjectToActivate1)
@@ -78,13 +78,6 @@ public class Switch : LevelObject {
 
         objectNumToLinkTo = 0;
     }
-
-    //internal void SetObjectToActivate(Vector2 posOfObjectToActivate)
-    //{
-    //    objectToActivate = map.GetLevelObjectAtPosition
-    //        (new Vector3(theObject.gameObject.transform.position.x
-    //            , theObject.gameObject.transform.position.y, 0));
-    //}
 	
 	// Update is called once per frame
 	void LateUpdate () 

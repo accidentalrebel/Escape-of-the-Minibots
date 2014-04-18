@@ -48,7 +48,7 @@ public class XMLLevelWriter : XMLAccessor {
             value = BoolToString(controllerScipt.InvertGravity);
             elemNew.SetAttribute("invertGravity", value);            
 
-            value = BoolToString(controllerScipt.invertHorizontal);
+            value = BoolToString(controllerScipt.isInvertedHorizontally);
             elemNew.SetAttribute("invertHorizontal", value);
             elemRoot.AppendChild(elemNew);                      // Make the transform node the parent
         }

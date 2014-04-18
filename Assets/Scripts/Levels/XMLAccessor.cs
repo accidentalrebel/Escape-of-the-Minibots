@@ -40,7 +40,7 @@ public class XMLAccessor : MonoBehaviour {
         // If file does not exist. Create the xml file.
         if (!File.Exists(filepath))
         {
-            Debug.LogWarning("Xml does not exist!");
+            Debug.LogWarning("Xml at " + filepath + " does not exist!");
             return false;
         }
 

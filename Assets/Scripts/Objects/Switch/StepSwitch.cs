@@ -60,7 +60,7 @@ public class StepSwitch : Switch {
 
     override public void ResetObject()
     {
-        Debug.LogWarning("Resetting");
+        Debug.Log("Resetting");
         base.ResetObject();
         isTriggered = false;
     }

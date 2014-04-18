@@ -5,18 +5,18 @@ using System.Collections.Generic;
 [RequireComponent(typeof(Renderer))]
 public class SpriteManager : MonoBehaviour {
 
-	private bool enableAnimation = true;   
-	private Renderer theRenderer;   
-    private int totalNumberOfFrames;
+	private bool _enableAnimation = true;   
+	private Renderer _theRenderer;   
+    private int _totalNumberOfFrames;
     private bool _isHorizontallyFlipped = false;
-    private Vector2 offsetDifference = new Vector2();
-    private Dictionary<int, Vector2> animationFrames = new Dictionary<int, Vector2>();
-    private Dictionary<string, AnimationProperties> animationSets = new Dictionary<string, AnimationProperties>();
+    private Vector2 _offsetDifference = new Vector2();
+    private Dictionary<int, Vector2> _animationFrames = new Dictionary<int, Vector2>();
+    private Dictionary<string, AnimationProperties> _animationSets = new Dictionary<string, AnimationProperties>();
 
     public struct AnimationProperties
     {
-        public int[] frameSet;          // The frameSet that contains the frame numbers that this animation should loop through
-        public float animationSpeed;    // The animation speed of this animation
+        public int[] frameSet;          
+        public float animationSpeed;    
 
         public AnimationProperties(int[] theFrameSet, float theAnimationSpeed)
         {
@@ -26,64 +26,59 @@ public class SpriteManager : MonoBehaviour {
     }
 
 	void Awake () {
-        theRenderer = gameObject.GetComponent<Renderer>().renderer;
-        if (theRenderer == null)
+        _theRenderer = gameObject.GetComponent<Renderer>().renderer;
+        if (_theRenderer == null)
             Debug.LogError("theRenderer is not found!");
                 
-        Initialize(4, 4);                               // We initialize the sprite sheet        
+        Initialize(4, 4);                               
         Play("default");
 	}
 
 	public void Initialize(int numOfHorizontalFrames, int numOfVerticalFrames)
-    {
-        // We get the offset difference, this is the difference of one from from another
-        offsetDifference.x = (float)(1f / numOfHorizontalFrames);
-        offsetDifference.y = (float)(1f / numOfVerticalFrames);
-
-        // We then get the total number of frames
-        totalNumberOfFrames = numOfVerticalFrames * numOfVerticalFrames;
+    {        
+        _offsetDifference.x = (float)(1f / numOfHorizontalFrames);
+        _offsetDifference.y = (float)(1f / numOfVerticalFrames);
+		        
+        _totalNumberOfFrames = numOfVerticalFrames * numOfVerticalFrames;
 
         int frameIndex = 1;
-        int[] defaultFrameSet = new int[totalNumberOfFrames];
-        Vector2 currentOffset = new Vector2(0, 1f-offsetDifference.y);
+        int[] defaultFrameSet = new int[_totalNumberOfFrames];
+        Vector2 currentOffset = new Vector2(0, 1f-_offsetDifference.y);
         
-        // The following assigns the offsets to the a frame index through the use of a dictionary
-        while ( frameIndex <= totalNumberOfFrames )
+        while ( frameIndex <= _totalNumberOfFrames )
         {   
-            animationFrames.Add(frameIndex, currentOffset);
+            _animationFrames.Add(frameIndex, currentOffset);
             defaultFrameSet[frameIndex-1] = frameIndex;
             frameIndex++;
-            currentOffset.x += offsetDifference.x;
+            currentOffset.x += _offsetDifference.x;
 
-            // If we exceed the xoffset, go back to zero x position
             if (currentOffset.x >= 1)
             {   
-                currentOffset.x = 0;                        // Go back to the first frame in x
-                currentOffset.y -= offsetDifference.y;      // And then move the y offset
+                currentOffset.x = 0;                        	
+                currentOffset.y -= _offsetDifference.y;     
 
-                // We check if we exceed the yOffset, if we did, we go back to the very first frame
                 if (currentOffset.y < 0)
                 {
-                    currentOffset.x = 0;                    // Go back to the first frame in x
-                    currentOffset.y = 1 - offsetDifference.y;   // Go to the first frame in y
+                    currentOffset.x = 0;  
+                    currentOffset.y = 1 - _offsetDifference.y; 
                 }
             }
         }
 
-        CreateAnimation("default", new AnimationProperties(defaultFrameSet, 0.5f));        // We create the default animation for default        
+        CreateAnimation("default", new AnimationProperties(defaultFrameSet, 0.5f));    
     }
 
     public void CreateAnimation(string animationName, AnimationProperties animationProperty)
     {
-        animationSets.Add(animationName, animationProperty);
+        _animationSets.Add(animationName, animationProperty);
     }
 
     public void Play(string currentAnimation)
     {        
-        StopCoroutine("Animate");                       // Stop coroutine if it is currently running
+        StopCoroutine("Animate");                       
 
         if ( gameObject.activeSelf != false )
-            StartCoroutine("Animate", currentAnimation);    // Start animate coroutine
+            StartCoroutine("Animate", currentAnimation);
     }
 
     public void Stop()
@@ -116,45 +111,33 @@ public class SpriteManager : MonoBehaviour {
     IEnumerator Animate(string currentAnimation)
     {
         int currentFrame = 1;
-
-        // We then get the animationFrameSets. This is the one that we will loop through for this animation. 
-        int[] animationFrameSets = animationSets[currentAnimation].frameSet;
-        float animationSpeed = animationSets[currentAnimation].animationSpeed;
+		        
+        int[] animationFrameSets = _animationSets[currentAnimation].frameSet;
+        float animationSpeed = _animationSets[currentAnimation].animationSpeed;
         int flipValue;
-
-        // We make sure that animation is enabled
-        while (enableAnimation)
+		        
+        while (_enableAnimation)
         {
-            // First it gets the currentAnimation frame in this set
-            // Then it gets the offsets for that particular frame            
-            Vector2 newOffset = animationFrames[animationFrameSets[currentFrame - 1]];
-
-            // If the sprite is flipped
+            Vector2 newOffset = _animationFrames[animationFrameSets[currentFrame - 1]];
+			            
             if (_isHorizontallyFlipped)
             {
-                newOffset.x += offsetDifference.x;  // Increase the x offset ( flipping actually moves the xOffset by one frame so we adjust it )
-                flipValue = -1;                     // We then set the flipvalue        
+                newOffset.x += _offsetDifference.x;  
+                flipValue = -1;                     
             }
             else
                 flipValue = 1;
 
-            // We then do the actual flipping
-            theRenderer.material.SetTextureScale("_MainTex"
-                , new Vector2((flipValue) * offsetDifference.x, offsetDifference.y));
+            _theRenderer.material.SetTextureScale("_MainTex", new Vector2((flipValue) * _offsetDifference.x, _offsetDifference.y));
+			_theRenderer.material.SetTextureOffset("_MainTex", newOffset);
 
-            // We then set the textureOffset according to the new calculated offset
-            theRenderer.material.SetTextureOffset("_MainTex", newOffset);
-
-            yield return new WaitForSeconds(animationSpeed);    // Let's wait for a number of seconds
-            currentFrame++;                                     // We then increase the currentFrame
-
-            // If we reached the end
+            yield return new WaitForSeconds(animationSpeed);
+            currentFrame++;                                     
+			            
             if (currentFrame > animationFrameSets.Length)
             {
-                currentFrame = 1;                               // go to the first frame
+                currentFrame = 1;                              
             }
-
-            // We loop back up again and display the next animation frame
         }
     }
 

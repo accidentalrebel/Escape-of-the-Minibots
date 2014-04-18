@@ -129,13 +129,23 @@ public class Minibot : LevelObject {
 	}
 
 	// ************************************************************************************
-	// ORIENTATION
+	// ORIENTATION AND STATUS
 	// ************************************************************************************
 	public void InvertVerticalOrientation()
 	{
 		_controller.InvertVertically();
 		spriteManager.SetFlippedY(_controller.IsInvertedVertically);
 	}    
+
+	private void DisableMinibot()
+	{
+		gameObject.SetActive(false);
+	}
+
+	private void EnableMinibot()
+	{        
+		gameObject.SetActive(true);
+	}
 
     // ************************************************************************************
     // ACTIONS
@@ -243,35 +253,30 @@ public class Minibot : LevelObject {
 
     override public void ResetObject()
     {       
-		// We drop anything that minibot is carrying
-        if (_objectBeingCarried != null)
-            _objectBeingCarried = null;
-
-        // We cancel out all applied the forces
-        _theRigidBody.velocity = Vector3.zero;
-        _theRigidBody.angularVelocity = Vector3.zero;
+		DropCarriedObject();
+		CancelOutAllAppliedForces();
 
         base.ResetObject();
+
 		_controller.Reset(_initHorizontalOrientation, _initVerticalOrientation);
-		spriteManager.Reset();
-     
+
+		spriteManager.Reset();     
         EnableMinibot();
-        _hasExited = false;
+       
+		_hasExited = false;
     }
 
-    // Disables this current minibot
-    // Hides graphic and then doesn't allow movement.
-    private void DisableMinibot()
-    {
-        gameObject.SetActive(false);
-    }
+	void DropCarriedObject ()
+	{
+		if (_objectBeingCarried != null)
+			_objectBeingCarried = null;
+	}
 
-    // Disables this current minibsot
-    // Shows graphic and then allows movement.
-    private void EnableMinibot()
-    {        
-        gameObject.SetActive(true);
-    }
+	void CancelOutAllAppliedForces ()
+	{
+		_theRigidBody.velocity = Vector3.zero;
+		_theRigidBody.angularVelocity = Vector3.zero;
+	}
 
     // ************************************************************************************
     // SPRITE RELATED

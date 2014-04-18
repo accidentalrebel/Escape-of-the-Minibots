@@ -4,29 +4,40 @@ using System.Collections;
 public class Minibot : LevelObject {
 
     public enum Direction { Left, Right };
-    private GameObject objectBeingCarried;
-    private Rigidbody theRigidBody;    
-
-    MinibotController controller;
+    private GameObject 			_objectBeingCarried;
+    private Rigidbody 			_theRigidBody;    
+    private MinibotController 	_controller;
 
 	[SerializeField]
-    private bool initVerticalOrientation;
+    private bool _initVerticalOrientation;
     
 	[SerializeField]
-	private bool initHorizontalOrientation;
-    public bool hasExited;
-    public bool isJumping = false;
+	private bool _initHorizontalOrientation;
+    
+	private bool _hasExited;
+	public bool HasExited {
+		get {
+			return _hasExited;
+		}
+	}
 
-    private Direction isFacing = Direction.Right;
-    private bool isStanding = true;
-    private bool isWalking = false;
+    private bool _isJumping = false;
+	public bool IsJumping {
+		get {
+			return _isJumping;
+		}
+	}
+
+    private Direction _isFacing = Direction.Right;
+    private bool _isStanding = true;
+    private bool _isWalking = false;
     public Direction IsFacing
     {
         set {
             // We only set the value if there is achange in direction
-            if (isFacing != value)
+            if (_isFacing != value)
             {                   
-                isFacing = value;                
+                _isFacing = value;                
             }
         }
     }
@@ -34,11 +45,10 @@ public class Minibot : LevelObject {
     // ************************************************************************************
     // MAIN
     // ************************************************************************************
-
 	override protected void Start()
 	{
-        theRigidBody = GetComponent<Rigidbody>();
-        if (theRigidBody == null)
+        _theRigidBody = GetComponent<Rigidbody>();
+        if (_theRigidBody == null)
             Debug.LogError("theRigidBody is not found!");
 
         base.Start();
@@ -49,25 +59,25 @@ public class Minibot : LevelObject {
     void Update()
     {
         // Handles the carrying of the object
-        if (objectBeingCarried != null)
+        if (_objectBeingCarried != null)
         {
-            objectBeingCarried.transform.position = transform.position + Vector3.up;
+            _objectBeingCarried.transform.position = transform.position + Vector3.up;
         }
     }
 	
     void LateUpdate()
     {
         if ( Registry.inputHandler.PickupButton
-            && objectBeingCarried != null)
+            && _objectBeingCarried != null)
         {
-            PutDown(objectBeingCarried);
+            PutDown(_objectBeingCarried);
         }
 
         // Handles the picking up of objects
         if (Registry.inputHandler.PickupButton
-            && objectBeingCarried ==  null )
+            && _objectBeingCarried ==  null )
         {
-            GameObject objectAtSide = GetObjectAtSide(isFacing);
+            GameObject objectAtSide = GetObjectAtSide(_isFacing);
 
             if (objectAtSide != null
                     && objectAtSide.tag == "Box")
@@ -77,16 +87,19 @@ public class Minibot : LevelObject {
         }
     }
     
+	// ************************************************************************************
+	// INITIALIZATION
+	// ************************************************************************************
     public void Initialize(Vector3 startPos, bool isInvertedGrav, bool isInvertedHor)
     {
         startingPos = startPos;        
         gameObject.transform.position = startingPos;
 
-        controller = gameObject.GetComponentInChildren<MinibotController>();
-        controller.IsInvertedVertically = isInvertedGrav;
-        controller.IsInvertedHorizontally = isInvertedHor;
-        initVerticalOrientation = isInvertedGrav;
-        initHorizontalOrientation = isInvertedHor;
+        _controller = gameObject.GetComponentInChildren<MinibotController>();
+        _controller.IsInvertedVertically = isInvertedGrav;
+        _controller.IsInvertedHorizontally = isInvertedHor;
+        _initVerticalOrientation = isInvertedGrav;
+        _initHorizontalOrientation = isInvertedHor;
     }
 
     private void InitializeSprite()
@@ -95,30 +108,33 @@ public class Minibot : LevelObject {
         spriteManager.CreateAnimation("jumping", new SpriteManager.AnimationProperties(new int[] { 5, 6 }, 0.1f));    // We create a new walkign animation        
         spriteManager.CreateAnimation("standing", new SpriteManager.AnimationProperties(new int[] { 1 }, 10f));    // We create a new walkign animation        
         spriteManager.Play("standing");
-    }  
+    } 
 
-	public void InvertVerticalOrientation()
+	// ************************************************************************************
+	// TRIGGERS
+	// ************************************************************************************
+	
+	void OnTriggerEnter(Collider col)
 	{
-		controller.InvertVertically();
-		spriteManager.SetFlippedY(controller.IsInvertedVertically);
+		if (col.tag == "Door")
+		{
+			Door theDoor = col.gameObject.GetComponent<Door>();
+			if (theDoor.isOpen)
+			{
+				theDoor.CloseDoor();
+				ExitLevel();
+			}
+		}
 	}
 
-    // ************************************************************************************
-    // TRIGGERS
-    // ************************************************************************************
-
-    void OnTriggerEnter(Collider col)
-    {
-        if (col.tag == "Door")
-        {
-            Door theDoor = col.gameObject.GetComponent<Door>();
-            if (theDoor.isOpen)
-            {
-                theDoor.CloseDoor();
-                ExitLevel();
-            }
-        }
-    }
+	// ************************************************************************************
+	// ORIENTATION
+	// ************************************************************************************
+	public void InvertVerticalOrientation()
+	{
+		_controller.InvertVertically();
+		spriteManager.SetFlippedY(_controller.IsInvertedVertically);
+	}    
 
     // ************************************************************************************
     // ACTIONS
@@ -126,18 +142,18 @@ public class Minibot : LevelObject {
     public void Jump()
     {
         spriteManager.Play("jumping");
-        isJumping = true;
+        _isJumping = true;
     }
 
     public void OnReachedGround()
     {
         spriteManager.Play("walking");
-        isJumping = false;
+        _isJumping = false;
     }
 
 	public bool CheckIfCanStand()
 	{
-		if (isJumping == false && isStanding == false)
+		if (_isJumping == false && _isStanding == false)
 			return true;
 		return false;
 	}
@@ -145,13 +161,13 @@ public class Minibot : LevelObject {
     public void Stand()
     {
     	spriteManager.Play("standing");
-    	isStanding = true;
-    	isWalking = false;
+    	_isStanding = true;
+    	_isWalking = false;
     }
 
 	public bool CheckIfCanWalk()
 	{
-		if (isJumping == false && isWalking == false)
+		if (_isJumping == false && _isWalking == false)
 			return true;
 		return false;
 	}
@@ -161,28 +177,28 @@ public class Minibot : LevelObject {
 		if ( CheckIfCanWalk() )
 		{
 		    spriteManager.Play("walking");
-		    isStanding = false;
-		    isWalking = true;
+		    _isStanding = false;
+		    _isWalking = true;
 		}
     }
 
     public void PickUp(GameObject objectAtSide)
     {
-        objectBeingCarried = objectAtSide;
-        objectBeingCarried.GetComponent<Box>().PickUp();
+        _objectBeingCarried = objectAtSide;
+        _objectBeingCarried.GetComponent<Box>().PickUp();
     }
 
 	public void PutDown(GameObject objectToPutDown)
     {
         Vector3 putDownPosition = Vector3.zero;
-        if (isFacing == Direction.Left)
+        if (_isFacing == Direction.Left)
             putDownPosition = transform.position + Vector3.left;
-        else if (isFacing == Direction.Right)
+        else if (_isFacing == Direction.Right)
             putDownPosition = transform.position + Vector3.right;
 
-        objectBeingCarried.transform.position = putDownPosition;
+        _objectBeingCarried.transform.position = putDownPosition;
         objectToPutDown.GetComponent<Box>().PutDown();
-        objectBeingCarried = null;
+        _objectBeingCarried = null;
     }
 
     public GameObject GetObjectAtSide(Direction direction)
@@ -219,7 +235,7 @@ public class Minibot : LevelObject {
 	public void ExitLevel()
     {
         Debug.Log("exiting stage");
-        hasExited = true;
+        _hasExited = true;
         DisableMinibot();
         Registry.main.OnMinibotExit();
     }
@@ -227,19 +243,19 @@ public class Minibot : LevelObject {
     override public void ResetObject()
     {       
 		// We drop anything that minibot is carrying
-        if (objectBeingCarried != null)
-            objectBeingCarried = null;
+        if (_objectBeingCarried != null)
+            _objectBeingCarried = null;
 
         // We cancel out all applied the forces
-        theRigidBody.velocity = Vector3.zero;
-        theRigidBody.angularVelocity = Vector3.zero;
+        _theRigidBody.velocity = Vector3.zero;
+        _theRigidBody.angularVelocity = Vector3.zero;
 
         base.ResetObject();
-		controller.Reset(initHorizontalOrientation, initVerticalOrientation);
+		_controller.Reset(_initHorizontalOrientation, _initVerticalOrientation);
 		spriteManager.Reset();
      
         EnableMinibot();
-        hasExited = false;
+        _hasExited = false;
     }
 
     // Disables this current minibot
@@ -261,7 +277,7 @@ public class Minibot : LevelObject {
     // ************************************************************************************
     private void HandleSpriteDirection()
     {
-        if (isFacing == Direction.Left)
+        if (_isFacing == Direction.Left)
             spriteManager.HandleSpriteOrientation(true);
         else
             spriteManager.HandleSpriteOrientation(false);
@@ -281,7 +297,7 @@ public class Minibot : LevelObject {
 	
 	public void setPlayerAnimationsWithXInput (float xInput)
 	{
-		if ( isJumping )
+		if ( _isJumping )
 			return;
 		
 		if (xInput != 0 )
@@ -295,7 +311,7 @@ public class Minibot : LevelObject {
     // ************************************************************************************
     override public void GetEditableAttributes(LevelEditor levelEditor)
     {
-        controller.IsInvertedVertically = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 110, 20), controller.IsInvertedVertically, "Invert Gravity");
-        controller.IsInvertedHorizontally = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 90, 150, 20), controller.IsInvertedHorizontally, "Invert Horizontal");
+        _controller.IsInvertedVertically = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 110, 20), _controller.IsInvertedVertically, "Invert Gravity");
+        _controller.IsInvertedHorizontally = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 90, 150, 20), _controller.IsInvertedHorizontally, "Invert Horizontal");
     }
 }

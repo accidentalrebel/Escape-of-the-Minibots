@@ -75,7 +75,7 @@ public class MinibotController : MonoBehaviour
         velocityChange.z = Mathf.Clamp(velocityChange.z, -_maxVelocityChange, _maxVelocityChange);
         velocityChange.y = 0;
 
-		if (_playerScript.isJumping && _isGrounded)
+		if (_playerScript.IsJumping && _isGrounded)
 			_playerScript.OnReachedGround();
 
 		_playerScript.setPlayerAnimationsWithXInput(xInput);

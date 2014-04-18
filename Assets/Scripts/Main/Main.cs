@@ -184,7 +184,7 @@ public class Main : MonoBehaviour
         int count = 0;
         foreach (Minibot minibot in minibotList)
         {
-            if (minibot != null && minibot.hasExited == false)
+            if (minibot != null && minibot.HasExited == false)
             {
                 count++;
             }

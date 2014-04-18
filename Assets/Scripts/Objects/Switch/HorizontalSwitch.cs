@@ -15,11 +15,11 @@ public class HorizontalSwitch : Switch {
 
     void Update()
     {
-        if (isTriggered)
+        if (_isTriggered)
         {
             if (Registry.inputHandler.UseButton)
             { 
-                triggeredCollider.gameObject.GetComponent<MinibotController>().InvertHorizontally();
+                _triggeredCollider.gameObject.GetComponent<MinibotController>().InvertHorizontally();
             }
         }
     }

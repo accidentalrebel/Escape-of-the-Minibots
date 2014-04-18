@@ -105,10 +105,10 @@ public class Minibot : LevelObject {
 
     private void InitializeSprite()
     {
-        spriteManager.CreateAnimation("walking", new SpriteManager.AnimationProperties(new int[] { 2, 1, 3, 1 }, 0.2f));    // We create a new walkign animation        
-        spriteManager.CreateAnimation("jumping", new SpriteManager.AnimationProperties(new int[] { 5, 6 }, 0.1f));    // We create a new walkign animation        
-        spriteManager.CreateAnimation("standing", new SpriteManager.AnimationProperties(new int[] { 1 }, 10f));    // We create a new walkign animation        
-        spriteManager.Play("standing");
+        _spriteManager.CreateAnimation("walking", new SpriteManager.AnimationProperties(new int[] { 2, 1, 3, 1 }, 0.2f));    // We create a new walkign animation        
+        _spriteManager.CreateAnimation("jumping", new SpriteManager.AnimationProperties(new int[] { 5, 6 }, 0.1f));    // We create a new walkign animation        
+        _spriteManager.CreateAnimation("standing", new SpriteManager.AnimationProperties(new int[] { 1 }, 10f));    // We create a new walkign animation        
+        _spriteManager.Play("standing");
     } 
 
 	// ************************************************************************************
@@ -134,7 +134,7 @@ public class Minibot : LevelObject {
 	public void InvertVerticalOrientation()
 	{
 		_controller.InvertVertically();
-		spriteManager.SetFlippedY(_controller.IsInvertedVertically);
+		_spriteManager.SetFlippedY(_controller.IsInvertedVertically);
 	}    
 
 	private void DisableMinibot()
@@ -152,13 +152,13 @@ public class Minibot : LevelObject {
     // ************************************************************************************
     public void Jump()
     {
-        spriteManager.Play("jumping");
+        _spriteManager.Play("jumping");
         _isJumping = true;
     }
 
     public void OnReachedGround()
     {
-        spriteManager.Play("walking");
+        _spriteManager.Play("walking");
         _isJumping = false;
     }
 
@@ -171,7 +171,7 @@ public class Minibot : LevelObject {
 
     public void Stand()
     {
-    	spriteManager.Play("standing");
+    	_spriteManager.Play("standing");
     	_isStanding = true;
     	_isWalking = false;
     }
@@ -187,7 +187,7 @@ public class Minibot : LevelObject {
     {
 		if ( CheckIfCanWalk() )
 		{
-		    spriteManager.Play("walking");
+		    _spriteManager.Play("walking");
 		    _isStanding = false;
 		    _isWalking = true;
 		}
@@ -260,7 +260,7 @@ public class Minibot : LevelObject {
 
 		_controller.Reset(_initHorizontalOrientation, _initVerticalOrientation);
 
-		spriteManager.Reset();     
+		_spriteManager.Reset();     
         EnableMinibot();
        
 		_hasExited = false;
@@ -284,9 +284,9 @@ public class Minibot : LevelObject {
     private void HandleSpriteDirection()
     {
         if (_isFacing == Direction.Left)
-            spriteManager.HandleSpriteOrientation(true);
+            _spriteManager.HandleSpriteOrientation(true);
         else
-            spriteManager.HandleSpriteOrientation(false);
+            _spriteManager.HandleSpriteOrientation(false);
     }
 
 	public void setFacingValueWithXinput (float xInput)

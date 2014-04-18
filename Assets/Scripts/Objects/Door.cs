@@ -41,9 +41,9 @@ public class Door : LevelObject {
     private void UpdateDoorGraphic()
     {
         if( isOpen)
-			graphicHandler.theRenderer.material.SetTexture("_MainTex", openTexture);
+			_graphicHandler.theRenderer.material.SetTexture("_MainTex", openTexture);
         else            
-			graphicHandler.theRenderer.material.SetTexture("_MainTex", closedTexture);
+			_graphicHandler.theRenderer.material.SetTexture("_MainTex", closedTexture);
     }
 
     override public void Use(bool setToValue)

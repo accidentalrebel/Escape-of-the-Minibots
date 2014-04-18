@@ -1,19 +1,19 @@
 using UnityEngine;
 using System.Collections;
 
-//[RequireComponent(typeof(GraphicHandler))]
+[RequireComponent(typeof(GraphicHandler))]
+[RequireComponent(typeof(SpriteManager))]
 public class LevelObject : MonoBehaviour {
 
-    protected GraphicHandler graphicHandler;
-    protected SpriteManager spriteManager;
+    protected GraphicHandler _graphicHandler;
+    protected SpriteManager _spriteManager;
 	public Vector3 startingPos;
 	
 	virtual protected void Awake()
 	{
 		startingPos = gameObject.transform.position;
-
-		spriteManager = gameObject.GetComponentInChildren<SpriteManager>();
-		graphicHandler = gameObject.GetComponent<GraphicHandler>();
+		_spriteManager = gameObject.GetComponentInChildren<SpriteManager>();
+		_graphicHandler = gameObject.GetComponent<GraphicHandler>();
 	}
 	
 	virtual public void Initialize(Vector3 theStartingPos)
@@ -23,7 +23,7 @@ public class LevelObject : MonoBehaviour {
 	}
 
 	virtual protected void Start() {
-
+		// Intentionally left blank
 	}
 
     virtual public void Use(bool setToValue)

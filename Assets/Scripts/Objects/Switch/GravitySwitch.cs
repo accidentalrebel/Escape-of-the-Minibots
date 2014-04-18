@@ -10,13 +10,13 @@ public class GravitySwitch : Switch
     
 	void LateUpdate()
     {
-        if (isTriggered)
+        if (_isTriggered)
         {
             if (Registry.inputHandler.UseButton)
             {
 				Debug.Log ("IS INVERTING");
 
-				Minibot minibotScript = triggeredCollider.gameObject.GetComponent<Minibot>();
+				Minibot minibotScript = _triggeredCollider.gameObject.GetComponent<Minibot>();
 				minibotScript.InvertVerticalOrientation();
             }
         }

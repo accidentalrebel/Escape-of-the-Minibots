@@ -7,33 +7,28 @@ public class StepSwitch : Switch {
 	{
 		base.Awake ();
 
-		isTriggered = false;
+		_isTriggered = false;
 		UpdateSwitchGraphic();
-	}
-
-	override public void Initialize(Vector3 theStartingPos)
-	{
-		base.Initialize(theStartingPos);
 	}
 
     void Trigger()
     {
-		bool status = isTriggered;
+		bool status = _isTriggered;
 
         LevelObject objectToUse;
         if (posOfObjectToActivate1 != Vector3.zero)
         {
-            objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate1);
+            objectToUse = _map.GetLevelObjectAtPosition(posOfObjectToActivate1);
             objectToUse.Use(status);
         }
         if (posOfObjectToActivate2 != Vector3.zero)
         {
-            objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate2);
+            objectToUse = _map.GetLevelObjectAtPosition(posOfObjectToActivate2);
             objectToUse.Use(status);
         }
         if (posOfObjectToActivate3 != Vector3.zero)
         {
-            objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate3);
+            objectToUse = _map.GetLevelObjectAtPosition(posOfObjectToActivate3);
             objectToUse.Use(status);
         }
     }
@@ -47,7 +42,7 @@ public class StepSwitch : Switch {
     {
 		if (col.tag == "Player" || col.tag == "Box") {
 	        Debug.Log("OnTriggerEnter");
-			isTriggered = true;
+			_isTriggered = true;
 			Trigger();
 			UpdateSwitchGraphic();
 		}
@@ -57,16 +52,9 @@ public class StepSwitch : Switch {
     {     
 		if (col.tag == "Player" || col.tag == "Box" ) {
 	        Debug.Log("OnTriggerExit");
-			isTriggered = false;
+			_isTriggered = false;
 			Trigger();
 			UpdateSwitchGraphic();
 		}
-    }
-
-    override public void ResetObject()
-    {
-        Debug.Log("Resetting");
-        base.ResetObject();
-        isTriggered = false;
     }
 }

@@ -198,7 +198,7 @@ public class MinibotController : MonoBehaviour
         {
             if (hit.collider.tag == "Steppable"
                 || hit.collider.tag == "Player"
-                || hit.collider.tag == "Movable")
+                || hit.collider.tag == "Box")
             {
                 Debug.DrawLine(gameObject.transform.position, hit.point);
                 isGrounded = true;

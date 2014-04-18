@@ -67,7 +67,7 @@ public class Minibot : LevelObject {
             GameObject objectAtSide = GetObjectAtSide(isFacing);
 
             if (objectAtSide != null
-                    && objectAtSide.tag == "Movable")
+                    && objectAtSide.tag == "Box")
             {
                 PickUp(objectAtSide);
             }
@@ -188,7 +188,7 @@ public class Minibot : LevelObject {
         if (Physics.Raycast(gameObject.transform.position, checkDirection, out hit, 0.5f))
         {
             if (hit.collider.tag == "Steppable"
-                || hit.collider.tag == "Movable")
+                || hit.collider.tag == "Box")
             {
                 Debug.DrawLine(gameObject.transform.position, hit.point);
                 return hit.collider.gameObject;

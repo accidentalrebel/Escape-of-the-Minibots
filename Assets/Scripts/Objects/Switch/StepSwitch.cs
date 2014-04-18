@@ -40,7 +40,7 @@ public class StepSwitch : Switch {
 	
     void OnTriggerEnter(Collider col)
     {
-		if (col.tag == "Player") {
+		if (col.tag == "Player" || col.tag == "Box") {
 	        Debug.Log("OnTriggerEnter");
 			isTriggered = true;
 			Trigger();
@@ -50,7 +50,7 @@ public class StepSwitch : Switch {
 
     void OnTriggerExit(Collider col)
     {     
-		if (col.tag == "Player") {
+		if (col.tag == "Player" || col.tag == "Box" ) {
 	        Debug.Log("OnTriggerExit");
 			isTriggered = false;
 			Trigger();

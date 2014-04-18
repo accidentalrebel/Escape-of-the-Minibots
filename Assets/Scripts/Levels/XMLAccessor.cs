@@ -33,7 +33,7 @@ public class XMLAccessor : MonoBehaviour {
         triggerableHazardsContainer = Registry.map.triggerableHazardsContainer;
 	}
 
-    internal bool CheckIfFileExists(string fileName)
+    public bool CheckIfFileExists(string fileName)
     {
         string filepath = Application.dataPath + @"/Resources/Levels/" + fileName + ".xml";
 

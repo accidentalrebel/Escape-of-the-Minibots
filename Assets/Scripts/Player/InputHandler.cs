@@ -6,27 +6,27 @@ public class InputHandler : MonoBehaviour {
     public float axisSensitivity = 0.1f;
 
     float xAxis = 0;
-    internal float XAxis
+    public float XAxis
     { get { return xAxis; } }
 
     float yAxis = 0;
-    internal float YAxis
+	public float YAxis
     { get { return yAxis; } }
 
     bool jumpButton = false;    
-    internal bool JumpButton
+	public  bool JumpButton
     { get { return jumpButton; } }
 
     bool useButton = false ;
-    internal bool UseButton
+	public bool UseButton
     { get { return useButton; } }
 
     bool pickupButton = false;
-    internal bool PickupButton
+	public bool PickupButton
     { get { return pickupButton; } }
 
-    private bool resetButton = false;
-    internal bool ResetButton
+    bool resetButton = false;
+	public bool ResetButton
     { get { return resetButton; } }
 
     private bool hasPressedRight = false;
@@ -142,47 +142,47 @@ public class InputHandler : MonoBehaviour {
             xAxis = -1;
     }
 
-    internal void PressedRight()
+    void PressedRight()
     {
         hasPressedRight = true;
     }
 
-    internal void ReleasedRight()
+    void ReleasedRight()
     {
         hasPressedRight = false;
     }
 
-    internal void PressedLeft()
+    void PressedLeft()
     {
         hasPressedLeft = true;
     }
 
-    internal void ReleasedLeft()
+    void ReleasedLeft()
     {
         hasPressedLeft = false;
     }
 
-    internal void PressedJump()
+    void PressedJump()
     {
         jumpButton = true;
     }
 
-    internal void ReleasedJump()
+    void ReleasedJump()
     {
         jumpButton = false;
     }
 
-    internal void PressedUse()
+    void PressedUse()
     {        
         useButton = true;
     }
 
-    internal void PressedPickUp()
+    void PressedPickUp()
     {
         pickupButton = true;
     }
 
-    internal void PressedReset()
+    void PressedReset()
     {
         resetButton = true;
     }

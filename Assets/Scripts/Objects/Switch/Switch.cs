@@ -10,7 +10,7 @@ public class Switch : LevelObject {
 	public Texture triggeredTexture;
 	public Texture untriggeredTexture;
 
-    internal int objectNumToLinkTo = 0;
+    int objectNumToLinkTo = 0;
     protected bool isTriggered = false;
     protected Collider triggeredCollider;
 	protected Map map;
@@ -27,7 +27,7 @@ public class Switch : LevelObject {
 			Debug.LogWarning("untriggeredTexture not initialized!");
 	}
 
-    internal void Initialize(Vector3 theStartingPos, Vector2 thePosOfObjectToActivate1)
+	public void Initialize(Vector3 theStartingPos, Vector2 thePosOfObjectToActivate1)
     {
         base.Initialize(theStartingPos);
         posOfObjectToActivate1 =
@@ -35,7 +35,7 @@ public class Switch : LevelObject {
                 , thePosOfObjectToActivate1.y, 0);       
     }
 
-    internal void Initialize(Vector3 theStartingPos, Vector2 thePosOfObjectToActivate1
+    public void Initialize(Vector3 theStartingPos, Vector2 thePosOfObjectToActivate1
         , Vector2 thePosOfObjectToActivate2)
     {
         base.Initialize(theStartingPos);
@@ -47,7 +47,7 @@ public class Switch : LevelObject {
                 , thePosOfObjectToActivate2.y, 0);
     }
 	
-	internal void Initialize(Vector3 theStartingPos, Vector2 thePosOfObjectToActivate1
+	public void Initialize(Vector3 theStartingPos, Vector2 thePosOfObjectToActivate1
         , Vector2 thePosOfObjectToActivate2, Vector2 thePosOfObjectToActivate3 )
 	{
 		base.Initialize(theStartingPos);
@@ -62,7 +62,7 @@ public class Switch : LevelObject {
                 , thePosOfObjectToActivate3.y, 0);
 	}
 
-    internal void SetObjectToActivate(LevelObject theObject)
+    public void SetObjectToActivate(LevelObject theObject)
     {
         Vector3 thePosition = new Vector3(theObject.gameObject.transform.position.x
                     , theObject.gameObject.transform.position.y, 0);;
@@ -124,7 +124,7 @@ public class Switch : LevelObject {
 		UpdateSwitchGraphic();
     }
 
-    internal override void ResetObject()
+    override public void ResetObject()
     {
         base.ResetObject();
     }
@@ -140,7 +140,7 @@ public class Switch : LevelObject {
     // ************************************************************************************
     // OBJECT EDITING
     // ************************************************************************************
-    internal override void GetEditableAttributes(LevelEditor levelEditor)
+    override public void GetEditableAttributes(LevelEditor levelEditor)
     {       
         HandleLinkGUI(posOfObjectToActivate1, 1, levelEditor);
         HandleLinkGUI(posOfObjectToActivate2, 2, levelEditor);

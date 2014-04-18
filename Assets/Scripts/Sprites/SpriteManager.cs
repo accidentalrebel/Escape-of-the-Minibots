@@ -14,7 +14,7 @@ public class SpriteManager : MonoBehaviour {
     Dictionary<int, Vector2> animationFrames = new Dictionary<int, Vector2>();
     Dictionary<string, AnimationProperties> animationSets = new Dictionary<string, AnimationProperties>();
 
-   internal struct AnimationProperties
+   struct AnimationProperties
     {
         public int[] frameSet;          // The frameSet that contains the frame numbers that this animation should loop through
         public float animationSpeed;    // The animation speed of this animation
@@ -79,7 +79,7 @@ public class SpriteManager : MonoBehaviour {
     /// </summary>
     /// <param name="animationName">The name of the new animation set</param>
     /// <param name="frameSet">the frames to use for this animation (i.e. {1, 2, 4, 5})</param>
-    internal void CreateAnimation(string animationName, AnimationProperties animationProperty)
+    void CreateAnimation(string animationName, AnimationProperties animationProperty)
     {
         animationSets.Add(animationName, animationProperty);
     }

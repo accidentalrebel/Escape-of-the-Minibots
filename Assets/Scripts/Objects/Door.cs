@@ -15,7 +15,7 @@ public class Door : LevelObject {
 
     private bool startingIsOpen = true;
 
-	protected override void Awake ()
+	override protected void Awake ()
 	{
 		base.Awake ();
 
@@ -31,7 +31,7 @@ public class Door : LevelObject {
         UpdateDoorGraphic();
     }
 	
-	internal void Initialize(Vector3 theStartingPos, bool theIsOpen)
+	public void Initialize(Vector3 theStartingPos, bool theIsOpen)
 	{
 		base.Initialize(theStartingPos);		
 		isOpen = theIsOpen;
@@ -46,13 +46,13 @@ public class Door : LevelObject {
 			graphicHandler.theRenderer.material.SetTexture("_MainTex", closedTexture);
     }
 
-    override internal void Use(bool setToValue)
+    override protected void Use(bool setToValue)
     {
         isOpen = setToValue;
         UpdateDoorGraphic();
     }
 
-    internal override void Use()
+    override protected void Use()
     {
         if (isOpen)
             isOpen = false;
@@ -62,13 +62,13 @@ public class Door : LevelObject {
         UpdateDoorGraphic();
     }
 
-    internal void CloseDoor()
+    void CloseDoor()
     {
         isOpen = false; 
         UpdateDoorGraphic();
     }
 
-    internal override void ResetObject()
+    override public void ResetObject()
     {
         isOpen = startingIsOpen;
         UpdateDoorGraphic();
@@ -77,7 +77,7 @@ public class Door : LevelObject {
     // ************************************************************************************
     // OBJECT EDITING
     // ************************************************************************************
-    internal override void GetEditableAttributes(LevelEditor levelEditor)
+    override public void GetEditableAttributes(LevelEditor levelEditor)
     {
         IsOpen = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 110, 20), IsOpen, "Is Open?");
     }

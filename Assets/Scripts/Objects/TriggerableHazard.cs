@@ -9,7 +9,7 @@ public class TriggerableHazard : TriggerableBlocks {
         prefabToSpawn = Registry.prefabHandler.pfHazard;
     }
 
-    protected override void Start()
+    override protected void Start()
     {
 
     }

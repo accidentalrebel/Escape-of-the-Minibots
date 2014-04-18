@@ -33,7 +33,7 @@ public class MinibotController : MonoBehaviour
 	}
 
 	private bool _isInvertedVertically = false;    
-	internal bool IsInvertedVertically
+	public bool IsInvertedVertically
 	{
 		set { 
 			_isInvertedVertically = value; 
@@ -160,7 +160,7 @@ public class MinibotController : MonoBehaviour
 			_gravity = -_gravity;
 	}
 
-	internal void InvertHorizontal()
+	void InvertHorizontal()
 	{
 		if (_isInvertedHorizontally)
 			_isInvertedHorizontally = false;
@@ -168,7 +168,7 @@ public class MinibotController : MonoBehaviour
 			_isInvertedHorizontally = true;
 	}
 	
-	internal void InvertVertically()
+	void InvertVertically()
 	{
 		if (_isInvertedVertically)
 			_isInvertedVertically = false;

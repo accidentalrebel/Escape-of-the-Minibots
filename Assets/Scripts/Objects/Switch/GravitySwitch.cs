@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GravitySwitch : Switch
 {
-	override internal void Initialize(Vector3 theStartingPos)
+	override public void Initialize(Vector3 theStartingPos)
 	{
 		base.Initialize(theStartingPos);
 	}

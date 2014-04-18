@@ -8,7 +8,7 @@ public class FrontMenu : Menu {
 
     public Settings settings;
 
-    protected override void Start()
+    override protected void Start()
     {
         base.Start();
 

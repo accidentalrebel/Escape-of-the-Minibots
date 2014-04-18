@@ -7,19 +7,13 @@ public class XMLLevelReader : XMLAccessor {
     public string levelToLoad = "1";
     PrefabHandler prefabHandler;
 
-    	// Use this for initialization
 	override protected void Awake () 
     {        
         prefabHandler = Registry.prefabHandler;
         base.Awake();
 	}   
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="theLevelToLoad"></param>
-    /// <returns>True if levelLoad is successful. False if not.</returns>
-    internal bool LoadLevel(string theLevelToLoad)
+    public bool LoadLevel(string theLevelToLoad)
     {
         string filepath = Application.dataPath + @"/Resources/Levels/" + theLevelToLoad + ".xml";
 
@@ -250,9 +244,6 @@ public class XMLLevelReader : XMLAccessor {
         return true;
     }
 
-    /// <summary>
-    /// When loading of the level is finished, it informs all who needs to know
-    /// </summary>
     private void HasFinishedLoadingLevel(string theCurrentLevel)
     {
         Registry.map.currentLevel = theCurrentLevel;

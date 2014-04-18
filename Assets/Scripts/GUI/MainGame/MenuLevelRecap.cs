@@ -6,12 +6,12 @@ public class MenuLevelRecap : Menu {
     string levelComment = "";
 
 	// Use this for initialization
-	protected override void Start () {
+	override protected void Start () {
         base.Start();        
         Registry.main.ELevelCompleted += LevelCompleted;
 	}
 
-    protected override void Update()
+    override protected void Update()
     {
         base.Update();
 

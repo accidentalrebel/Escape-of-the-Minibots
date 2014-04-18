@@ -5,7 +5,7 @@ using System.IO;
 
 public class LevelList : MonoBehaviour {
 
-    internal List<string> members = new List<string>();
+    public List<string> members = new List<string>();
 
 	// Use this for initialization
 	void Start () {

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class StepSwitch : Switch {
     
-	protected override void Awake ()
+	override protected void Awake ()
 	{
 		base.Awake ();
 
@@ -11,7 +11,7 @@ public class StepSwitch : Switch {
 		UpdateSwitchGraphic();
 	}
 
-	override internal void Initialize(Vector3 theStartingPos)
+	override public void Initialize(Vector3 theStartingPos)
 	{
 		base.Initialize(theStartingPos);
 	}
@@ -58,7 +58,7 @@ public class StepSwitch : Switch {
 		}
     }
 
-    internal override void ResetObject()
+    override public void ResetObject()
     {
         Debug.LogWarning("Resetting");
         base.ResetObject();

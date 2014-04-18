@@ -4,23 +4,23 @@ using System.Collections.Generic;
 
 public class Map : MonoBehaviour {
 
-    internal GameObject levelObjectsContainer;
-	internal GameObject tilesContainer;
-    internal GameObject minibotsContainer;
-	internal GameObject boxesContainer;
-	internal GameObject doorsContainer;
-	internal GameObject gravityInvertersContainer;
-	internal GameObject hazardsContainer;
-	internal GameObject horizontalInvertersContainer;
-	internal GameObject movingPlatformsContainer;
-	internal GameObject stepSwitchesContainer;
-	internal GameObject switchesContainer;
-	internal GameObject triggerableBlocksContainer;
-    internal GameObject triggerableHazardsContainer;
+    public GameObject levelObjectsContainer;
+	public GameObject tilesContainer;
+    public GameObject minibotsContainer;
+	public GameObject boxesContainer;
+	public GameObject doorsContainer;
+	public GameObject gravityInvertersContainer;
+	public GameObject hazardsContainer;
+	public GameObject horizontalInvertersContainer;
+	public GameObject movingPlatformsContainer;
+	public GameObject stepSwitchesContainer;
+	public GameObject switchesContainer;
+	public GameObject triggerableBlocksContainer;
+    public GameObject triggerableHazardsContainer;
     private List<Transform> levelObjectContainerList = new List<Transform>();
 
-    internal XMLLevelReader levelReader;
-    internal XMLLevelWriter levelWriter;
+    XMLLevelReader levelReader;
+    XMLLevelWriter levelWriter;
     public string currentLevel = "";    
 
     // ************************************************************************************
@@ -100,7 +100,7 @@ public class Map : MonoBehaviour {
     // LEVEL LOADING
     // ************************************************************************************
 
-    internal bool GetNextLevel()
+    public bool GetNextLevel()
     {
         int levelToCheck = 0;
         try
@@ -129,7 +129,7 @@ public class Map : MonoBehaviour {
         return true;
     }
 
-    internal bool GetPreviousLevel()
+	public bool GetPreviousLevel()
     {
         int levelToCheck = 0;
         try
@@ -161,11 +161,7 @@ public class Map : MonoBehaviour {
     // ************************************************************************************
     // LEVEL MANIPULATION
     // ************************************************************************************
-
-    /// <summary>
-    /// Restarts the level. All level objects goes back to their original positions and states
-    /// </summary>
-    internal void RestartLevel()
+	public void RestartLevel()
     {
         foreach (Transform box in boxesContainer.transform)
         {
@@ -189,10 +185,7 @@ public class Map : MonoBehaviour {
         }
     }
 
-    /// <summary>
-    /// Clears the whole level of all levelObjects
-    /// </summary>
-    internal void ClearLevel()
+    public void ClearLevel()
     {
         foreach (Transform tile in tilesContainer.transform)
         {
@@ -261,12 +254,7 @@ public class Map : MonoBehaviour {
         return null;
     }
 
-    /// <summary>
-    /// A helper function that gets a levelObject at the specified position
-    /// </summary>
-    /// <param name="posToCheck">The position to check</param>
-    /// <returns></returns>
-	internal LevelObject GetLevelObjectAtPosition(Vector3 posToCheck)
+	public LevelObject GetLevelObjectAtPosition(Vector3 posToCheck)
 	{		
         LevelObject theLevelObject;
 

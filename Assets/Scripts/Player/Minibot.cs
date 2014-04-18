@@ -11,7 +11,7 @@ public class Minibot : LevelObject {
     private bool startingIsInvertedGravity;
     private bool startingIsInvertedHorizontal;
     public bool hasExited;
-    internal bool isJumping = false;
+    public bool isJumping = false;
 
     private Direction isFacing = Direction.Right;
     private bool isStanding = true;
@@ -74,7 +74,7 @@ public class Minibot : LevelObject {
         }
     }
     
-    internal void Initialize(Vector3 startPos, bool isInvertedGrav, bool isInvertedHor)
+    public void Initialize(Vector3 startPos, bool isInvertedGrav, bool isInvertedHor)
     {
         startingPos = startPos;        
         gameObject.transform.position = startingPos;
@@ -120,13 +120,13 @@ public class Minibot : LevelObject {
     // ************************************************************************************
     // ACTIONS
     // ************************************************************************************
-    internal void Jump()
+    public void Jump()
     {
         spriteManager.Play("jumping");
         isJumping = true;
     }
 
-    internal void OnReachedGround()
+    public void OnReachedGround()
     {
         spriteManager.Play("walking");
         isJumping = false;
@@ -139,7 +139,7 @@ public class Minibot : LevelObject {
 		return false;
 	}
 
-    internal void Stand()
+    public void Stand()
     {
     	spriteManager.Play("standing");
     	isStanding = true;
@@ -153,7 +153,7 @@ public class Minibot : LevelObject {
 		return false;
 	}
 
-    internal void Walk()
+    public void Walk()
     {
 		if ( CheckIfCanWalk() )
 		{
@@ -182,7 +182,7 @@ public class Minibot : LevelObject {
         objectBeingCarried = null;
     }
 
-    internal GameObject GetObjectAtSide(Direction direction)
+    public GameObject GetObjectAtSide(Direction direction)
     {
         RaycastHit hit;
         Vector3 checkDirection;
@@ -207,7 +207,7 @@ public class Minibot : LevelObject {
     // SPAWNING
     // ************************************************************************************
 
-    internal void Die()
+    void Die()
     {
         Debug.LogWarning("I DIED");
         Registry.main.ResetLevel();
@@ -221,7 +221,7 @@ public class Minibot : LevelObject {
         Registry.main.OnMinibotExit();
     }
 
-    override internal void ResetObject()
+    override public void ResetObject()
     {
         Debug.Log("Moved minibot");
         // We drop anything that minibot is carrying
@@ -274,7 +274,7 @@ public class Minibot : LevelObject {
     // ************************************************************************************
     // OBJECT EDITING
     // ************************************************************************************
-    internal override void GetEditableAttributes(LevelEditor levelEditor)
+    override public void GetEditableAttributes(LevelEditor levelEditor)
     {
         controller.IsInvertedVertically = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 110, 20), controller.IsInvertedVertically, "Invert Gravity");
         controller.IsInvertedHorizontally = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 90, 150, 20), controller.IsInvertedHorizontally, "Invert Horizontal");

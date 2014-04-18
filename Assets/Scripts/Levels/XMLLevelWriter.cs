@@ -5,7 +5,7 @@ using System.IO;
 
 public class XMLLevelWriter : XMLAccessor {
 
-    internal void SaveLevel(string filename)
+    public void SaveLevel(string filename)
     {
         string filepath = Application.dataPath + @"/Resources/Levels/" + filename + ".xml";
 

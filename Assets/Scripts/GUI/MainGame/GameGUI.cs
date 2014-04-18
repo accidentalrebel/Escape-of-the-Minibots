@@ -4,7 +4,7 @@ using System.Collections;
 public class GameGUI : GUILayout {
 
     Main main;
-    Timer timer;
+    public Timer timer;
     public TextMesh txtMinibotCount;
     public TextMesh txtTimer;
     public TextMesh txtVersions;

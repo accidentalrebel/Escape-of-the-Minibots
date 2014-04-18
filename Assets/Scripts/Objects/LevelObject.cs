@@ -6,7 +6,7 @@ public class LevelObject : MonoBehaviour {
 
     protected GraphicHandler graphicHandler;
     protected SpriteManager spriteManager;
-	internal Vector3 startingPos;
+	public Vector3 startingPos;
 	
 	virtual protected void Awake()
 	{
@@ -16,7 +16,7 @@ public class LevelObject : MonoBehaviour {
 		graphicHandler = gameObject.GetComponent<GraphicHandler>();
 	}
 	
-	virtual internal void Initialize(Vector3 theStartingPos)
+	virtual public void Initialize(Vector3 theStartingPos)
 	{
 		startingPos = theStartingPos;
 		gameObject.transform.position = startingPos;
@@ -26,22 +26,22 @@ public class LevelObject : MonoBehaviour {
 
 	}
 
-    virtual internal void Use(bool setToValue)
+    virtual protected void Use(bool setToValue)
     {
         Debug.LogWarning("Has not been overriden!");
     }
 
-    virtual internal void Use()
+    virtual protected void Use()
     {
         Debug.LogWarning("Has not been overridden!");
     }
 
-    virtual internal void ResetObject()
+    virtual public void ResetObject()
     {
         gameObject.transform.position = startingPos;        
     }
 
-    virtual internal void GetEditableAttributes(LevelEditor levelEditor)
+    virtual public void GetEditableAttributes(LevelEditor levelEditor)
     {
         Debug.LogWarning("Has not been overriden!");
     }

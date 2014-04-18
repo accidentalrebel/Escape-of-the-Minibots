@@ -8,7 +8,7 @@ public class Timer : MonoBehaviour {
 
     float startTime;
     string currentTime;
-    internal string CurrentTime
+    public string CurrentTime
     { get { return currentTime; } }
 
 	// Use this for initialization

@@ -14,22 +14,22 @@ public class Box : LevelObject {
         base.Start();
     }
 	
-	override internal void Initialize(Vector3 theStartingPos)
+	override public void Initialize(Vector3 theStartingPos)
 	{
 		base.Initialize(theStartingPos);
 	}
 
-    internal void PickUp()
+    void PickUp()
     {
         theRigidBody.useGravity = false;
     }
 
-    internal void PutDown()
+    void PutDown()
     {
         theRigidBody.useGravity = true;
     }
 
-    internal override void ResetObject()
+    override public void ResetObject()
     {
         theRigidBody.velocity = Vector3.zero;
         theRigidBody.angularVelocity = Vector3.zero;

@@ -15,14 +15,14 @@ public class Main : MonoBehaviour
     public string mapToLoad = "1";
     public string currentUser = "User";
     
-    internal Timer timer;
-    internal LevelEditor levelEditor;
+    public Timer timer;
+    public LevelEditor levelEditor;
 
     public bool isReplayMode = false;
-    int minibotCountAtStart;
+	public int minibotCountAtStart;
 
     Map map;
-    internal Settings settings;
+    Settings settings;
     List<Minibot> minibotList = new List<Minibot>();
 
     // ************************************************************************************
@@ -95,19 +95,12 @@ public class Main : MonoBehaviour
     // ************************************************************************************
     // LEVEL CHANGING
     // ************************************************************************************
-    /// <summary>
-    /// Gets the name of the level that would go next after this level
-    /// </summary>
-    internal void GoToNextLevel()
+    public void GoToNextLevel()
     {
         map.GetNextLevel();
     }
 
-    /// <summary>
-    /// Loads the next level
-    /// </summary>
-    /// <param name="nextLevelName"></param>
-    internal void LoadNextLevel(string nextLevelName)
+	public void LoadNextLevel(string nextLevelName)
     {        
         if (nextLevelName == "")
         {
@@ -124,10 +117,7 @@ public class Main : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Starts a new level
-    /// </summary>
-    internal void StartLevel()
+	public void StartLevel()
     {        
         Registry.replayManager.StopReplay();
         Registry.replayManager.StartRecording();
@@ -138,19 +128,13 @@ public class Main : MonoBehaviour
         ELevelStarted();
     }
 
-    /// <summary>
-    /// Restarts the game
-    /// </summary>
-    internal void RestartLevel()
+    public void RestartLevel()
     {
         map.RestartLevel();
         StartLevel();
     }
 
-    /// <summary>
-    /// Resets level. Only called when minibot dies.
-    /// </summary>
-    internal void ResetLevel()
+	public void ResetLevel()
     {
         map.RestartLevel();
         EUpdateMinibotCount();                          // We update the Minibot Count
@@ -161,10 +145,7 @@ public class Main : MonoBehaviour
     // END GAME LOGIC
     // ************************************************************************************
 
-    /// <summary>
-    /// Checks if all the minibots in the level has succesfully exited the level
-    /// </summary>
-    internal void OnMinibotExit()
+	public void OnMinibotExit()
     {
         EUpdateMinibotCount();
         int minibotsLeft = CountMinibotsInLevel();
@@ -173,9 +154,6 @@ public class Main : MonoBehaviour
             LevelCompleted();
     }
 
-    /// <summary>
-    /// This method handles what would happen when the level is over
-    /// </summary>
     private void LevelCompleted()
     {
         // Just restart the game automatically if in mapEditMode
@@ -191,7 +169,7 @@ public class Main : MonoBehaviour
     // ************************************************************************************
     // REPLAY
     // ************************************************************************************
-    internal void StartReplay()
+    public void StartReplay()
     {
         isReplayMode = true;
         Registry.replayManager.StartReplay();
@@ -201,7 +179,7 @@ public class Main : MonoBehaviour
     // ************************************************************************************
     // HELPER FUNCTIONS
     // ************************************************************************************
-    internal int CountMinibotsInLevel()
+    public int CountMinibotsInLevel()
     {
         int count = 0;
         foreach (Minibot minibot in minibotList)
@@ -219,7 +197,7 @@ public class Main : MonoBehaviour
     /// Gets all the minibots in the level
     /// And then saves it for future reference
     /// </summary>
-    internal void GetMinibotsInLevel()
+    public void GetMinibotsInLevel()
     {
         minibotList.Clear();
         foreach (Transform minibot in map.minibotsContainer.transform)

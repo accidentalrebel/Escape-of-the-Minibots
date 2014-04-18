@@ -11,12 +11,12 @@ public class MinibotList : MonoBehaviour {
     //    Registry.minibotList = this;
     //}
 
-    //internal void AddToList(Minibot minibot)
+    //void AddToList(Minibot minibot)
     //{
     //    members.Add(minibot);
     //}
 
-    //internal void RemoveFromList(Minibot minibot)
+    //void RemoveFromList(Minibot minibot)
     //{
     //    members.Remove(minibot);
     //}

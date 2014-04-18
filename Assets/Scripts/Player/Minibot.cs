@@ -76,14 +76,16 @@ public class Minibot : LevelObject {
     void LateUpdate()
     {
         if ( Registry.inputHandler.PickupButton
-            && _objectBeingCarried != null)
+            && _objectBeingCarried != null
+		    && !_isJumping)
         {
             PutDownCarriedObject(_objectBeingCarried);
         }
 
         // Handles the picking up of objects
         if (Registry.inputHandler.PickupButton
-            && _objectBeingCarried ==  null )
+            && _objectBeingCarried ==  null
+		    && !_isJumping)
         {
 			GameObject objectAtSide = GetObjectAtSide(_isFacing, normalRayLength);
 

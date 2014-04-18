@@ -92,6 +92,7 @@ public class SpriteManager : MonoBehaviour {
         StopCoroutine("Animate");
     }
 
+	//TODO: Change to setFlippedX
    	public void HandleSpriteOrientation(bool flip)
     {
         int flipValue = 1;
@@ -173,4 +174,10 @@ public class SpriteManager : MonoBehaviour {
             // We loop back up again and display the next animation frame
         }
     }
+
+	public void Reset ()
+	{
+		SetFlippedY(false);
+		HandleSpriteOrientation(false);
+	}
 }

@@ -8,8 +8,12 @@ public class Minibot : LevelObject {
     private Rigidbody theRigidBody;    
 
     MinibotController controller;
-    private bool startingIsInvertedGravity;
-    private bool startingIsInvertedHorizontal;
+
+	[SerializeField]
+    private bool initVerticalOrientation;
+    
+	[SerializeField]
+	private bool initHorizontalOrientation;
     public bool hasExited;
     public bool isJumping = false;
 
@@ -82,8 +86,8 @@ public class Minibot : LevelObject {
         controller = gameObject.GetComponentInChildren<MinibotController>();
         controller.IsInvertedVertically = isInvertedGrav;
         controller.IsInvertedHorizontally = isInvertedHor;
-        startingIsInvertedGravity = isInvertedGrav;
-        startingIsInvertedHorizontal = isInvertedHor;
+        initVerticalOrientation = isInvertedGrav;
+        initHorizontalOrientation = isInvertedHor;
     }
 
     private void InitializeSprite()
@@ -222,9 +226,8 @@ public class Minibot : LevelObject {
     }
 
     override public void ResetObject()
-    {
-        Debug.Log("Moved minibot");
-        // We drop anything that minibot is carrying
+    {       
+		// We drop anything that minibot is carrying
         if (objectBeingCarried != null)
             objectBeingCarried = null;
 
@@ -232,17 +235,11 @@ public class Minibot : LevelObject {
         theRigidBody.velocity = Vector3.zero;
         theRigidBody.angularVelocity = Vector3.zero;
 
-        // We reset the objects position to its starting pos
         base.ResetObject();
-
-        // We then reset the controller values to its starting values
-        controller.IsInvertedVertically = startingIsInvertedGravity;
-        controller.IsInvertedHorizontally = startingIsInvertedHorizontal;
-
-        // If object is inactive, activate it        
+		controller.Reset(initHorizontalOrientation, initVerticalOrientation);
+		spriteManager.Reset();
+     
         EnableMinibot();
-
-        // We make sure that it has not exited
         hasExited = false;
     }
 

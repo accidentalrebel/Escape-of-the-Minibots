@@ -64,7 +64,7 @@ public class MinibotController : MonoBehaviour
 		float yInput = Registry.inputHandler.YAxis;
 		float xInput = AdjustXInput(Registry.inputHandler.XAxis);
 		
-		HandlePlayerFacing(xInput);
+		HandlePlayerFacingAccordingToXInput(xInput);
 
 		Vector3 targetVelocity = CalculateTargetVelocity(xInput, yInput);
 
@@ -122,7 +122,8 @@ public class MinibotController : MonoBehaviour
 		CheckIfGrounded();
 	}
 
-	void HandlePlayerFacing (float xInput)
+	// TODO: Move this to SpriteManager class
+	void HandlePlayerFacingAccordingToXInput (float xInput)
 	{
 		if (xInput > 0) {
 			_playerScript.IsFacing = Minibot.Direction.Right;
@@ -174,7 +175,7 @@ public class MinibotController : MonoBehaviour
 			_isInvertedVertically = false;
 		else
 			_isInvertedVertically = true;
-		
+
 		UpdateGravityStatus();
 	}
 
@@ -223,4 +224,12 @@ public class MinibotController : MonoBehaviour
 
 		_isGrounded = false;
     }
+
+	public void Reset (bool initHorizontalValue, bool initVerticalValue)
+	{
+		_isInvertedHorizontally = initHorizontalValue;		
+		_isInvertedVertically = initVerticalValue;
+
+		UpdateGravityStatus();
+	}
 }

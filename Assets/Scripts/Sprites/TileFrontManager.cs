@@ -15,12 +15,24 @@ public class TileFrontManager : MonoBehaviour {
 		BOTTOM_LEFT		= 7,
 		LEFT 			= 8,
 		TOP_LEFT 		= 9,
-		INWARD_TOP_RIGHT 	= 10,
-		INWARD_BOTTOM_RIGHT = 11,
-		INWARD_BOTTOM_LEFT 	= 12,
-		INWARD_TOP_LEFT 	= 13,
+		IN_TOP_RIGHT 	= 10,
+		IN_BOTTOM_RIGHT = 11,
+		IN_BOTTOM_LEFT 	= 12,
+		IN_TOP_LEFT 	= 13,
 		RIGHT_LEFT		= 14,
-		TOP_BOTTOM		= 15
+		TOP_BOTTOM		= 15,
+		IN_TOP_RIGHT_OUT_BOTTOM_LEFT 	= 16,
+		IN_TOP_RIGHT_OUT_LEFT 			= 17,
+		IN_TOP_RIGHT_OUT_BOTTOM 		= 18,
+		IN_BOTTOM_RIGHT_OUT_TOP_LEFT 	= 19,
+		IN_BOTTOM_RIGHT_OUT_TOP			= 20,
+		IN_BOTTOM_RIGHT_OUT_LEFT		= 21,
+		IN_BOTTOM_LEFT_OUT_TOP_RIGHT	= 22,
+		IN_BOTTOM_LEFT_OUT_RIGHT		= 23,
+		IN_BOTTOM_LEFT_OUT_TOP			= 24,
+		IN_UPPER_LEFT_OUT_BOTTOM_RIGHT	= 25,
+		IN_UPPER_LEFT_OUT_RIGHT			= 26,
+		IN_UPPER_LEFT_OUT_BOTTOM		= 27
 	};
 
 	private Dictionary <TileSide, Vector2> _tileSideDictionary;
@@ -57,19 +69,19 @@ public class TileFrontManager : MonoBehaviour {
 		if ( GetTileObjectAtDirection(TileSide.TOP) != null
 			    && GetTileObjectAtDirection(TileSide.RIGHT) != null
 			    && GetTileObjectAtDirection(TileSide.TOP_RIGHT) == null )
-			_spriteManager.SetFrameTo("default", (int)TileSide.INWARD_TOP_RIGHT);
+			_spriteManager.SetFrameTo("default", (int)TileSide.IN_TOP_RIGHT);
 		else if ( GetTileObjectAtDirection(TileSide.BOTTOM) != null
 		         && GetTileObjectAtDirection(TileSide.RIGHT) != null
 		         && GetTileObjectAtDirection(TileSide.BOTTOM_RIGHT) == null )
-			_spriteManager.SetFrameTo("default", (int)TileSide.INWARD_BOTTOM_RIGHT);
+			_spriteManager.SetFrameTo("default", (int)TileSide.IN_BOTTOM_RIGHT);
 		else if ( GetTileObjectAtDirection(TileSide.BOTTOM) != null
 		         && GetTileObjectAtDirection(TileSide.LEFT) != null
 		         && GetTileObjectAtDirection(TileSide.BOTTOM_LEFT) == null )
-			_spriteManager.SetFrameTo("default", (int)TileSide.INWARD_BOTTOM_LEFT);
+			_spriteManager.SetFrameTo("default", (int)TileSide.IN_BOTTOM_LEFT);
 		else if ( GetTileObjectAtDirection(TileSide.TOP) != null
 		         && GetTileObjectAtDirection(TileSide.LEFT) != null
 		         && GetTileObjectAtDirection(TileSide.TOP_LEFT) == null )
-			_spriteManager.SetFrameTo("default", (int)TileSide.INWARD_TOP_LEFT);
+			_spriteManager.SetFrameTo("default", (int)TileSide.IN_TOP_LEFT);
 		else if ( GetTileObjectAtDirection(TileSide.TOP) == null
 		         && GetTileObjectAtDirection(TileSide.RIGHT) == null )
 			_spriteManager.SetFrameTo("default", (int)TileSide.TOP_RIGHT);

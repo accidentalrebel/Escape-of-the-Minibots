@@ -100,12 +100,19 @@ public class SpriteManager : MonoBehaviour {
 	public void SetFlippedY(bool flipValue)
 	{
 		Vector3 currentScale = transform.localScale;
+		Vector3 currentPosition = transform.localPosition;
 		float currentYScale = Mathf.Abs(currentScale.y);
 
 		if ( flipValue )
+		{
 			transform.localScale = new Vector3(currentScale.x, -currentYScale, currentScale.z);
+			transform.localPosition = new Vector3(currentPosition.x, -0.2f, currentPosition.z);
+		}
 		else
+		{
 			transform.localScale = new Vector3(currentScale.x, currentYScale, currentScale.z);
+			transform.localPosition = new Vector3(currentPosition.x, 0f, currentPosition.z);
+		}
 	}
 
     IEnumerator Animate(string currentAnimation)

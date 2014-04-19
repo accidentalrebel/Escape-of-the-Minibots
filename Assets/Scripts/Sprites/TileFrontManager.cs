@@ -5,13 +5,6 @@ using System.Collections.Generic;
 [RequireComponent(typeof(SpriteManager))]
 public class TileFrontManager : MonoBehaviour {
 
-	private enum Direction4 { 
-		TOP,
-		RIGHT,
-		BOTTOM,
-		LEFT
-	};
-
 	private enum TileSide {
 		MIDDLE 			= 1,
 		TOP 			= 2,
@@ -29,7 +22,6 @@ public class TileFrontManager : MonoBehaviour {
 	};
 
 	private Dictionary <TileSide, Vector2> _tileSideDictionary;
-	private Direction4[] _noNeighborDirectionList;
 	private SpriteManager _spriteManager;
 	private Vector2 _currentPosition;
 
@@ -47,6 +39,7 @@ public class TileFrontManager : MonoBehaviour {
 
 	void SetupTileSideDictionary ()
 	{
+		_tileSideDictionary = new Dictionary<TileSide, Vector2>();
 		_tileSideDictionary.Add (TileSide.TOP, new Vector2(0, 1));
 		_tileSideDictionary.Add (TileSide.TOP_RIGHT, new Vector2(1, 1));
 		_tileSideDictionary.Add (TileSide.RIGHT, new Vector2(1, 0));
@@ -59,30 +52,21 @@ public class TileFrontManager : MonoBehaviour {
 
 	public void UpdateNeighbors () {
 
-		if ( GetLevelObjectAtDirection(Direction4.TOP) == null )
+		if ( GetLevelObjectAtDirection(TileSide.TOP) == null )
 			_spriteManager.SetFrameTo("default", (int)TileSide.TOP);
-		else if ( GetLevelObjectAtDirection(Direction4.RIGHT) == null )
+		else if ( GetLevelObjectAtDirection(TileSide.RIGHT) == null )
 			_spriteManager.SetFrameTo("default", (int)TileSide.RIGHT);
-		else if ( GetLevelObjectAtDirection(Direction4.BOTTOM) == null ) 
+		else if ( GetLevelObjectAtDirection(TileSide.BOTTOM) == null ) 
 			_spriteManager.SetFrameTo("default", (int)TileSide.BOTTOM);
-		else if ( GetLevelObjectAtDirection(Direction4.LEFT) == null )
+		else if ( GetLevelObjectAtDirection(TileSide.LEFT) == null )
 			_spriteManager.SetFrameTo("default", (int)TileSide.LEFT);
 		else
 			_spriteManager.SetFrameTo("default", (int)TileSide.MIDDLE);
 	}
 
-	private LevelObject GetLevelObjectAtDirection(Direction4 direction) {
+	private LevelObject GetLevelObjectAtDirection(TileSide tileSideDirection) {
 
-		Vector2 directionOffset = Vector2.zero;
-		if ( direction == Direction4.TOP )
-			directionOffset = new Vector2(0, 1);
-		else if ( direction == Direction4.RIGHT )
-			directionOffset = new Vector2(1, 0);
-		else if ( direction == Direction4.BOTTOM )
-			directionOffset = new Vector2(0, -1);
-		else if ( direction == Direction4.LEFT )
-			directionOffset = new Vector2(-1, 0);
-
+		Vector2 directionOffset = _tileSideDictionary[tileSideDirection];
 		Vector3 _currentPosition = transform.parent.position;
 		Vector3 topPosition = new Vector3(_currentPosition.x + directionOffset.x
 		                                  , _currentPosition.y + directionOffset.y

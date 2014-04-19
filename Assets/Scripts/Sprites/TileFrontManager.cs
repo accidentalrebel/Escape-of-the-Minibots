@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(SpriteManager))]
 public class TileFrontManager : MonoBehaviour {
@@ -25,8 +26,9 @@ public class TileFrontManager : MonoBehaviour {
 		INWARD_BOTTOM_RIGHT = 11,
 		INWARD_BOTTOM_LEFT 	= 12,
 		INWARD_TOP_LEFT 	= 13
-	}
+	};
 
+	private Dictionary <TileSide, Vector2> _tileSideDictionary;
 	private Direction4[] _noNeighborDirectionList;
 	private SpriteManager _spriteManager;
 	private Vector2 _currentPosition;
@@ -39,6 +41,20 @@ public class TileFrontManager : MonoBehaviour {
 			Debug.LogWarning("Parent of this object should have a Tile class");
 		
 		myTileClass.tileFrontManager = this;
+
+		SetupTileSideDictionary();
+	}
+
+	void SetupTileSideDictionary ()
+	{
+		_tileSideDictionary.Add (TileSide.TOP, new Vector2(0, 1));
+		_tileSideDictionary.Add (TileSide.TOP_RIGHT, new Vector2(1, 1));
+		_tileSideDictionary.Add (TileSide.RIGHT, new Vector2(1, 0));
+		_tileSideDictionary.Add (TileSide.BOTTOM_RIGHT, new Vector2(1, -1));
+		_tileSideDictionary.Add (TileSide.BOTTOM, new Vector2(0, 1));
+		_tileSideDictionary.Add (TileSide.BOTTOM_LEFT, new Vector2(-1, -1));
+		_tileSideDictionary.Add (TileSide.LEFT, new Vector2(-1, 0));
+		_tileSideDictionary.Add (TileSide.TOP_LEFT, new Vector2(-1, 1));
 	}
 
 	public void UpdateNeighbors () {

@@ -238,7 +238,7 @@ public class XMLLevelReader : XMLAccessor {
 			}			
         }
 
-		Registry.map.SetNeighborsForAllWallTiles();
+		Registry.map.UpdateNeighborsForAllWallTiles();
 
         // We tell the main that we have finished loading
         HasFinishedLoadingLevel(theLevelToLoad);

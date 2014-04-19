@@ -25,7 +25,7 @@ public class TileFrontManager : MonoBehaviour {
 		tileClass.tileFrontManager = this;
 	}
 
-	public void GetNeighbors () {
+	public void UpdateNeighbors () {
 		Vector3 _currentPosition = transform.parent.position;
 
 		Vector3 topPosition = new Vector3(_currentPosition.x, _currentPosition.y + 1, _currentPosition.z);

@@ -237,12 +237,12 @@ public class Map : MonoBehaviour {
         }
     }
 
-	public void SetNeighborsForAllWallTiles ()
+	public void UpdateNeighborsForAllWallTiles ()
 	{
 		foreach( Transform tileObject in tilesContainer.transform )
 		{
 			TileFrontManager tileFrontManager = tileObject.GetComponent<Tile>().tileFrontManager;
-			tileFrontManager.GetNeighbors();
+			tileFrontManager.UpdateNeighbors();
 		}
 	}
 

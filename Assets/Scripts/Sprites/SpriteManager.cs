@@ -17,6 +17,7 @@ public class SpriteManager : MonoBehaviour {
     private Vector2 _offsetDifference = new Vector2();
     private Dictionary<int, Vector2> _animationFrames = new Dictionary<int, Vector2>();
     private Dictionary<string, AnimationProperties> _animationSets = new Dictionary<string, AnimationProperties>();
+	private string _currentlyPlayingAnimation;
 
     public struct AnimationProperties
     {
@@ -39,8 +40,11 @@ public class SpriteManager : MonoBehaviour {
 			Debug.LogWarning("startingFrameIndex should not be lower than 1!");
                 
 		Initialize(numOfRows, numOfCols);                               
-		Play(startingAnimation);
-		SetFrameTo(startingAnimation, startingFrameIndex);
+
+		if ( enableAnimation )
+			Play(startingAnimation);
+		else
+			SetFrameTo(startingAnimation, startingFrameIndex);
 	}
 
 	public void Initialize(int numOfHorizontalFrames, int numOfVerticalFrames)
@@ -85,7 +89,10 @@ public class SpriteManager : MonoBehaviour {
     }
 
     public void Play(string currentAnimation)
-    {        
+    {   
+		if ( currentAnimation == _currentlyPlayingAnimation )
+			return;
+
         StopCoroutine("Animate");                       
 
         if ( gameObject.activeSelf != false )
@@ -129,6 +136,7 @@ public class SpriteManager : MonoBehaviour {
     IEnumerator Animate(string currentAnimation)
     {
         uint currentFrame = 1;
+		_currentlyPlayingAnimation = currentAnimation;
 		        
         int[] animationFrameSets = _animationSets[currentAnimation].frameSet;
         float animationSpeed = _animationSets[currentAnimation].animationSpeed;
@@ -149,8 +157,6 @@ public class SpriteManager : MonoBehaviour {
 
 	public void SetFrameTo(string currentAnimation, uint currentFrame)
 	{
-		Debug.Log ("Animation set size is " + _animationSets.Count + " and playing " + currentAnimation + " at " + currentFrame);
-
 		Vector2 newOffset = _animationFrames[_animationSets[currentAnimation].frameSet[currentFrame - 1]];
 
 		int flipValue;

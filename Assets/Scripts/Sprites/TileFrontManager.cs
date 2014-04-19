@@ -18,7 +18,9 @@ public class TileFrontManager : MonoBehaviour {
 		INWARD_TOP_RIGHT 	= 10,
 		INWARD_BOTTOM_RIGHT = 11,
 		INWARD_BOTTOM_LEFT 	= 12,
-		INWARD_TOP_LEFT 	= 13
+		INWARD_TOP_LEFT 	= 13,
+		RIGHT_LEFT		= 14,
+		TOP_BOTTOM		= 15
 	};
 
 	private Dictionary <TileSide, Vector2> _tileSideDictionary;
@@ -52,7 +54,6 @@ public class TileFrontManager : MonoBehaviour {
 
 	public void UpdateNeighbors () {
 
-		// TOP RIGHT
 		if ( GetTileObjectAtDirection(TileSide.TOP) != null
 			    && GetTileObjectAtDirection(TileSide.RIGHT) != null
 			    && GetTileObjectAtDirection(TileSide.TOP_RIGHT) == null )
@@ -78,6 +79,12 @@ public class TileFrontManager : MonoBehaviour {
 		else if ( GetTileObjectAtDirection(TileSide.BOTTOM) == null
 		         && GetTileObjectAtDirection(TileSide.LEFT) == null )
 			_spriteManager.SetFrameTo("default", (int)TileSide.BOTTOM_LEFT);
+		else if ( GetTileObjectAtDirection(TileSide.TOP) == null
+		         && GetTileObjectAtDirection(TileSide.BOTTOM) == null )
+			_spriteManager.SetFrameTo("default", (int)TileSide.TOP_BOTTOM);
+		else if ( GetTileObjectAtDirection(TileSide.RIGHT) == null
+		         && GetTileObjectAtDirection(TileSide.LEFT) == null )
+			_spriteManager.SetFrameTo("default", (int)TileSide.RIGHT_LEFT);
 		else if ( GetTileObjectAtDirection(TileSide.TOP) == null
 		         && GetTileObjectAtDirection(TileSide.LEFT) == null )
 			_spriteManager.SetFrameTo("default", (int)TileSide.TOP_LEFT);

@@ -30,9 +30,9 @@ public class TileFrontManager : MonoBehaviour {
 		IN_BOTTOM_LEFT_OUT_TOP_RIGHT	= 22,
 		IN_BOTTOM_LEFT_OUT_RIGHT		= 23,
 		IN_BOTTOM_LEFT_OUT_TOP			= 24,
-		IN_UPPER_LEFT_OUT_BOTTOM_RIGHT	= 25,
-		IN_UPPER_LEFT_OUT_RIGHT			= 26,
-		IN_UPPER_LEFT_OUT_BOTTOM		= 27
+		IN_TOP_LEFT_OUT_BOTTOM_RIGHT	= 25,
+		IN_TOP_LEFT_OUT_RIGHT			= 26,
+		IN_TOP_LEFT_OUT_BOTTOM			= 27
 	};
 
 	private Dictionary <TileSide, Vector2> _tileSideDictionary;
@@ -68,14 +68,11 @@ public class TileFrontManager : MonoBehaviour {
 
 		if ( CheckForTopRightNeighbor() 
 		    || CheckForBottomRightNeighbor()
-		    || CheckForBottomLeftNeighbor()) 
+		    || CheckForBottomLeftNeighbor()
+		    || CheckForTopLeftNeighbor() )
 		{
 
 		}
-		else if ( GetTileObjectAtDirection(TileSide.TOP) != null
-		         && GetTileObjectAtDirection(TileSide.LEFT) != null
-		         && GetTileObjectAtDirection(TileSide.TOP_LEFT) == null )
-			_spriteManager.SetFrameTo("default", (int)TileSide.IN_TOP_LEFT);
 		else if ( GetTileObjectAtDirection(TileSide.TOP) == null
 		         && GetTileObjectAtDirection(TileSide.RIGHT) == null )
 			_spriteManager.SetFrameTo("default", (int)TileSide.TOP_RIGHT);
@@ -166,8 +163,8 @@ public class TileFrontManager : MonoBehaviour {
 	{
 		if ( GetTileObjectAtDirection(TileSide.BOTTOM) != null
 	         && GetTileObjectAtDirection(TileSide.LEFT) != null
-	         && GetTileObjectAtDirection(TileSide.BOTTOM_LEFT) == null ) {
-
+	         && GetTileObjectAtDirection(TileSide.BOTTOM_LEFT) == null ) 
+		{
 			if ( GetTileObjectAtDirection(TileSide.TOP) == null
 			    && GetTileObjectAtDirection(TileSide.RIGHT) == null) {
 				_spriteManager.SetFrameTo("default", (int)TileSide.IN_BOTTOM_LEFT_OUT_TOP_RIGHT);
@@ -187,6 +184,34 @@ public class TileFrontManager : MonoBehaviour {
 			}
 		}
 			
+		return false;
+	}
+
+	private bool CheckForTopLeftNeighbor ()
+	{
+		if ( GetTileObjectAtDirection(TileSide.TOP) != null
+	         && GetTileObjectAtDirection(TileSide.LEFT) != null
+	         && GetTileObjectAtDirection(TileSide.TOP_LEFT) == null ) 
+		{
+			if ( GetTileObjectAtDirection(TileSide.BOTTOM) == null
+			    && GetTileObjectAtDirection(TileSide.RIGHT) == null) {
+				_spriteManager.SetFrameTo("default", (int)TileSide.IN_TOP_LEFT_OUT_BOTTOM_RIGHT );
+				return true;
+			}
+			else if ( GetTileObjectAtDirection(TileSide.BOTTOM) == null ) {			
+				_spriteManager.SetFrameTo("default", (int)TileSide.IN_TOP_LEFT_OUT_BOTTOM );
+				return true;
+			}
+			else if ( GetTileObjectAtDirection(TileSide.RIGHT) == null ) {			
+				_spriteManager.SetFrameTo("default", (int)TileSide.IN_TOP_LEFT_OUT_RIGHT );
+				return true;
+			}
+			else {
+				_spriteManager.SetFrameTo("default", (int)TileSide.IN_TOP_LEFT);
+				return true;
+			}
+		}
+
 		return false;
 	}
 

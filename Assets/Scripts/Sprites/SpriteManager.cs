@@ -7,7 +7,7 @@ public class SpriteManager : MonoBehaviour {
 		 
 	public int numOfRows = 1;
 	public int numOfCols = 1;
-	public int startingFrameIndex = 1;
+	public uint startingFrameIndex = 1;
 	public string startingAnimation = "default";
 	public bool enableAnimation = true;  
 
@@ -34,10 +34,13 @@ public class SpriteManager : MonoBehaviour {
         _theRenderer = gameObject.GetComponent<Renderer>().renderer;
         if (_theRenderer == null)
             Debug.LogError("theRenderer is not found!");
+
+		if (startingFrameIndex <= 0 )
+			Debug.LogWarning("startingFrameIndex should not be lower than 1!");
                 
 		Initialize(numOfRows, numOfCols);                               
 		Play(startingAnimation);
-		SetFrameTo("default", startingFrameIndex);
+		SetFrameTo(startingAnimation, startingFrameIndex);
 	}
 
 	public void Initialize(int numOfHorizontalFrames, int numOfVerticalFrames)
@@ -73,7 +76,7 @@ public class SpriteManager : MonoBehaviour {
 
 		_theRenderer.material.SetTextureScale("_MainTex", new Vector2(1/numOfRows, 1/numOfCols));
 
-        CreateAnimation("default", new AnimationProperties(defaultFrameSet, 0.5f));    
+		CreateAnimation(startingAnimation, new AnimationProperties(defaultFrameSet, 0.5f));    
     }
 
     public void CreateAnimation(string animationName, AnimationProperties animationProperty)
@@ -125,7 +128,7 @@ public class SpriteManager : MonoBehaviour {
 
     IEnumerator Animate(string currentAnimation)
     {
-        int currentFrame = 1;
+        uint currentFrame = 1;
 		        
         int[] animationFrameSets = _animationSets[currentAnimation].frameSet;
         float animationSpeed = _animationSets[currentAnimation].animationSpeed;
@@ -144,8 +147,10 @@ public class SpriteManager : MonoBehaviour {
         }
     }
 
-	void SetFrameTo(string currentAnimation, int currentFrame)
+	public void SetFrameTo(string currentAnimation, uint currentFrame)
 	{
+		Debug.Log ("Animation set size is " + _animationSets.Count + " and playing " + currentAnimation + " at " + currentFrame);
+
 		Vector2 newOffset = _animationFrames[_animationSets[currentAnimation].frameSet[currentFrame - 1]];
 
 		int flipValue;

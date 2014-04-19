@@ -18,11 +18,11 @@ public class TileFrontManager : MonoBehaviour {
 	void Awake () {
 		_spriteManager = gameObject.GetComponent<SpriteManager>();
 
-		Tile tileClass = transform.parent.GetComponent<Tile>();
-		if ( tileClass == null )
+		Tile myTileClass = transform.parent.GetComponent<Tile> ();
+		if ( myTileClass == null )
 			Debug.LogWarning("Parent of this object should have a Tile class");
 		
-		tileClass.tileFrontManager = this;
+		myTileClass.tileFrontManager = this;
 	}
 
 	public void UpdateNeighbors () {
@@ -33,7 +33,7 @@ public class TileFrontManager : MonoBehaviour {
 		if ( levelObjectAtTop == null || 
 		    ( levelObjectAtTop != null && !(levelObjectAtTop is Tile)))
 		{
-			renderer.material.SetTextureScale("_MainTex", new Vector2(0.1f, 0.1f));
+			_spriteManager.SetFrameTo("default", 2);
 		}
 	}
 

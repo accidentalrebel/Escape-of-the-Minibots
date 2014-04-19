@@ -7,6 +7,12 @@ public class LevelObject : MonoBehaviour {
 
     protected GraphicHandler _graphicHandler;
     protected SpriteManager _spriteManager;
+	public SpriteManager SpriteManager {
+		get {
+			return _spriteManager;
+		}
+	}
+
 	public Vector3 startingPos;
 	
 	virtual protected void Awake()

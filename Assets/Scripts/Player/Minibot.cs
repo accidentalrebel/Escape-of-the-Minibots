@@ -237,15 +237,25 @@ public class Minibot : LevelObject {
         else
             checkDirection = Vector3.right;
 
-		Vector3 feetRaycastPosition = gameObject.transform.position - Vector3.up / 2.5f;
+		Vector3 feetRaycastPosition;
+		if ( !_controller.IsInvertedVertically )
+			feetRaycastPosition = _spriteManager.gameObject.transform.position - Vector3.up / 2.5f;
+		else
+			feetRaycastPosition = _spriteManager.gameObject.transform.position - Vector3.down / 2.5f;
+
 		GameObject collidedGameObject = GetCollisionFromPosition(feetRaycastPosition, checkDirection, rayLength);
 		if ( collidedGameObject != null )
 			return collidedGameObject;
 
-		Vector3 headRaycastPosition = gameObject.transform.position - Vector3.down / 2.5f;
-		collidedGameObject = GetCollisionFromPosition(headRaycastPosition, checkDirection, rayLength);
-		if ( collidedGameObject != null )
-			return collidedGameObject;
+//		Vector3 headRaycastPosition;
+//		if ( !_controller.IsInvertedVertically )
+//			headRaycastPosition = gameObject.transform.position - Vector3.down / 2.5f;
+//		else
+//			headRaycastPosition = gameObject.transform.position - Vector3.up / 2.5f;
+//
+//		collidedGameObject = GetCollisionFromPosition(headRaycastPosition, checkDirection, rayLength);
+//		if ( collidedGameObject != null )
+//			return collidedGameObject;
 
         return null;
     }

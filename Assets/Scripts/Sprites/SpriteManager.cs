@@ -8,10 +8,10 @@ public class SpriteManager : MonoBehaviour {
 	public int numOfRows = 1;
 	public int numOfCols = 1;
 	public string startingAnimation = "default";
+	public bool enableAnimation = true;  
 
 	private Renderer _theRenderer;   
     private int _totalNumberOfFrames;
-	private bool _enableAnimation = true;  
     private bool _isHorizontallyFlipped = false;
     private Vector2 _offsetDifference = new Vector2();
     private Dictionary<int, Vector2> _animationFrames = new Dictionary<int, Vector2>();
@@ -68,6 +68,8 @@ public class SpriteManager : MonoBehaviour {
                 }
             }
         }
+
+		_theRenderer.material.SetTextureScale("_MainTex", new Vector2(1/numOfRows, 1/numOfCols));
 
         CreateAnimation("default", new AnimationProperties(defaultFrameSet, 0.5f));    
     }
@@ -126,7 +128,7 @@ public class SpriteManager : MonoBehaviour {
         int[] animationFrameSets = _animationSets[currentAnimation].frameSet;
         float animationSpeed = _animationSets[currentAnimation].animationSpeed;
         		        
-        while (_enableAnimation)
+        while (enableAnimation)
         {
 			SetFrameTo(currentAnimation, currentFrame);
 

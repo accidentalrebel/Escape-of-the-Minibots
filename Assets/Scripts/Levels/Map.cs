@@ -187,9 +187,9 @@ public class Map : MonoBehaviour {
 
     public void ClearLevel()
     {
-        foreach (Transform tile in tilesContainer.transform)
+		foreach (Transform tile in tilesContainer.transform)
         {
-			Destroy(tile.GetComponent<LevelObject>());
+			Destroy(tile.GetComponent<Tile>());
             GameObject.Destroy(tile.gameObject);
         }
         foreach (Transform hazard in hazardsContainer.transform)
@@ -204,11 +204,8 @@ public class Map : MonoBehaviour {
         {
             GameObject.Destroy(minibot.gameObject);
         }
-        foreach (Transform door in doorsContainer.transform)
-        {
-			Destroy(door.GetComponent<LevelObject>());
-            GameObject.Destroy(door.gameObject);
-        }
+		RemoveAllChildrenOfContainer(doorsContainer.transform);
+		Debug.Log ("AFTER DESTROYING DOOR Count is: " + doorsContainer.transform.childCount);
         foreach (Transform triggerableBlock in triggerableBlocksContainer.transform)
         {
             GameObject.Destroy(triggerableBlock.gameObject);
@@ -238,6 +235,16 @@ public class Map : MonoBehaviour {
             GameObject.Destroy(movingPlatform.gameObject);
         }
     }
+
+	private void RemoveAllChildrenOfContainer(Transform container)
+	{
+		for (var i = container.childCount - 1 ; i >= 0 ; i--)
+		{
+			Transform objectToDestroy = container.GetChild(i);
+			GameObject.Destroy(objectToDestroy.gameObject);
+			objectToDestroy.parent = null;
+		}
+	}
 
 	public void UpdateNeighborsForAllWallTiles ()
 	{
@@ -278,7 +285,5 @@ public class Map : MonoBehaviour {
         }
 		
 		return null;
-	}
-
-    
+	}    
 }

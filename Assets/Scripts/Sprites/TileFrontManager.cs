@@ -33,6 +33,13 @@ public class TileFrontManager : MonoBehaviour {
 		if ( levelObjectAtTop == null || 
 		    ( levelObjectAtTop != null && !(levelObjectAtTop is Tile)))
 		{
+			if ( _currentPosition.x == 17 ) {			
+				if ( levelObjectAtTop == null )
+					Debug.Log ("At " + _currentPosition + " there is no top neighbor ");
+				else
+					Debug.Log ("At " + _currentPosition + " there is a top neighbor but is a " + levelObjectAtTop.GetType().ToString());
+			}
+
 			_spriteManager.SetFrameTo("default", 2);
 		}
 		else

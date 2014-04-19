@@ -163,26 +163,11 @@ public class Map : MonoBehaviour {
     // ************************************************************************************
 	public void RestartLevel()
     {
-        foreach (Transform box in boxesContainer.transform)
-        {
-            box.GetComponent<Box>().ResetObject();
-        }
-        foreach (Transform minibot in minibotsContainer.transform)
-        {
-            minibot.GetComponent<Minibot>().ResetObject();
-        }
-        foreach (Transform stepSwitch in stepSwitchesContainer.transform)
-        {
-            stepSwitch.GetComponent<StepSwitch>().ResetObject();
-        }
-        foreach (Transform door in doorsContainer.transform)
-        {
-            door.GetComponent<Door>().ResetObject();
-        }
-        foreach (Transform triggerableBlock in triggerableBlocksContainer.transform)
-        {
-            triggerableBlock.GetComponent<TriggerableBlocks>().ResetObject();
-        }
+		ResetObjectsInContainer(boxesContainer.transform);
+		ResetObjectsInContainer(minibotsContainer.transform);
+		ResetObjectsInContainer(stepSwitchesContainer.transform);
+		ResetObjectsInContainer(doorsContainer.transform);
+		ResetObjectsInContainer(triggerableBlocksContainer.transform);
     }
 
     public void ClearLevel()
@@ -200,6 +185,14 @@ public class Map : MonoBehaviour {
 		RemoveAllChildrenOfContainer(horizontalInvertersContainer.transform);
 		RemoveAllChildrenOfContainer(movingPlatformsContainer.transform);
     }
+
+	private void ResetObjectsInContainer(Transform container)
+	{
+		foreach (Transform transform in container.transform)
+		{
+			transform.GetComponent<LevelObject>().ResetObject();
+		}
+	}
 
 	private void RemoveAllChildrenOfContainer(Transform container)
 	{

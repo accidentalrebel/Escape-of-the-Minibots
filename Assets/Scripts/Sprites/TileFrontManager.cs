@@ -17,18 +17,22 @@ public class TileFrontManager : MonoBehaviour {
 
 	void Awake () {
 		_spriteManager = gameObject.GetComponent<SpriteManager>();
+
+		Tile tileClass = transform.parent.GetComponent<Tile>();
+		if ( tileClass == null )
+			Debug.LogWarning("Parent of this object should have a Tile class");
+		
+		tileClass.tileFrontManager = this;
 	}
 
 	public void GetNeighbors () {
 		Vector3 _currentPosition = transform.parent.position;
 
-		Debug.Log ("Getting neighbor of tile " + _currentPosition);	
 		Vector3 topPosition = new Vector3(_currentPosition.x, _currentPosition.y + 1, _currentPosition.z);
 		LevelObject levelObjectAtTop = Registry.map.GetLevelObjectAtPosition(topPosition);
 		if ( levelObjectAtTop == null || 
 		    ( levelObjectAtTop != null && !(levelObjectAtTop is Tile)))
 		{
-			Debug.LogWarning ("Tile at " + _currentPosition + " has no top neighbor");
 			renderer.material.SetTextureScale("_MainTex", new Vector2(0.1f, 0.1f));
 		}
 	}

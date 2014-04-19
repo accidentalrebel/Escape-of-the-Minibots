@@ -241,9 +241,8 @@ public class Map : MonoBehaviour {
 	{
 		foreach( Transform tileObject in tilesContainer.transform )
 		{
-			//TODO: Instead of doing this. Just have Tile class have a reference to its TileFrontManager object
-			TileFrontManager tileFrontManger = tileObject.GetComponentsInChildren<TileFrontManager>()[0];
-			tileFrontManger.GetNeighbors();
+			TileFrontManager tileFrontManager = tileObject.GetComponent<Tile>().tileFrontManager;
+			tileFrontManager.GetNeighbors();
 		}
 	}
 

@@ -94,6 +94,7 @@
      <Compile Include="Assets\Scripts\Replays\ReplayManager.cs" />
      <Compile Include="Assets\Scripts\Replays\ReplayViewer.cs" />
      <Compile Include="Assets\Scripts\Sprites\SpriteManager.cs" />
+     <Compile Include="Assets\Scripts\Sprites\TileFrontManager.cs" />
      <None Include="Assets\Resources\Levels\13.xml" />
      <None Include="Assets\Resources\Levels\11.5.xml" />
      <None Include="Assets\Replays\Jerel\12-1-1-2013-21-22.txt" />

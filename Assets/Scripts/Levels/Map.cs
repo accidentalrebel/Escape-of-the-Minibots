@@ -237,6 +237,16 @@ public class Map : MonoBehaviour {
         }
     }
 
+	public void SetNeighborsForAllWallTiles ()
+	{
+		foreach( Transform tileObject in tilesContainer.transform )
+		{
+			//TODO: Instead of doing this. Just have Tile class have a reference to its TileFrontManager object
+			TileFrontManager tileFrontManger = tileObject.GetComponentsInChildren<TileFrontManager>()[0];
+			tileFrontManger.GetNeighbors();
+		}
+	}
+
     // ************************************************************************************
     // LEVEL OBJECT PICKING
     // ************************************************************************************

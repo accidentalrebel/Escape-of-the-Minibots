@@ -248,6 +248,9 @@ public class MinibotController : MonoBehaviour
 		_isInvertedHorizontally = initHorizontalValue;		
 		_isInvertedVertically = initVerticalValue;
 
+		rigidbody.velocity = Vector3.zero;
+		_isGrounded = false;
+
 		UpdateGravityStatus();
 	}
 }

@@ -4,10 +4,14 @@ using System.Collections.Generic;
 
 [RequireComponent(typeof(Renderer))]
 public class SpriteManager : MonoBehaviour {
+		 
+	public int numOfRows = 1;
+	public int numOfCols = 1;
+	public string startingAnimation = "default";
 
-	private bool _enableAnimation = true;   
 	private Renderer _theRenderer;   
     private int _totalNumberOfFrames;
+	private bool _enableAnimation = true;  
     private bool _isHorizontallyFlipped = false;
     private Vector2 _offsetDifference = new Vector2();
     private Dictionary<int, Vector2> _animationFrames = new Dictionary<int, Vector2>();
@@ -30,8 +34,8 @@ public class SpriteManager : MonoBehaviour {
         if (_theRenderer == null)
             Debug.LogError("theRenderer is not found!");
                 
-        Initialize(4, 4);                               
-        Play("default");
+		Initialize(numOfRows, numOfCols);                               
+		Play(startingAnimation);
 	}
 
 	public void Initialize(int numOfHorizontalFrames, int numOfVerticalFrames)
@@ -121,22 +125,10 @@ public class SpriteManager : MonoBehaviour {
 		        
         int[] animationFrameSets = _animationSets[currentAnimation].frameSet;
         float animationSpeed = _animationSets[currentAnimation].animationSpeed;
-        int flipValue;
-		        
+        		        
         while (_enableAnimation)
         {
-            Vector2 newOffset = _animationFrames[animationFrameSets[currentFrame - 1]];
-			            
-            if (_isHorizontallyFlipped)
-            {
-                newOffset.x += _offsetDifference.x;  
-                flipValue = -1;                     
-            }
-            else
-                flipValue = 1;
-
-            _theRenderer.material.SetTextureScale("_MainTex", new Vector2((flipValue) * _offsetDifference.x, _offsetDifference.y));
-			_theRenderer.material.SetTextureOffset("_MainTex", newOffset);
+			SetFrameTo(currentAnimation, currentFrame);
 
             yield return new WaitForSeconds(animationSpeed);
             currentFrame++;                                     
@@ -147,6 +139,23 @@ public class SpriteManager : MonoBehaviour {
             }
         }
     }
+
+	void SetFrameTo(string currentAnimation, int currentFrame)
+	{
+		Vector2 newOffset = _animationFrames[_animationSets[currentAnimation].frameSet[currentFrame - 1]];
+
+		int flipValue;
+		if (_isHorizontallyFlipped)
+		{
+			newOffset.x += _offsetDifference.x;  
+			flipValue = -1;                     
+		}
+		else
+			flipValue = 1;
+		
+		_theRenderer.material.SetTextureScale("_MainTex", new Vector2((flipValue) * _offsetDifference.x, _offsetDifference.y));
+		_theRenderer.material.SetTextureOffset("_MainTex", newOffset);
+	}
 
 	public void Reset ()
 	{

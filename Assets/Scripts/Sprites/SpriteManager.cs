@@ -7,6 +7,7 @@ public class SpriteManager : MonoBehaviour {
 		 
 	public int numOfRows = 1;
 	public int numOfCols = 1;
+	public int startingFrameIndex = 1;
 	public string startingAnimation = "default";
 	public bool enableAnimation = true;  
 
@@ -36,6 +37,7 @@ public class SpriteManager : MonoBehaviour {
                 
 		Initialize(numOfRows, numOfCols);                               
 		Play(startingAnimation);
+		SetFrameTo("default", startingFrameIndex);
 	}
 
 	public void Initialize(int numOfHorizontalFrames, int numOfVerticalFrames)

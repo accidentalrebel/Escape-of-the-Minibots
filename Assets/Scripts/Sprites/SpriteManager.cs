@@ -7,7 +7,7 @@ public class SpriteManager : MonoBehaviour {
 		 
 	public int numOfRows = 1;
 	public int numOfCols = 1;
-	public uint startingFrameIndex = 1;
+	public int startingFrameIndex = 1;
 	public string startingAnimation = "default";
 	public bool enableAnimation = true;  
 
@@ -17,6 +17,7 @@ public class SpriteManager : MonoBehaviour {
     private Vector2 _offsetDifference = new Vector2();
     private Dictionary<int, Vector2> _animationFrames = new Dictionary<int, Vector2>();
     private Dictionary<string, AnimationProperties> _animationSets = new Dictionary<string, AnimationProperties>();
+	private int _currentFrame;
 	private string _currentlyPlayingAnimation;
 
     public struct AnimationProperties
@@ -135,7 +136,7 @@ public class SpriteManager : MonoBehaviour {
 
     IEnumerator Animate(string currentAnimation)
     {
-        uint currentFrame = 1;
+		int currentFrame = 1;
 		_currentlyPlayingAnimation = currentAnimation;
 		        
         int[] animationFrameSets = _animationSets[currentAnimation].frameSet;
@@ -146,18 +147,19 @@ public class SpriteManager : MonoBehaviour {
 			SetFrameTo(currentAnimation, currentFrame);
 
             yield return new WaitForSeconds(animationSpeed);
-            currentFrame++;                                     
+			currentFrame++;                                     
 			            
-            if (currentFrame > animationFrameSets.Length)
+			if (currentFrame > animationFrameSets.Length)
             {
-                currentFrame = 1;                              
+				currentFrame = 1;
             }
         }
     }
 
-	public void SetFrameTo(string currentAnimation, uint currentFrame)
+	public void SetFrameTo(string currentAnimation, int currentFrame)
 	{
 		Vector2 newOffset = _animationFrames[_animationSets[currentAnimation].frameSet[currentFrame - 1]];
+		_currentFrame = currentFrame;
 
 		int flipValue;
 		if (_isHorizontallyFlipped)
@@ -167,7 +169,7 @@ public class SpriteManager : MonoBehaviour {
 		}
 		else
 			flipValue = 1;
-		
+
 		_theRenderer.material.SetTextureScale("_MainTex", new Vector2((flipValue) * _offsetDifference.x, _offsetDifference.y));
 		_theRenderer.material.SetTextureOffset("_MainTex", newOffset);
 	}

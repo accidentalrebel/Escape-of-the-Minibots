@@ -35,9 +35,7 @@ public class TileFrontManager : MonoBehaviour {
 		{
 			_spriteManager.SetFrameTo("default", 2);
 		}
-	}
-
-	void Update () {
-	
+		else
+			_spriteManager.SetFrameTo("default", 1);
 	}
 }

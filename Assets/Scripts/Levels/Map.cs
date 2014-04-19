@@ -189,6 +189,7 @@ public class Map : MonoBehaviour {
     {
         foreach (Transform tile in tilesContainer.transform)
         {
+			Destroy(tile.GetComponent<LevelObject>());
             GameObject.Destroy(tile.gameObject);
         }
         foreach (Transform hazard in hazardsContainer.transform)
@@ -205,6 +206,7 @@ public class Map : MonoBehaviour {
         }
         foreach (Transform door in doorsContainer.transform)
         {
+			Destroy(door.GetComponent<LevelObject>());
             GameObject.Destroy(door.gameObject);
         }
         foreach (Transform triggerableBlock in triggerableBlocksContainer.transform)
@@ -242,7 +244,8 @@ public class Map : MonoBehaviour {
 		foreach( Transform tileObject in tilesContainer.transform )
 		{
 			TileFrontManager tileFrontManager = tileObject.GetComponent<Tile>().tileFrontManager;
-			tileFrontManager.UpdateNeighbors();
+			if ( tileFrontManager != null )
+				tileFrontManager.UpdateNeighbors();
 		}
 	}
 

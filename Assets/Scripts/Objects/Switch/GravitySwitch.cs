@@ -3,18 +3,21 @@ using System.Collections;
 
 public class GravitySwitch : Switch
 {
-	override internal void Initialize(Vector3 theStartingPos)
+	override public void Initialize(Vector3 theStartingPos)
 	{
 		base.Initialize(theStartingPos);
 	}
-
-    void Update()
+    
+	void LateUpdate()
     {
-        if (isTriggered)
+        if (_isTriggered)
         {
             if (Registry.inputHandler.UseButton)
             {
-                triggeredCollider.gameObject.GetComponent<MinibotController>().InvertTheGravity();
+				Debug.Log ("IS INVERTING");
+
+				Minibot minibotScript = _triggeredCollider.gameObject.GetComponent<Minibot>();
+				minibotScript.InvertVerticalOrientation();
             }
         }
     }

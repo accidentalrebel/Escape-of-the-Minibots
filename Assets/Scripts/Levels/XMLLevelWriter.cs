@@ -5,7 +5,7 @@ using System.IO;
 
 public class XMLLevelWriter : XMLAccessor {
 
-    internal void SaveLevel(string filename)
+    public void SaveLevel(string filename)
     {
         string filepath = Application.dataPath + @"/Resources/Levels/" + filename + ".xml";
 
@@ -45,10 +45,10 @@ public class XMLLevelWriter : XMLAccessor {
             MinibotController controllerScipt
                 = minibot.GetComponent<MinibotController>();
             string value = "";
-            value = BoolToString(controllerScipt.InvertGravity);
+            value = BoolToString(controllerScipt.IsInvertedVertically);
             elemNew.SetAttribute("invertGravity", value);            
 
-            value = BoolToString(controllerScipt.invertHorizontal);
+            value = BoolToString(controllerScipt.IsInvertedHorizontally);
             elemNew.SetAttribute("invertHorizontal", value);
             elemRoot.AppendChild(elemNew);                      // Make the transform node the parent
         }

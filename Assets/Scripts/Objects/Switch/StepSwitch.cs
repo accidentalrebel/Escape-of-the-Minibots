@@ -3,46 +3,46 @@ using System.Collections;
 
 public class StepSwitch : Switch {
     
-	protected override void Awake ()
+	override protected void Awake ()
 	{
 		base.Awake ();
 
-		isTriggered = false;
+		_isTriggered = false;
 		UpdateSwitchGraphic();
-	}
-
-	override internal void Initialize(Vector3 theStartingPos)
-	{
-		base.Initialize(theStartingPos);
 	}
 
     void Trigger()
     {
-		bool status = isTriggered;
+		bool status = _isTriggered;
 
         LevelObject objectToUse;
         if (posOfObjectToActivate1 != Vector3.zero)
         {
-            objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate1);
+            objectToUse = _map.GetLevelObjectAtPosition(posOfObjectToActivate1);
             objectToUse.Use(status);
         }
         if (posOfObjectToActivate2 != Vector3.zero)
         {
-            objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate2);
+            objectToUse = _map.GetLevelObjectAtPosition(posOfObjectToActivate2);
             objectToUse.Use(status);
         }
         if (posOfObjectToActivate3 != Vector3.zero)
         {
-            objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate3);
+            objectToUse = _map.GetLevelObjectAtPosition(posOfObjectToActivate3);
             objectToUse.Use(status);
         }
     }
+
+	public override void Use ()
+	{
+		// Intentionally left blank
+	}
 	
     void OnTriggerEnter(Collider col)
     {
-		if (col.tag == "Player") {
+		if (col.tag == "Player" || col.tag == "Box") {
 	        Debug.Log("OnTriggerEnter");
-			isTriggered = true;
+			_isTriggered = true;
 			Trigger();
 			UpdateSwitchGraphic();
 		}
@@ -50,18 +50,11 @@ public class StepSwitch : Switch {
 
     void OnTriggerExit(Collider col)
     {     
-		if (col.tag == "Player") {
+		if (col.tag == "Player" || col.tag == "Box" ) {
 	        Debug.Log("OnTriggerExit");
-			isTriggered = false;
+			_isTriggered = false;
 			Trigger();
 			UpdateSwitchGraphic();
 		}
-    }
-
-    internal override void ResetObject()
-    {
-        Debug.LogWarning("Resetting");
-        base.ResetObject();
-        isTriggered = false;
     }
 }

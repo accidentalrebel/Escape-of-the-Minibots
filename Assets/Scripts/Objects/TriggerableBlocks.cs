@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 public class TriggerableBlocks : LevelObject {
 
-    internal DynamicSizeObject dynamicSizeComponent;
+    public DynamicSizeObject dynamicSizeComponent;
 
     public bool isHidden = false;
     private bool startingIsHidden = false;
-    internal Object prefabToSpawn;
+    protected Object prefabToSpawn;
 
     bool IsHidden
     {
@@ -31,12 +31,12 @@ public class TriggerableBlocks : LevelObject {
         prefabToSpawn = Registry.prefabHandler.pfTriggerableTile;        
     }
 
-    protected override void Start()
+    override protected void Start()
     {
         
     }
 	
-	internal void Initialize(Vector3 theStartingPos, bool theIsHidden, Vector2 theBlockSize)
+	public void Initialize(Vector3 theStartingPos, bool theIsHidden, Vector2 theBlockSize)
 	{
 		base.Initialize(theStartingPos);
 
@@ -72,7 +72,7 @@ public class TriggerableBlocks : LevelObject {
         }      
     }
 
-    override internal void ResetObject()
+    override public void ResetObject()
     {
         isHidden = startingIsHidden;
         UpdateChildTiles();  
@@ -81,13 +81,13 @@ public class TriggerableBlocks : LevelObject {
     // ************************************************************************************
     // USAGE
     // ************************************************************************************
-    override internal void Use(bool setToValue)
+    override public void Use(bool setToValue)
     {
         isHidden = setToValue;
         UpdateChildTiles();
     }
 
-    override internal void Use()
+    override public void Use()
     {
         if (isHidden)
             isHidden = false;
@@ -100,7 +100,7 @@ public class TriggerableBlocks : LevelObject {
     // ************************************************************************************
     // OBJECT EDITING
     // ************************************************************************************
-    internal override void GetEditableAttributes(LevelEditor levelEditor)
+    override public void GetEditableAttributes(LevelEditor levelEditor)
     {
         GUI.Label(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 50, 20), "Width");
         dynamicSizeComponent.BlockWidth = GUI.TextField(new Rect((Screen.width / 2) - 90, (Screen.height / 2) - 110, 100, 20), dynamicSizeComponent.BlockWidth);

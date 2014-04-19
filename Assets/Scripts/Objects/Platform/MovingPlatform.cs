@@ -27,7 +27,7 @@ public class MovingPlatform : MonoBehaviour {
         
         if (leftmostPosition == Vector2.zero)
             leftmostPosition = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-        if (rightmostPosition == null)
+        if (rightmostPosition == Vector2.zero)
             Debug.LogError("EndingPosition not specified!");
         
         gameObject.transform.position = new Vector3(leftmostPosition.x, leftmostPosition.y, 0);

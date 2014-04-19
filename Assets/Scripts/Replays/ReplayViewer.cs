@@ -16,13 +16,13 @@ public class ReplayViewer : MonoBehaviour {
     {        
         string[] data = replayAsset.text.Split('^');
 
-        string username = data[0];
-        string dateStamp = data[1];
-        string engineVersion = data[2];
-        string mapPackVersion = data[3];
+        //string username = data[0];
+        //string dateStamp = data[1];
+        //string engineVersion = data[2];
+        //string mapPackVersion = data[3];
         string thisLevel = data[4];
-        string timeFinished = data[5];
-        string levelComment = data[6];
+        //string timeFinished = data[5];
+        //string levelComment = data[6];
         string replayData = data[7];
 
         Registry.main.LoadNextLevel(thisLevel);

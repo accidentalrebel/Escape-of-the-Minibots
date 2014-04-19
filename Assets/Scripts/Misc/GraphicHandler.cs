@@ -3,8 +3,8 @@ using System.Collections;
 
 public class GraphicHandler : MonoBehaviour 
 {
-    internal Renderer theRenderer;
-	internal Vector3 startingPos;
+    public Renderer theRenderer;
+	public Vector3 startingPos;
 
     void Awake()
     {        

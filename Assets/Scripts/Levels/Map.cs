@@ -4,23 +4,23 @@ using System.Collections.Generic;
 
 public class Map : MonoBehaviour {
 
-    internal GameObject levelObjectsContainer;
-	internal GameObject tilesContainer;
-    internal GameObject minibotsContainer;
-	internal GameObject boxesContainer;
-	internal GameObject doorsContainer;
-	internal GameObject gravityInvertersContainer;
-	internal GameObject hazardsContainer;
-	internal GameObject horizontalInvertersContainer;
-	internal GameObject movingPlatformsContainer;
-	internal GameObject stepSwitchesContainer;
-	internal GameObject switchesContainer;
-	internal GameObject triggerableBlocksContainer;
-    internal GameObject triggerableHazardsContainer;
+    public GameObject levelObjectsContainer;
+	public GameObject tilesContainer;
+    public GameObject minibotsContainer;
+	public GameObject boxesContainer;
+	public GameObject doorsContainer;
+	public GameObject gravityInvertersContainer;
+	public GameObject hazardsContainer;
+	public GameObject horizontalInvertersContainer;
+	public GameObject movingPlatformsContainer;
+	public GameObject stepSwitchesContainer;
+	public GameObject switchesContainer;
+	public GameObject triggerableBlocksContainer;
+    public GameObject triggerableHazardsContainer;
     private List<Transform> levelObjectContainerList = new List<Transform>();
 
-    internal XMLLevelReader levelReader;
-    internal XMLLevelWriter levelWriter;
+    public XMLLevelReader levelReader;
+    public XMLLevelWriter levelWriter;
     public string currentLevel = "";    
 
     // ************************************************************************************
@@ -100,7 +100,7 @@ public class Map : MonoBehaviour {
     // LEVEL LOADING
     // ************************************************************************************
 
-    internal bool GetNextLevel()
+    public bool GetNextLevel()
     {
         int levelToCheck = 0;
         try
@@ -129,7 +129,7 @@ public class Map : MonoBehaviour {
         return true;
     }
 
-    internal bool GetPreviousLevel()
+	public bool GetPreviousLevel()
     {
         int levelToCheck = 0;
         try
@@ -161,88 +161,58 @@ public class Map : MonoBehaviour {
     // ************************************************************************************
     // LEVEL MANIPULATION
     // ************************************************************************************
-
-    /// <summary>
-    /// Restarts the level. All level objects goes back to their original positions and states
-    /// </summary>
-    internal void RestartLevel()
+	public void RestartLevel()
     {
-        foreach (Transform box in boxesContainer.transform)
-        {
-            box.GetComponent<Box>().ResetObject();
-        }
-        foreach (Transform minibot in minibotsContainer.transform)
-        {
-            minibot.GetComponent<Minibot>().ResetObject();
-        }
-        foreach (Transform stepSwitch in stepSwitchesContainer.transform)
-        {
-            stepSwitch.GetComponent<StepSwitch>().ResetObject();
-        }
-        foreach (Transform door in doorsContainer.transform)
-        {
-            door.GetComponent<Door>().ResetObject();
-        }
-        foreach (Transform triggerableBlock in triggerableBlocksContainer.transform)
-        {
-            triggerableBlock.GetComponent<TriggerableBlocks>().ResetObject();
-        }
+		ResetObjectsInContainer(boxesContainer.transform);
+		ResetObjectsInContainer(minibotsContainer.transform);
+		ResetObjectsInContainer(stepSwitchesContainer.transform);
+		ResetObjectsInContainer(doorsContainer.transform);
+		ResetObjectsInContainer(triggerableBlocksContainer.transform);
     }
 
-    /// <summary>
-    /// Clears the whole level of all levelObjects
-    /// </summary>
-    internal void ClearLevel()
+    public void ClearLevel()
     {
-        foreach (Transform tile in tilesContainer.transform)
-        {
-            GameObject.Destroy(tile.gameObject);
-        }
-        foreach (Transform hazard in hazardsContainer.transform)
-        {
-            GameObject.Destroy(hazard.gameObject);
-        }
-        foreach (Transform box in boxesContainer.transform)
-        {
-            GameObject.Destroy(box.gameObject);
-        }
-        foreach (Transform minibot in minibotsContainer.transform)
-        {
-            GameObject.Destroy(minibot.gameObject);
-        }
-        foreach (Transform door in doorsContainer.transform)
-        {
-            GameObject.Destroy(door.gameObject);
-        }
-        foreach (Transform triggerableBlock in triggerableBlocksContainer.transform)
-        {
-            GameObject.Destroy(triggerableBlock.gameObject);
-        }
-        foreach (Transform triggerableHazard in triggerableHazardsContainer.transform)
-        {
-            GameObject.Destroy(triggerableHazard.gameObject);
-        }
-        foreach (Transform aSwitch in switchesContainer.transform)
-        {
-            GameObject.Destroy(aSwitch.gameObject);
-        }
-        foreach (Transform stepSwitch in stepSwitchesContainer.transform)
-        {
-            GameObject.Destroy(stepSwitch.gameObject);
-        }
-        foreach (Transform gravityInverter in gravityInvertersContainer.transform)
-        {
-            GameObject.Destroy(gravityInverter.gameObject);
-        }
-        foreach (Transform horizontalInverter in horizontalInvertersContainer.transform)
-        {
-            GameObject.Destroy(horizontalInverter.gameObject);
-        }
-        foreach (Transform movingPlatform in movingPlatformsContainer.transform)
-        {
-            GameObject.Destroy(movingPlatform.gameObject);
-        }
+		RemoveAllChildrenOfContainer(tilesContainer.transform);
+		RemoveAllChildrenOfContainer(hazardsContainer.transform);
+		RemoveAllChildrenOfContainer(boxesContainer.transform);
+		RemoveAllChildrenOfContainer(minibotsContainer.transform);
+		RemoveAllChildrenOfContainer(doorsContainer.transform);
+		RemoveAllChildrenOfContainer(triggerableBlocksContainer.transform);
+		RemoveAllChildrenOfContainer(triggerableHazardsContainer.transform);
+		RemoveAllChildrenOfContainer(switchesContainer.transform);
+		RemoveAllChildrenOfContainer(stepSwitchesContainer.transform);
+		RemoveAllChildrenOfContainer(gravityInvertersContainer.transform);
+		RemoveAllChildrenOfContainer(horizontalInvertersContainer.transform);
+		RemoveAllChildrenOfContainer(movingPlatformsContainer.transform);
     }
+
+	private void ResetObjectsInContainer(Transform container)
+	{
+		foreach (Transform transform in container.transform)
+		{
+			transform.GetComponent<LevelObject>().ResetObject();
+		}
+	}
+
+	private void RemoveAllChildrenOfContainer(Transform container)
+	{
+		for (var i = container.childCount - 1 ; i >= 0 ; i--)
+		{
+			Transform objectToDestroy = container.GetChild(i);
+			GameObject.Destroy(objectToDestroy.gameObject);
+			objectToDestroy.parent = null;
+		}
+	}
+
+	public void UpdateNeighborsForAllWallTiles ()
+	{
+		foreach( Transform tileObject in tilesContainer.transform )
+		{
+			TileFrontManager tileFrontManager = tileObject.GetComponent<Tile>().tileFrontManager;
+			if ( tileFrontManager != null )
+				tileFrontManager.UpdateNeighbors();
+		}
+	}
 
     // ************************************************************************************
     // LEVEL OBJECT PICKING
@@ -261,12 +231,7 @@ public class Map : MonoBehaviour {
         return null;
     }
 
-    /// <summary>
-    /// A helper function that gets a levelObject at the specified position
-    /// </summary>
-    /// <param name="posToCheck">The position to check</param>
-    /// <returns></returns>
-	internal LevelObject GetLevelObjectAtPosition(Vector3 posToCheck)
+	public LevelObject GetLevelObjectAtPosition(Vector3 posToCheck)
 	{		
         LevelObject theLevelObject;
 
@@ -278,7 +243,5 @@ public class Map : MonoBehaviour {
         }
 		
 		return null;
-	}
-
-    
+	}    
 }

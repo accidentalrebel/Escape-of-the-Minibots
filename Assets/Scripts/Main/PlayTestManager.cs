@@ -11,7 +11,7 @@ public class PlayTestManager : MonoBehaviour {
         Registry.playtestManager = this;        
     }
 
-    internal void SendPlaytestData(string currentUser, string theCompletionTime, string engineVersion, string mapPackVersion, string levelComment)
+    public void SendPlaytestData(string currentUser, string theCompletionTime, string engineVersion, string mapPackVersion, string levelComment)
     {
         if (enableSendingPlaytestData)
         {

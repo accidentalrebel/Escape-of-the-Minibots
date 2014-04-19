@@ -10,8 +10,8 @@ public class ReplayManager : MonoBehaviour {
     float startTime;
     bool isPlayingReplay = false;
 
-    internal bool canRecord = true;
-    internal ReplayViewer replayViewer;
+    bool canRecord = true;
+    public ReplayViewer replayViewer;
 
     void Awake()
     {
@@ -25,7 +25,7 @@ public class ReplayManager : MonoBehaviour {
             Debug.LogError("replayViewer is not found!");
     }
 
-    internal void StartRecording()
+    public void StartRecording()
     {
         if (isPlayingReplay)
             return;
@@ -35,13 +35,13 @@ public class ReplayManager : MonoBehaviour {
         eventList.Clear();
     }
 
-    internal void StopRecording()
+	public void StopRecording()
     {
         canRecord = false;
         eventList.Clear();
     }
 
-    internal void AddEvent(float eventTime, ReplayEvent.EventType eventType)
+	public void AddEvent(float eventTime, ReplayEvent.EventType eventType)
     {
         if (canRecord)
         {
@@ -51,12 +51,12 @@ public class ReplayManager : MonoBehaviour {
         }
     }
 
-    internal void StartReplay()
+	public void StartReplay()
     {
         StartCoroutine("Replay");
     }
 
-    internal void StopReplay()
+    public void StopReplay()
     {
         StopCoroutine("Replay");
         isPlayingReplay = false;
@@ -115,63 +115,8 @@ public class ReplayManager : MonoBehaviour {
         isPlayingReplay = false;
         Debug.Log("Replay has ended");
     }
-
-    //IEnumerator Replay(string replayData)
-    //{
-    //    isPlayingReplay = true;
-    //    int index = 0;
-    //    float replayStartTime = Time.time;
-        
-        //for( int i = 0 ; i < replayData.
-        //{
-        //    ReplayEvent currentEvent = eventList[index];
-        //    yield return new WaitForSeconds(replayStartTime + currentEvent.timeTriggered - Time.time);
-
-        //    if (currentEvent.eventType == ReplayEvent.EventType.PressedRight)
-        //    {
-        //        Registry.inputHandler.PressedRight();
-        //    }
-        //    else if (currentEvent.eventType == ReplayEvent.EventType.ReleasedRight)
-        //    {
-        //        Registry.inputHandler.ReleasedRight();
-        //    }
-        //    else if (currentEvent.eventType == ReplayEvent.EventType.PressedLeft)
-        //    {
-        //        Registry.inputHandler.PressedLeft();
-        //    }
-        //    else if (currentEvent.eventType == ReplayEvent.EventType.ReleasedLeft)
-        //    {
-        //        Registry.inputHandler.ReleasedLeft();
-        //    }
-        //    else if (currentEvent.eventType == ReplayEvent.EventType.PressedJump)
-        //    {
-        //        Registry.inputHandler.PressedJump();
-        //    }
-        //    else if (currentEvent.eventType == ReplayEvent.EventType.ReleasedJump)
-        //    {
-        //        Registry.inputHandler.ReleasedJump();
-        //    }
-        //    else if (currentEvent.eventType == ReplayEvent.EventType.PressedUse)
-        //    {
-        //        Registry.inputHandler.PressedUse();
-        //    }
-        //    else if (currentEvent.eventType == ReplayEvent.EventType.PressedPickUp)
-        //    {
-        //        Registry.inputHandler.PressedPickUp();
-        //    }
-        //    else if (currentEvent.eventType == ReplayEvent.EventType.PressedReset)
-        //    {
-        //        Registry.inputHandler.PressedReset();
-        //    }
-
-        //    index++;
-        //}
-
-    //    isPlayingReplay = false;
-    //    Debug.Log("Replay has ended");
-    //}
-
-    internal string GetReplayDataString()
+    
+    public string GetReplayDataString()
     {
         string replayData = "";
         foreach ( ReplayEvent replayEvent in eventList )

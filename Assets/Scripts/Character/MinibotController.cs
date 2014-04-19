@@ -5,33 +5,61 @@ using System.Collections;
 [RequireComponent(typeof(CapsuleCollider))]
 public class MinibotController : MonoBehaviour
 {
-    public float speed = 10.0f;
-    public float gravity = 10.0f;    
-    public float maxVelocityChange = 10.0f;    
-    public float jumpHeight = 2.0f;
+	[SerializeField]
+    private float _speed = 10.0f;
 
-    public bool canJump = true;
-    public bool invertGravity = false;
-    public bool invertHorizontal = false;
+	[SerializeField]
+    private float _gravity = 10.0f;
 
-    private bool isGrounded = false;
-    private CapsuleCollider capsuleCollider;
-    private Minibot player;
+	[SerializeField]
+    private float _maxVelocityChange = 10.0f;  
 
+	[SerializeField]
+	private float _jumpHeight = 2.0f;
+    
+	private CapsuleCollider _capsuleCollider;
+	private Minibot _playerScript;
+    
+	private bool _canJump = true;
+	private bool _isGrounded = false;
+	private bool _isInvertedHorizontally = false;
+	public bool IsInvertedHorizontally {
+		get {
+				return _isInvertedHorizontally;
+		}
+		set {
+				_isInvertedHorizontally = value;
+		}
+	}
+
+	private bool _isInvertedVertically = false;    
+	public bool IsInvertedVertically
+	{
+		set { 
+			_isInvertedVertically = value; 
+			UpdateGravityStatus(); 
+		}
+		get { return _isInvertedVertically; }
+	}
+
+
+	// ************************************************************************************
+	// MAIN
+	// ************************************************************************************
     void Awake()
     {
         rigidbody.freezeRotation = true;
         rigidbody.useGravity = false;
 
-        capsuleCollider = GetComponent<CapsuleCollider>();
-        if (capsuleCollider == null)
+        _capsuleCollider = GetComponent<CapsuleCollider>();
+        if (_capsuleCollider == null)
             Debug.LogError("capsule collider was not found!");
         
-		player = GetComponent<Minibot>();
-        if (player == null)
+		_playerScript = GetComponent<Minibot>();
+        if (_playerScript == null)
             Debug.LogError("player not found!");
 
-        if (invertGravity)
+        if (_isInvertedVertically)
             UpdateGravityStatus();
     }
 
@@ -40,54 +68,81 @@ public class MinibotController : MonoBehaviour
 		float yInput = Registry.inputHandler.YAxis;
 		float xInput = AdjustXInput(Registry.inputHandler.XAxis);
 		
-		HandlePlayerFacing(xInput);
+		_playerScript.setFacingValueWithXinput(xInput);
 
 		Vector3 targetVelocity = CalculateTargetVelocity(xInput, yInput);
+        Vector3 currentVelocity = rigidbody.velocity;
+		Vector3 velocityChange = GetForceThatCanReachTargetVelocity(currentVelocity, targetVelocity);
 
-        // Apply a force that attempts to reach our target velocity
-        Vector3 velocity = rigidbody.velocity;
-        Vector3 velocityChange = (targetVelocity - velocity);
-        velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
-        velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
-        velocityChange.y = 0;
+		if (_playerScript.IsJumping && _isGrounded)
+			_playerScript.OnReachedGround();
 
-		if (player.isJumping && isGrounded)
-			player.OnReachedGround();
+		_playerScript.setPlayerAnimationsWithXInput(xInput);
 
-		HandlePlayerSprite(xInput);
-
-        if (CheckIfCanMove(velocityChange)) {
-            rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
-        }
+        if (CheckIfCanMove(velocityChange))
+			ApplyHorizontalForce(velocityChange);
 		else
-		{
-			Vector3 tVelocity = rigidbody.velocity;
-			tVelocity.x = 0;
-			rigidbody.velocity = tVelocity;
-		}
+			RemoveHorizontalForce();
 
-		if (Registry.inputHandler.JumpButton && isGrounded && canJump ) {
-	        if ( invertGravity )
-	            rigidbody.velocity = new Vector3(velocity.x, -CalculateJumpVerticalSpeed(), velocity.z);
-	        else
-	            rigidbody.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
-
-	        player.Jump();                       
+		if (Registry.inputHandler.JumpButton && _isGrounded && _canJump ) {
+			ApplyJumpForces(currentVelocity);  
+			_playerScript.Jump(); 
         }
 
-        rigidbody.AddForce(new Vector3(0, -gravity * rigidbody.mass, 0));
-		isGrounded = false;
+		ApplyGravity();
+		_isGrounded = false;
     }
 
+	// ************************************************************************************
+	// FORCES
+	// ************************************************************************************
 	Vector3 CalculateTargetVelocity (float xInput, float yInput)
 	{
 		Vector3 targetVelocity = new Vector3(xInput, 0, yInput);
 		targetVelocity = transform.TransformDirection(targetVelocity);
-		targetVelocity *= speed;
-
+		targetVelocity *= _speed;
+		
 		return targetVelocity;
 	}
 
+	Vector3 GetForceThatCanReachTargetVelocity (Vector3 currentVelocity, Vector3 targetVelocity)
+	{
+		Vector3 adjustedVelocity = (targetVelocity - currentVelocity);
+		adjustedVelocity.x = Mathf.Clamp(adjustedVelocity.x, -_maxVelocityChange, _maxVelocityChange);
+		adjustedVelocity.z = Mathf.Clamp(adjustedVelocity.z, -_maxVelocityChange, _maxVelocityChange);
+		adjustedVelocity.y = 0;
+
+		return adjustedVelocity;
+	}
+
+	void ApplyJumpForces (Vector3 currentVelocity)
+	{
+		if ( _isInvertedVertically )
+			rigidbody.velocity = new Vector3(currentVelocity.x, -CalculateJumpVerticalSpeed(), currentVelocity.z);
+		else
+			rigidbody.velocity = new Vector3(currentVelocity.x, CalculateJumpVerticalSpeed(), currentVelocity.z);		 
+	}
+
+	void ApplyHorizontalForce (Vector3 velocityChange)
+	{
+		rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
+	}
+
+	void RemoveHorizontalForce ()
+	{
+		Vector3 tVelocity = rigidbody.velocity;
+		tVelocity.x = 0;
+		rigidbody.velocity = tVelocity;
+	}
+
+	void ApplyGravity ()
+	{
+		rigidbody.AddForce(new Vector3(0, -_gravity * rigidbody.mass, 0));
+	}
+
+	// ************************************************************************************
+	// TRIGGERS
+	// ************************************************************************************
 	void OnCollisionStay(Collision col)
 	{
 		CheckIfGrounded();
@@ -98,78 +153,54 @@ public class MinibotController : MonoBehaviour
 		CheckIfGrounded();
 	}
 
-	void HandlePlayerFacing (float xInput)
-	{
-		if (xInput > 0) {
-			player.IsFacing = Minibot.Direction.Right;
-		}
-		else if (xInput < 0) {
-			player.IsFacing = Minibot.Direction.Left;
-		}
-	}
-
-	void HandlePlayerSprite (float xInput)
-	{
-		if ( player.isJumping )
-			return;
-
-		if (xInput != 0 )
-			player.Walk();
-		else
-			player.Stand();
-	}
-
+	// ************************************************************************************
+	// STATUS
+	// ************************************************************************************
 	float AdjustXInput(float xInput)
 	{
-		if (invertGravity)
+		if (_isInvertedVertically)
 			xInput = -xInput;
-		if (invertHorizontal)
+		if (_isInvertedHorizontally)
 			xInput = -xInput;
 
 		return xInput;
 	}
-
-	internal bool InvertGravity
-	{
-		set { 
-			invertGravity = value; 
-			UpdateGravityStatus(); 
-		}
-		get { return invertGravity; }
-	}
 	
 	private void UpdateGravityStatus()
 	{
-		if ((invertGravity == true && gravity > 0)
-		    || (invertGravity == false && gravity < 0))
-			gravity = -gravity;
+		if ((_isInvertedVertically == true && _gravity > 0)
+		    || (_isInvertedVertically == false && _gravity < 0))
+			_gravity = -_gravity;
 	}
 
-	internal void InvertHorizontal()
+	public void InvertHorizontally()
 	{
-		if (invertHorizontal)
-			invertHorizontal = false;
+		if (_isInvertedHorizontally)
+			_isInvertedHorizontally = false;
 		else
-			invertHorizontal = true;
+			_isInvertedHorizontally = true;
 	}
 	
-	internal void InvertTheGravity()
+	public void InvertVertically()
 	{
-		if (invertGravity)
-			invertGravity = false;
+		if (_isInvertedVertically)
+			_isInvertedVertically = false;
 		else
-			invertGravity = true;
-		
+			_isInvertedVertically = true;
+
 		UpdateGravityStatus();
 	}
 
+	// ************************************************************************************
+	// HELPER FUNCTIONS
+	// ************************************************************************************
     private bool CheckIfCanMove(Vector3 velocityChange)
     {
         if (( velocityChange.x < 0
-		    && player.GetObjectAtSide(Minibot.Direction.Left) != null )
+		    && _playerScript.GetObjectAtSide(Minibot.Direction.Left) != null )
         	|| 
 		    (velocityChange.x > 0
-		    && player.GetObjectAtSide(Minibot.Direction.Right) != null))
+		    && _playerScript.GetObjectAtSide(Minibot.Direction.Right) != null))
 			return false;
 
         return true;
@@ -179,33 +210,47 @@ public class MinibotController : MonoBehaviour
     {
         // From the jump height and gravity we deduce the upwards speed 
         // for the character to reach at the apex.
-        if ( invertGravity )
-            return Mathf.Sqrt(2 * jumpHeight * -gravity);
+        if ( _isInvertedVertically )
+            return Mathf.Sqrt(2 * _jumpHeight * -_gravity);
         else
-            return Mathf.Sqrt(2 * jumpHeight * gravity);
+            return Mathf.Sqrt(2 * _jumpHeight * _gravity);
     }
 
     void CheckIfGrounded()
     {
         RaycastHit hit;
         Vector3 checkDirection;
-        if ( invertGravity )
+        if ( _isInvertedVertically )
             checkDirection = Vector3.up;
         else
             checkDirection = Vector3.down;
 
-        if (Physics.Raycast(gameObject.transform.position, checkDirection , out hit, 0.6f))
+		if (Physics.Raycast(gameObject.transform.position, checkDirection , out hit, 0.6f))
         {
             if (hit.collider.tag == "Steppable"
                 || hit.collider.tag == "Player"
-                || hit.collider.tag == "Movable")
+                || hit.collider.tag == "Box")
             {
                 Debug.DrawLine(gameObject.transform.position, hit.point);
-                isGrounded = true;
+                _isGrounded = true;
 				return;
             }
         }
 
-		isGrounded = false;
+		_isGrounded = false;
     }
+
+	// ************************************************************************************
+	// RELEASE
+	// ************************************************************************************
+	public void Reset (bool initHorizontalValue, bool initVerticalValue)
+	{
+		_isInvertedHorizontally = initHorizontalValue;		
+		_isInvertedVertically = initVerticalValue;
+
+		rigidbody.velocity = Vector3.zero;
+		_isGrounded = false;
+
+		UpdateGravityStatus();
+	}
 }

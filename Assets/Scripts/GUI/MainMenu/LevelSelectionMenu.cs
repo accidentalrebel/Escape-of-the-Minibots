@@ -9,7 +9,7 @@ public class LevelSelectionMenu : Menu {
 
     Vector2 scrollPosition;
 
-    protected override void Start()
+    override protected void Start()
     {
         base.Start();
 

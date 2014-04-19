@@ -187,53 +187,18 @@ public class Map : MonoBehaviour {
 
     public void ClearLevel()
     {
-		foreach (Transform tile in tilesContainer.transform)
-        {
-			Destroy(tile.GetComponent<Tile>());
-            GameObject.Destroy(tile.gameObject);
-        }
-        foreach (Transform hazard in hazardsContainer.transform)
-        {
-            GameObject.Destroy(hazard.gameObject);
-        }
-        foreach (Transform box in boxesContainer.transform)
-        {
-            GameObject.Destroy(box.gameObject);
-        }
-        foreach (Transform minibot in minibotsContainer.transform)
-        {
-            GameObject.Destroy(minibot.gameObject);
-        }
+		RemoveAllChildrenOfContainer(tilesContainer.transform);
+		RemoveAllChildrenOfContainer(hazardsContainer.transform);
+		RemoveAllChildrenOfContainer(boxesContainer.transform);
+		RemoveAllChildrenOfContainer(minibotsContainer.transform);
 		RemoveAllChildrenOfContainer(doorsContainer.transform);
-		Debug.Log ("AFTER DESTROYING DOOR Count is: " + doorsContainer.transform.childCount);
-        foreach (Transform triggerableBlock in triggerableBlocksContainer.transform)
-        {
-            GameObject.Destroy(triggerableBlock.gameObject);
-        }
-        foreach (Transform triggerableHazard in triggerableHazardsContainer.transform)
-        {
-            GameObject.Destroy(triggerableHazard.gameObject);
-        }
-        foreach (Transform aSwitch in switchesContainer.transform)
-        {
-            GameObject.Destroy(aSwitch.gameObject);
-        }
-        foreach (Transform stepSwitch in stepSwitchesContainer.transform)
-        {
-            GameObject.Destroy(stepSwitch.gameObject);
-        }
-        foreach (Transform gravityInverter in gravityInvertersContainer.transform)
-        {
-            GameObject.Destroy(gravityInverter.gameObject);
-        }
-        foreach (Transform horizontalInverter in horizontalInvertersContainer.transform)
-        {
-            GameObject.Destroy(horizontalInverter.gameObject);
-        }
-        foreach (Transform movingPlatform in movingPlatformsContainer.transform)
-        {
-            GameObject.Destroy(movingPlatform.gameObject);
-        }
+		RemoveAllChildrenOfContainer(triggerableBlocksContainer.transform);
+		RemoveAllChildrenOfContainer(triggerableHazardsContainer.transform);
+		RemoveAllChildrenOfContainer(switchesContainer.transform);
+		RemoveAllChildrenOfContainer(stepSwitchesContainer.transform);
+		RemoveAllChildrenOfContainer(gravityInvertersContainer.transform);
+		RemoveAllChildrenOfContainer(horizontalInvertersContainer.transform);
+		RemoveAllChildrenOfContainer(movingPlatformsContainer.transform);
     }
 
 	private void RemoveAllChildrenOfContainer(Transform container)

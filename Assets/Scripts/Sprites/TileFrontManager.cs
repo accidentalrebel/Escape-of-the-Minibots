@@ -66,10 +66,9 @@ public class TileFrontManager : MonoBehaviour {
 
 	public void UpdateNeighbors () {
 
-		if ( GetTileObjectAtDirection(TileSide.TOP) != null
-			    && GetTileObjectAtDirection(TileSide.RIGHT) != null
-			    && GetTileObjectAtDirection(TileSide.TOP_RIGHT) == null )
-			_spriteManager.SetFrameTo("default", (int)TileSide.IN_TOP_RIGHT);
+		if ( CheckForTopRightNeighbor() ) {
+
+		}
 		else if ( GetTileObjectAtDirection(TileSide.BOTTOM) != null
 		         && GetTileObjectAtDirection(TileSide.RIGHT) != null
 		         && GetTileObjectAtDirection(TileSide.BOTTOM_RIGHT) == null )
@@ -110,6 +109,34 @@ public class TileFrontManager : MonoBehaviour {
 			_spriteManager.SetFrameTo("default", (int)TileSide.LEFT);
 		else
 			_spriteManager.SetFrameTo("default", (int)TileSide.MIDDLE);
+	}
+
+	private bool CheckForTopRightNeighbor ()
+	{
+		if ( GetTileObjectAtDirection(TileSide.TOP_RIGHT) == null
+		    && GetTileObjectAtDirection(TileSide.TOP) != null 
+		    && GetTileObjectAtDirection(TileSide.RIGHT) != null)
+		{			
+			if ( GetTileObjectAtDirection(TileSide.BOTTOM) == null
+			    && GetTileObjectAtDirection(TileSide.LEFT) == null) {
+				_spriteManager.SetFrameTo("default", (int)TileSide.IN_TOP_RIGHT_OUT_BOTTOM_LEFT);
+				return true;
+			}
+			else if ( GetTileObjectAtDirection(TileSide.LEFT) == null ) {			
+				_spriteManager.SetFrameTo("default", (int)TileSide.IN_TOP_RIGHT_OUT_LEFT );
+				return true;
+			}
+			else if ( GetTileObjectAtDirection(TileSide.BOTTOM) == null ) {			
+				_spriteManager.SetFrameTo("default", (int)TileSide.IN_TOP_RIGHT_OUT_BOTTOM );
+				return true;
+			}
+			else {
+				_spriteManager.SetFrameTo("default", (int)TileSide.IN_TOP_RIGHT);
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	private Tile GetTileObjectAtDirection(TileSide tileSideDirection) {

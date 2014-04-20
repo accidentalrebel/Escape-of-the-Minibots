@@ -152,18 +152,15 @@ public class LevelEditor : MonoBehaviour {
         if (clickedObject == null || clickedObject is SuroundingTile)
             return;
 
-        GameObject.Destroy(clickedObject.gameObject);
+		//TODO: Add a destroy funciton in LevelObject
+		GameObject.Destroy(clickedObject.gameObject);
+		clickedObject.transform.parent = null;
 
-        // If the deleted object is a minibot
-        if (clickedObject.gameObject.GetComponent<Minibot>() != null)
-        {
-            Debug.Log("there is minibot");
+        if (clickedObject is Minibot)
             Registry.main.GetMinibotsInLevel();     // We tell main to recount the number of minibots
-        }
-        else
-        {
-            Debug.Log("no minibot");
-        }
+
+		if ( clickedObject is Tile )
+			Registry.map.UpdateNeighborsForAllWallTiles();
     }
 
     private LevelObject GetObjectAtMousePosition()

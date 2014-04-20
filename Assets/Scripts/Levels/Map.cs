@@ -4,8 +4,10 @@ using System.Collections.Generic;
 
 public class Map : MonoBehaviour {
 
-    public GameObject levelObjectsContainer;
+	//TODO: Consider making these private
+	public GameObject levelObjectsContainer;
 	public GameObject tilesContainer;
+	private GameObject surroudingTilesContainer;
     public GameObject minibotsContainer;
 	public GameObject boxesContainer;
 	public GameObject doorsContainer;
@@ -31,15 +33,35 @@ public class Map : MonoBehaviour {
 	void Awake () {
 		Registry.map = this;
 		
-        levelObjectsContainer = gameObject.transform.FindChild("LevelObjects").gameObject;
-        if (levelObjectsContainer == null)
-            Debug.LogError("levelObjectsContainer not found!");
+		SetupContainerLists();
+
+        levelReader = gameObject.GetComponent<XMLLevelReader>();
+        if (levelReader == null)
+            Debug.LogError("levelReader is not found!");
+        
+		levelWriter = gameObject.GetComponent<XMLLevelWriter>();
+        if (levelWriter == null)
+            Debug.LogError("levelWriter is not found!");
+	}
+
+	void Start() {
+		SetupSurroundingMapTiles();
+	}
+
+	private void SetupContainerLists ()
+	{
+		levelObjectsContainer = gameObject.transform.FindChild("LevelObjects").gameObject;
+		if (levelObjectsContainer == null)
+			Debug.LogError("levelObjectsContainer not found!");
+		surroudingTilesContainer = levelObjectsContainer.transform.FindChild("SurroundingTiles").gameObject;
+		if (surroudingTilesContainer == null)
+			Debug.LogError("surroudingTilesContainer not found!");
 		tilesContainer = levelObjectsContainer.transform.FindChild("Tiles").gameObject;
-        if (tilesContainer == null)
-            Debug.LogError("tilesContainer not found!");
-        minibotsContainer = GameObject.Find("Minibots");
-        if (minibotsContainer == null)
-            Debug.LogError("minibotsContainer not found!");
+		if (tilesContainer == null)
+			Debug.LogError("tilesContainer not found!");
+		minibotsContainer = GameObject.Find("Minibots");
+		if (minibotsContainer == null)
+			Debug.LogError("minibotsContainer not found!");
 		boxesContainer = levelObjectsContainer.transform.FindChild("Boxes").gameObject;
 		if (boxesContainer == null)
 			Debug.LogError("boxesContainer not found!");
@@ -67,17 +89,10 @@ public class Map : MonoBehaviour {
 		triggerableBlocksContainer = levelObjectsContainer.transform.FindChild("TriggerableBlocks").gameObject;
 		if (triggerableBlocksContainer == null)
 			Debug.LogError("triggerableBlocksContainer not found!");
-        triggerableHazardsContainer = levelObjectsContainer.transform.FindChild("TriggerableHazards").gameObject;
-        if (triggerableHazardsContainer == null)
-            Debug.LogError("triggerableHazardsContainer not found!");
-        PopulateLevelObjectContainerList();
-
-        levelReader = gameObject.GetComponent<XMLLevelReader>();
-        if (levelReader == null)
-            Debug.LogError("levelReader is not found!");
-        levelWriter = gameObject.GetComponent<XMLLevelWriter>();
-        if (levelWriter == null)
-            Debug.LogError("levelWriter is not found!");
+		triggerableHazardsContainer = levelObjectsContainer.transform.FindChild("TriggerableHazards").gameObject;
+		if (triggerableHazardsContainer == null)
+			Debug.LogError("triggerableHazardsContainer not found!");
+		PopulateLevelObjectContainerList();
 	}
 
     private void PopulateLevelObjectContainerList()
@@ -93,8 +108,30 @@ public class Map : MonoBehaviour {
         levelObjectContainerList.Add(gravityInvertersContainer.transform);
         levelObjectContainerList.Add(horizontalInvertersContainer.transform);
         levelObjectContainerList.Add(triggerableHazardsContainer.transform);
-        //levelObjectContainerList.Add(movingPlatformsContainer.transform);
+		levelObjectContainerList.Add(surroudingTilesContainer.transform);
     }
+
+	void SetupSurroundingMapTiles ()
+	{
+		for ( int xPos = 0 ; xPos < 20 ; xPos++ )
+		{
+			CreateSurroudingTileAt(xPos, -1);
+			CreateSurroudingTileAt(xPos, 15);
+		}
+
+		for ( int yPos = -1 ; yPos <= 15 ; yPos++ )
+		{
+			CreateSurroudingTileAt(-1, yPos);
+			CreateSurroudingTileAt(20, yPos);
+		}
+	}
+
+	void CreateSurroudingTileAt(float xPos, float yPos)
+	{
+		GameObject newSurroundingTile = (GameObject)Instantiate(Registry.prefabHandler.pfTile);
+		newSurroundingTile.GetComponent<Tile>().Initialize(new Vector3(xPos, yPos));		
+		newSurroundingTile.transform.parent = surroudingTilesContainer.transform;
+	}
 
     // ************************************************************************************
     // LEVEL LOADING

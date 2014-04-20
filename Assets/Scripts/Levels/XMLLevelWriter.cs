@@ -133,7 +133,7 @@ public class XMLLevelWriter : XMLAccessor {
 			elemNew.SetAttribute("x", levelObjectScript.startingPos.x.ToString());
 			elemNew.SetAttribute("y", levelObjectScript.startingPos.y.ToString());
 			TriggerableBlocks tbScript = triggerableBlock.GetComponent<TriggerableBlocks>();
-			elemNew.SetAttribute("isHidden", BoolToString(tbScript.isHidden));
+			elemNew.SetAttribute("isHidden", BoolToString(tbScript.IsHidden));
             elemNew.SetAttribute("width", tbScript.dynamicSizeComponent.blockSize.x.ToString());
             elemNew.SetAttribute("height", tbScript.dynamicSizeComponent.blockSize.y.ToString());
             elemRoot.AppendChild(elemNew);
@@ -146,7 +146,7 @@ public class XMLLevelWriter : XMLAccessor {
             elemNew.SetAttribute("x", levelObjectScript.startingPos.x.ToString());
             elemNew.SetAttribute("y", levelObjectScript.startingPos.y.ToString());
             TriggerableHazard thScript = triggerableHazard.GetComponent<TriggerableHazard>();
-            elemNew.SetAttribute("isHidden", BoolToString(thScript.isHidden));
+			elemNew.SetAttribute("isHidden", BoolToString(thScript.IsHidden));
             elemNew.SetAttribute("width", thScript.dynamicSizeComponent.blockSize.x.ToString());
             elemNew.SetAttribute("height", thScript.dynamicSizeComponent.blockSize.y.ToString());
             elemRoot.AppendChild(elemNew);

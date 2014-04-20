@@ -6,14 +6,14 @@ public class TriggerableBlocks : LevelObject {
 
     public DynamicSizeObject dynamicSizeComponent;
 
-    public bool isHidden = false;
-    private bool startingIsHidden = false;
-    protected Object prefabToSpawn;
+    private bool _isHidden = false;
+    private bool _startingIsHidden = false;
+    protected Object _prefabToSpawn;
 
-    bool IsHidden
+    public bool IsHidden
     {
-        get { return isHidden; }
-        set { isHidden = value; UpdateChildTiles(); }
+        get { return _isHidden; }
+        set { _isHidden = value; UpdateChildTiles(); }
     }
 
     // ************************************************************************************
@@ -28,7 +28,7 @@ public class TriggerableBlocks : LevelObject {
             return;
         }
 
-        prefabToSpawn = Registry.prefabHandler.pfTriggerableTile;        
+        _prefabToSpawn = Registry.prefabHandler.pfTriggerableTile;        
     }
 
     override protected void Start()
@@ -40,10 +40,10 @@ public class TriggerableBlocks : LevelObject {
 	{
 		base.Initialize(theStartingPos);
 
-        isHidden = theIsHidden;
-        startingIsHidden = isHidden;
+        _isHidden = theIsHidden;
+        _startingIsHidden = _isHidden;
         
-        dynamicSizeComponent.Initialize(prefabToSpawn, theBlockSize);
+        dynamicSizeComponent.Initialize(_prefabToSpawn, theBlockSize);
         
         UpdateChildTiles();
 	}
@@ -51,15 +51,11 @@ public class TriggerableBlocks : LevelObject {
     // ************************************************************************************
     // CHILD TILES
     // ************************************************************************************
-    /// <summary>
-    /// This sets the status of the child tiles if it is hidden or not
-    /// And how the graphic handler should handle it
-    /// </summary>
     private void UpdateChildTiles()
     {
         foreach (GameObject child in dynamicSizeComponent.childTiles)
         {
-            if (isHidden)
+            if (_isHidden)
             {
                 child.collider.enabled = false;
                 child.GetComponent<GraphicHandler>().theRenderer.enabled = false;
@@ -74,7 +70,7 @@ public class TriggerableBlocks : LevelObject {
 
     override public void ResetObject()
     {
-        isHidden = startingIsHidden;
+        _isHidden = _startingIsHidden;
         UpdateChildTiles();  
     }
 
@@ -83,16 +79,16 @@ public class TriggerableBlocks : LevelObject {
     // ************************************************************************************
     override public void Use(bool setToValue)
     {
-        isHidden = setToValue;
+        _isHidden = setToValue;
         UpdateChildTiles();
     }
 
     override public void Use()
     {
-        if (isHidden)
-            isHidden = false;
+        if (_isHidden)
+            _isHidden = false;
         else
-            isHidden = true;
+            _isHidden = true;
 
         UpdateChildTiles();
     }
@@ -109,5 +105,6 @@ public class TriggerableBlocks : LevelObject {
         dynamicSizeComponent.BlockHeight = GUI.TextField(new Rect((Screen.width / 2) - 90, (Screen.height / 2) - 80, 100, 20), dynamicSizeComponent.BlockHeight);
 
         IsHidden = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 50, 150, 20), IsHidden, "Is hidden?");
+		_startingIsHidden = IsHidden;
     }
 }

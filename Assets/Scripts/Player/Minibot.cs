@@ -286,14 +286,12 @@ public class Minibot : LevelObject {
 
     public void Die()
     {
-        Debug.LogWarning("I DIED");
 		PutDownCarriedObject();
 		Registry.main.ResetLevel();
     }
 
 	public void ExitLevel()
     {
-        Debug.Log("exiting stage");
         _hasExited = true;
 		PutDownCarriedObject();
         DisableMinibot();
@@ -303,7 +301,9 @@ public class Minibot : LevelObject {
 
     override public void ResetObject()
     {       
-		DropCarriedObject();
+		if (_objectBeingCarried != null)
+			_objectBeingCarried = null;
+
 		CancelOutAllAppliedForces();
 
         base.ResetObject();
@@ -315,12 +315,6 @@ public class Minibot : LevelObject {
        
 		_hasExited = false;
     }
-
-	void DropCarriedObject ()
-	{
-		if (_objectBeingCarried != null)
-			_objectBeingCarried = null;
-	}
 
 	void CancelOutAllAppliedForces ()
 	{

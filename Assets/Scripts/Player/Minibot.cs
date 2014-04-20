@@ -210,6 +210,9 @@ public class Minibot : LevelObject {
 
 	public void PutDownCarriedObject()
     {     
+		if ( _objectBeingCarried == null )
+			return;
+
 		if ( GetObjectAtSide(_isFacing, dropRayLength) == null )
 		{
 			Vector3 putDownPosition;

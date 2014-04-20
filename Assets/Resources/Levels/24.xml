@@ -8,8 +8,6 @@
   <tile x="3" y="0" />
   <tile x="4" y="0" />
   <tile x="5" y="0" />
-  <tile x="6" y="0" />
-  <tile x="7" y="0" />
   <tile x="16" y="0" />
   <tile x="15" y="0" />
   <tile x="17" y="0" />
@@ -40,10 +38,7 @@
   <tile x="1" y="1" />
   <tile x="2" y="1" />
   <tile x="3" y="1" />
-  <tile x="5" y="1" />
   <tile x="4" y="1" />
-  <tile x="7" y="1" />
-  <tile x="6" y="1" />
   <tile x="15" y="1" />
   <tile x="16" y="1" />
   <tile x="17" y="1" />
@@ -113,6 +108,22 @@
   <tile x="7" y="8" />
   <tile x="6" y="8" />
   <tile x="6" y="7" />
+  <tile x="5" y="1" />
+  <tile x="6" y="1" />
+  <tile x="7" y="1" />
+  <tile x="8" y="1" />
+  <tile x="8" y="0" />
+  <tile x="7" y="0" />
+  <tile x="6" y="0" />
+  <tile x="13" y="6" />
+  <tile x="13" y="5" />
+  <tile x="13" y="4" />
+  <tile x="14" y="6" />
+  <tile x="15" y="6" />
+  <tile x="16" y="6" />
+  <tile x="17" y="6" />
+  <tile x="18" y="6" />
+  <tile x="-6" y="17" />
   <box x="5" y="9" />
   <door x="17" y="2" isOpen="1" />
   <door x="14" y="9" isOpen="1" />
@@ -120,7 +131,6 @@
   <hazard x="13" y="0" />
   <hazard x="12" y="0" />
   <hazard x="14" y="0" />
-  <hazard x="8" y="0" />
   <hazard x="9" y="0" />
   <hazard x="10" y="0" />
   <hazard x="1" y="13" />
@@ -128,7 +138,6 @@
   <hazard x="1" y="11" />
   <hazard x="1" y="10" />
   <hazard x="1" y="9" />
-  <triggerableBlock x="8" y="1" isHidden="1" width="7" height="1" />
   <triggerableBlock x="8" y="8" isHidden="0" width="5" height="1" />
-  <switch x="2" y="2" xPosOfObjectToActivate="8" yPosOfObjectToActivate="8" xPosOfObjectToActivate2="8" yPosOfObjectToActivate2="1" xPosOfObjectToActivate3="0" yPosOfObjectToActivate3="0" />
+  <switch x="1" y="2" xPosOfObjectToActivate="8" yPosOfObjectToActivate="8" xPosOfObjectToActivate2="6" yPosOfObjectToActivate2="1" xPosOfObjectToActivate3="0" yPosOfObjectToActivate3="0" />
 </tiles>

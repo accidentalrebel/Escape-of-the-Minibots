@@ -83,6 +83,47 @@ public class TileFrontManager : MonoBehaviour {
 		}
 	}
 
+	private bool CheckForEdgeNeighbors ()
+	{
+		if ( GetTileObjectAtDirection(TileSide.TOP) == null
+		    && GetTileObjectAtDirection(TileSide.LEFT) == null
+		    && GetTileObjectAtDirection(TileSide.RIGHT) == null
+		    && GetTileObjectAtDirection(TileSide.BOTTOM) == null ) {
+			_spriteManager.SetFrameTo("default", (int)TileSide.SINGLE);
+			return true;
+		}
+		else if ( GetTileObjectAtDirection(TileSide.TOP) == null
+		    && GetTileObjectAtDirection(TileSide.LEFT) == null
+		    && GetTileObjectAtDirection(TileSide.RIGHT) == null
+		    && GetTileObjectAtDirection(TileSide.BOTTOM) != null ) {
+			_spriteManager.SetFrameTo("default", (int)TileSide.EDGE_TOP);
+			return true;
+		}
+		else if ( GetTileObjectAtDirection(TileSide.RIGHT) == null
+		         && GetTileObjectAtDirection(TileSide.TOP) == null
+		         && GetTileObjectAtDirection(TileSide.BOTTOM) == null
+		         && GetTileObjectAtDirection(TileSide.LEFT) != null ) {
+			_spriteManager.SetFrameTo("default", (int)TileSide.EDGE_RIGHT);
+			return true;
+		}
+		else if ( GetTileObjectAtDirection(TileSide.BOTTOM) == null
+		         && GetTileObjectAtDirection(TileSide.RIGHT) == null
+		         && GetTileObjectAtDirection(TileSide.LEFT) == null
+		         && GetTileObjectAtDirection(TileSide.TOP) != null ) {
+			_spriteManager.SetFrameTo("default", (int)TileSide.EDGE_BOTTOM);
+			return true;
+		}
+		else if ( GetTileObjectAtDirection(TileSide.LEFT) == null
+		         && GetTileObjectAtDirection(TileSide.BOTTOM) == null
+		         && GetTileObjectAtDirection(TileSide.TOP) == null
+		         && GetTileObjectAtDirection(TileSide.RIGHT) != null ) {
+			_spriteManager.SetFrameTo("default", (int)TileSide.EDGE_LEFT);
+			return true;
+		}
+		
+		return false;
+	}
+
 	private bool CheckForTopRightNeighbor ()
 	{
 		if ( GetTileObjectAtDirection(TileSide.TOP_RIGHT) == null
@@ -224,39 +265,7 @@ public class TileFrontManager : MonoBehaviour {
 		return false;
 	}
 
-	private bool CheckForEdgeNeighbors ()
-	{
-		if ( GetTileObjectAtDirection(TileSide.TOP) == null
-		    && GetTileObjectAtDirection(TileSide.LEFT) == null
-		    && GetTileObjectAtDirection(TileSide.RIGHT) == null
-		    && GetTileObjectAtDirection(TileSide.BOTTOM) != null ) {
-			_spriteManager.SetFrameTo("default", (int)TileSide.EDGE_TOP);
-			return true;
-		}
-		else if ( GetTileObjectAtDirection(TileSide.RIGHT) == null
-	         && GetTileObjectAtDirection(TileSide.TOP) == null
-	         && GetTileObjectAtDirection(TileSide.BOTTOM) == null
-	         && GetTileObjectAtDirection(TileSide.LEFT) != null ) {
-			_spriteManager.SetFrameTo("default", (int)TileSide.EDGE_RIGHT);
-			return true;
-		}
-		else if ( GetTileObjectAtDirection(TileSide.BOTTOM) == null
-		         && GetTileObjectAtDirection(TileSide.RIGHT) == null
-		         && GetTileObjectAtDirection(TileSide.LEFT) == null
-		         && GetTileObjectAtDirection(TileSide.TOP) != null ) {
-			_spriteManager.SetFrameTo("default", (int)TileSide.EDGE_BOTTOM);
-			return true;
-		}
-		else if ( GetTileObjectAtDirection(TileSide.LEFT) == null
-		         && GetTileObjectAtDirection(TileSide.BOTTOM) == null
-		         && GetTileObjectAtDirection(TileSide.TOP) == null
-		         && GetTileObjectAtDirection(TileSide.RIGHT) != null ) {
-			_spriteManager.SetFrameTo("default", (int)TileSide.EDGE_LEFT);
-			return true;
-		}
 
-		return false;
-	}
 
 	private bool CheckForOppositeNeighbors ()
 	{

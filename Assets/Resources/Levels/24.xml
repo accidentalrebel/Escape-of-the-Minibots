@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <tiles>
-  <minibot x="4" y="4" invertGravity="0" invertHorizontal="0" />
-  <minibot x="3" y="11" invertGravity="0" invertHorizontal="0" />
+  <minibot x="5" y="11" invertGravity="0" invertHorizontal="0" />
+  <minibot x="7" y="4" invertGravity="0" invertHorizontal="0" />
   <tile x="0" y="0" />
   <tile x="1" y="0" />
   <tile x="2" y="0" />
@@ -89,25 +89,11 @@
   <tile x="15" y="8" />
   <tile x="14" y="8" />
   <tile x="13" y="8" />
-  <tile x="16" y="11" />
-  <tile x="17" y="11" />
   <tile x="18" y="11" />
   <tile x="18" y="12" />
-  <tile x="17" y="12" />
-  <tile x="16" y="12" />
-  <tile x="16" y="13" />
-  <tile x="17" y="13" />
   <tile x="18" y="13" />
-  <tile x="16" y="10" />
-  <tile x="16" y="9" />
-  <tile x="17" y="9" />
-  <tile x="17" y="10" />
   <tile x="18" y="10" />
   <tile x="18" y="9" />
-  <tile x="7" y="7" />
-  <tile x="7" y="8" />
-  <tile x="6" y="8" />
-  <tile x="6" y="7" />
   <tile x="5" y="1" />
   <tile x="6" y="1" />
   <tile x="7" y="1" />
@@ -123,21 +109,31 @@
   <tile x="16" y="6" />
   <tile x="17" y="6" />
   <tile x="18" y="6" />
-  <tile x="-6" y="17" />
-  <box x="5" y="9" />
-  <door x="17" y="2" isOpen="1" />
-  <door x="14" y="9" isOpen="1" />
+  <tile x="6" y="8" />
+  <tile x="6" y="7" />
+  <tile x="9" y="11" />
+  <tile x="10" y="11" />
+  <tile x="11" y="11" />
+  <tile x="8" y="11" />
+  <tile x="8" y="12" />
+  <tile x="8" y="13" />
+  <tile x="10" y="12" />
+  <tile x="11" y="12" />
+  <tile x="11" y="13" />
+  <tile x="10" y="13" />
+  <tile x="9" y="13" />
+  <tile x="9" y="12" />
+  <box x="4" y="9" />
+  <door x="17" y="2" isOpen="0" />
+  <door x="2" y="9" isOpen="1" />
   <hazard x="11" y="0" />
   <hazard x="13" y="0" />
   <hazard x="12" y="0" />
   <hazard x="14" y="0" />
   <hazard x="9" y="0" />
   <hazard x="10" y="0" />
-  <hazard x="1" y="13" />
-  <hazard x="1" y="12" />
-  <hazard x="1" y="11" />
-  <hazard x="1" y="10" />
-  <hazard x="1" y="9" />
-  <triggerableBlock x="8" y="8" isHidden="0" width="5" height="1" />
-  <switch x="1" y="2" xPosOfObjectToActivate="8" yPosOfObjectToActivate="8" xPosOfObjectToActivate2="6" yPosOfObjectToActivate2="1" xPosOfObjectToActivate3="0" yPosOfObjectToActivate3="0" />
+  <triggerableBlock x="9" y="1" isHidden="1" width="6" height="1" />
+  <triggerableBlock x="7" y="8" isHidden="0" width="6" height="1" />
+  <stepSwitch x="16" y="9" xPosOfObjectToActivate="17" yPosOfObjectToActivate="2" xPosOfObjectToActivate2="0" yPosOfObjectToActivate2="0" xPosOfObjectToActivate3="0" yPosOfObjectToActivate3="0" />
+  <switch x="4" y="2" xPosOfObjectToActivate="7" yPosOfObjectToActivate="8" xPosOfObjectToActivate2="9" yPosOfObjectToActivate2="1" xPosOfObjectToActivate3="0" yPosOfObjectToActivate3="0" />
 </tiles>

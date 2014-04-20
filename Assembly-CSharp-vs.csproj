@@ -85,6 +85,7 @@
      <Compile Include="Assets\Scripts\Objects\Switch\StepSwitch.cs" />
      <Compile Include="Assets\Scripts\Objects\Switch\Switch.cs" />
      <Compile Include="Assets\Scripts\Objects\Tile\HazardTile.cs" />
+     <Compile Include="Assets\Scripts\Objects\Tile\SuroundingTile.cs" />
      <Compile Include="Assets\Scripts\Objects\Tile\Tile.cs" />
      <Compile Include="Assets\Scripts\Objects\TriggerableBlocks.cs" />
      <Compile Include="Assets\Scripts\Objects\TriggerableHazard.cs" />

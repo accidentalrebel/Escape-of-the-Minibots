@@ -128,7 +128,7 @@ public class Map : MonoBehaviour {
 
 	void CreateSurroudingTileAt(float xPos, float yPos)
 	{
-		GameObject newSurroundingTile = (GameObject)Instantiate(Registry.prefabHandler.pfTile);
+		GameObject newSurroundingTile = (GameObject)Instantiate(Registry.prefabHandler.pfSurroundingTile);
 		newSurroundingTile.GetComponent<Tile>().Initialize(new Vector3(xPos, yPos));		
 		newSurroundingTile.transform.parent = surroudingTilesContainer.transform;
 	}

@@ -82,7 +82,7 @@ public class XMLLevelWriter : XMLAccessor {
 			elemNew.SetAttribute("x", levelObjectScript.startingPos.x.ToString());
 			elemNew.SetAttribute("y", levelObjectScript.startingPos.y.ToString());
 			Door doorScript = door.GetComponent<Door>();
-			elemNew.SetAttribute("isOpen", BoolToString(doorScript.isOpen));
+			elemNew.SetAttribute("isOpen", BoolToString(doorScript.IsOpen));
 			elemRoot.AppendChild(elemNew);
 		}
 		

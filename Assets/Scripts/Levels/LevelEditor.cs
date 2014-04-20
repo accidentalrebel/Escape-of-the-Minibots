@@ -159,6 +159,7 @@ public class LevelEditor : MonoBehaviour {
         if (clickedObject is Minibot)
             Registry.main.GetMinibotsInLevel();     // We tell main to recount the number of minibots
 
+		//TODO: For perfomance, consider creating a fucntion that would update the neighbors form a specific position only
 		if ( clickedObject is Tile )
 			Registry.map.UpdateNeighborsForAllWallTiles();
     }
@@ -242,6 +243,7 @@ public class LevelEditor : MonoBehaviour {
             spawnedObject.GetComponent<Tile>().Initialize(new Vector3
                 (Mathf.Round(spawnPos.x)
                 , Mathf.Round(spawnPos.y), 0));
+			Registry.map.UpdateNeighborsForAllWallTiles();
         }
         else if (objectToSpawn == ObjectType.Hazard)
         {

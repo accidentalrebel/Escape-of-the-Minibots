@@ -149,7 +149,7 @@ public class LevelEditor : MonoBehaviour {
     {
         LevelObject clickedObject = GetObjectAtMousePosition();
         
-        if (clickedObject == null)
+        if (clickedObject == null || clickedObject is SuroundingTile)
             return;
 
         GameObject.Destroy(clickedObject.gameObject);

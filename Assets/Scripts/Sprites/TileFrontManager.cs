@@ -71,11 +71,11 @@ public class TileFrontManager : MonoBehaviour {
 
 	public void UpdateNeighbors () {
 
-		if ( !CheckForTopRightNeighbor() 
+		if ( !CheckForEdgeNeighbors()
+		    && !CheckForTopRightNeighbor() 
 		    && !CheckForBottomRightNeighbor()
 		    && !CheckForBottomLeftNeighbor()
 		    && !CheckForTopLeftNeighbor() 
-		    && !CheckForEdgeNeighbors()
 		    && !CheckForOppositeNeighbors()
 		    && !CheckForNormalNeighbors()) 
 		{

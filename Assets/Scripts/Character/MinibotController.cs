@@ -68,7 +68,7 @@ public class MinibotController : MonoBehaviour
 		float yInput = Registry.inputHandler.YAxis;
 		float xInput = AdjustXInput(Registry.inputHandler.XAxis);
 		
-		_playerScript.setFacingValueWithXinput(xInput);
+		_playerScript.SetFacingValueWithXinput(xInput);
 
 		Vector3 targetVelocity = CalculateTargetVelocity(xInput, yInput);
         Vector3 currentVelocity = rigidbody.velocity;
@@ -77,7 +77,7 @@ public class MinibotController : MonoBehaviour
 		if (_playerScript.IsJumping && _isGrounded)
 			_playerScript.OnReachedGround();
 
-		_playerScript.setPlayerAnimationsWithXInput(xInput);
+		_playerScript.SetPlayerAnimationsWithXInput(xInput);
 
         if (CheckIfCanMove(velocityChange))
 			ApplyHorizontalForce(velocityChange);

@@ -79,7 +79,7 @@ public class Minibot : LevelObject {
             && _objectBeingCarried != null
 		    && !_isJumping)
         {
-            PutDownCarriedObject(_objectBeingCarried);
+            PutDownCarriedObject();
         }
 
         // Handles the picking up of objects
@@ -208,7 +208,7 @@ public class Minibot : LevelObject {
         _objectBeingCarried.GetComponent<Box>().PickUp();
     }
 
-	public void PutDownCarriedObject(GameObject objectToPutDown)
+	public void PutDownCarriedObject()
     {     
 		if ( GetObjectAtSide(_isFacing, dropRayLength) == null )
 		{
@@ -219,7 +219,7 @@ public class Minibot : LevelObject {
 				putDownPosition = transform.position + Vector3.right;
 
 	        _objectBeingCarried.transform.position = putDownPosition;
-	        objectToPutDown.GetComponent<Box>().PutDown();
+			_objectBeingCarried.GetComponent<Box>().PutDown();
 	        _objectBeingCarried = null;
 		}
     }
@@ -287,14 +287,17 @@ public class Minibot : LevelObject {
     public void Die()
     {
         Debug.LogWarning("I DIED");
-        Registry.main.ResetLevel();
+		PutDownCarriedObject();
+		Registry.main.ResetLevel();
     }
 
 	public void ExitLevel()
     {
         Debug.Log("exiting stage");
         _hasExited = true;
+		PutDownCarriedObject();
         DisableMinibot();
+
         Registry.main.OnMinibotExit();
     }
 
@@ -336,7 +339,7 @@ public class Minibot : LevelObject {
             _spriteManager.SetFlippedX(false);
     }
 
-	public void setFacingValueWithXinput (float xInput)
+	public void SetFacingValueWithXinput (float xInput)
 	{
 		if (xInput > 0) {
 			IsFacing = Minibot.Direction.Right;
@@ -346,7 +349,7 @@ public class Minibot : LevelObject {
 		}
 	}
 	
-	public void setPlayerAnimationsWithXInput (float xInput)
+	public void SetPlayerAnimationsWithXInput (float xInput)
 	{
 		if ( _isJumping )
 			return;

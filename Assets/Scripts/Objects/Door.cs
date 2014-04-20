@@ -38,6 +38,7 @@ public class Door : LevelObject {
 		base.Initialize(theStartingPos);		
 		_isOpen = theIsOpen;
         _startingIsOpen = _isOpen;
+
 	}
 
     private void UpdateDoorGraphic()
@@ -50,7 +51,7 @@ public class Door : LevelObject {
 
     override public void Use(bool setToValue)
     {
-        _isOpen = setToValue;
+		_isOpen = setToValue;
         UpdateDoorGraphic();
     }
 
@@ -83,5 +84,6 @@ public class Door : LevelObject {
     {
         _isOpen = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 110, 20), IsOpen, "Is Open?");
 		_startingIsOpen = IsOpen;
+		UpdateDoorGraphic();
     }
 }

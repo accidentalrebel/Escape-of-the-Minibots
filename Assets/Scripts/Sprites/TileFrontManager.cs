@@ -6,21 +6,21 @@ using System.Collections.Generic;
 public class TileFrontManager : MonoBehaviour {
 
 	private enum TileSide {
-		MIDDLE 			= 1,
-		TOP 			= 2,
-		TOP_RIGHT 		= 3,
-		RIGHT 			= 4,
-		BOTTOM_RIGHT 	= 5,
-		BOTTOM 			= 6,
-		BOTTOM_LEFT		= 7,
-		LEFT 			= 8,
-		TOP_LEFT 		= 9,
-		IN_TOP_RIGHT 	= 10,
-		IN_BOTTOM_RIGHT = 11,
-		IN_BOTTOM_LEFT 	= 12,
-		IN_TOP_LEFT 	= 13,
-		RIGHT_LEFT		= 14,
-		TOP_BOTTOM		= 15,
+		MIDDLE 				= 1,
+		TOP 				= 2,
+		TOP_RIGHT 			= 3,
+		RIGHT 				= 4,
+		BOTTOM_RIGHT 		= 5,
+		BOTTOM 				= 6,
+		BOTTOM_LEFT			= 7,
+		LEFT 				= 8,
+		TOP_LEFT 			= 9,
+		IN_TOP_RIGHT 		= 10,
+		IN_BOTTOM_RIGHT 	= 11,
+		IN_BOTTOM_LEFT 		= 12,
+		IN_TOP_LEFT 		= 13,
+		RIGHT_LEFT			= 14,
+		TOP_BOTTOM			= 15,
 		IN_TOP_RIGHT_OUT_BOTTOM_LEFT 	= 16,
 		IN_TOP_RIGHT_OUT_LEFT 			= 17,
 		IN_TOP_RIGHT_OUT_BOTTOM 		= 18,
@@ -33,11 +33,16 @@ public class TileFrontManager : MonoBehaviour {
 		IN_TOP_LEFT_OUT_BOTTOM_RIGHT	= 25,
 		IN_TOP_LEFT_OUT_RIGHT			= 26,
 		IN_TOP_LEFT_OUT_BOTTOM			= 27,
-		EDGE_TOP		= 28,
-		EDGE_RIGHT		= 29,
-		EDGE_BOTTOM		= 30,
-		EDGE_LEFT		= 31,
-		SINGLE			= 32
+		EDGE_TOP			= 28,
+		EDGE_RIGHT			= 29,
+		EDGE_BOTTOM			= 30,
+		EDGE_LEFT			= 31,
+		SINGLE				= 32,
+		DOUBLE_IN_TOP		= 33,
+		DOUBLE_IN_RIGHT		= 34,
+		DOUBLE_IN_BOTTOM	= 35,
+		DOUBLE_IN_LEFT		= 36,
+		FOURWAY_IN			= 37
 	};
 
 	private Dictionary <TileSide, Vector2> _tileSideDictionary;
@@ -72,6 +77,7 @@ public class TileFrontManager : MonoBehaviour {
 	public void UpdateNeighbors () {
 
 		if ( !CheckForEdgeNeighbors()
+		    && !CheckForInwardNeighbors()
 		    && !CheckForTopRightNeighbor() 
 		    && !CheckForBottomRightNeighbor()
 		    && !CheckForBottomLeftNeighbor()
@@ -81,6 +87,59 @@ public class TileFrontManager : MonoBehaviour {
 		{
 			_spriteManager.SetFrameTo("default", (int)TileSide.MIDDLE);
 		}
+	}
+
+	private bool CheckForInwardNeighbors ()
+	{
+		if ( GetTileObjectAtDirection(TileSide.TOP) != null
+		    && GetTileObjectAtDirection(TileSide.LEFT) != null
+		    && GetTileObjectAtDirection(TileSide.RIGHT) != null
+		    && GetTileObjectAtDirection(TileSide.BOTTOM) != null
+		    && GetTileObjectAtDirection(TileSide.TOP_RIGHT) == null
+		    && GetTileObjectAtDirection(TileSide.BOTTOM_RIGHT) == null
+		    && GetTileObjectAtDirection(TileSide.BOTTOM_LEFT) == null
+		    && GetTileObjectAtDirection(TileSide.TOP_LEFT) == null ) {
+			_spriteManager.SetFrameTo("default", (int)TileSide.FOURWAY_IN);
+			return true;
+		}
+		else if ( GetTileObjectAtDirection(TileSide.TOP) != null
+		    && GetTileObjectAtDirection(TileSide.LEFT) != null
+		    && GetTileObjectAtDirection(TileSide.RIGHT) != null
+		    && GetTileObjectAtDirection(TileSide.BOTTOM) == null
+		    && GetTileObjectAtDirection(TileSide.TOP_RIGHT) == null
+		    && GetTileObjectAtDirection(TileSide.TOP_LEFT) == null ) {
+			_spriteManager.SetFrameTo("default", (int)TileSide.DOUBLE_IN_TOP);
+			return true;
+		}
+		else if ( GetTileObjectAtDirection(TileSide.TOP) != null
+		    && GetTileObjectAtDirection(TileSide.RIGHT) != null
+		    && GetTileObjectAtDirection(TileSide.BOTTOM) != null
+		    && GetTileObjectAtDirection(TileSide.LEFT) == null
+		    && GetTileObjectAtDirection(TileSide.TOP_RIGHT) == null
+		    && GetTileObjectAtDirection(TileSide.BOTTOM_RIGHT) == null ) {
+			_spriteManager.SetFrameTo("default", (int)TileSide.DOUBLE_IN_RIGHT);
+			return true;
+		}
+		else if ( GetTileObjectAtDirection(TileSide.LEFT) != null
+	         && GetTileObjectAtDirection(TileSide.RIGHT) != null
+	         && GetTileObjectAtDirection(TileSide.BOTTOM) != null	     
+	         && GetTileObjectAtDirection(TileSide.TOP) == null
+	         && GetTileObjectAtDirection(TileSide.BOTTOM_RIGHT) == null
+	         && GetTileObjectAtDirection(TileSide.BOTTOM_LEFT) == null ) {
+			_spriteManager.SetFrameTo("default", (int)TileSide.DOUBLE_IN_BOTTOM);
+			return true;
+		}
+		else if ( GetTileObjectAtDirection(TileSide.TOP) != null
+		    && GetTileObjectAtDirection(TileSide.LEFT) != null
+		    && GetTileObjectAtDirection(TileSide.BOTTOM) != null
+	        && GetTileObjectAtDirection(TileSide.RIGHT) == null
+		    && GetTileObjectAtDirection(TileSide.BOTTOM_LEFT) == null
+		    && GetTileObjectAtDirection(TileSide.TOP_LEFT) == null ) {
+			_spriteManager.SetFrameTo("default", (int)TileSide.DOUBLE_IN_LEFT);
+			return true;
+		}
+
+		return false;
 	}
 
 	private bool CheckForEdgeNeighbors ()

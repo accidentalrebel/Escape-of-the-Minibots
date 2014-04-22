@@ -100,49 +100,85 @@ public class TileFrontManager : MonoBehaviour {
 	private bool CheckForInwardNeighbors ()
 	{
 		if ( GetTileObjectAtDirection(TileSide.TOP) != null
-		    && GetTileObjectAtDirection(TileSide.LEFT) != null
-		    && GetTileObjectAtDirection(TileSide.RIGHT) != null
-		    && GetTileObjectAtDirection(TileSide.BOTTOM) != null
-		    && GetTileObjectAtDirection(TileSide.TOP_RIGHT) == null
-		    && GetTileObjectAtDirection(TileSide.BOTTOM_RIGHT) == null
-		    && GetTileObjectAtDirection(TileSide.BOTTOM_LEFT) == null
-		    && GetTileObjectAtDirection(TileSide.TOP_LEFT) == null ) {
+			    && GetTileObjectAtDirection(TileSide.LEFT) != null
+			    && GetTileObjectAtDirection(TileSide.RIGHT) != null
+			    && GetTileObjectAtDirection(TileSide.BOTTOM) != null
+			    && GetTileObjectAtDirection(TileSide.TOP_RIGHT) == null
+			    && GetTileObjectAtDirection(TileSide.BOTTOM_RIGHT) == null
+			    && GetTileObjectAtDirection(TileSide.BOTTOM_LEFT) == null
+			    && GetTileObjectAtDirection(TileSide.TOP_LEFT) == null ) {
 			_spriteManager.SetFrameTo("default", (int)TileSide.FOURWAY_IN);
 			return true;
 		}
 		else if ( GetTileObjectAtDirection(TileSide.TOP) != null
-		    && GetTileObjectAtDirection(TileSide.LEFT) != null
-		    && GetTileObjectAtDirection(TileSide.RIGHT) != null
-		    && GetTileObjectAtDirection(TileSide.BOTTOM) == null
-		    && GetTileObjectAtDirection(TileSide.TOP_RIGHT) == null
-		    && GetTileObjectAtDirection(TileSide.TOP_LEFT) == null ) {
+		         && GetTileObjectAtDirection(TileSide.LEFT) != null
+		         && GetTileObjectAtDirection(TileSide.RIGHT) != null
+		         && GetTileObjectAtDirection(TileSide.BOTTOM) != null
+		         && GetTileObjectAtDirection(TileSide.TOP_RIGHT) == null
+		         && GetTileObjectAtDirection(TileSide.TOP_LEFT) == null ) {
+			_spriteManager.SetFrameTo("default", (int)TileSide.DOUBLE_IN_TOP);
+			return true;
+		}
+		else if ( GetTileObjectAtDirection(TileSide.TOP) != null
+			    && GetTileObjectAtDirection(TileSide.LEFT) != null
+			    && GetTileObjectAtDirection(TileSide.RIGHT) != null
+			    && GetTileObjectAtDirection(TileSide.BOTTOM) == null
+			    && GetTileObjectAtDirection(TileSide.TOP_RIGHT) == null
+			    && GetTileObjectAtDirection(TileSide.TOP_LEFT) == null ) {
 			_spriteManager.SetFrameTo("default", (int)TileSide.DOUBLE_IN_TOP_W_BAR);
 			return true;
 		}
 		else if ( GetTileObjectAtDirection(TileSide.TOP) != null
-		    && GetTileObjectAtDirection(TileSide.RIGHT) != null
-		    && GetTileObjectAtDirection(TileSide.BOTTOM) != null
-		    && GetTileObjectAtDirection(TileSide.LEFT) == null
-		    && GetTileObjectAtDirection(TileSide.TOP_RIGHT) == null
-		    && GetTileObjectAtDirection(TileSide.BOTTOM_RIGHT) == null ) {
+		         && GetTileObjectAtDirection(TileSide.RIGHT) != null
+		         && GetTileObjectAtDirection(TileSide.BOTTOM) != null
+		         && GetTileObjectAtDirection(TileSide.LEFT) != null
+		         && GetTileObjectAtDirection(TileSide.TOP_RIGHT) == null
+		         && GetTileObjectAtDirection(TileSide.BOTTOM_RIGHT) == null ) {
+			_spriteManager.SetFrameTo("default", (int)TileSide.DOUBLE_IN_RIGHT);
+			return true;
+		}
+		else if ( GetTileObjectAtDirection(TileSide.TOP) != null
+			    && GetTileObjectAtDirection(TileSide.RIGHT) != null
+			    && GetTileObjectAtDirection(TileSide.BOTTOM) != null
+			    && GetTileObjectAtDirection(TileSide.LEFT) == null
+			    && GetTileObjectAtDirection(TileSide.TOP_RIGHT) == null
+			    && GetTileObjectAtDirection(TileSide.BOTTOM_RIGHT) == null ) {
 			_spriteManager.SetFrameTo("default", (int)TileSide.DOUBLE_IN_RIGHT_W_BAR);
 			return true;
 		}
 		else if ( GetTileObjectAtDirection(TileSide.LEFT) != null
-	         && GetTileObjectAtDirection(TileSide.RIGHT) != null
-	         && GetTileObjectAtDirection(TileSide.BOTTOM) != null	     
-	         && GetTileObjectAtDirection(TileSide.TOP) == null
-	         && GetTileObjectAtDirection(TileSide.BOTTOM_RIGHT) == null
-	         && GetTileObjectAtDirection(TileSide.BOTTOM_LEFT) == null ) {
+		         && GetTileObjectAtDirection(TileSide.RIGHT) != null
+		         && GetTileObjectAtDirection(TileSide.BOTTOM) != null	     
+		         && GetTileObjectAtDirection(TileSide.TOP) != null
+		         && GetTileObjectAtDirection(TileSide.BOTTOM_RIGHT) == null
+		         && GetTileObjectAtDirection(TileSide.BOTTOM_LEFT) == null ) {
+			_spriteManager.SetFrameTo("default", (int)TileSide.DOUBLE_IN_BOTTOM);
+			return true;
+		}
+		else if ( GetTileObjectAtDirection(TileSide.LEFT) != null
+		         && GetTileObjectAtDirection(TileSide.RIGHT) != null
+		         && GetTileObjectAtDirection(TileSide.BOTTOM) != null	     
+		         && GetTileObjectAtDirection(TileSide.TOP) == null
+		         && GetTileObjectAtDirection(TileSide.BOTTOM_RIGHT) == null
+		         && GetTileObjectAtDirection(TileSide.BOTTOM_LEFT) == null ) {
 			_spriteManager.SetFrameTo("default", (int)TileSide.DOUBLE_IN_BOTTOM_W_BAR);
 			return true;
 		}
 		else if ( GetTileObjectAtDirection(TileSide.TOP) != null
-		    && GetTileObjectAtDirection(TileSide.LEFT) != null
-		    && GetTileObjectAtDirection(TileSide.BOTTOM) != null
-	        && GetTileObjectAtDirection(TileSide.RIGHT) == null
-		    && GetTileObjectAtDirection(TileSide.BOTTOM_LEFT) == null
-		    && GetTileObjectAtDirection(TileSide.TOP_LEFT) == null ) {
+		         && GetTileObjectAtDirection(TileSide.LEFT) != null
+		         && GetTileObjectAtDirection(TileSide.BOTTOM) != null
+		         && GetTileObjectAtDirection(TileSide.RIGHT) != null
+		         && GetTileObjectAtDirection(TileSide.BOTTOM_LEFT) == null
+		         && GetTileObjectAtDirection(TileSide.TOP_LEFT) == null ) {
+			_spriteManager.SetFrameTo("default", (int)TileSide.DOUBLE_IN_LEFT);
+			return true;
+		}
+		else if ( GetTileObjectAtDirection(TileSide.TOP) != null
+			    && GetTileObjectAtDirection(TileSide.LEFT) != null
+			    && GetTileObjectAtDirection(TileSide.BOTTOM) != null
+		        && GetTileObjectAtDirection(TileSide.RIGHT) == null
+			    && GetTileObjectAtDirection(TileSide.BOTTOM_LEFT) == null
+			    && GetTileObjectAtDirection(TileSide.TOP_LEFT) == null ) {
 			_spriteManager.SetFrameTo("default", (int)TileSide.DOUBLE_IN_LEFT_W_BAR);
 			return true;
 		}

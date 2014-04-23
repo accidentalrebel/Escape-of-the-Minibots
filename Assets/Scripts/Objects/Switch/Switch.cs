@@ -149,13 +149,34 @@ public class Switch : LevelObject {
         GUI.Label(new Rect(left, top, width, height), toDisplay);
 
 		left = (Screen.width / 2) - 30;
+		float right = (Screen.width / 2 ) + 40;
         if (GUI.Button(new Rect(left, top, width, height), "Link to Object"))
         {
             Debug.Log("Linking to object");
             _objectNumToLinkTo = objectLinkNumber;
             levelEditor.CurrentMode = LevelEditor.LevelEditorMode.PickToLinkMode;
         }
+
+		if (posOfObjectToActivate != Vector3.zero
+		    && GUI.Button(new Rect(right, top, width, height), "Unlink"))
+		{
+			Debug.Log("Unlinking object");
+			_objectNumToLinkTo = 0;
+			RemoveLinkedObjectAtIndex(objectLinkNumber);
+			levelEditor.CurrentMode = LevelEditor.LevelEditorMode.EditingMode;
+		}
     }
+
+	private void RemoveLinkedObjectAtIndex(float indexPos)
+	{
+		//TODO: Change posOfObjectToActivate into an array of objectToActivate
+		if ( indexPos == 1 )
+			posOfObjectToActivate1 = Vector3.zero;
+		else if ( indexPos == 2 )
+			posOfObjectToActivate2 = Vector3.zero;
+		else
+			posOfObjectToActivate3 = Vector3.zero;
+	}
 
 	public override void ResetObject ()
 	{

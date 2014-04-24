@@ -66,6 +66,7 @@ public class Switch : LevelObject {
 	public void AddToLinkedObjectsList(LevelObject tObject)
 	{
 		_linkedObjects[_indexOfLink] = tObject;
+		_indexOfLink++;
 	}
 
 	void LateUpdate () 
@@ -84,25 +85,9 @@ public class Switch : LevelObject {
 		UpdateSwitchGraphic();
 
 		foreach( LevelObject levelObject in _linkedObjects ) {
-			levelObject.Use ();
+			if ( levelObject != null )
+				levelObject.Use();
 		}
-		
-//		LevelObject objectToUse;
-//		if (posOfObjectToActivate1 != Vector3.zero)
-//		{
-//			objectToUse = _map.GetLevelObjectAtPosition(posOfObjectToActivate1);
-//			objectToUse.Use();
-//		}
-//		if (posOfObjectToActivate2 != Vector3.zero)
-//		{
-//			objectToUse = _map.GetLevelObjectAtPosition(posOfObjectToActivate2);
-//			objectToUse.Use();
-//		}
-//		if (posOfObjectToActivate3 != Vector3.zero)
-//		{
-//			objectToUse = _map.GetLevelObjectAtPosition(posOfObjectToActivate3);
-//			objectToUse.Use();
-//		}
 	}
 
     void OnTriggerEnter(Collider col)
@@ -134,16 +119,19 @@ public class Switch : LevelObject {
     // ************************************************************************************
     override public void GetEditableAttributes(LevelEditor levelEditor)
     {       
-        HandleLinkGUI(posOfObjectToActivate1, 1, levelEditor);
-        HandleLinkGUI(posOfObjectToActivate2, 2, levelEditor);
-        HandleLinkGUI(posOfObjectToActivate3, 3, levelEditor);        
+		int i = 1;
+		foreach( LevelObject linkObject in _linkedObjects )
+		{
+			HandleLinkGUI(linkObject, i, levelEditor);
+			i++;
+		}  
     }
 
-    private void HandleLinkGUI(Vector3 posOfObjectToActivate, int objectLinkNumber, LevelEditor levelEditor)
+	private void HandleLinkGUI(LevelObject tObjectToActivate, int objectLinkNumber, LevelEditor levelEditor)
     {
         string toDisplay;
 
-        if (posOfObjectToActivate != Vector3.zero)
+		if (tObjectToActivate != null)
             toDisplay = "Linked";
         else
             toDisplay = "No Link";       
@@ -156,14 +144,15 @@ public class Switch : LevelObject {
 
 		left = (Screen.width / 2) - 70;
 		float right = (Screen.width / 2 ) + 40;
-        if (GUI.Button(new Rect(left, top, width, height), "Link to Object"))
+        
+		if (GUI.Button(new Rect(left, top, width, height), "Link to Object"))
         {
             Debug.Log("Linking to object");
             _objectNumToLinkTo = objectLinkNumber;
             levelEditor.CurrentMode = LevelEditor.LevelEditorMode.PickToLinkMode;
         }
 
-		if (posOfObjectToActivate != Vector3.zero
+		if (tObjectToActivate != null
 		    && GUI.Button(new Rect(right, top, width, height), "Unlink"))
 		{
 			Debug.Log("Unlinking object");

@@ -182,6 +182,13 @@ public class XMLLevelReader : XMLAccessor {
 			{
                 newObject = (GameObject)Instantiate(prefabHandler.pfSwitch);
 
+				Vector3 startingPos = new Vector3(
+					float.Parse(reader.GetAttribute("x"))
+					, float.Parse(reader.GetAttribute("y")), 0);
+				
+				Switch tSwitch = newObject.GetComponent<Switch>();
+				tSwitch.Initialize(startingPos);
+
 				Vector3 posObjectToActivate1 = new Vector3(
 					float.Parse(reader.GetAttribute("xPosOfObjectToActivate"))
 					, float.Parse(reader.GetAttribute("yPosOfObjectToActivate")), 0);               
@@ -193,9 +200,7 @@ public class XMLLevelReader : XMLAccessor {
 				Vector3 posObjectToActivate3 = new Vector3(
 					float.Parse(reader.GetAttribute("xPosOfObjectToActivate3"))
 					, float.Parse(reader.GetAttribute("yPosOfObjectToActivate3")), 0);  
-				
-				Switch tSwitch = newObject.GetComponent<Switch>();
-				
+
 				Map map = Registry.map;
 				LevelObject levelObject1 = map.GetLevelObjectAtPosition(posObjectToActivate1);
 				if ( levelObject1 != null )

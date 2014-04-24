@@ -36,8 +36,8 @@ public class Switch : LevelObject {
 			Debug.LogWarning("untriggeredTexture not initialized!");
 	}
 
-	public void Initialize() {
-
+	public void Initialize(Vector3 tStartingPos) {
+		base.Initialize(tStartingPos);
 	}
 
 	public void Initialize(Vector3 theStartingPos, Vector2 thePosOfObjectToActivate1)
@@ -82,23 +82,27 @@ public class Switch : LevelObject {
 	public override void Use ()
 	{
 		UpdateSwitchGraphic();
+
+		foreach( LevelObject levelObject in _linkedObjects ) {
+			levelObject.Use ();
+		}
 		
-		LevelObject objectToUse;
-		if (posOfObjectToActivate1 != Vector3.zero)
-		{
-			objectToUse = _map.GetLevelObjectAtPosition(posOfObjectToActivate1);
-			objectToUse.Use();
-		}
-		if (posOfObjectToActivate2 != Vector3.zero)
-		{
-			objectToUse = _map.GetLevelObjectAtPosition(posOfObjectToActivate2);
-			objectToUse.Use();
-		}
-		if (posOfObjectToActivate3 != Vector3.zero)
-		{
-			objectToUse = _map.GetLevelObjectAtPosition(posOfObjectToActivate3);
-			objectToUse.Use();
-		}
+//		LevelObject objectToUse;
+//		if (posOfObjectToActivate1 != Vector3.zero)
+//		{
+//			objectToUse = _map.GetLevelObjectAtPosition(posOfObjectToActivate1);
+//			objectToUse.Use();
+//		}
+//		if (posOfObjectToActivate2 != Vector3.zero)
+//		{
+//			objectToUse = _map.GetLevelObjectAtPosition(posOfObjectToActivate2);
+//			objectToUse.Use();
+//		}
+//		if (posOfObjectToActivate3 != Vector3.zero)
+//		{
+//			objectToUse = _map.GetLevelObjectAtPosition(posOfObjectToActivate3);
+//			objectToUse.Use();
+//		}
 	}
 
     void OnTriggerEnter(Collider col)

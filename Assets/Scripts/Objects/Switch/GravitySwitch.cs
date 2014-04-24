@@ -2,12 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public class GravitySwitch : Switch
-{
-	override public void Initialize(Vector3 theStartingPos)
-	{
-		base.Initialize(theStartingPos);
-	}
-    
+{   
 	void LateUpdate()
     {
         if (_isTriggered)

@@ -162,15 +162,9 @@ public class Switch : LevelObject {
 		}
     }
 
-	private void RemoveLinkedObjectAtIndex(float indexPos)
+	private void RemoveLinkedObjectAtIndex(int indexPos)
 	{
-		//TODO: Change posOfObjectToActivate into an array of objectToActivate
-		if ( indexPos == 1 )
-			posOfObjectToActivate1 = Vector3.zero;
-		else if ( indexPos == 2 )
-			posOfObjectToActivate2 = Vector3.zero;
-		else
-			posOfObjectToActivate3 = Vector3.zero;
+		_linkedObjects[indexPos-1] = null;
 	}
 
 	public override void ResetObject ()

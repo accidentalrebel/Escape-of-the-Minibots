@@ -90,7 +90,7 @@ public class LevelEditor : MonoBehaviour {
                 // This handles the picking of level objects for linking
                 else if (CurrentMode == LevelEditorMode.PickToLinkMode)
                 {
-					objectToDisplay.GetComponent<Switch>().AddToLinkedObjectsList(objectAtMousePosition);
+					objectToDisplay.GetComponent<Switch>().PlaceInLinkedObjectsListAtIndex(objectAtMousePosition);
                     CurrentMode = LevelEditorMode.EditingMode;
                 }
             }

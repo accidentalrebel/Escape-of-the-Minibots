@@ -204,15 +204,15 @@ public class XMLLevelReader : XMLAccessor {
 				Map map = Registry.map;
 				LevelObject levelObject1 = map.GetLevelObjectAtPosition(posObjectToActivate1);
 				if ( levelObject1 != null )
-					tSwitch.AddToLinkedObjectsList(levelObject1);
+					tSwitch.PushToLinkedObjectsList(levelObject1);
 				
 				LevelObject levelObject2 = map.GetLevelObjectAtPosition(posObjectToActivate2);
 				if ( levelObject2 != null )
-					tSwitch.AddToLinkedObjectsList(levelObject2);
+					tSwitch.PushToLinkedObjectsList(levelObject2);
 				
 				LevelObject levelObject3 = map.GetLevelObjectAtPosition(posObjectToActivate3);
 				if ( levelObject3 != null )
-					tSwitch.AddToLinkedObjectsList(levelObject3);
+					tSwitch.PushToLinkedObjectsList(levelObject3);
 				
 				newObject.transform.parent = switchesContainer.transform;
 			}			

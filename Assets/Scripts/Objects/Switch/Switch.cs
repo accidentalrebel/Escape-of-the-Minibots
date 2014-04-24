@@ -17,7 +17,7 @@ public class Switch : LevelObject {
 	[SerializeField]
 	private Texture _untriggeredTexture;
 
-    private int _objectNumToLinkTo = 0;
+    private int _indexOfReadyToBeLinked = 0;
 	private int _indexOfLink = 0;
 
 	protected Map _map;
@@ -63,10 +63,13 @@ public class Switch : LevelObject {
         posOfObjectToActivate3 = new Vector3(thePosOfObjectToActivate3.x, thePosOfObjectToActivate3.y, 0);
 	}
 
-	public void AddToLinkedObjectsList(LevelObject tObject)
-	{
+	public void PushToLinkedObjectsList(LevelObject tObject) {
 		_linkedObjects[_indexOfLink] = tObject;
 		_indexOfLink++;
+	}
+
+	public void PlaceInLinkedObjectsListAtIndex(LevelObject tObject) {
+		_linkedObjects[_indexOfReadyToBeLinked] = tObject;
 	}
 
 	void LateUpdate () 
@@ -147,16 +150,14 @@ public class Switch : LevelObject {
         
 		if (GUI.Button(new Rect(left, top, width, height), "Link to Object"))
         {
-            Debug.Log("Linking to object");
-            _objectNumToLinkTo = objectLinkNumber;
+            _indexOfReadyToBeLinked = objectLinkNumber - 1;
             levelEditor.CurrentMode = LevelEditor.LevelEditorMode.PickToLinkMode;
         }
 
 		if (tObjectToActivate != null
 		    && GUI.Button(new Rect(right, top, width, height), "Unlink"))
 		{
-			Debug.Log("Unlinking object");
-			_objectNumToLinkTo = 0;
+			_indexOfReadyToBeLinked = 0;
 			RemoveLinkedObjectAtIndex(objectLinkNumber);
 			levelEditor.CurrentMode = LevelEditor.LevelEditorMode.EditingMode;
 		}

@@ -512,7 +512,7 @@ public class LevelEditor : MonoBehaviour {
         // This handles the GUI for the editing mode
         if (currentMode == LevelEditorMode.EditingMode)
         {
-            GUI.Box(new Rect((Screen.width / 2) - 150, (Screen.height / 2) - 150, 300, 300), "Edit Object");
+            GUI.Box(new Rect((Screen.width / 2) - 200, (Screen.height / 2) - 150, 400, 300), "Edit Object");
 
             if (objectToDisplay != null)
             {

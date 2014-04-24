@@ -113,18 +113,19 @@ public class Switch : LevelObject {
         string toDisplay;
 
 		if (tObjectToActivate != null)
-            toDisplay = "Linked";
+			toDisplay = tObjectToActivate.name;
         else
             toDisplay = "No Link";       
 
-		float left = (Screen.width / 2) - 140;
+		float left = (Screen.width / 2) - 180;
 		float top = (Screen.height / 2) - 110 + (30 * (objectLinkNumber - 1));
-		float width = 100;
+		float width = 150;
 		float height = 20;
         GUI.Label(new Rect(left, top, width, height), toDisplay);
 
-		left = (Screen.width / 2) - 70;
-		float right = (Screen.width / 2 ) + 40;
+		left = (Screen.width / 2) - 30;
+		width = 100;
+		float right = (Screen.width / 2 ) + 80;
         
 		if (GUI.Button(new Rect(left, top, width, height), "Link to Object"))
         {

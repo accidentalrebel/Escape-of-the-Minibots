@@ -13,30 +13,11 @@ public class StepSwitch : Switch {
 
     void Trigger()
     {
-		bool status = _isTriggered;
-
-        LevelObject objectToUse;
-        if (posOfObjectToActivate1 != Vector3.zero)
-        {
-            objectToUse = _map.GetLevelObjectAtPosition(posOfObjectToActivate1);
-            objectToUse.Use(status);
-        }
-        if (posOfObjectToActivate2 != Vector3.zero)
-        {
-            objectToUse = _map.GetLevelObjectAtPosition(posOfObjectToActivate2);
-            objectToUse.Use(status);
-        }
-        if (posOfObjectToActivate3 != Vector3.zero)
-        {
-            objectToUse = _map.GetLevelObjectAtPosition(posOfObjectToActivate3);
-            objectToUse.Use(status);
-        }
+		foreach( LevelObject levelObject in _linkedObjects ) {
+			if ( levelObject != null )
+				levelObject.Use(_isTriggered);
+		}
     }
-
-	public override void Use ()
-	{
-		// Intentionally left blank
-	}
 	
     void OnTriggerEnter(Collider col)
     {

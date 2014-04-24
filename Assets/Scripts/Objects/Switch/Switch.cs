@@ -5,11 +5,7 @@ public class Switch : LevelObject {
 
 	const int MAX_NUM_OF_LINKS = 10;
 
-    public Vector3 posOfObjectToActivate1 = Vector3.zero;
-    public Vector3 posOfObjectToActivate2 = Vector3.zero;
-    public Vector3 posOfObjectToActivate3 = Vector3.zero;
-
-	private LevelObject[] _linkedObjects;
+    protected LevelObject[] _linkedObjects;
 	public LevelObject[] LinkedObjects {
 		get {
 			return _linkedObjects;
@@ -43,29 +39,6 @@ public class Switch : LevelObject {
 
 	public void Initialize(Vector3 tStartingPos) {
 		base.Initialize(tStartingPos);
-	}
-
-	public void Initialize(Vector3 theStartingPos, Vector2 thePosOfObjectToActivate1)
-    {
-        base.Initialize(theStartingPos);
-        posOfObjectToActivate1 = new Vector3(thePosOfObjectToActivate1.x, thePosOfObjectToActivate1.y, 0);       
-    }
-
-    public void Initialize(Vector3 theStartingPos, Vector2 thePosOfObjectToActivate1
-        , Vector2 thePosOfObjectToActivate2)
-    {
-        base.Initialize(theStartingPos);
-        posOfObjectToActivate1 = new Vector3(thePosOfObjectToActivate1.x, thePosOfObjectToActivate1.y, 0);
-        posOfObjectToActivate2 = new Vector3(thePosOfObjectToActivate2.x, thePosOfObjectToActivate2.y, 0);
-    }
-	
-	public void Initialize(Vector3 theStartingPos, Vector2 thePosOfObjectToActivate1
-        , Vector2 thePosOfObjectToActivate2, Vector2 thePosOfObjectToActivate3 )
-	{
-		base.Initialize(theStartingPos);
-        posOfObjectToActivate1 = new Vector3(thePosOfObjectToActivate1.x, thePosOfObjectToActivate1.y, 0);
-        posOfObjectToActivate2 = new Vector3(thePosOfObjectToActivate2.x, thePosOfObjectToActivate2.y, 0);
-        posOfObjectToActivate3 = new Vector3(thePosOfObjectToActivate3.x, thePosOfObjectToActivate3.y, 0);
 	}
 
 	public void PushToLinkedObjectsList(LevelObject tObject) {

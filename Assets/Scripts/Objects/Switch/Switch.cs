@@ -3,9 +3,13 @@ using System.Collections;
 
 public class Switch : LevelObject {
 
+	const int MAX_NUM_OF_LINKS = 10;
+
     public Vector3 posOfObjectToActivate1 = Vector3.zero;
     public Vector3 posOfObjectToActivate2 = Vector3.zero;
     public Vector3 posOfObjectToActivate3 = Vector3.zero;
+
+	private LevelObject[] _linkedObjects;
 
 	[SerializeField]
 	private Texture _triggeredTexture;
@@ -14,6 +18,8 @@ public class Switch : LevelObject {
 	private Texture _untriggeredTexture;
 
     private int _objectNumToLinkTo = 0;
+	private int _indexOfLink = 0;
+
 	protected Map _map;
     protected bool _isTriggered = false;
     protected Collider _triggeredCollider;
@@ -22,6 +28,7 @@ public class Switch : LevelObject {
 		base.Awake();
 		
 		_map = Registry.map;
+		_linkedObjects = new LevelObject[MAX_NUM_OF_LINKS];
 
 		if ( _triggeredTexture == null )
 			Debug.LogWarning("triggeredTexture not initialized!");
@@ -65,6 +72,11 @@ public class Switch : LevelObject {
 
         _objectNumToLinkTo = 0;
     }
+
+	public void AddToLinkedObjectsList(LevelObject tObject)
+	{
+		_linkedObjects[_indexOfLink] = tObject;
+	}
 
 	void LateUpdate () 
     {
@@ -148,7 +160,7 @@ public class Switch : LevelObject {
 		float height = 20;
         GUI.Label(new Rect(left, top, width, height), toDisplay);
 
-		left = (Screen.width / 2) - 30;
+		left = (Screen.width / 2) - 70;
 		float right = (Screen.width / 2 ) + 40;
         if (GUI.Button(new Rect(left, top, width, height), "Link to Object"))
         {

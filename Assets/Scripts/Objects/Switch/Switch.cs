@@ -36,6 +36,10 @@ public class Switch : LevelObject {
 			Debug.LogWarning("untriggeredTexture not initialized!");
 	}
 
+	public void Initialize() {
+
+	}
+
 	public void Initialize(Vector3 theStartingPos, Vector2 thePosOfObjectToActivate1)
     {
         base.Initialize(theStartingPos);
@@ -58,20 +62,6 @@ public class Switch : LevelObject {
         posOfObjectToActivate2 = new Vector3(thePosOfObjectToActivate2.x, thePosOfObjectToActivate2.y, 0);
         posOfObjectToActivate3 = new Vector3(thePosOfObjectToActivate3.x, thePosOfObjectToActivate3.y, 0);
 	}
-
-    public void SetObjectToActivate(LevelObject theObject)
-    {
-        Vector3 thePosition = new Vector3(theObject.gameObject.transform.position.x, theObject.gameObject.transform.position.y, 0);;
-
-        if (_objectNumToLinkTo == 1)
-            posOfObjectToActivate1 = thePosition;                
-        else if (_objectNumToLinkTo == 2)
-            posOfObjectToActivate2 = thePosition;
-        else if (_objectNumToLinkTo == 3)
-            posOfObjectToActivate3 = thePosition;
-
-        _objectNumToLinkTo = 0;
-    }
 
 	public void AddToLinkedObjectsList(LevelObject tObject)
 	{

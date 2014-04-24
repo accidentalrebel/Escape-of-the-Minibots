@@ -182,57 +182,32 @@ public class XMLLevelReader : XMLAccessor {
 			{
                 newObject = (GameObject)Instantiate(prefabHandler.pfSwitch);
 
-                string xObjectToActivate1 = reader.GetAttribute("xPosOfObjectToActivate");
-                string yObjectToActivate1 = reader.GetAttribute("yPosOfObjectToActivate");
-
-                string xObjectToActivate2 = reader.GetAttribute("xPosOfObjectToActivate2");
-                string yObjectToActivate2 = reader.GetAttribute("yPosOfObjectToActivate2");
-
-                string xObjectToActivate3 = reader.GetAttribute("xPosOfObjectToActivate3");
-                string yObjectToActivate3 = reader.GetAttribute("yPosOfObjectToActivate3");
-
-                // If we only have one objectToActivate
-                if (xObjectToActivate2 == null && yObjectToActivate2 == null)
-                {
-                    newObject.GetComponent<Switch>().Initialize(new Vector3
-                    ( float.Parse(reader.GetAttribute("x"))
-                    , float.Parse(reader.GetAttribute("y")), 0)
-                    , new Vector2
-                    ( float.Parse(xObjectToActivate1)
-                    , float.Parse(yObjectToActivate1))
-                    );
-                }
-                // If we have two objects to ativate
-                else if (xObjectToActivate3 == null && yObjectToActivate3 == null)
-                {
-                    newObject.GetComponent<Switch>().Initialize(new Vector3
-                    ( float.Parse(reader.GetAttribute("x"))
-                    , float.Parse(reader.GetAttribute("y")), 0)
-                    , new Vector2
-                    ( float.Parse(xObjectToActivate1)
-                    , float.Parse(yObjectToActivate1))
-                    , new Vector2
-                    ( float.Parse(xObjectToActivate2)
-                    , float.Parse(yObjectToActivate2))
-                    );
-                }
-                // If we have three objects to activate
-                else
-                {
-                    newObject.GetComponent<Switch>().Initialize(new Vector3
-                        ( float.Parse(reader.GetAttribute("x"))
-                        , float.Parse(reader.GetAttribute("y")), 0)
-                        , new Vector2
-                        ( float.Parse(xObjectToActivate1)
-                        , float.Parse(yObjectToActivate1))
-                        , new Vector2
-                        ( float.Parse(xObjectToActivate2)
-                        , float.Parse(yObjectToActivate2))
-                        , new Vector2
-                        ( float.Parse(xObjectToActivate3)
-                        , float.Parse(yObjectToActivate3))
-                        );
-                }
+				Vector3 posObjectToActivate1 = new Vector3(
+					float.Parse(reader.GetAttribute("xPosOfObjectToActivate"))
+					, float.Parse(reader.GetAttribute("yPosOfObjectToActivate")), 0);               
+				
+				Vector3 posObjectToActivate2 = new Vector3(
+					float.Parse(reader.GetAttribute("xPosOfObjectToActivate2"))
+					, float.Parse(reader.GetAttribute("yPosOfObjectToActivate2")), 0);  
+				
+				Vector3 posObjectToActivate3 = new Vector3(
+					float.Parse(reader.GetAttribute("xPosOfObjectToActivate3"))
+					, float.Parse(reader.GetAttribute("yPosOfObjectToActivate3")), 0);  
+				
+				Switch tSwitch = newObject.GetComponent<Switch>();
+				
+				Map map = Registry.map;
+				LevelObject levelObject1 = map.GetLevelObjectAtPosition(posObjectToActivate1);
+				if ( levelObject1 != null )
+					tSwitch.AddToLinkedObjectsList(levelObject1);
+				
+				LevelObject levelObject2 = map.GetLevelObjectAtPosition(posObjectToActivate2);
+				if ( levelObject2 != null )
+					tSwitch.AddToLinkedObjectsList(levelObject2);
+				
+				LevelObject levelObject3 = map.GetLevelObjectAtPosition(posObjectToActivate3);
+				if ( levelObject3 != null )
+					tSwitch.AddToLinkedObjectsList(levelObject3);
 				
 				newObject.transform.parent = switchesContainer.transform;
 			}			

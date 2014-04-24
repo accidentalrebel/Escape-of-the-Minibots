@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Switch : LevelObject {
 
-	const int MAX_NUM_OF_LINKS = 10;
+	const int MAX_NUM_OF_LINKS = 7;
 
     protected LevelObject[] _linkedObjects;
 	public LevelObject[] LinkedObjects {

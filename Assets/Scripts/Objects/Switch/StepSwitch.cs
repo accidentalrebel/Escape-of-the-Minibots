@@ -15,7 +15,7 @@ public class StepSwitch : Switch {
     {
 		foreach( LevelObject levelObject in _linkedObjects ) {
 			if ( levelObject != null )
-				levelObject.Use(_isTriggered);
+				levelObject.Use();
 		}
     }
 	

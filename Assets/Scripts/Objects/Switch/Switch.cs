@@ -10,6 +10,11 @@ public class Switch : LevelObject {
     public Vector3 posOfObjectToActivate3 = Vector3.zero;
 
 	private LevelObject[] _linkedObjects;
+	public LevelObject[] LinkedObjects {
+		get {
+			return _linkedObjects;
+		}
+	}
 
 	[SerializeField]
 	private Texture _triggeredTexture;

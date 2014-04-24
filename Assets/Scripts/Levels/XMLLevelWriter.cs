@@ -159,6 +159,7 @@ public class XMLLevelWriter : XMLAccessor {
 			LevelObject levelObjectScript = stepSwitch.gameObject.GetComponent<LevelObject>();
 			elemNew.SetAttribute("x", levelObjectScript.startingPos.x.ToString());
 			elemNew.SetAttribute("y", levelObjectScript.startingPos.y.ToString());
+
 			StepSwitch switchScript = stepSwitch.gameObject.GetComponent<StepSwitch>();
 			elemNew.SetAttribute("xPosOfObjectToActivate", switchScript.posOfObjectToActivate1.x.ToString());
 			elemNew.SetAttribute("yPosOfObjectToActivate", switchScript.posOfObjectToActivate1.y.ToString());
@@ -177,12 +178,18 @@ public class XMLLevelWriter : XMLAccessor {
 			elemNew.SetAttribute("x", levelObjectScript.startingPos.x.ToString());
 			elemNew.SetAttribute("y", levelObjectScript.startingPos.y.ToString());
 			Switch switchScript = aSwitch.gameObject.GetComponent<Switch>();
-			elemNew.SetAttribute("xPosOfObjectToActivate", switchScript.posOfObjectToActivate1.x.ToString());
-			elemNew.SetAttribute("yPosOfObjectToActivate", switchScript.posOfObjectToActivate1.y.ToString());
-            elemNew.SetAttribute("xPosOfObjectToActivate2", switchScript.posOfObjectToActivate2.x.ToString());
-            elemNew.SetAttribute("yPosOfObjectToActivate2", switchScript.posOfObjectToActivate2.y.ToString());
-            elemNew.SetAttribute("xPosOfObjectToActivate3", switchScript.posOfObjectToActivate3.x.ToString());
-            elemNew.SetAttribute("yPosOfObjectToActivate3", switchScript.posOfObjectToActivate3.y.ToString());
+
+			Debug.Log("LOOPING THOUGH ALL SWITCHES");
+
+			int index = 1;
+			foreach( LevelObject linkedObject in switchScript.LinkedObjects ) {
+				if ( linkedObject != null )	{
+					Debug.Log("SETTING" + linkedObject.startingPos.x + "," + linkedObject.startingPos.y);
+					elemNew.SetAttribute("xPosOfObjectToActivate" + index, linkedObject.startingPos.x.ToString());
+					elemNew.SetAttribute("yPosOfObjectToActivate" + index, linkedObject.startingPos.y.ToString());
+				}
+				index++;
+			}
 			elemRoot.AppendChild(elemNew);	
 		}
           

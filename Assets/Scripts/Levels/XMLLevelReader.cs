@@ -186,33 +186,28 @@ public class XMLLevelReader : XMLAccessor {
 					float.Parse(reader.GetAttribute("x"))
 					, float.Parse(reader.GetAttribute("y")), 0);
 				
-				Switch tSwitch = newObject.GetComponent<Switch>();
-				tSwitch.Initialize(startingPos);
-
-				Vector3 posObjectToActivate1 = new Vector3(
-					float.Parse(reader.GetAttribute("xPosOfObjectToActivate"))
-					, float.Parse(reader.GetAttribute("yPosOfObjectToActivate")), 0);               
-				
-				Vector3 posObjectToActivate2 = new Vector3(
-					float.Parse(reader.GetAttribute("xPosOfObjectToActivate2"))
-					, float.Parse(reader.GetAttribute("yPosOfObjectToActivate2")), 0);  
-				
-				Vector3 posObjectToActivate3 = new Vector3(
-					float.Parse(reader.GetAttribute("xPosOfObjectToActivate3"))
-					, float.Parse(reader.GetAttribute("yPosOfObjectToActivate3")), 0);  
-
+				Switch switchScript = newObject.GetComponent<Switch>();
+				switchScript.Initialize(startingPos);
 				Map map = Registry.map;
-				LevelObject levelObject1 = map.GetLevelObjectAtPosition(posObjectToActivate1);
-				if ( levelObject1 != null )
-					tSwitch.PushToLinkedObjectsList(levelObject1);
-				
-				LevelObject levelObject2 = map.GetLevelObjectAtPosition(posObjectToActivate2);
-				if ( levelObject2 != null )
-					tSwitch.PushToLinkedObjectsList(levelObject2);
-				
-				LevelObject levelObject3 = map.GetLevelObjectAtPosition(posObjectToActivate3);
-				if ( levelObject3 != null )
-					tSwitch.PushToLinkedObjectsList(levelObject3);
+
+				int index = 1;
+				foreach( LevelObject linkedObject in switchScript.LinkedObjects ) {
+
+					string xAttribute = reader.GetAttribute("xPosOfObjectToActivate" + index);
+					string yAttribute = reader.GetAttribute("yPosOfObjectToActivate" + index);
+
+					if ( xAttribute != null && yAttribute != null )
+					{
+						float xPosition = float.Parse(xAttribute);
+						float yPosition = float.Parse(yAttribute);
+
+						Vector3 posObjectToActivate1 = new Vector3(xPosition, yPosition, 0);
+						LevelObject levelObjectToLink = map.GetLevelObjectAtPosition(posObjectToActivate1);
+						if ( levelObjectToLink != null )
+							switchScript.PushToLinkedObjectsList(levelObjectToLink);
+					}
+					index++;
+				}
 				
 				newObject.transform.parent = switchesContainer.transform;
 			}			

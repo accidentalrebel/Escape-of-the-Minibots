@@ -10,6 +10,11 @@ public class GravityHandler : MonoBehaviour
 
 	[SerializeField]
 	private float _gravity = 10.0f;
+	public float Gravity {
+		get {
+			return _gravity;
+		}
+	}
 
 	[SerializeField]
 	private bool _isInverted = false;
@@ -33,11 +38,7 @@ public class GravityHandler : MonoBehaviour
 
 	void ApplyGravity ()
 	{
-		float gravityToUse = Mathf.Abs(_gravity);
-		if ( _isInverted == true )
-			gravityToUse = -gravityToUse;
-
-		rigidbody.AddForce(new Vector3(0, -gravityToUse * rigidbody.mass, 0));
+		rigidbody.AddForce(new Vector3(0, -_gravity * rigidbody.mass, 0));
 	}
 
 	public void InvertGravity()
@@ -46,6 +47,15 @@ public class GravityHandler : MonoBehaviour
 			_isInverted = false;
 		else
 			_isInverted = true;
+
+		UpdateGravityValue();
+	}
+
+	void UpdateGravityValue ()
+	{
+		_gravity = Mathf.Abs(_gravity);
+		if ( _isInverted == true )
+			_gravity = -_gravity;
 
 		if ( OnGravityChanged != null )
 			OnGravityChanged();

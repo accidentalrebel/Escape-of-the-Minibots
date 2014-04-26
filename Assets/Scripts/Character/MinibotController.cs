@@ -10,9 +10,6 @@ public class MinibotController : MonoBehaviour
     private float _speed = 10.0f;
 
 	[SerializeField]
-    private float _gravity = 10.0f;
-
-	[SerializeField]
     private float _maxVelocityChange = 10.0f;  
 
 	[SerializeField]
@@ -177,12 +174,10 @@ public class MinibotController : MonoBehaviour
 
     float CalculateJumpVerticalSpeed()
     {
-        // From the jump height and gravity we deduce the upwards speed 
-        // for the character to reach at the apex.
 		if ( _gravityHandler.IsInverted )
-            return Mathf.Sqrt(2 * _jumpHeight * -_gravity);
+            return Mathf.Sqrt(2 * _jumpHeight * -_gravityHandler.Gravity);
         else
-            return Mathf.Sqrt(2 * _jumpHeight * _gravity);
+			return Mathf.Sqrt(2 * _jumpHeight * _gravityHandler.Gravity);
     }
 
     void CheckIfGrounded()

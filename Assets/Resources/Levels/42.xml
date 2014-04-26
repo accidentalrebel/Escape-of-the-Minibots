@@ -118,5 +118,5 @@
   <tile x="18" y="4" />
   <door x="17" y="6" isOpen="1" />
   <door x="7" y="2" isOpen="0" />
-  <switch x="14" y="6" xPosOfObjectToActivate="7" yPosOfObjectToActivate="2" />
+  <switch x="14" y="6" xPosOfObjectToActivate1="7" yPosOfObjectToActivate1="2" />
 </tiles>

@@ -146,5 +146,5 @@
   <hazard x="18" y="3" />
   <hazard x="18" y="2" />
   <triggerableBlock x="5" y="9" isHidden="0" width="1" height="5" />
-  <stepSwitch x="10" y="9" xPosOfObjectToActivate="16" yPosOfObjectToActivate="2" xPosOfObjectToActivate2="5" yPosOfObjectToActivate2="9" xPosOfObjectToActivate3="0" yPosOfObjectToActivate3="0" />
+  <stepSwitch x="10" y="9" xPosOfObjectToActivate1="16" yPosOfObjectToActivate1="2" xPosOfObjectToActivate2="5" yPosOfObjectToActivate2="9" />
 </tiles>

@@ -170,6 +170,6 @@
   <tile x="14" y="9" />
   <door x="10" y="2" isOpen="1" />
   <door x="10" y="9" isOpen="0" />
-  <switch x="7" y="9" xPosOfObjectToActivate="10" yPosOfObjectToActivate="2" />
-  <switch x="13" y="2" xPosOfObjectToActivate="10" yPosOfObjectToActivate="9" />
+  <switch x="7" y="9" xPosOfObjectToActivate1="10" yPosOfObjectToActivate1="2" />
+  <switch x="13" y="2" xPosOfObjectToActivate1="10" yPosOfObjectToActivate1="9" />
 </tiles>

@@ -120,6 +120,6 @@
   <hazard x="7" y="7" />
   <hazard x="3" y="7" />
   <triggerableBlock x="12" y="2" isHidden="1" width="1" height="5" />
-  <switch x="16" y="2" xPosOfObjectToActivate="1" yPosOfObjectToActivate="9" />
-  <switch x="16" y="9" xPosOfObjectToActivate="12" yPosOfObjectToActivate="2" />
+  <switch x="16" y="2" xPosOfObjectToActivate1="1" yPosOfObjectToActivate1="9" />
+  <switch x="16" y="9" xPosOfObjectToActivate1="12" yPosOfObjectToActivate1="2" />
 </tiles>

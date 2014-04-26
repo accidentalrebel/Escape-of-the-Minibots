@@ -216,5 +216,5 @@
   <hazard x="9" y="6" />
   <hazard x="1" y="7" />
   <hazard x="1" y="6" />
-  <switch x="16" y="9" xPosOfObjectToActivate="2" yPosOfObjectToActivate="9" />
+  <switch x="16" y="9" xPosOfObjectToActivate1="2" yPosOfObjectToActivate1="9" />
 </tiles>

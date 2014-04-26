@@ -161,5 +161,5 @@
   <tile x="7" y="2" />
   <door x="15" y="9" isOpen="1" />
   <door x="15" y="2" isOpen="0" />
-  <stepSwitch x="10" y="10" xPosOfObjectToActivate1="15" yPosOfObjectToActivate1="9" xPosOfObjectToActivate2="15" yPosOfObjectToActivate2="2" />
+  <stepSwitch x="10" y="10" xPosOfObjectToActivate1="15" yPosOfObjectToActivate1="2" />
 </tiles>

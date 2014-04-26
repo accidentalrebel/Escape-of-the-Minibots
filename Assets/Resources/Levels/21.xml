@@ -167,8 +167,8 @@
   <triggerableBlock x="12" y="2" isHidden="1" width="1" height="5" />
   <triggerableBlock x="12" y="9" isHidden="0" width="1" height="5" />
   <triggerableBlock x="8" y="2" isHidden="0" width="1" height="5" />
-  <switch x="16" y="2" xPosOfObjectToActivate="12" yPosOfObjectToActivate="9" xPosOfObjectToActivate2="0" yPosOfObjectToActivate2="0" xPosOfObjectToActivate3="0" yPosOfObjectToActivate3="0" />
-  <switch x="5" y="9" xPosOfObjectToActivate="12" yPosOfObjectToActivate="2" xPosOfObjectToActivate2="0" yPosOfObjectToActivate2="0" xPosOfObjectToActivate3="0" yPosOfObjectToActivate3="0" />
-  <switch x="15" y="9" xPosOfObjectToActivate="8" yPosOfObjectToActivate="2" xPosOfObjectToActivate2="0" yPosOfObjectToActivate2="0" xPosOfObjectToActivate3="0" yPosOfObjectToActivate3="0" />
-  <switch x="4" y="2" xPosOfObjectToActivate="10" yPosOfObjectToActivate="9" xPosOfObjectToActivate2="10" yPosOfObjectToActivate2="2" xPosOfObjectToActivate3="0" yPosOfObjectToActivate3="0" />
+  <switch x="16" y="2" xPosOfObjectToActivate1="12" yPosOfObjectToActivate1="9" />
+  <switch x="5" y="9" xPosOfObjectToActivate1="12" yPosOfObjectToActivate1="2" />
+  <switch x="15" y="9" xPosOfObjectToActivate1="8" yPosOfObjectToActivate1="2" />
+  <switch x="4" y="2" xPosOfObjectToActivate1="10" yPosOfObjectToActivate1="9" xPosOfObjectToActivate2="10" yPosOfObjectToActivate2="2" />
 </tiles>

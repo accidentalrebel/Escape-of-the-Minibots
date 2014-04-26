@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <tiles>
   <minibot x="3" y="11" invertGravity="0" invertHorizontal="0" />
-  <minibot x="3" y="4" invertGravity="0" invertHorizontal="0" />
+  <minibot x="3" y="4" invertGravity="1" invertHorizontal="1" />
   <tile x="0" y="0" />
   <tile x="0" y="1" />
   <tile x="0" y="2" />

@@ -24,9 +24,19 @@ public class Minibot : LevelObject {
 
 	[SerializeField]
 	private bool _initVerticalOrientation;
+	public bool InitVerticalOrientation {
+		get {
+			return _initVerticalOrientation;
+		}
+	}
 	
 	[SerializeField]
 	private bool _initHorizontalOrientation;
+	public bool InitHorizontalOrientation {
+		get {
+			return _initHorizontalOrientation;
+		}
+	}
 	   
     private GameObject 			_objectBeingCarried;
     private Rigidbody 			_theRigidBody;    

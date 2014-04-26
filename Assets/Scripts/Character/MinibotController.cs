@@ -22,6 +22,7 @@ public class MinibotController : MonoBehaviour
 	private bool _canJump = true;
 	private bool _isGrounded = false;
 	private bool _isInvertedHorizontally = false;
+
 	public bool IsInvertedHorizontally {
 		get {
 				return _isInvertedHorizontally;

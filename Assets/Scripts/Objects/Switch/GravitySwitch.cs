@@ -20,14 +20,15 @@ public class GravitySwitch : Switch
 		minibotScript.InvertVerticalOrientation();
 		
 		foreach( LevelObject levelObject in _linkedObjects ) {
-			Debug.Log ("GOING THROUGH LINKEDOBJECTS");
 			if ( levelObject == null )
 				continue;
 
-			GravityHandler gravityHandler = levelObject.GetComponent<GravityHandler>();
+			Debug.Log ("GOING THROUGH LINKEDOBJECTS");
+			GravityHandler gravityHandler = levelObject.GetComponentInChildren<GravityHandler>();
 			if ( gravityHandler == null )
 				continue;
 
+			Debug.Log ("GOING THROUGH GRAVITYHANDLER");
 			gravityHandler.InvertGravity();
 		}
 	}

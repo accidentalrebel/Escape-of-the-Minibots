@@ -20,36 +20,21 @@ public class Box : LevelObject {
 		base.Initialize(theStartingPos);
 	}
 
-	public void InvertVerticalOrientation()
-	{
-		if (_isInvertedVertically)
-			_isInvertedVertically = false;
-		else
-			_isInvertedVertically = true;
-
-		HandleGravitySwitch();
-	} 
-
-	void HandleGravitySwitch ()
-	{
-
-	}
-
 	public void PickUp()
     {
-        theRigidBody.useGravity = false;
+        //theRigidBody.useGravity = false;
     }
 
 	public void PutDown()
     {
-        theRigidBody.useGravity = true;
+        //theRigidBody.useGravity = true;
     }
 
     override public void ResetObject()
     {
         theRigidBody.velocity = Vector3.zero;
         theRigidBody.angularVelocity = Vector3.zero;
-        theRigidBody.useGravity = true;
+        //theRigidBody.useGravity = true;
 
         base.ResetObject();
     }

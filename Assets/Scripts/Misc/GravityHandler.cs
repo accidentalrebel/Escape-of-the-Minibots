@@ -30,6 +30,6 @@ public class GravityHandler : MonoBehaviour
 		if ( _isInverted )
 			_isInverted = false;
 		else
-			_isInverted = false;
+			_isInverted = true;
 	}
 }

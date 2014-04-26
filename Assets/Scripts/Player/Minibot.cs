@@ -321,11 +321,11 @@ public class Minibot : LevelObject {
 
         base.ResetObject();
 
-		_controller.Reset(_initHorizontalOrientation, _initVerticalOrientation);
-
 		_spriteManager.Reset();     
-        EnableMinibot();
-       
+		_controller.Reset(_initHorizontalOrientation, _initVerticalOrientation);
+		_gravityHandler.Reset(_initVerticalOrientation);
+
+		EnableMinibot();    
 		_hasExited = false;
     }
 
@@ -373,6 +373,7 @@ public class Minibot : LevelObject {
     override public void GetEditableAttributes(LevelEditor levelEditor)
     {
 		_gravityHandler.IsInverted = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 110, 20), _gravityHandler.IsInverted, "Invert Gravity");
-        _controller.IsInvertedHorizontally = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 90, 150, 20), _controller.IsInvertedHorizontally, "Invert Horizontal");
+		_initVerticalOrientation =  _gravityHandler.IsInverted;
+		_controller.IsInvertedHorizontally = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 90, 150, 20), _controller.IsInvertedHorizontally, "Invert Horizontal");
     }
 }

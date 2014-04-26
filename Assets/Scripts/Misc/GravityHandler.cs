@@ -23,7 +23,12 @@ public class GravityHandler : MonoBehaviour
 			return _isInverted;
 		}
 		set {
-			_isInverted = value;
+			if ( value != _isInverted ) {
+				_isInverted = value;
+				UpdateGravityValue();
+			}
+			else
+				_isInverted = value;
 		}
 	}
 
@@ -43,21 +48,25 @@ public class GravityHandler : MonoBehaviour
 
 	public void InvertGravity()
 	{
-		if ( _isInverted )
-			_isInverted = false;
+		if ( IsInverted )
+			IsInverted = false;
 		else
-			_isInverted = true;
-
-		UpdateGravityValue();
+			IsInverted = true;
 	}
 
 	void UpdateGravityValue ()
 	{
 		_gravity = Mathf.Abs(_gravity);
-		if ( _isInverted == true )
+		if ( IsInverted == true )
 			_gravity = -_gravity;
 
 		if ( OnGravityChanged != null )
 			OnGravityChanged();
+	}
+
+	public void Reset (bool verticalOrientation)
+	{
+		IsInverted = verticalOrientation;
+		UpdateGravityValue();
 	}
 }

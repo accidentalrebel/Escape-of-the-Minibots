@@ -73,6 +73,7 @@
      <Compile Include="Assets\Scripts\Main\Registry.cs" />
      <Compile Include="Assets\Scripts\Main\Settings.cs" />
      <Compile Include="Assets\Scripts\Misc\GraphicHandler.cs" />
+     <Compile Include="Assets\Scripts\Misc\GravityHandler.cs" />
      <Compile Include="Assets\Scripts\Misc\PrefabHandler.cs" />
      <Compile Include="Assets\Scripts\Misc\Timer.cs" />
      <Compile Include="Assets\Scripts\Objects\Box.cs" />

@@ -4,6 +4,7 @@ using System.Collections;
 public class Box : LevelObject {
 
     private Rigidbody theRigidBody;
+	private bool _isInvertedVertically = false;
 
     override protected void Start()
     {
@@ -17,6 +18,21 @@ public class Box : LevelObject {
 	override public void Initialize(Vector3 theStartingPos)
 	{
 		base.Initialize(theStartingPos);
+	}
+
+	public void InvertVerticalOrientation()
+	{
+		if (_isInvertedVertically)
+			_isInvertedVertically = false;
+		else
+			_isInvertedVertically = true;
+
+		HandleGravitySwitch();
+	} 
+
+	void HandleGravitySwitch ()
+	{
+
 	}
 
 	public void PickUp()

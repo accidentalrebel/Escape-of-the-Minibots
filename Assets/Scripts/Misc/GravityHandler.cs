@@ -24,4 +24,12 @@ public class GravityHandler : MonoBehaviour
 
 		rigidbody.AddForce(new Vector3(0, -gravityToUse * rigidbody.mass, 0));
 	}
+
+	public void InvertGravity()
+	{
+		if ( _isInverted )
+			_isInverted = false;
+		else
+			_isInverted = false;
+	}
 }

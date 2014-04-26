@@ -50,6 +50,13 @@ public class Minibot : LevelObject {
         }
     }
 
+	protected override void Awake ()
+	{
+		base.Awake ();
+
+		_controller = gameObject.GetComponentInChildren<MinibotController>();
+	}
+
     // ************************************************************************************
     // MAIN
     // ************************************************************************************
@@ -104,8 +111,7 @@ public class Minibot : LevelObject {
     {
         startingPos = startPos;        
         gameObject.transform.position = startingPos;
-
-        _controller = gameObject.GetComponentInChildren<MinibotController>();
+		       
         _controller.IsInvertedVertically = isInvertedGrav;
         _controller.IsInvertedHorizontally = isInvertedHor;
         _initVerticalOrientation = isInvertedGrav;

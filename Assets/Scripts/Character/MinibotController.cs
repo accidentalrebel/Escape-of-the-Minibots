@@ -3,6 +3,7 @@ using System.Collections;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CapsuleCollider))]
+[RequireComponent(typeof(GravityHandler))]
 public class MinibotController : MonoBehaviour
 {
 	[SerializeField]
@@ -18,6 +19,7 @@ public class MinibotController : MonoBehaviour
 	private float _jumpHeight = 2.0f;
     
 	private CapsuleCollider _capsuleCollider;
+	private GravityHandler _gravityHandler;
 	private Minibot _playerScript;
     
 	private bool _canJump = true;
@@ -32,17 +34,6 @@ public class MinibotController : MonoBehaviour
 		}
 	}
 
-	private bool _isInvertedVertically = false;    
-	public bool IsInvertedVertically
-	{
-		set { 
-			_isInvertedVertically = value; 
-			UpdateGravityStatus(); 
-		}
-		get { return _isInvertedVertically; }
-	}
-
-
 	// ************************************************************************************
 	// MAIN
 	// ************************************************************************************
@@ -51,6 +42,10 @@ public class MinibotController : MonoBehaviour
         rigidbody.freezeRotation = true;
         rigidbody.useGravity = false;
 
+		_gravityHandler = GetComponent<GravityHandler>();
+		if ( _gravityHandler == null )
+			Debug.LogError("gravityHandler was not found!");
+
         _capsuleCollider = GetComponent<CapsuleCollider>();
         if (_capsuleCollider == null)
             Debug.LogError("capsule collider was not found!");
@@ -58,9 +53,6 @@ public class MinibotController : MonoBehaviour
 		_playerScript = GetComponent<Minibot>();
         if (_playerScript == null)
             Debug.LogError("player not found!");
-
-        if (_isInvertedVertically)
-            UpdateGravityStatus();
     }
 
     void FixedUpdate()
@@ -89,7 +81,6 @@ public class MinibotController : MonoBehaviour
 			_playerScript.Jump(); 
         }
 
-		ApplyGravity();
 		_isGrounded = false;
     }
 
@@ -117,7 +108,7 @@ public class MinibotController : MonoBehaviour
 
 	void ApplyJumpForces (Vector3 currentVelocity)
 	{
-		if ( _isInvertedVertically )
+		if ( _gravityHandler.IsInverted )
 			rigidbody.velocity = new Vector3(currentVelocity.x, -CalculateJumpVerticalSpeed(), currentVelocity.z);
 		else
 			rigidbody.velocity = new Vector3(currentVelocity.x, CalculateJumpVerticalSpeed(), currentVelocity.z);		 
@@ -133,11 +124,6 @@ public class MinibotController : MonoBehaviour
 		Vector3 tVelocity = rigidbody.velocity;
 		tVelocity.x = 0;
 		rigidbody.velocity = tVelocity;
-	}
-
-	void ApplyGravity ()
-	{
-		rigidbody.AddForce(new Vector3(0, -_gravity * rigidbody.mass, 0));
 	}
 
 	// ************************************************************************************
@@ -158,19 +144,12 @@ public class MinibotController : MonoBehaviour
 	// ************************************************************************************
 	float AdjustXInput(float xInput)
 	{
-		if (_isInvertedVertically)
+		if ( _gravityHandler.IsInverted )
 			xInput = -xInput;
 		if (_isInvertedHorizontally)
 			xInput = -xInput;
 
 		return xInput;
-	}
-	
-	private void UpdateGravityStatus()
-	{
-		if ((_isInvertedVertically == true && _gravity > 0)
-		    || (_isInvertedVertically == false && _gravity < 0))
-			_gravity = -_gravity;
 	}
 
 	public void InvertHorizontally()
@@ -179,16 +158,6 @@ public class MinibotController : MonoBehaviour
 			_isInvertedHorizontally = false;
 		else
 			_isInvertedHorizontally = true;
-	}
-	
-	public void InvertVertically()
-	{
-		if (_isInvertedVertically)
-			_isInvertedVertically = false;
-		else
-			_isInvertedVertically = true;
-
-		UpdateGravityStatus();
 	}
 
 	// ************************************************************************************
@@ -210,7 +179,7 @@ public class MinibotController : MonoBehaviour
     {
         // From the jump height and gravity we deduce the upwards speed 
         // for the character to reach at the apex.
-        if ( _isInvertedVertically )
+		if ( _gravityHandler.IsInverted )
             return Mathf.Sqrt(2 * _jumpHeight * -_gravity);
         else
             return Mathf.Sqrt(2 * _jumpHeight * _gravity);
@@ -220,7 +189,7 @@ public class MinibotController : MonoBehaviour
     {
         RaycastHit hit;
         Vector3 checkDirection;
-        if ( _isInvertedVertically )
+		if ( _gravityHandler.IsInverted )
             checkDirection = Vector3.up;
         else
             checkDirection = Vector3.down;
@@ -246,11 +215,9 @@ public class MinibotController : MonoBehaviour
 	public void Reset (bool initHorizontalValue, bool initVerticalValue)
 	{
 		_isInvertedHorizontally = initHorizontalValue;		
-		_isInvertedVertically = initVerticalValue;
+		_gravityHandler.IsInverted = initVerticalValue;
 
 		rigidbody.velocity = Vector3.zero;
 		_isGrounded = false;
-
-		UpdateGravityStatus();
 	}
 }

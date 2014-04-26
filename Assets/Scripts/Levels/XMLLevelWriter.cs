@@ -42,13 +42,13 @@ public class XMLLevelWriter : XMLAccessor {
             newXMLElement.SetAttribute("x", minibotScript.startingPos.x.ToString());
             newXMLElement.SetAttribute("y", minibotScript.startingPos.y.ToString());
 
-            MinibotController controllerScipt
-                = minibot.GetComponent<MinibotController>();
+            MinibotController controllerScipt = minibot.GetComponent<MinibotController>();
+			GravityHandler gravityHandlerScript = minibot.GetComponent<GravityHandler>();
             string value = "";
-            value = BoolToString(controllerScipt.IsInvertedVertically);
+            value = BoolToString(controllerScipt);
             newXMLElement.SetAttribute("invertGravity", value);            
 
-            value = BoolToString(controllerScipt.IsInvertedHorizontally);
+			value = BoolToString(gravityHandlerScript.IsInverted);
             newXMLElement.SetAttribute("invertHorizontal", value);
             elemRoot.AppendChild(newXMLElement);                      // Make the transform node the parent
         }

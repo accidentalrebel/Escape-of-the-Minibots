@@ -31,7 +31,8 @@ public class Minibot : LevelObject {
     private GameObject 			_objectBeingCarried;
     private Rigidbody 			_theRigidBody;    
     private MinibotController 	_controller;
-    
+	private GravityHandler 		_gravityHandler;
+
 	private bool _hasExited;
 	private bool _isJumping = false;
     private bool _isStanding = true;
@@ -53,6 +54,9 @@ public class Minibot : LevelObject {
 	protected override void Awake ()
 	{
 		base.Awake ();
+
+		_gravityHandler = gameObject.GetComponent<GravityHandler>();
+		_gravityHandler.OnGravityChanged += OnGravitySwitched;
 
 		_controller = gameObject.GetComponentInChildren<MinibotController>();
 	}
@@ -112,7 +116,7 @@ public class Minibot : LevelObject {
         startingPos = startPos;        
         gameObject.transform.position = startingPos;
 		       
-        _controller.IsInvertedVertically = isInvertedGrav;
+		_gravityHandler.IsInverted = isInvertedGrav;
         _controller.IsInvertedHorizontally = isInvertedHor;
         _initVerticalOrientation = isInvertedGrav;
         _initHorizontalOrientation = isInvertedHor;
@@ -143,14 +147,14 @@ public class Minibot : LevelObject {
 		}
 	}
 
+	void OnGravitySwitched()
+	{
+		_spriteManager.SetFlippedY(_gravityHandler.IsInverted);
+	}
+
 	// ************************************************************************************
 	// ORIENTATION AND STATUS
 	// ************************************************************************************
-	public void InvertVerticalOrientation()
-	{
-		_controller.InvertVertically();
-		_spriteManager.SetFlippedY(_controller.IsInvertedVertically);
-	}    
 
 	private void DisableMinibot()
 	{
@@ -247,7 +251,7 @@ public class Minibot : LevelObject {
             checkDirection = Vector3.right;
 
 		Vector3 feetOffset;
-		if ( !_controller.IsInvertedVertically )
+		if ( !_gravityHandler.IsInverted )
 			feetOffset = Vector3.up;
 		else
 			feetOffset = Vector3.down;
@@ -258,7 +262,7 @@ public class Minibot : LevelObject {
 			return collidedGameObject;
 
 		Vector3 headOffset;
-		if ( !_controller.IsInvertedVertically )
+		if ( !_gravityHandler.IsInverted )
 			headOffset = Vector3.down;
 		else
 			headOffset = Vector3.up;
@@ -368,7 +372,7 @@ public class Minibot : LevelObject {
     // ************************************************************************************
     override public void GetEditableAttributes(LevelEditor levelEditor)
     {
-        _controller.IsInvertedVertically = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 110, 20), _controller.IsInvertedVertically, "Invert Gravity");
+		_gravityHandler.IsInverted = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 110, 20), _gravityHandler.IsInverted, "Invert Gravity");
         _controller.IsInvertedHorizontally = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 90, 150, 20), _controller.IsInvertedHorizontally, "Invert Horizontal");
     }
 }

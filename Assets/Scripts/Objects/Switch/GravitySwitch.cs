@@ -15,16 +15,13 @@ public class GravitySwitch : Switch
     }
 
 	public override void Use ()
-	{
-		Minibot minibotScript = _triggeredCollider.gameObject.GetComponent<Minibot>();
-		minibotScript.InvertVerticalOrientation();
-		
+	{	
 		foreach( LevelObject levelObject in _linkedObjects ) {
 			if ( levelObject == null )
 				continue;
 
 			Debug.Log ("GOING THROUGH LINKEDOBJECTS");
-			GravityHandler gravityHandler = levelObject.GetComponentInChildren<GravityHandler>();
+			GravityHandler gravityHandler = levelObject.GetComponent<GravityHandler>();
 			if ( gravityHandler == null )
 				continue;
 

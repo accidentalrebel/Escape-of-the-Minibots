@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{8606E3B5-384B-E3D4-B471-0805F2989EF8}</ProjectGuid>
+	<ProjectGuid>{EB820643-D9F9-7EE7-8DA5-6630FC80D3BD}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -181,7 +181,6 @@
      <None Include="Assets\Resources\Levels\4.xml" />
      <None Include="Assets\Resources\Levels\26.xml" />
      <None Include="Assets\Resources\Levels\test.xml" />
-     <None Include="Assets\Resources\Levels\29.xml" />
      <None Include="Assets\Replays\Jerel\21-1-1-2013-22-0.txt" />
      <None Include="Assets\Replays\BEdelman\25-1-5-2013-21-10.txt" />
      <None Include="Assets\Replays\Jerel\10-1-1-2013-21-21.txt" />

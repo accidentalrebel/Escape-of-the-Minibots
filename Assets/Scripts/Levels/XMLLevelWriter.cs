@@ -86,16 +86,6 @@ public class XMLLevelWriter : XMLAccessor {
 			elemRoot.AppendChild(newXMLElement);
 		}
 		
-		// We loop through all gravity inverters
-		foreach (Transform gravityInverter in gravityInvertersContainer.transform)
-		{
-			newXMLElement = xmlDoc.CreateElement("gravityInverter");
-			LevelObject levelObjectScript = gravityInverter.gameObject.GetComponent<LevelObject>();
-			newXMLElement.SetAttribute("x", levelObjectScript.startingPos.x.ToString());
-			newXMLElement.SetAttribute("y", levelObjectScript.startingPos.y.ToString());
-			elemRoot.AppendChild(newXMLElement);
-		}
-		
 		// We loop through all the hazards
 		foreach (Transform hazard in hazardsContainer.transform)
 		{
@@ -177,6 +167,19 @@ public class XMLLevelWriter : XMLAccessor {
 			Switch switchScript = aSwitch.gameObject.GetComponent<Switch>();
 			ParseAndSaveLinksForSwitch(switchScript, newXMLElement);
 			elemRoot.AppendChild(newXMLElement);	
+		}
+
+		// We loop through all gravity inverters
+		foreach (Transform gravityInverter in gravityInvertersContainer.transform)
+		{
+			newXMLElement = xmlDoc.CreateElement("gravityInverter");
+			LevelObject levelObjectScript = gravityInverter.gameObject.GetComponent<LevelObject>();
+			newXMLElement.SetAttribute("x", levelObjectScript.startingPos.x.ToString());
+			newXMLElement.SetAttribute("y", levelObjectScript.startingPos.y.ToString());
+
+			GravitySwitch switchScript = gravityInverter.gameObject.GetComponent<GravitySwitch>();
+			ParseAndSaveLinksForSwitch(switchScript, newXMLElement);
+			elemRoot.AppendChild(newXMLElement);
 		}
           
         xmlDoc.Save(filepath);

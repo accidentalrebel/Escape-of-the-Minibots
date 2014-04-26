@@ -64,15 +64,6 @@ public class XMLLevelReader : XMLAccessor {
 				
 				newObject.transform.parent = doorsContainer.transform;
 			}
-			else if (reader.IsStartElement("gravityInverter"))
-			{
-                newObject = (GameObject)Instantiate(prefabHandler.pfGravityInverter);
-				newObject.GetComponent<GravitySwitch>().Initialize(new Vector3
-					( float.Parse(reader.GetAttribute("x"))
-					, float.Parse(reader.GetAttribute("y")), 0));
-				
-				newObject.transform.parent = gravityInvertersContainer.transform;
-			}
 			else if (reader.IsStartElement("hazard"))
 			{
                 newObject = (GameObject)Instantiate(prefabHandler.pfHazard);
@@ -145,7 +136,19 @@ public class XMLLevelReader : XMLAccessor {
 				SetupLinksForSwitch(switchScript, reader);
 				
 				newObject.transform.parent = switchesContainer.transform;
-			}			
+			}	
+			else if (reader.IsStartElement("gravityInverter"))
+			{
+				newObject = (GameObject)Instantiate(prefabHandler.pfGravityInverter);
+				Vector3 startingPos = new Vector3(float.Parse(reader.GetAttribute("x"))
+				                                  , float.Parse(reader.GetAttribute("y")), 0);
+				
+				GravitySwitch switchScript = newObject.GetComponent<GravitySwitch>();
+				switchScript.Initialize(startingPos);
+				SetupLinksForSwitch(switchScript, reader);
+				
+				newObject.transform.parent = gravityInvertersContainer.transform;
+			}
         }
 
 		Registry.map.UpdateNeighborsForAllWallTiles();

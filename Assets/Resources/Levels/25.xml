@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <tiles>
   <minibot x="3" y="11" invertGravity="0" invertHorizontal="0" />
-  <minibot x="3" y="4" invertGravity="1" invertHorizontal="1" />
+  <minibot x="4" y="3" invertGravity="0" invertHorizontal="1" />
   <tile x="0" y="0" />
   <tile x="0" y="1" />
   <tile x="0" y="2" />
@@ -159,9 +159,15 @@
   <tile x="2" y="9" />
   <tile x="6" y="2" />
   <tile x="7" y="2" />
-  <box x="7" y="4" />
-  <door x="15" y="9" isOpen="1" />
+  <tile x="10" y="2" />
+  <tile x="11" y="2" />
+  <tile x="9" y="2" />
+  <tile x="12" y="2" />
+  <tile x="13" y="2" />
+  <tile x="8" y="2" />
+  <box x="6" y="3" />
   <door x="15" y="2" isOpen="0" />
-  <stepSwitch x="10" y="10" xPosOfObjectToActivate1="15" yPosOfObjectToActivate1="2" />
-  <gravityInverter x="4" y="3" xPosOfObjectToActivate1="7" yPosOfObjectToActivate1="4" xPosOfObjectToActivate2="3" yPosOfObjectToActivate2="4" />
+  <door x="15" y="13" isOpen="1" />
+  <gravityInverter x="10" y="10" xPosOfObjectToActivate1="6" yPosOfObjectToActivate1="3" xPosOfObjectToActivate2="4" yPosOfObjectToActivate2="3" />
+  <gravityInverter x="10" y="3" xPosOfObjectToActivate1="3" yPosOfObjectToActivate1="11" />
 </tiles>

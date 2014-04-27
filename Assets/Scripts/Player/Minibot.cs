@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(GravityHandler))]
 public class Minibot : LevelObject {
 
 	public enum Direction { Left, Right };

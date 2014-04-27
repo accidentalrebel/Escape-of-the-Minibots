@@ -50,7 +50,8 @@ public class XMLLevelReader : XMLAccessor {
                 newObject = (GameObject)Instantiate(prefabHandler.pfBox);
 				newObject.GetComponent<Box>().Initialize(new Vector3
 					( float.Parse(reader.GetAttribute("x"))
-					, float.Parse(reader.GetAttribute("y")), 0));
+					, float.Parse(reader.GetAttribute("y")), 0)
+				    , StringToBool(reader.GetAttribute("invertGravity")));
 				
 				newObject.transform.parent = boxesContainer.transform;
 			}

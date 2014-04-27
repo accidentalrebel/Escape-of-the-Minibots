@@ -45,10 +45,10 @@ public class XMLLevelWriter : XMLAccessor {
             //MinibotController controllerScipt = minibot.GetComponent<MinibotController>();
 			//GravityHandler gravityHandlerScript = minibot.GetComponent<GravityHandler>();
             string value = "";
-			value = BoolToString(minibotScript.InitHorizontalOrientation);
+			value = BoolToString(minibotScript.InitVerticalOrientation);
             newXMLElement.SetAttribute("invertGravity", value);            
 
-			value = BoolToString(minibotScript.InitVerticalOrientation);
+			value = BoolToString(minibotScript.InitHorizontalOrientation);
             newXMLElement.SetAttribute("invertHorizontal", value);
             elemRoot.AppendChild(newXMLElement);                      // Make the transform node the parent
         }
@@ -68,9 +68,14 @@ public class XMLLevelWriter : XMLAccessor {
 		foreach (Transform box in boxesContainer.transform)
 		{
 			newXMLElement = xmlDoc.CreateElement("box");
-			LevelObject levelObjectScript = box.gameObject.GetComponent<LevelObject>();
-			newXMLElement.SetAttribute("x", Mathf.Ceil(levelObjectScript.startingPos.x).ToString());
-			newXMLElement.SetAttribute("y", Mathf.Ceil(levelObjectScript.startingPos.y).ToString());
+			Box boxScript = box.gameObject.GetComponent<Box>();
+			newXMLElement.SetAttribute("x", Mathf.Ceil(boxScript.startingPos.x).ToString());
+			newXMLElement.SetAttribute("y", Mathf.Ceil(boxScript.startingPos.y).ToString());
+
+			string value = "";
+			value = BoolToString(boxScript.InitVerticalOrientation);
+			newXMLElement.SetAttribute("invertGravity", value);
+
 			elemRoot.AppendChild(newXMLElement);
 		}
 		

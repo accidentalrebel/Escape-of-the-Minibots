@@ -7,6 +7,12 @@ public class Box : LevelObject {
     private Rigidbody theRigidBody;
 	private bool _isInvertedVertically = false;
 	private bool _initVerticalOrientation = false;
+	public bool InitVerticalOrientation {
+		get {
+			return _initVerticalOrientation;
+		}
+	}
+
 	private GravityHandler _gravityHandler;
 
 	protected override void Awake ()
@@ -25,9 +31,12 @@ public class Box : LevelObject {
         base.Start();
     }
 	
-	override public void Initialize(Vector3 theStartingPos)
+	public void Initialize(Vector3 theStartingPos, bool initVerticalOrientation)
 	{
 		base.Initialize(theStartingPos);
+
+		_initVerticalOrientation = initVerticalOrientation;
+		_gravityHandler.IsInverted = _initVerticalOrientation;
 	}
 
 	public void PickUp()

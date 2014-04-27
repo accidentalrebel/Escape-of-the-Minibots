@@ -39,21 +39,10 @@ public class Box : LevelObject {
 		_gravityHandler.IsInverted = _initVerticalOrientation;
 	}
 
-	public void PickUp()
-    {
-        //theRigidBody.useGravity = false;
-    }
-
-	public void PutDown()
-    {
-        //theRigidBody.useGravity = true;
-    }
-
     override public void ResetObject()
     {
         theRigidBody.velocity = Vector3.zero;
         theRigidBody.angularVelocity = Vector3.zero;
-        //theRigidBody.useGravity = true;
 
         base.ResetObject();
     }

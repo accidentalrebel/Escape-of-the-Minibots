@@ -89,10 +89,7 @@ public class Minibot : LevelObject {
     void Update()
     {
         // Handles the carrying of the object
-        if (_objectBeingCarried != null)
-        {
-            _objectBeingCarried.transform.position = transform.position + Vector3.up;
-        }
+		HandleCarriedObject();
     }
 	
     void LateUpdate()
@@ -223,31 +220,6 @@ public class Minibot : LevelObject {
 		}
     }
 
-    public void PickUpObject(GameObject objectAtSide)
-    {
-        _objectBeingCarried = objectAtSide;
-        _objectBeingCarried.GetComponent<Box>().PickUp();
-    }
-
-	public void PutDownCarriedObject()
-    {     
-		if ( _objectBeingCarried == null )
-			return;
-
-		if ( GetObjectAtSide(_isFacing, dropRayLength) == null )
-		{
-			Vector3 putDownPosition;
-			if (_isFacing == Direction.Left)
-				putDownPosition = transform.position + Vector3.left;
-			else		
-				putDownPosition = transform.position + Vector3.right;
-
-	        _objectBeingCarried.transform.position = putDownPosition;
-			_objectBeingCarried.GetComponent<Box>().PutDown();
-	        _objectBeingCarried = null;
-		}
-    }
-
 	public GameObject GetObjectAtSide(Direction direction)
 	{
 		return GetObjectAtSide(direction, normalRayLength);
@@ -302,6 +274,40 @@ public class Minibot : LevelObject {
 		}
 
 		return null;
+	}
+
+	// ************************************************************************************
+	// OBJECT CARRYING
+	// ************************************************************************************
+	private void HandleCarriedObject ()	{
+		if (_objectBeingCarried != null) {
+			if ( _gravityHandler.IsInverted )
+				_objectBeingCarried.transform.position = transform.position + Vector3.down * 1.25f;
+			else
+				_objectBeingCarried.transform.position = transform.position + Vector3.up;
+		}
+	}
+	
+	public void PickUpObject(GameObject objectAtSide) {
+		_objectBeingCarried = objectAtSide;
+	}
+	
+	public void PutDownCarriedObject()
+	{     
+		if ( _objectBeingCarried == null )
+			return;
+		
+		if ( GetObjectAtSide(_isFacing, dropRayLength) == null )
+		{
+			Vector3 putDownPosition;
+			if (_isFacing == Direction.Left)
+				putDownPosition = transform.position + Vector3.left;
+			else		
+				putDownPosition = transform.position + Vector3.right;
+			
+			_objectBeingCarried.transform.position = putDownPosition;
+			_objectBeingCarried = null;
+		}
 	}
 
     // ************************************************************************************

@@ -95,6 +95,7 @@
      <Compile Include="Assets\Scripts\Replays\ReplayEvent.cs" />
      <Compile Include="Assets\Scripts\Replays\ReplayManager.cs" />
      <Compile Include="Assets\Scripts\Replays\ReplayViewer.cs" />
+     <Compile Include="Assets\Scripts\Sprites\SpriteFlipper.cs" />
      <Compile Include="Assets\Scripts\Sprites\SpriteManager.cs" />
      <Compile Include="Assets\Scripts\Sprites\TileFrontManager.cs" />
      <None Include="Assets\Resources\Levels\13.xml" />

@@ -2,10 +2,13 @@ using UnityEngine;
 using System.Collections;
 
 [RequireComponent(typeof(GravityHandler))]
+[RequireComponent(typeof(Rigidbody))]
 public class Box : LevelObject {
 
-    private Rigidbody theRigidBody;
+    private Rigidbody _rigidBody;
 	private bool _isInvertedVertically = false;
+	private GravityHandler _gravityHandler;
+
 	private bool _initVerticalOrientation = false;
 	public bool InitVerticalOrientation {
 		get {
@@ -13,23 +16,13 @@ public class Box : LevelObject {
 		}
 	}
 
-	private GravityHandler _gravityHandler;
-
 	protected override void Awake ()
 	{
 		base.Awake ();
 
 		_gravityHandler = gameObject.GetComponent<GravityHandler>();
+		_rigidBody = GetComponent<Rigidbody>();
 	}
-
-    override protected void Start()
-    {
-        theRigidBody = GetComponent<Rigidbody>();
-        if (theRigidBody == null)
-            Debug.LogError("theRigidBody is not found!");
-
-        base.Start();
-    }
 	
 	public void Initialize(Vector3 theStartingPos, bool initVerticalOrientation)
 	{
@@ -41,8 +34,8 @@ public class Box : LevelObject {
 
     override public void ResetObject()
     {
-        theRigidBody.velocity = Vector3.zero;
-        theRigidBody.angularVelocity = Vector3.zero;
+        _rigidBody.velocity = Vector3.zero;
+        _rigidBody.angularVelocity = Vector3.zero;
 
 		_gravityHandler.Reset(_initVerticalOrientation);
 
@@ -51,7 +44,8 @@ public class Box : LevelObject {
 
 	public override void GetEditableAttributes (LevelEditor levelEditor)
 	{
-		_gravityHandler.IsInverted = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 110, 20), _gravityHandler.IsInverted, "Invert Gravity");
+		Rect guiRect = new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 110, 20);
+		_gravityHandler.IsInverted = GUI.Toggle(guiRect, _gravityHandler.IsInverted, "Invert Gravity");
 		_initVerticalOrientation =  _gravityHandler.IsInverted;
 	}
 }

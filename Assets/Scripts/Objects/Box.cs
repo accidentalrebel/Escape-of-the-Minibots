@@ -44,6 +44,8 @@ public class Box : LevelObject {
         theRigidBody.velocity = Vector3.zero;
         theRigidBody.angularVelocity = Vector3.zero;
 
+		_gravityHandler.Reset(_initVerticalOrientation);
+
         base.ResetObject();
     }
 

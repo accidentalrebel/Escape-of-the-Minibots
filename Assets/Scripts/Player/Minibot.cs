@@ -284,7 +284,7 @@ public class Minibot : LevelObject {
 			if ( _gravityHandler.IsInverted )
 				_objectBeingCarried.transform.position = transform.position + Vector3.down * 1.25f;
 			else
-				_objectBeingCarried.transform.position = transform.position + Vector3.up;
+				_objectBeingCarried.transform.position = transform.position + Vector3.up ;
 		}
 	}
 	

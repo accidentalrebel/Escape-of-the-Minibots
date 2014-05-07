@@ -36,7 +36,7 @@ public class Main : MonoBehaviour
 
         timer = GetComponent<Timer>();
         if (timer == null)
-            Debug.LogError("Timer not found!");
+            Debug.LogWarning("Timer not found!");
 
         GameObject settingsGO = GameObject.Find("Settings");
         if (settingsGO != null)
@@ -124,8 +124,11 @@ public class Main : MonoBehaviour
 
         isReplayMode = false;
 
-        EUpdateMinibotCount();                          // We update the Minibot Count
-        ELevelStarted();
+		if ( EUpdateMinibotCount != null &&EUpdateMinibotCount.GetInvocationList().Length > 0 )
+			EUpdateMinibotCount();                          // We update the Minibot Count
+		
+		if ( ELevelStarted != null &&ELevelStarted.GetInvocationList().Length > 0 )
+			ELevelStarted();
     }
 
     public void RestartLevel()
@@ -137,8 +140,12 @@ public class Main : MonoBehaviour
 	public void ResetLevel()
     {
         map.RestartLevel();
-        EUpdateMinibotCount();                          // We update the Minibot Count
-        ELevelStarted();
+       
+		if ( EUpdateMinibotCount != null &&EUpdateMinibotCount.GetInvocationList().Length > 0 )
+			EUpdateMinibotCount();                          // We update the Minibot Count
+		
+		if ( ELevelStarted != null &&ELevelStarted.GetInvocationList().Length > 0 )
+			ELevelStarted();
     }
 
     // ************************************************************************************
@@ -147,8 +154,10 @@ public class Main : MonoBehaviour
 
 	public void OnMinibotExit()
     {
-        EUpdateMinibotCount();
-        int minibotsLeft = CountMinibotsInLevel();
+		if ( EUpdateMinibotCount != null && EUpdateMinibotCount.GetInvocationList().Length > 0 )
+			EUpdateMinibotCount();
+       
+		int minibotsLeft = CountMinibotsInLevel();
 
         if (minibotsLeft <= 0)
             LevelCompleted();
@@ -162,7 +171,8 @@ public class Main : MonoBehaviour
             RestartLevel();
         else
         {
-            ELevelCompleted();
+			if ( ELevelCompleted != null && ELevelCompleted.GetInvocationList().Length > 0 )
+           	 	ELevelCompleted();
         }
     }
 

@@ -21,12 +21,20 @@ public class CornerCover : MonoBehaviour {
 
 	void repositionCornerCover() 
 	{
-		if ( cornerLocation == CornerLocation.TopLeft ) {
-			var screenHeight = 4 * Camera.main.orthographicSize;
-			var screenWidth = screenHeight * Camera.main.aspect;
-			Vector3 coverSize = renderer.bounds.size;
+		var screenHeight = 4 * Camera.main.orthographicSize;
+		var screenWidth = screenHeight * Camera.main.aspect;
+		Vector3 coverSize = renderer.bounds.size;
+		Vector3 newPosition;
 
-			gameObject.transform.localPosition = new Vector3(-screenWidth / 2 + coverSize.x / 2, screenHeight / 2 - coverSize.y / 2, -1);
-		}
+		if ( cornerLocation == CornerLocation.TopLeft )
+			newPosition = new Vector3(-screenWidth / 2 + coverSize.x / 2, screenHeight / 2 - coverSize.y / 2, -1);
+		else if ( cornerLocation == CornerLocation.TopRight )
+			newPosition = new Vector3(screenWidth / 2 - coverSize.x / 2, screenHeight / 2 - coverSize.y / 2, -1);
+		else if ( cornerLocation == CornerLocation.BottomRight )
+			newPosition = new Vector3(screenWidth / 2 - coverSize.x / 2, -screenHeight / 2 + coverSize.y / 2, -1);
+		else
+			newPosition = new Vector3(-screenWidth / 2 + coverSize.x / 2, -screenHeight / 2 + coverSize.y / 2, -1);
+
+		gameObject.transform.localPosition = newPosition;
 	}
 }

@@ -14,8 +14,7 @@ public class ScanlineMover : MonoBehaviour {
 
 	void Update () {
 		Vector2 currentOffset = _theRenderer.material.GetTextureOffset("_MainTex");
-		float offsetTouse = currentOffset.y + (Y_OFFSET_STEP * Time.deltaTime);
-
-		_theRenderer.material.SetTextureOffset("_MainTex", new Vector2(0, offsetTouse));
+		float offsetToUse = currentOffset.y + (Random.Range(-0.1f, 0.2f) * Time.deltaTime);
+		_theRenderer.material.SetTextureOffset("_MainTex", new Vector2(0, offsetToUse));
 	}
 }

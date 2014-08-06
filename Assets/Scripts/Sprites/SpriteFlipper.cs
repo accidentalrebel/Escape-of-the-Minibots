@@ -4,6 +4,7 @@ using System.Collections;
 public class SpriteFlipper : MonoBehaviour {
 
 	bool _isHorizontallyFlipped = false;
+	bool _isVerticallyFlipped = false;
 
 	void Start () {
 
@@ -17,6 +18,8 @@ public class SpriteFlipper : MonoBehaviour {
 			transform.localScale = new Vector3(-currentXScale, currentScale.y, currentScale.z);
 		else
 			transform.localScale = new Vector3(currentXScale, currentScale.y, currentScale.z);
+
+		_isHorizontallyFlipped = flipValue;
 	}
 	
 	public void SetFlippedY(bool flipValue)	{
@@ -24,11 +27,13 @@ public class SpriteFlipper : MonoBehaviour {
 		Vector3 currentPosition = transform.localPosition;
 		float currentYScale = Mathf.Abs(currentScale.y);
 		
-		if ( flipValue ) {
+		if ( flipValue && !_isVerticallyFlipped ) {
 			transform.localScale = new Vector3(currentScale.x, -currentYScale, currentScale.z);
 		}
 		else {
 			transform.localScale = new Vector3(currentScale.x, currentYScale, currentScale.z);
 		}
+
+		_isVerticallyFlipped = flipValue;
 	}
 }

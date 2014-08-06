@@ -11,8 +11,7 @@ public class CornerCover : MonoBehaviour {
 		BottomLeft
 	};
 
-	public CornerLocation cornerLocation = CornerLocation.TopLeft; 
-	public Camera guiCamera;
+	public CornerLocation cornerLocation = CornerLocation.TopLeft;
 
 	void Start () 
 	{

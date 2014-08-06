@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\RepeatingTexture.cs" />
+     <Compile Include="Assets\ScanlineMover.cs" />
      <Compile Include="Assets\Scripts\Character\CharacterMotor.cs" />
      <Compile Include="Assets\Scripts\Character\MinibotController.cs" />
      <Compile Include="Assets\Scripts\Character\MinibotList.cs" />

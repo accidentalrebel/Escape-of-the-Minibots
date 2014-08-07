@@ -46,15 +46,12 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\CornerCover.cs" />
-     <Compile Include="Assets\LabelBackground.cs" />
-     <Compile Include="Assets\RepeatingTexture.cs" />
-     <Compile Include="Assets\ScanlineMover.cs" />
-     <Compile Include="Assets\ScreenSideCover.cs" />
      <Compile Include="Assets\Scripts\Character\CharacterMotor.cs" />
      <Compile Include="Assets\Scripts\Character\MinibotController.cs" />
      <Compile Include="Assets\Scripts\Character\MinibotList.cs" />
      <Compile Include="Assets\Scripts\Character\PlatformInputController.cs" />
+     <Compile Include="Assets\Scripts\GUI\CornerCover.cs" />
+     <Compile Include="Assets\Scripts\GUI\LabelBackground.cs" />
      <Compile Include="Assets\Scripts\GUI\MainGame\GUILayout.cs" />
      <Compile Include="Assets\Scripts\GUI\MainGame\GUIManager.cs" />
      <Compile Include="Assets\Scripts\GUI\MainGame\GameGUI.cs" />
@@ -63,6 +60,8 @@
      <Compile Include="Assets\Scripts\GUI\MainMenu\LevelSelectionMenu.cs" />
      <Compile Include="Assets\Scripts\GUI\MainMenu\MainMenuManager.cs" />
      <Compile Include="Assets\Scripts\GUI\Menu.cs" />
+     <Compile Include="Assets\Scripts\GUI\ScanlineMover.cs" />
+     <Compile Include="Assets\Scripts\GUI\ScreenSideCover.cs" />
      <Compile Include="Assets\Scripts\Levels\FileReader.cs" />
      <Compile Include="Assets\Scripts\Levels\LevelEditor.cs" />
      <Compile Include="Assets\Scripts\Levels\LevelList.cs" />
@@ -79,6 +78,7 @@
      <Compile Include="Assets\Scripts\Misc\GraphicHandler.cs" />
      <Compile Include="Assets\Scripts\Misc\GravityHandler.cs" />
      <Compile Include="Assets\Scripts\Misc\PrefabHandler.cs" />
+     <Compile Include="Assets\Scripts\Misc\RepeatingTexture.cs" />
      <Compile Include="Assets\Scripts\Misc\Timer.cs" />
      <Compile Include="Assets\Scripts\Objects\Box.cs" />
      <Compile Include="Assets\Scripts\Objects\Door.cs" />

@@ -75,6 +75,7 @@
      <Compile Include="Assets\Scripts\Main\ProfileManager.cs" />
      <Compile Include="Assets\Scripts\Main\Registry.cs" />
      <Compile Include="Assets\Scripts\Main\Settings.cs" />
+     <Compile Include="Assets\Scripts\Managers\AudioManager.cs" />
      <Compile Include="Assets\Scripts\Managers\BGMManager.cs" />
      <Compile Include="Assets\Scripts\Managers\SFXManager.cs" />
      <Compile Include="Assets\Scripts\Misc\GraphicHandler.cs" />

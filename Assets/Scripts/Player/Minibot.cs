@@ -179,6 +179,9 @@ public class Minibot : LevelObject {
     // ************************************************************************************
     public void Jump()
     {
+		if ( _isJumping )
+			return;
+
         _spriteManager.Play("jumping");
         _isJumping = true;
 

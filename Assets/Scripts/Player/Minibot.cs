@@ -325,11 +325,11 @@ public class Minibot : LevelObject {
 		if ( _isDead )
 			return;
 
+		_isDead = true;	
+		Registry.sfxManager.PlaySFX(Registry.sfxManager.SFXHazardShock);
+
 		PutDownCarriedObject();
 		Registry.main.ResetLevel();
-
-		_isDead = true;
-		Registry.sfxManager.PlaySFX(Registry.sfxManager.SFXHazardShock);
     }
 
 	public void ExitLevel()

@@ -64,6 +64,7 @@ public class Switch : LevelObject {
 	public override void Use ()
 	{
 		UpdateSwitchGraphic();
+		Registry.sfxManager.PlaySFX(Registry.sfxManager.SFXButtonClick);
 
 		foreach( LevelObject levelObject in _linkedObjects ) {
 			if ( levelObject != null )

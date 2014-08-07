@@ -6,6 +6,7 @@ public class SFXManager : MonoBehaviour {
 	public AudioClip SFXJump;
 	public AudioClip SFXDoorExit;
 	public AudioClip SFXHazardShock;
+	public AudioClip SFXButtonClick;
 
 	void Start () 
 	{

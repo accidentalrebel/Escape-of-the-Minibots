@@ -16,6 +16,8 @@ public class GravitySwitch : Switch
 
 	public override void Use ()
 	{	
+		Registry.sfxManager.PlaySFX(Registry.sfxManager.SFXGravitySwitch);
+
 		foreach( LevelObject levelObject in _linkedObjects ) {
 			if ( levelObject == null )
 				continue;

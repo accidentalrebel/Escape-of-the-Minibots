@@ -5,6 +5,36 @@ using System.Collections.Generic;
 [RequireComponent(typeof(SpriteManager))]
 public class TileFrontManager : MonoBehaviour {
 
+	public bool enabled = true;
+
+	public void Enable()
+	{
+		enabled = true;
+	}
+
+	public void Disable()
+	{
+		enabled = false;
+	}
+
+	public void UpdateNeighbors () 
+	{
+		if ( !enabled ) 
+			return;
+
+		if ( !CheckForEdgeNeighbors()
+		    && !CheckForTripeAndUpInwardNeighbors()
+		    && !CheckForDoubleInwardNeighbors()
+		    && !CheckForTopRightNeighbor() 
+		    && !CheckForBottomRightNeighbor()
+		    && !CheckForBottomLeftNeighbor()
+		    && !CheckForTopLeftNeighbor() 
+		    && !CheckForOppositeNeighbors()
+		    && !CheckForNormalNeighbors()) {
+			_spriteManager.SetFrameTo("default", (int)TileSide.MIDDLE);
+		}
+	}
+
 	private enum TileSide {
 		MIDDLE 				= 1,
 		TOP 				= 2,
@@ -80,22 +110,6 @@ public class TileFrontManager : MonoBehaviour {
 		_tileSideDictionary.Add (TileSide.BOTTOM_LEFT, new Vector2(-1, -1));
 		_tileSideDictionary.Add (TileSide.LEFT, new Vector2(-1, 0));
 		_tileSideDictionary.Add (TileSide.TOP_LEFT, new Vector2(-1, 1));
-	}
-
-	public void UpdateNeighbors () {
-
-		if ( !CheckForEdgeNeighbors()
-		    && !CheckForTripeAndUpInwardNeighbors()
-		    && !CheckForDoubleInwardNeighbors()
-		    && !CheckForTopRightNeighbor() 
-		    && !CheckForBottomRightNeighbor()
-		    && !CheckForBottomLeftNeighbor()
-		    && !CheckForTopLeftNeighbor() 
-		    && !CheckForOppositeNeighbors()
-		    && !CheckForNormalNeighbors()) 
-		{
-			_spriteManager.SetFrameTo("default", (int)TileSide.MIDDLE);
-		}
 	}
 
 	private bool CheckForTripeAndUpInwardNeighbors ()

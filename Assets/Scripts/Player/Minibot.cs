@@ -45,6 +45,7 @@ public class Minibot : LevelObject {
 	private GravityHandler 		_gravityHandler;
 
 	private bool _hasExited;
+	private bool _isDead;
 	private bool _isJumping = false;
     private bool _isStanding = true;
     private bool _isWalking = false;
@@ -89,10 +90,7 @@ public class Minibot : LevelObject {
     void Update()
     {
         // Handles the carrying of the object
-        if (_objectBeingCarried != null)
-        {
-            _objectBeingCarried.transform.position = transform.position + Vector3.up;
-        }
+		HandleCarriedObject();
     }
 	
     void LateUpdate()
@@ -182,8 +180,13 @@ public class Minibot : LevelObject {
     // ************************************************************************************
     public void Jump()
     {
+		if ( _isJumping )
+			return;
+
         _spriteManager.Play("jumping");
         _isJumping = true;
+
+		Registry.sfxManager.PlaySFX(Registry.sfxManager.SFXJump);
     }
 
     public void OnReachedGround()
@@ -220,31 +223,6 @@ public class Minibot : LevelObject {
 		    _spriteManager.Play("walking");
 		    _isStanding = false;
 		    _isWalking = true;
-		}
-    }
-
-    public void PickUpObject(GameObject objectAtSide)
-    {
-        _objectBeingCarried = objectAtSide;
-        _objectBeingCarried.GetComponent<Box>().PickUp();
-    }
-
-	public void PutDownCarriedObject()
-    {     
-		if ( _objectBeingCarried == null )
-			return;
-
-		if ( GetObjectAtSide(_isFacing, dropRayLength) == null )
-		{
-			Vector3 putDownPosition;
-			if (_isFacing == Direction.Left)
-				putDownPosition = transform.position + Vector3.left;
-			else		
-				putDownPosition = transform.position + Vector3.right;
-
-	        _objectBeingCarried.transform.position = putDownPosition;
-			_objectBeingCarried.GetComponent<Box>().PutDown();
-	        _objectBeingCarried = null;
 		}
     }
 
@@ -304,12 +282,52 @@ public class Minibot : LevelObject {
 		return null;
 	}
 
+	// ************************************************************************************
+	// OBJECT CARRYING
+	// ************************************************************************************
+	private void HandleCarriedObject ()	{
+		if (_objectBeingCarried != null) {
+			if ( _gravityHandler.IsInverted )
+				_objectBeingCarried.transform.position = transform.position + Vector3.down * 1.25f;
+			else
+				_objectBeingCarried.transform.position = transform.position + Vector3.up ;
+		}
+	}
+	
+	public void PickUpObject(GameObject objectAtSide) {
+		_objectBeingCarried = objectAtSide;
+	}
+	
+	public void PutDownCarriedObject()
+	{     
+		if ( _objectBeingCarried == null )
+			return;
+		
+		if ( GetObjectAtSide(_isFacing, dropRayLength) == null )
+		{
+			Vector3 putDownPosition;
+			if (_isFacing == Direction.Left)
+				putDownPosition = transform.position + Vector3.left;
+			else		
+				putDownPosition = transform.position + Vector3.right;
+			
+			_objectBeingCarried.transform.position = putDownPosition;
+			_objectBeingCarried = null;
+		}
+	}
+
     // ************************************************************************************
     // SPAWNING
     // ************************************************************************************
 
     public void Die()
     {
+		if ( _isDead )
+			return;
+
+		_isDead = true;	
+		Registry.sfxManager.PlaySFX(Registry.sfxManager.SFXHazardShock);
+
 		PutDownCarriedObject();
 		Registry.main.ResetLevel();
     }
@@ -321,6 +339,7 @@ public class Minibot : LevelObject {
         DisableMinibot();
 
         Registry.main.OnMinibotExit();
+		Registry.sfxManager.PlaySFX(Registry.sfxManager.SFXDoorExit);
     }
 
     override public void ResetObject()
@@ -332,12 +351,13 @@ public class Minibot : LevelObject {
 
         base.ResetObject();
 
-		_spriteManager.Reset();     
+		_spriteManager.Reset();   
 		_controller.Reset(_initHorizontalOrientation, _initVerticalOrientation);
 		_gravityHandler.Reset(_initVerticalOrientation);
 
 		EnableMinibot();    
 		_hasExited = false;
+		_isDead = false;
     }
 
 	void CancelOutAllAppliedForces ()
@@ -383,8 +403,10 @@ public class Minibot : LevelObject {
     // ************************************************************************************
     override public void GetEditableAttributes(LevelEditor levelEditor)
     {
-		_gravityHandler.IsInverted = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 110, 20), _gravityHandler.IsInverted, "Invert Gravity");
-		_initVerticalOrientation =  _gravityHandler.IsInverted;
-		_controller.IsInvertedHorizontally = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 90, 150, 20), _controller.IsInvertedHorizontally, "Invert Horizontal");
-    }
+		Rect guiRect = new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 110, 20);
+		_initVerticalOrientation = _gravityHandler.IsInverted = GUI.Toggle(guiRect, _gravityHandler.IsInverted, "Invert Gravity");
+
+		guiRect = new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 90, 150, 20);
+		_initHorizontalOrientation = _controller.IsInvertedHorizontally = GUI.Toggle(guiRect, _controller.IsInvertedHorizontally, "Invert Horizontal");		 
+	}
 }

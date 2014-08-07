@@ -96,6 +96,11 @@ public class InputHandler : MonoBehaviour {
                 Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedReset);
                 PressedReset();
             }
+
+			else if (Input.GetKeyDown(KeyCode.M))
+			{
+				Registry.bgmManager.toggleStatus();
+			}
         }
 
         HandleAxis();

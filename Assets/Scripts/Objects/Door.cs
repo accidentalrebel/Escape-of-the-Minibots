@@ -10,10 +10,10 @@ public class Door : LevelObject {
 
     private bool _isOpen = false;
 	private bool _startingIsOpen = true;
+	private SpriteFlipper _spriteFlipper;
 
     public bool IsOpen
     {
-        //set { _isOpen = value; UpdateDoorGraphic(); }
         get { return _isOpen; }
     }
 
@@ -25,11 +25,14 @@ public class Door : LevelObject {
 			Debug.LogError("openTexture not initialized!");
 		if ( _closedTexture == null )
 			Debug.LogError("closedTexture not initialized!");
+
+		_spriteFlipper = gameObject.GetComponentInChildren<SpriteFlipper>();
 	}
 
     override protected void Start()
     {
         base.Start();
+		DetermineDoorVerticalOrientation();
         UpdateDoorGraphic();
     }
 	
@@ -39,6 +42,15 @@ public class Door : LevelObject {
 		_isOpen = theIsOpen;
         _startingIsOpen = _isOpen;
 
+	}
+
+	void DetermineDoorVerticalOrientation ()
+	{
+		Vector3 topPosition = transform.position + Vector3.up;
+		LevelObject levelObjectAtTop = Registry.map.GetLevelObjectAtPosition(topPosition);
+		if ( levelObjectAtTop != null && levelObjectAtTop is Tile ) {
+			_spriteFlipper.SetFlippedY(true);
+		}
 	}
 
     private void UpdateDoorGraphic()

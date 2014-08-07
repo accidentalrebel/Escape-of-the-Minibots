@@ -158,7 +158,9 @@ public class Minibot : LevelObject {
 
 	void OnGravitySwitched()
 	{
-		_spriteManager.SetFlippedY(_gravityHandler.IsInverted);
+		Vector3 currentScale = gameObject.transform.localScale;
+		gameObject.transform.localScale = new Vector3(currentScale.x, -currentScale.y, currentScale.z);
+		//_spriteManager.SetFlippedY(_gravityHandler.IsInverted);
 	}
 
 	// ************************************************************************************

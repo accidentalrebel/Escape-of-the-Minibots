@@ -185,7 +185,7 @@ public class Minibot : LevelObject {
         _spriteManager.Play("jumping");
         _isJumping = true;
 
-		Registry.sfxManager.PlaySFX("jump");
+		Registry.sfxManager.PlaySFX(Registry.sfxManager.jumpSFX);
     }
 
     public void OnReachedGround()
@@ -332,6 +332,7 @@ public class Minibot : LevelObject {
         DisableMinibot();
 
         Registry.main.OnMinibotExit();
+		Registry.sfxManager.PlaySFX(Registry.sfxManager.doorExitSFX);
     }
 
     override public void ResetObject()

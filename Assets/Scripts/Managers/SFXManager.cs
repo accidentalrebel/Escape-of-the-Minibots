@@ -3,19 +3,21 @@ using System.Collections;
 
 public class SFXManager : MonoBehaviour {
 
-	public AudioClip jumpSFX;
+	public AudioClip SFXJump;
+	public AudioClip SFXDoorExit;
+	public AudioClip SFXHazardShock;
+	public AudioClip SFXButtonClick;
+	public AudioClip SFXStepSwitchDown;
+	public AudioClip SFXStepSwitchUp;
+	public AudioClip SFXGravitySwitch;
 
 	void Start () 
 	{
 		Registry.sfxManager = this;
 	}
 
-	public void PlaySFX(string sfxName)
+	public void PlaySFX(AudioClip audioClipToPlay)
 	{
-		AudioClip audioClipToPlay = new AudioClip();
-		if ( sfxName == "jump" )
-			audioClipToPlay = jumpSFX;
-
 		AudioSource.PlayClipAtPoint(audioClipToPlay, Camera.main.transform.position);
 	}
 }

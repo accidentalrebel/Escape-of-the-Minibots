@@ -45,6 +45,7 @@ public class Minibot : LevelObject {
 	private GravityHandler 		_gravityHandler;
 
 	private bool _hasExited;
+	private bool _isDead;
 	private bool _isJumping = false;
     private bool _isStanding = true;
     private bool _isWalking = false;
@@ -185,7 +186,7 @@ public class Minibot : LevelObject {
         _spriteManager.Play("jumping");
         _isJumping = true;
 
-		Registry.sfxManager.PlaySFX("jump");
+		Registry.sfxManager.PlaySFX(Registry.sfxManager.SFXJump);
     }
 
     public void OnReachedGround()
@@ -321,6 +322,12 @@ public class Minibot : LevelObject {
 
     public void Die()
     {
+		if ( _isDead )
+			return;
+
+		_isDead = true;	
+		Registry.sfxManager.PlaySFX(Registry.sfxManager.SFXHazardShock);
+
 		PutDownCarriedObject();
 		Registry.main.ResetLevel();
     }
@@ -332,6 +339,7 @@ public class Minibot : LevelObject {
         DisableMinibot();
 
         Registry.main.OnMinibotExit();
+		Registry.sfxManager.PlaySFX(Registry.sfxManager.SFXDoorExit);
     }
 
     override public void ResetObject()
@@ -343,12 +351,13 @@ public class Minibot : LevelObject {
 
         base.ResetObject();
 
-		_spriteManager.Reset();     
+		_spriteManager.Reset();   
 		_controller.Reset(_initHorizontalOrientation, _initVerticalOrientation);
 		_gravityHandler.Reset(_initVerticalOrientation);
 
 		EnableMinibot();    
 		_hasExited = false;
+		_isDead = false;
     }
 
 	void CancelOutAllAppliedForces ()

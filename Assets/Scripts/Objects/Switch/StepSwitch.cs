@@ -26,6 +26,8 @@ public class StepSwitch : Switch {
 			_isTriggered = true;
 			Trigger();
 			UpdateSwitchGraphic();
+
+			Registry.sfxManager.PlaySFX(Registry.sfxManager.SFXStepSwitchDown);
 		}
     }
 
@@ -36,6 +38,8 @@ public class StepSwitch : Switch {
 			_isTriggered = false;
 			Trigger();
 			UpdateSwitchGraphic();
+
+			Registry.sfxManager.PlaySFX(Registry.sfxManager.SFXStepSwitchUp);
 		}
     }
 }

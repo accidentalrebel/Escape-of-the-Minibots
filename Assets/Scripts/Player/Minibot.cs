@@ -181,6 +181,8 @@ public class Minibot : LevelObject {
     {
         _spriteManager.Play("jumping");
         _isJumping = true;
+
+		Registry.sfxManager.PlaySFX("jump");
     }
 
     public void OnReachedGround()

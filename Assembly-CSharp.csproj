@@ -76,6 +76,7 @@
      <Compile Include="Assets\Scripts\Main\Registry.cs" />
      <Compile Include="Assets\Scripts\Main\Settings.cs" />
      <Compile Include="Assets\Scripts\Managers\BGMManager.cs" />
+     <Compile Include="Assets\Scripts\Managers\SFXManager.cs" />
      <Compile Include="Assets\Scripts\Misc\GraphicHandler.cs" />
      <Compile Include="Assets\Scripts\Misc\GravityHandler.cs" />
      <Compile Include="Assets\Scripts\Misc\PrefabHandler.cs" />

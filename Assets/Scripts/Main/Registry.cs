@@ -9,4 +9,5 @@ public static class Registry {
     public static InputHandler inputHandler;
     public static ReplayManager replayManager;
     public static PlayTestManager playtestManager;
+	public static SFXManager sfxManager;
 }

@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\CornerCover.cs" />
+     <Compile Include="Assets\LabelBackground.cs" />
      <Compile Include="Assets\RepeatingTexture.cs" />
      <Compile Include="Assets\ScanlineMover.cs" />
      <Compile Include="Assets\ScreenSideCover.cs" />

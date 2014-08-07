@@ -3,8 +3,9 @@ using System.Collections;
 
 public class SFXManager : MonoBehaviour {
 
-	public AudioClip jumpSFX;
-	public AudioClip doorExitSFX;
+	public AudioClip SFXJump;
+	public AudioClip SFXDoorExit;
+	public AudioClip SFXHazardShock;
 
 	void Start () 
 	{

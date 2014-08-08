@@ -31,7 +31,7 @@ public class PlayTestManager : MonoBehaviour {
         Debug.Log("sending " + fileData + "-" + timeStamp + "-" + username);
 
         WWWForm wwwForm = new WWWForm();
-        wwwForm.AddField("emailSubject", username);
+		wwwForm.AddField("emailSubject", username + "-" + level + "-" + timeStamp);
         wwwForm.AddField("emailTxt", username + "-" + level + "-" + timeStamp);
         wwwForm.AddField("fileName", level + "-" + timeStamp + ".txt");
         wwwForm.AddField("fileData", fileData);

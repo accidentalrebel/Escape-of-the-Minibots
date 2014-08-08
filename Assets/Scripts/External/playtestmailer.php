@@ -4,18 +4,16 @@
     $email = new PHPMailer();
 	$email->From      = 'karlo@accidentalrebel.com';
 	$email->FromName  = 'PlayTestMailer';
-	$email->Subject   = $_GET['emailSubject'];
-	$email->Body      = $_GET["emailTxt"];
-	$email->AddAddress( $_GET["toEmail"] );
+	$email->Subject   = $_POST['emailSubject'];
+	$email->Body      = $_POST["emailTxt"];
+	$email->AddAddress( $_POST["toEmail"] );
 	
-	$string 	= $_GET['fileData'];
-	$filename 	= $_GET['fileName'];
+	$string 	= $_POST['fileData'];
+	$filename 	= $_POST['fileName'];
 	$encoding	= 'base64';
 	$type 		= 'text/plain';
 	
 	$email->AddStringAttachment($string,$filename,$encoding,$type);
 	
 	$email->Send();
-	
-	// http://www.accidentalrebel.com/game-files/minibots/playtestmailer.php?toEmail=accidentalrebel_3avg@sendtodropbox.com&emailSubject=testSubject&emailTxt=sampleEmailText&fileData=sampleFileData&fileName=sampleFileName.txt
 ?>

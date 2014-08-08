@@ -6,7 +6,7 @@
 	$email->FromName  = 'PlayTestMailer';
 	$email->Subject   = $_GET['emailSubject'];
 	$email->Body      = $_GET["emailTxt"];
-	$email->AddAddress( 'accidentalrebel_3avg@sendtodropbox.com' );
+	$email->AddAddress( $_GET["toEmail"] );
 	
 	$string 	= $_GET['fileData'];
 	$filename 	= $_GET['fileName'];
@@ -17,6 +17,5 @@
 	
 	$email->Send();
 	
-	// http://www.accidentalrebel.com/game-files/minibots/playtestmailer.php?
-	// emailSubject=testSubject&emailTxt=sampleEmailText&fileData=sampleFileData&fileName=sampleFileName.txt
+	// http://www.accidentalrebel.com/game-files/minibots/playtestmailer.php?toEmail=accidentalrebel_3avg@sendtodropbox.com&emailSubject=testSubject&emailTxt=sampleEmailText&fileData=sampleFileData&fileName=sampleFileName.txt
 ?>

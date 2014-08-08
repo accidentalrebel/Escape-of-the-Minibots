@@ -1,7 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(GravityHandler))]
 public class Minibot : LevelObject {
+
+	const float MINIBOT_TRANSFORM_SCALE_Y = 1f;
 
 	public enum Direction { Left, Right };
 	public bool HasExited {
@@ -24,15 +27,27 @@ public class Minibot : LevelObject {
 
 	[SerializeField]
 	private bool _initVerticalOrientation;
+	public bool InitVerticalOrientation {
+		get {
+			return _initVerticalOrientation;
+		}
+	}
 	
 	[SerializeField]
 	private bool _initHorizontalOrientation;
+	public bool InitHorizontalOrientation {
+		get {
+			return _initHorizontalOrientation;
+		}
+	}
 	   
     private GameObject 			_objectBeingCarried;
     private Rigidbody 			_theRigidBody;    
     private MinibotController 	_controller;
-    
+	private GravityHandler 		_gravityHandler;
+
 	private bool _hasExited;
+	private bool _isDead;
 	private bool _isJumping = false;
     private bool _isStanding = true;
     private bool _isWalking = false;
@@ -49,6 +64,16 @@ public class Minibot : LevelObject {
             }
         }
     }
+
+	protected override void Awake ()
+	{
+		base.Awake ();
+
+		_gravityHandler = gameObject.GetComponent<GravityHandler>();
+		_gravityHandler.OnGravityChanged += OnGravitySwitched;
+
+		_controller = gameObject.GetComponentInChildren<MinibotController>();
+	}
 
     // ************************************************************************************
     // MAIN
@@ -67,10 +92,7 @@ public class Minibot : LevelObject {
     void Update()
     {
         // Handles the carrying of the object
-        if (_objectBeingCarried != null)
-        {
-            _objectBeingCarried.transform.position = transform.position + Vector3.up;
-        }
+		HandleCarriedObject();
     }
 	
     void LateUpdate()
@@ -104,9 +126,8 @@ public class Minibot : LevelObject {
     {
         startingPos = startPos;        
         gameObject.transform.position = startingPos;
-
-        _controller = gameObject.GetComponentInChildren<MinibotController>();
-        _controller.IsInvertedVertically = isInvertedGrav;
+		       
+		_gravityHandler.IsInverted = isInvertedGrav;
         _controller.IsInvertedHorizontally = isInvertedHor;
         _initVerticalOrientation = isInvertedGrav;
         _initHorizontalOrientation = isInvertedHor;
@@ -137,14 +158,19 @@ public class Minibot : LevelObject {
 		}
 	}
 
+	void OnGravitySwitched()
+	{
+		Vector3 currentScale = gameObject.transform.localScale;
+		float scaleYToUse = MINIBOT_TRANSFORM_SCALE_Y;
+		if ( _gravityHandler.IsInverted )
+			scaleYToUse = -MINIBOT_TRANSFORM_SCALE_Y;
+
+		gameObject.transform.localScale = new Vector3(currentScale.x, scaleYToUse, currentScale.z);
+	}
+
 	// ************************************************************************************
 	// ORIENTATION AND STATUS
 	// ************************************************************************************
-	public void InvertVerticalOrientation()
-	{
-		_controller.InvertVertically();
-		_spriteManager.SetFlippedY(_controller.IsInvertedVertically);
-	}    
 
 	private void DisableMinibot()
 	{
@@ -161,8 +187,13 @@ public class Minibot : LevelObject {
     // ************************************************************************************
     public void Jump()
     {
+		if ( _isJumping )
+			return;
+
         _spriteManager.Play("jumping");
         _isJumping = true;
+
+		Registry.sfxManager.PlaySFX(Registry.sfxManager.SFXJump);
     }
 
     public void OnReachedGround()
@@ -202,31 +233,6 @@ public class Minibot : LevelObject {
 		}
     }
 
-    public void PickUpObject(GameObject objectAtSide)
-    {
-        _objectBeingCarried = objectAtSide;
-        _objectBeingCarried.GetComponent<Box>().PickUp();
-    }
-
-	public void PutDownCarriedObject()
-    {     
-		if ( _objectBeingCarried == null )
-			return;
-
-		if ( GetObjectAtSide(_isFacing, dropRayLength) == null )
-		{
-			Vector3 putDownPosition;
-			if (_isFacing == Direction.Left)
-				putDownPosition = transform.position + Vector3.left;
-			else		
-				putDownPosition = transform.position + Vector3.right;
-
-	        _objectBeingCarried.transform.position = putDownPosition;
-			_objectBeingCarried.GetComponent<Box>().PutDown();
-	        _objectBeingCarried = null;
-		}
-    }
-
 	public GameObject GetObjectAtSide(Direction direction)
 	{
 		return GetObjectAtSide(direction, normalRayLength);
@@ -241,7 +247,7 @@ public class Minibot : LevelObject {
             checkDirection = Vector3.right;
 
 		Vector3 feetOffset;
-		if ( !_controller.IsInvertedVertically )
+		if ( !_gravityHandler.IsInverted )
 			feetOffset = Vector3.up;
 		else
 			feetOffset = Vector3.down;
@@ -252,7 +258,7 @@ public class Minibot : LevelObject {
 			return collidedGameObject;
 
 		Vector3 headOffset;
-		if ( !_controller.IsInvertedVertically )
+		if ( !_gravityHandler.IsInverted )
 			headOffset = Vector3.down;
 		else
 			headOffset = Vector3.up;
@@ -283,12 +289,52 @@ public class Minibot : LevelObject {
 		return null;
 	}
 
+	// ************************************************************************************
+	// OBJECT CARRYING
+	// ************************************************************************************
+	private void HandleCarriedObject ()	{
+		if (_objectBeingCarried != null) {
+			if ( _gravityHandler.IsInverted )
+				_objectBeingCarried.transform.position = transform.position + Vector3.down * 1.25f;
+			else
+				_objectBeingCarried.transform.position = transform.position + Vector3.up ;
+		}
+	}
+	
+	public void PickUpObject(GameObject objectAtSide) {
+		_objectBeingCarried = objectAtSide;
+	}
+	
+	public void PutDownCarriedObject()
+	{     
+		if ( _objectBeingCarried == null )
+			return;
+		
+		if ( GetObjectAtSide(_isFacing, dropRayLength) == null )
+		{
+			Vector3 putDownPosition;
+			if (_isFacing == Direction.Left)
+				putDownPosition = transform.position + Vector3.left;
+			else		
+				putDownPosition = transform.position + Vector3.right;
+			
+			_objectBeingCarried.transform.position = putDownPosition;
+			_objectBeingCarried = null;
+		}
+	}
+
     // ************************************************************************************
     // SPAWNING
     // ************************************************************************************
 
     public void Die()
     {
+		if ( _isDead )
+			return;
+
+		_isDead = true;	
+		Registry.sfxManager.PlaySFX(Registry.sfxManager.SFXHazardShock);
+
 		PutDownCarriedObject();
 		Registry.main.ResetLevel();
     }
@@ -300,6 +346,7 @@ public class Minibot : LevelObject {
         DisableMinibot();
 
         Registry.main.OnMinibotExit();
+		Registry.sfxManager.PlaySFX(Registry.sfxManager.SFXDoorExit);
     }
 
     override public void ResetObject()
@@ -312,11 +359,11 @@ public class Minibot : LevelObject {
         base.ResetObject();
 
 		_controller.Reset(_initHorizontalOrientation, _initVerticalOrientation);
+		_gravityHandler.Reset(_initVerticalOrientation);
 
-		_spriteManager.Reset();     
-        EnableMinibot();
-       
+		EnableMinibot();    
 		_hasExited = false;
+		_isDead = false;
     }
 
 	void CancelOutAllAppliedForces ()
@@ -362,7 +409,10 @@ public class Minibot : LevelObject {
     // ************************************************************************************
     override public void GetEditableAttributes(LevelEditor levelEditor)
     {
-        _controller.IsInvertedVertically = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 110, 20), _controller.IsInvertedVertically, "Invert Gravity");
-        _controller.IsInvertedHorizontally = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 90, 150, 20), _controller.IsInvertedHorizontally, "Invert Horizontal");
-    }
+		Rect guiRect = new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 110, 20);
+		_initVerticalOrientation = _gravityHandler.IsInverted = GUI.Toggle(guiRect, _gravityHandler.IsInverted, "Invert Gravity");
+
+		guiRect = new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 90, 150, 20);
+		_initHorizontalOrientation = _controller.IsInvertedHorizontally = GUI.Toggle(guiRect, _controller.IsInvertedHorizontally, "Invert Horizontal");		 
+	}
 }

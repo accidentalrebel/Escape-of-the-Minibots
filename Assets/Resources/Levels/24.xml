@@ -123,7 +123,7 @@
   <tile x="10" y="13" />
   <tile x="9" y="13" />
   <tile x="9" y="12" />
-  <box x="4" y="9" />
+  <box x="4" y="9" invertGravity="0" />
   <door x="17" y="2" isOpen="0" />
   <door x="2" y="9" isOpen="1" />
   <hazard x="11" y="0" />
@@ -134,6 +134,6 @@
   <hazard x="10" y="0" />
   <triggerableBlock x="9" y="1" isHidden="1" width="6" height="1" />
   <triggerableBlock x="7" y="8" isHidden="0" width="6" height="1" />
-  <stepSwitch x="16" y="9" xPosOfObjectToActivate1="0" yPosOfObjectToActivate1="0" xPosOfObjectToActivate2="0" yPosOfObjectToActivate2="0" />
+  <stepSwitch x="16" y="9" xPosOfObjectToActivate1="17" yPosOfObjectToActivate1="2" />
   <switch x="4" y="2" xPosOfObjectToActivate1="7" yPosOfObjectToActivate1="8" xPosOfObjectToActivate2="9" yPosOfObjectToActivate2="1" />
 </tiles>

@@ -125,12 +125,10 @@ public class SpriteManager : MonoBehaviour {
 		if ( flipValue )
 		{
 			transform.localScale = new Vector3(currentScale.x, -currentYScale, currentScale.z);
-			transform.localPosition = new Vector3(currentPosition.x, -0.2f, currentPosition.z);
 		}
 		else
 		{
 			transform.localScale = new Vector3(currentScale.x, currentYScale, currentScale.z);
-			transform.localPosition = new Vector3(currentPosition.x, 0f, currentPosition.z);
 		}
 	}
 

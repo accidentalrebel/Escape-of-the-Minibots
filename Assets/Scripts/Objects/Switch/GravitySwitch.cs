@@ -9,11 +9,26 @@ public class GravitySwitch : Switch
         {
             if (Registry.inputHandler.UseButton)
             {
-				Debug.Log ("IS INVERTING");
-
-				Minibot minibotScript = _triggeredCollider.gameObject.GetComponent<Minibot>();
-				minibotScript.InvertVerticalOrientation();
+				Use();
             }
         }
     }
+
+	public override void Use ()
+	{	
+		Registry.sfxManager.PlaySFX(Registry.sfxManager.SFXGravitySwitch);
+
+		foreach( LevelObject levelObject in _linkedObjects ) {
+			if ( levelObject == null )
+				continue;
+
+			Debug.Log ("GOING THROUGH LINKEDOBJECTS");
+			GravityHandler gravityHandler = levelObject.GetComponent<GravityHandler>();
+			if ( gravityHandler == null )
+				continue;
+
+			Debug.Log ("GOING THROUGH GRAVITYHANDLER");
+			gravityHandler.InvertGravity();
+		}
+	}
 }

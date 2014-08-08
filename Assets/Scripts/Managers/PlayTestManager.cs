@@ -35,7 +35,7 @@ public class PlayTestManager : MonoBehaviour {
         wwwForm.AddField("emailTxt", username + "-" + level + "-" + timeStamp);
         wwwForm.AddField("fileName", level + "-" + timeStamp + ".txt");
         wwwForm.AddField("fileData", fileData);
-        WWW www = new WWW("http://www.accidentalrebel.com/minibots/playtestmailer.php", wwwForm);
+		WWW www = new WWW("http://www.accidentalrebel.com/game-files/minibots/playtestmailer.php", wwwForm);
         yield return www;
         Debug.Log("Uploaded replay data!");
     }

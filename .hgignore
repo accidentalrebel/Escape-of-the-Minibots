@@ -1,6 +1,4 @@
 syntax: glob
 Library/*
-Temp/*
-Assets/Resources/Levels
-Deployed
-Assets/Resources/LevelsBackup
+Temp/*\
+Deployed\

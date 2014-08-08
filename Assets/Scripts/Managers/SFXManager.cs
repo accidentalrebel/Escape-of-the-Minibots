@@ -10,6 +10,7 @@ public class SFXManager : MonoBehaviour {
 	public AudioClip SFXStepSwitchDown;
 	public AudioClip SFXStepSwitchUp;
 	public AudioClip SFXGravitySwitch;
+	public AudioClip SFXHorizontalSwitch;
 
 	void Start () 
 	{

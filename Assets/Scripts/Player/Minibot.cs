@@ -4,6 +4,8 @@ using System.Collections;
 [RequireComponent(typeof(GravityHandler))]
 public class Minibot : LevelObject {
 
+	const float MINIBOT_TRANSFORM_SCALE_Y = 1f;
+
 	public enum Direction { Left, Right };
 	public bool HasExited {
 		get {
@@ -159,8 +161,11 @@ public class Minibot : LevelObject {
 	void OnGravitySwitched()
 	{
 		Vector3 currentScale = gameObject.transform.localScale;
-		gameObject.transform.localScale = new Vector3(currentScale.x, -currentScale.y, currentScale.z);
-		//_spriteManager.SetFlippedY(_gravityHandler.IsInverted);
+		float scaleYToUse = MINIBOT_TRANSFORM_SCALE_Y;
+		if ( _gravityHandler.IsInverted )
+			scaleYToUse = -MINIBOT_TRANSFORM_SCALE_Y;
+
+		gameObject.transform.localScale = new Vector3(currentScale.x, scaleYToUse, currentScale.z);
 	}
 
 	// ************************************************************************************
@@ -353,7 +358,6 @@ public class Minibot : LevelObject {
 
         base.ResetObject();
 
-		_spriteManager.Reset();   
 		_controller.Reset(_initHorizontalOrientation, _initVerticalOrientation);
 		_gravityHandler.Reset(_initVerticalOrientation);
 

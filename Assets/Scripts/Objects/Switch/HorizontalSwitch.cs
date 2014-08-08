@@ -9,6 +9,7 @@ public class HorizontalSwitch : Switch {
         {
             if (Registry.inputHandler.UseButton)
             { 
+				Registry.sfxManager.PlaySFX(Registry.sfxManager.SFXHorizontalSwitch);
                 _triggeredCollider.gameObject.GetComponent<MinibotController>().InvertHorizontally();
             }
         }

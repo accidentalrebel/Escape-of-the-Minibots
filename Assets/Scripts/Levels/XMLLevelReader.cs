@@ -14,9 +14,7 @@ public class XMLLevelReader : XMLAccessor {
 
     public bool LoadLevel(string theLevelToLoad)
     {
-		int num = 0;
-		if ( int.TryParse(theLevelToLoad, out num))
-		    theLevelToLoad = int.Parse(theLevelToLoad).ToString("000");
+		theLevelToLoad = XMLAccessor.padZeroesIfNumberedLevel(theLevelToLoad);
 		
 		string filepath = Application.dataPath + @"/Resources/Levels/" + theLevelToLoad + ".xml";
 

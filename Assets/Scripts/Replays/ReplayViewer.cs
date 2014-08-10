@@ -7,6 +7,12 @@ public class ReplayViewer : MonoBehaviour {
     public bool isEnabled = false;
     public string replayUserFolderName;
 
+	private TextAsset[] _replayTextAsset;
+	public TextAsset[] replayTextAsset
+	{
+		get { return _replayTextAsset; }
+	}
+
 	private TextAsset replayAsset;
 
 	void Start () 
@@ -14,8 +20,8 @@ public class ReplayViewer : MonoBehaviour {
         if ( !isEnabled )
 			return;
 
-		ArrayList assetList = GetAssetList(replayUserFolderName);
-		DecodeReplayAsset((TextAsset)assetList[0]);
+		_replayTextAsset = GetReplayTextAssetList(replayUserFolderName);
+		DecodeReplayAsset(_replayTextAsset[0]);
 	}
 
     private void DecodeReplayAsset(TextAsset currentReplayAsset)
@@ -43,10 +49,8 @@ public class ReplayViewer : MonoBehaviour {
         }
     }	
 
-	private ArrayList GetAssetList(string path)
+	private TextAsset[] GetReplayTextAssetList(string path)
 	{
-		ArrayList textAssetList = new ArrayList();
-
 		string pathToUse = Application.dataPath + "/Replays/" + path;
 		Debug.Log ("AT STARTTTT " + pathToUse);
 		string[] fileNameList = Directory.GetFiles(pathToUse);
@@ -55,6 +59,9 @@ public class ReplayViewer : MonoBehaviour {
 
 		if ( fileNameList.Length <= 0 )
 			Debug.LogError(pathToUse + "directory path has no files in it!");
+
+		TextAsset[] textAssetList = new TextAsset[fileNameList.Length];
+		int currentIndex = 0;
 
 		foreach(string fileName in fileNameList)
 		{
@@ -66,8 +73,10 @@ public class ReplayViewer : MonoBehaviour {
 
 			TextAsset textAsset= (TextAsset)Resources.LoadAssetAtPath(localPath, typeof(TextAsset));
 			if(textAsset != null) {
-				textAssetList.Add(textAsset);
+				textAssetList[currentIndex] = textAsset;
 			}
+
+			currentIndex++;
 		}
 
 		return textAssetList;

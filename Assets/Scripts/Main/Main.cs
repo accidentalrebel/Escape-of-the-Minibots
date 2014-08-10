@@ -12,7 +12,9 @@ public class Main : MonoBehaviour
     public string engineVersion = "Alpha 5.0";
     public string mapPackVersion = "Alpha 3.0";
 
-    public string mapToLoad = "1";
+	[SerializeField]
+    string _mapToLoad = "1";
+
     public string currentUser = "User";
     
     public Timer timer;
@@ -57,11 +59,11 @@ public class Main : MonoBehaviour
         // If we have a settings file ( If we booted the game from the Main Menu Scene )
         if (settings != null)
         {
-            mapToLoad = settings.InitialLevelToLoad.ToString();
+            _mapToLoad = settings.InitialLevelToLoad.ToString();
             currentUser = settings.currentUser;
         }
 
-        map.levelReader.LoadLevel(mapToLoad);
+        map.levelReader.LoadLevel(_mapToLoad);
     }
 
     void LateUpdate()

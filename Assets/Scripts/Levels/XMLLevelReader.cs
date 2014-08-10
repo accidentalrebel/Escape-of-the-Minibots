@@ -4,7 +4,6 @@ using System.Xml;
 
 public class XMLLevelReader : XMLAccessor {
 
-    public string levelToLoad = "1";
     PrefabHandler prefabHandler;
 
 	override protected void Awake () 
@@ -15,7 +14,9 @@ public class XMLLevelReader : XMLAccessor {
 
     public bool LoadLevel(string theLevelToLoad)
     {
-        string filepath = Application.dataPath + @"/Resources/Levels/" + theLevelToLoad + ".xml";
+		theLevelToLoad = XMLAccessor.padZeroesIfNumberedLevel(theLevelToLoad);
+		
+		string filepath = Application.dataPath + @"/Resources/Levels/" + theLevelToLoad + ".xml";
 
         // If file exists, continue reading file
         XmlReader reader = XmlReader.Create(filepath);

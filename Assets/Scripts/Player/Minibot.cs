@@ -370,6 +370,9 @@ public class Minibot : LevelObject {
 
 	void CancelOutAllAppliedForces ()
 	{
+		if ( _theRigidBody == null )
+			return;
+
 		_theRigidBody.velocity = Vector3.zero;
 		_theRigidBody.angularVelocity = Vector3.zero;
 	}

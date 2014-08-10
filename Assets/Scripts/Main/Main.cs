@@ -56,14 +56,13 @@ public class Main : MonoBehaviour
 
     void Start()
     {
-        // If we have a settings file ( If we booted the game from the Main Menu Scene )
-        if (settings != null)
-        {
+        if (settings != null) {
             _mapToLoad = settings.InitialLevelToLoad.ToString();
             currentUser = settings.currentUser;
         }
 
-        map.levelReader.LoadLevel(_mapToLoad);
+        if ( !Registry.replayViewer.enabled )
+			map.levelReader.LoadLevel(_mapToLoad);
     }
 
     void LateUpdate()
@@ -184,8 +183,8 @@ public class Main : MonoBehaviour
     public void StartReplay()
     {
         isReplayMode = true;
-        Registry.replayManager.StartReplay();
-        map.RestartLevel();
+		map.RestartLevel();
+		Registry.replayManager.StartReplay();
     }
     
     // ************************************************************************************

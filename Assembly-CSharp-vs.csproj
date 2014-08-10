@@ -126,6 +126,7 @@
      <None Include="Assets\Resources\Levels\042.xml" />
      <None Include="Assets\Resources\Levels\061.xml" />
      <None Include="Assets\Resources\Levels\020.xml" />
+     <None Include="Assets\Replays\NewEngineTest\002-8-10-2014-17-37.txt" />
      <None Include="Assets\Resources\Levels\027.xml" />
      <None Include="Assets\Resources\Levels\010.xml" />
      <None Include="Assets\Resources\Levels\041.xml" />
@@ -141,13 +142,16 @@
      <None Include="Assets\Resources\Levels\005.xml" />
      <None Include="Assets\Resources\Levels\015.xml" />
      <None Include="Assets\Resources\Levels\107.xml" />
+     <None Include="Assets\Replays\NewEngineTest\001-8-10-2014-17-37.txt" />
      <None Include="Assets\Resources\Levels\040.xml" />
      <None Include="Assets\Resources\Levels\021.xml" />
      <None Include="Assets\Resources\Levels\004.xml" />
      <None Include="Assets\Resources\Levels\026.xml" />
      <None Include="Assets\Resources\Levels\test.xml" />
      <None Include="Assets\Resources\Levels\029.xml" />
+     <None Include="Assets\Replays\NewEngineTest\004-8-10-2014-17-38.txt" />
      <None Include="Assets\Resources\Levels\016.xml" />
+     <None Include="Assets\Replays\NewEngineTest\003-8-10-2014-17-38.txt" />
      <None Include="Assets\Resources\Levels\030.xml" />
      <None Include="Assets\Resources\Levels\test2.xml" />
      <None Include="Assets\Resources\Levels\099.xml" />

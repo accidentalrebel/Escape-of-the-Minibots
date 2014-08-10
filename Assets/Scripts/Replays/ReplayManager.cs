@@ -4,50 +4,41 @@ using System.Collections.Generic;
 
 public class ReplayManager : MonoBehaviour {
 
-    Main main;
-    List<ReplayEvent> eventList = new List<ReplayEvent>();
+    Main _main;
+	List<ReplayEvent> _eventList = new List<ReplayEvent>();
 
-    float startTime;
-    bool isPlayingReplay = false;
-
-    bool canRecord = true;
-    public ReplayViewer replayViewer;
+    float _startTime;
+    bool _isPlayingReplay = false;
+    bool _canRecord = true;
 
     void Awake()
     {
         Registry.replayManager = this;
     }
 
-    void Start()
-    {
-        replayViewer = GetComponent<ReplayViewer>();
-        if (replayViewer == null)
-            Debug.LogError("replayViewer is not found!");
-    }
-
     public void StartRecording()
     {
-        if (isPlayingReplay)
+        if (_isPlayingReplay)
             return;
 
-        canRecord = true;
-        startTime = Time.time;
-        eventList.Clear();
+        _canRecord = true;
+        _startTime = Time.time;
+		ClearReplayData();
     }
 
 	public void StopRecording()
     {
-        canRecord = false;
-        eventList.Clear();
+        _canRecord = false;
+		ClearReplayData();
     }
 
 	public void AddEvent(float eventTime, ReplayEvent.EventType eventType)
     {
-        if (canRecord)
+        if (_canRecord)
         {
             ReplayEvent newEvent = (ReplayEvent) ScriptableObject.CreateInstance("ReplayEvent");
-            newEvent.Initialize(eventTime - startTime, eventType);
-            eventList.Add(newEvent);
+            newEvent.Initialize(eventTime - _startTime, eventType);
+            _eventList.Add(newEvent);
         }
     }
 
@@ -59,17 +50,17 @@ public class ReplayManager : MonoBehaviour {
     public void StopReplay()
     {
         StopCoroutine("Replay");
-        isPlayingReplay = false;
+        _isPlayingReplay = false;
     }    
 
     IEnumerator Replay()
     {
-        isPlayingReplay = true;
+        _isPlayingReplay = true;
         int index = 0;
         float replayStartTime = Time.time;
-        while ( index < eventList.Count )
+        while ( index < _eventList.Count )
         {
-            ReplayEvent currentEvent = eventList[index];
+            ReplayEvent currentEvent = _eventList[index];
             yield return new WaitForSeconds(replayStartTime + currentEvent.timeTriggered - Time.time);
 
             if (currentEvent.eventType == ReplayEvent.EventType.PressedRight)
@@ -112,14 +103,19 @@ public class ReplayManager : MonoBehaviour {
             index++;
         }
 
-        isPlayingReplay = false;
+        _isPlayingReplay = false;
         Debug.Log("Replay has ended");
     }
+
+	public void ClearReplayData()
+	{
+		_eventList.Clear();
+	}
     
     public string GetReplayDataString()
     {
         string replayData = "";
-        foreach ( ReplayEvent replayEvent in eventList )
+        foreach ( ReplayEvent replayEvent in _eventList )
         {
             replayData += (replayEvent.timeTriggered.ToString("f4") + "%" + ((int)replayEvent.eventType).ToString()) + "#";
         }

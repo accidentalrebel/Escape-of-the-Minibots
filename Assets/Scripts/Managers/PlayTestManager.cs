@@ -4,6 +4,8 @@ using System;
 
 public class PlayTestManager : MonoBehaviour {
 
+	const string PLAYTEST_EMAIL = "accidentalrebel_3avg@sendtodropbox.com";
+
     public bool enableSendingPlaytestData = true;
 
     void Awake()
@@ -31,12 +33,17 @@ public class PlayTestManager : MonoBehaviour {
         Debug.Log("sending " + fileData + "-" + timeStamp + "-" + username);
 
         WWWForm wwwForm = new WWWForm();
-        wwwForm.AddField("emailSubject", username);
+		wwwForm.AddField("toEmail", PLAYTEST_EMAIL);
+		wwwForm.AddField("emailSubject", username);
         wwwForm.AddField("emailTxt", username + "-" + level + "-" + timeStamp);
         wwwForm.AddField("fileName", level + "-" + timeStamp + ".txt");
         wwwForm.AddField("fileData", fileData);
-        WWW www = new WWW("http://www.accidentalrebel.com/minibots/playtestmailer.php", wwwForm);
+		WWW www = new WWW("http://www.accidentalrebel.com/game-files/minibots/playtestmailer.php", wwwForm);
         yield return www;
-        Debug.Log("Uploaded replay data!");
-    }
+
+		if (!String.IsNullOrEmpty(www.error))
+			print("ERROR UPLOADING REPLAY: " + www.error);
+		else
+			print("Finished Uploading replay!");
+	}
 }

@@ -320,6 +320,8 @@ public class Minibot : LevelObject {
 			
 			_objectBeingCarried.transform.position = putDownPosition;
 			_objectBeingCarried = null;
+
+			Registry.sfxManager.PlaySFX(Registry.sfxManager.SFXBoxSlam);
 		}
 	}
 

@@ -1,40 +1,52 @@
 using UnityEngine;
 using System.Collections;
+using System.IO;
+using System.Linq;
 
 public class ReplayViewer : MonoBehaviour {
 
-    public bool isEnabled = false;
-    public TextAsset replayAsset;
+    public string replayUserFolderName;
 
-	// Use this for initialization
-	void Start () {
-        if ( isEnabled )
-            DecodeReplayAsset();
+	//**==================================== PUBLIC METHODS ====================================**//
+	public void StartNextReplay()
+	{
+		_currentlyPlayingIndex++;
+		DecodeReplayAsset(_replayTextAsset[_currentlyPlayingIndex]);
 	}
 
-    private void DecodeReplayAsset()
-    {        
-        string[] data = replayAsset.text.Split('^');
+	//**==================================== PRIVATE VARIABLES ====================================**//
+	TextAsset[] _replayTextAsset;
+	int _currentlyPlayingIndex = -1;
 
-        //string username = data[0];
-        //string dateStamp = data[1];
-        //string engineVersion = data[2];
-        //string mapPackVersion = data[3];
-        string thisLevel = data[4];
-        //string timeFinished = data[5];
-        //string levelComment = data[6];
+	TextAsset replayAsset;
+
+	//**==================================== MAIN ====================================**//
+	void Awake()
+	{
+		Registry.replayViewer = this;
+	}
+
+	void Start () 
+	{
+		_replayTextAsset = GetReplayTextAssetList(replayUserFolderName);
+		StartNextReplay();
+	}
+
+	//**==================================== HELPERS ====================================**//
+    void DecodeReplayAsset(TextAsset currentReplayAsset)
+    {        
+		string[] data = currentReplayAsset.text.Split('^');
+		string thisLevel = data[4];
         string replayData = data[7];
+
+		Debug.Log ("Playing the replay of level " + thisLevel);
 
         Registry.main.LoadNextLevel(thisLevel);
         ConvertToEvents(replayData);
         Registry.main.StartReplay();        
     }
-
-    /// <summary>
-    /// Converts the replayData in the form of a string to actual events which is added to the replayManager
-    /// </summary>
-    /// <param name="replayData"></param>
-    private void ConvertToEvents(string replayData)
+	
+    void ConvertToEvents(string replayData)
     {
         string[] eventStrings = replayData.Split('#');                          // We split each to eventStrings
         foreach (string eventString in eventStrings)                            // Each event string has two parameters ( Timestamp and the eventType )
@@ -47,4 +59,42 @@ public class ReplayViewer : MonoBehaviour {
             }
         }
     }	
+
+	TextAsset[] GetReplayTextAssetList(string path)
+	{
+		string pathToUse = Application.dataPath + "/Replays/" + path;
+		string[] fileNameList = Directory.GetFiles(pathToUse, "*.txt");
+
+		if ( fileNameList == null )
+			Debug.LogError("Error getting files at " + pathToUse);
+
+		if ( fileNameList.Length <= 0 )
+			Debug.LogError(pathToUse + "directory path has no files in it!");
+
+		fileNameList.Select(fn => new FileInfo(fn)).OrderBy(f => f.Name);
+
+		TextAsset[] textAssetList = new TextAsset[fileNameList.Length];
+		int currentIndex = 0;
+
+		foreach(string fileName in fileNameList)
+		{
+			int index = fileName.LastIndexOf("/");
+			string localPath = "Assets/Replays";
+			
+			if (index > 0)
+				localPath += fileName.Substring(index);
+
+			Debug.Log("GETTING TEXT ASSET FROM " + localPath);
+
+			TextAsset textAsset= (TextAsset)Resources.LoadAssetAtPath(localPath, typeof(TextAsset));
+			if(textAsset != null) {
+				textAssetList[currentIndex] = textAsset;
+				Debug.Log ("ADDED at " + currentIndex);
+			}
+
+			currentIndex++;
+		}
+
+		return textAssetList;
+	}
 }

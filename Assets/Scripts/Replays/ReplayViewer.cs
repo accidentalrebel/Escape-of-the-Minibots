@@ -1,39 +1,34 @@
 using UnityEngine;
 using System.Collections;
+using System.IO;
 
 public class ReplayViewer : MonoBehaviour {
 
     public bool isEnabled = false;
-    public TextAsset replayAsset;
+    public string replayUserFolderName;
 
-	// Use this for initialization
-	void Start () {
-        if ( isEnabled )
-            DecodeReplayAsset();
+	private TextAsset replayAsset;
+
+	void Start () 
+	{
+        if ( !isEnabled )
+			return;
+
+		ArrayList assetList = GetAssetList(replayUserFolderName);
+		DecodeReplayAsset((TextAsset)assetList[0]);
 	}
 
-    private void DecodeReplayAsset()
+    private void DecodeReplayAsset(TextAsset currentReplayAsset)
     {        
-        string[] data = replayAsset.text.Split('^');
-
-        //string username = data[0];
-        //string dateStamp = data[1];
-        //string engineVersion = data[2];
-        //string mapPackVersion = data[3];
-        string thisLevel = data[4];
-        //string timeFinished = data[5];
-        //string levelComment = data[6];
+		string[] data = currentReplayAsset.text.Split('^');
+		string thisLevel = data[4];
         string replayData = data[7];
 
         Registry.main.LoadNextLevel(thisLevel);
         ConvertToEvents(replayData);
         Registry.main.StartReplay();        
     }
-
-    /// <summary>
-    /// Converts the replayData in the form of a string to actual events which is added to the replayManager
-    /// </summary>
-    /// <param name="replayData"></param>
+	
     private void ConvertToEvents(string replayData)
     {
         string[] eventStrings = replayData.Split('#');                          // We split each to eventStrings
@@ -47,4 +42,34 @@ public class ReplayViewer : MonoBehaviour {
             }
         }
     }	
+
+	private ArrayList GetAssetList(string path)
+	{
+		ArrayList textAssetList = new ArrayList();
+
+		string pathToUse = Application.dataPath + "/Replays/" + path;
+		Debug.Log ("AT STARTTTT " + pathToUse);
+		string[] fileNameList = Directory.GetFiles(pathToUse);
+		if ( fileNameList == null )
+			Debug.LogError("Error getting files at " + pathToUse);
+
+		if ( fileNameList.Length <= 0 )
+			Debug.LogError(pathToUse + "directory path has no files in it!");
+
+		foreach(string fileName in fileNameList)
+		{
+			int index = fileName.LastIndexOf("/");
+			string localPath = "Assets/Replays";
+			
+			if (index > 0)
+				localPath += fileName.Substring(index);
+
+			TextAsset textAsset= (TextAsset)Resources.LoadAssetAtPath(localPath, typeof(TextAsset));
+			if(textAsset != null) {
+				textAssetList.Add(textAsset);
+			}
+		}
+
+		return textAssetList;
+	}
 }

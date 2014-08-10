@@ -5,7 +5,6 @@ using System.Linq;
 
 public class ReplayViewer : MonoBehaviour {
 
-    public bool isEnabled = false;
     public string replayUserFolderName;
 
 	//**==================================== PUBLIC METHODS ====================================**//
@@ -22,12 +21,13 @@ public class ReplayViewer : MonoBehaviour {
 	TextAsset replayAsset;
 
 	//**==================================== MAIN ====================================**//
+	void Awake()
+	{
+		Registry.replayViewer = this;
+	}
+
 	void Start () 
 	{
-        if ( !isEnabled )
-			return;
-
-		Registry.replayViewer = this;
 		_replayTextAsset = GetReplayTextAssetList(replayUserFolderName);
 		StartNextReplay();
 	}

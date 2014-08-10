@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.IO;
+using System.Linq;
 
 public class ReplayViewer : MonoBehaviour {
 
@@ -63,11 +64,14 @@ public class ReplayViewer : MonoBehaviour {
 	{
 		string pathToUse = Application.dataPath + "/Replays/" + path;
 		string[] fileNameList = Directory.GetFiles(pathToUse, "*.txt");
+
 		if ( fileNameList == null )
 			Debug.LogError("Error getting files at " + pathToUse);
 
 		if ( fileNameList.Length <= 0 )
 			Debug.LogError(pathToUse + "directory path has no files in it!");
+
+		fileNameList.Select(fn => new FileInfo(fn)).OrderBy(f => f.Name);
 
 		TextAsset[] textAssetList = new TextAsset[fileNameList.Length];
 		int currentIndex = 0;

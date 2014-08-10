@@ -18,7 +18,7 @@ public class ReplayManager : MonoBehaviour {
 
     public void StartRecording()
     {
-        if (_isPlayingReplay)
+        if (_isPlayingReplay || Registry.replayViewer.enabled)
             return;
 
         _canRecord = true;
@@ -34,7 +34,7 @@ public class ReplayManager : MonoBehaviour {
 
 	public void AddEvent(float eventTime, ReplayEvent.EventType eventType)
     {
-        if (_canRecord)
+        if (_canRecord || Registry.replayViewer.enabled)
         {
             ReplayEvent newEvent = (ReplayEvent) ScriptableObject.CreateInstance("ReplayEvent");
             newEvent.Initialize(eventTime - _startTime, eventType);
@@ -49,6 +49,9 @@ public class ReplayManager : MonoBehaviour {
 
     public void StopReplay()
     {
+		if ( !_isPlayingReplay )
+			return;
+
         StopCoroutine("Replay");
         _isPlayingReplay = false;
     }    

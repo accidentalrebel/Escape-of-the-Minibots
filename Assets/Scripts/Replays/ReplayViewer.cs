@@ -66,6 +66,7 @@ public class ReplayViewer : MonoBehaviour {
 	{
 		Registry.map.ClearLevel();
 		Registry.replayManager.ClearReplayData();
+		Registry.replayManager.StopReplay();
 		DecodeReplayAsset(_replayTextAsset[_currentlyPlayingIndex]);
 	}
 
@@ -79,7 +80,7 @@ public class ReplayViewer : MonoBehaviour {
 
 		Registry.map.levelReader.LoadLevel(thisLevel);
         ConvertToEvents(replayData);
-        Registry.main.StartReplay();
+		Registry.main.StartReplay();
     }
 	
     void ConvertToEvents(string replayData)

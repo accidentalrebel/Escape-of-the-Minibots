@@ -7,6 +7,8 @@ public class XMLLevelWriter : XMLAccessor {
 
     public void SaveLevel(string filename)
     {
+		filename = XMLAccessor.padZeroesIfNumberedLevel(filename);
+
         string filepath = Application.dataPath + @"/Resources/Levels/" + filename + ".xml";
 
         // We first check if file exists

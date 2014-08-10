@@ -4,6 +4,15 @@ using System.IO;
 
 public class XMLAccessor : MonoBehaviour {
     	
+	public static string padZeroesIfNumberedLevel (string levelString)
+	{
+		int num = 0;
+		if ( int.TryParse(levelString, out num))
+			levelString = int.Parse(levelString).ToString("000");
+		
+		return levelString;
+	}
+
 	protected GameObject tilesContainer;
     protected GameObject minibotsContainer;
 	protected GameObject boxesContainer;
@@ -35,6 +44,8 @@ public class XMLAccessor : MonoBehaviour {
 
     public bool CheckIfFileExists(string fileName)
     {
+		fileName = padZeroesIfNumberedLevel(fileName);
+
         string filepath = Application.dataPath + @"/Resources/Levels/" + fileName + ".xml";
 
         // If file does not exist. Create the xml file.

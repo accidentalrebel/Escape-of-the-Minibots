@@ -334,6 +334,9 @@ public class LevelEditor : MonoBehaviour {
     // ************************************************************************************
     void OnGUI()
     {
+		if ( Registry.replayManager.enabled )
+			return;
+
         // Play and Stop Buttons
         string btnText = "";
         if (isSimulating)

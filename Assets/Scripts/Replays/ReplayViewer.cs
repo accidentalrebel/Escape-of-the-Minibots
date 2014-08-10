@@ -5,21 +5,32 @@ using System.Linq;
 
 public class ReplayViewer : MonoBehaviour {
 
+	const float BUTTON_WIDTH = 50;
+	const float BUTTON_HEIGHT = 30;
+	const float BORDER_PADDING = 10;
+
     public string replayUserFolderName;
 
 	//**==================================== PUBLIC METHODS ====================================**//
 	public void StartNextReplay()
 	{
 		_currentlyPlayingIndex++;
-		Registry.map.ClearLevel();
-		Registry.replayManager.ClearReplayData();
-		DecodeReplayAsset(_replayTextAsset[_currentlyPlayingIndex]);
+		StartCurrentReplay();
+	}
+
+	public void StartPreviousReplay()
+	{
+		_currentlyPlayingIndex--;
+		if ( _currentlyPlayingIndex < 0 )
+			_currentlyPlayingIndex = 0;
+
+		StartCurrentReplay();
 	}
 
 	//**==================================== PRIVATE VARIABLES ====================================**//
 	TextAsset[] _replayTextAsset;
 	int _currentlyPlayingIndex = -1;
-
+	
 	TextAsset replayAsset;
 
 	//**==================================== MAIN ====================================**//
@@ -34,8 +45,31 @@ public class ReplayViewer : MonoBehaviour {
 		StartNextReplay();
 	}
 
+	void OnGUI()
+	{
+		if (!enabled)
+			return;
+		
+		if (GUI.Button(new Rect(Screen.width - BUTTON_WIDTH - BORDER_PADDING, BORDER_PADDING
+		 	, BUTTON_WIDTH, BUTTON_HEIGHT), ">>"))
+			StartNextReplay();
+
+		if (GUI.Button(new Rect(Screen.width - BUTTON_WIDTH * 2 - BORDER_PADDING, BORDER_PADDING
+		                        , BUTTON_WIDTH, BUTTON_HEIGHT), "<<"))
+			StartPreviousReplay();
+		
+		GUI.skin.label.alignment = TextAnchor.UpperLeft;   
+	}
+
 	//**==================================== HELPERS ====================================**//
-    void DecodeReplayAsset(TextAsset currentReplayAsset)
+	void StartCurrentReplay() 
+	{
+		Registry.map.ClearLevel();
+		Registry.replayManager.ClearReplayData();
+		DecodeReplayAsset(_replayTextAsset[_currentlyPlayingIndex]);
+	}
+
+	void DecodeReplayAsset(TextAsset currentReplayAsset)
     {        
 		string[] data = currentReplayAsset.text.Split('^');
 		string thisLevel = data[4];

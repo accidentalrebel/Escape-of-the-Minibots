@@ -120,8 +120,10 @@ public class Main : MonoBehaviour
 
 	public void StartLevel()
     {        
-        Registry.replayManager.StopReplay();
-        Registry.replayManager.StartRecording();
+		if ( !Registry.replayViewer.enabled ) {
+	        Registry.replayManager.StopReplay();
+	        Registry.replayManager.StartRecording();
+		}
 
         isReplayMode = false;
 

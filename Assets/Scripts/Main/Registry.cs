@@ -11,4 +11,5 @@ public static class Registry {
     public static PlayTestManager playtestManager;
 	public static SFXManager sfxManager;
 	public static BGMManager bgmManager;
+	public static ReplayViewer replayViewer;
 }

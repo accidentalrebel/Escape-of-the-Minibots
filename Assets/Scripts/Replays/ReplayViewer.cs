@@ -11,9 +11,7 @@ public class ReplayViewer : MonoBehaviour {
 	public void StartNextReplay()
 	{
 		_currentlyPlayingIndex++;
-		
-		_replayTextAsset = GetReplayTextAssetList(replayUserFolderName);
-		DecodeReplayAsset(_replayTextAsset[0]);
+		DecodeReplayAsset(_replayTextAsset[_currentlyPlayingIndex]);
 	}
 
 	//**==================================== PRIVATE VARIABLES ====================================**//
@@ -28,6 +26,8 @@ public class ReplayViewer : MonoBehaviour {
         if ( !isEnabled )
 			return;
 
+		Registry.replayViewer = this;
+		_replayTextAsset = GetReplayTextAssetList(replayUserFolderName);
 		StartNextReplay();
 	}
 
@@ -37,6 +37,8 @@ public class ReplayViewer : MonoBehaviour {
 		string[] data = currentReplayAsset.text.Split('^');
 		string thisLevel = data[4];
         string replayData = data[7];
+
+		Debug.Log ("Playing the replay of level " + thisLevel);
 
         Registry.main.LoadNextLevel(thisLevel);
         ConvertToEvents(replayData);
@@ -72,15 +74,21 @@ public class ReplayViewer : MonoBehaviour {
 
 		foreach(string fileName in fileNameList)
 		{
+			if (fileName.Contains(".meta"))
+				continue;
+
 			int index = fileName.LastIndexOf("/");
 			string localPath = "Assets/Replays";
 			
 			if (index > 0)
 				localPath += fileName.Substring(index);
 
+			Debug.Log("GETTING TEXT ASSET FROM " + localPath);
+
 			TextAsset textAsset= (TextAsset)Resources.LoadAssetAtPath(localPath, typeof(TextAsset));
 			if(textAsset != null) {
 				textAssetList[currentIndex] = textAsset;
+				Debug.Log ("ADDED at " + currentIndex);
 			}
 
 			currentIndex++;

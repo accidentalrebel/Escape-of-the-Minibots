@@ -43,12 +43,17 @@ public class MenuLevelRecap : Menu {
 
     private void GoToNextLevel()
     {        
-        Registry.playtestManager.SendPlaytestData(Registry.main.currentUser
-                , Registry.main.timer.CurrentTime, Registry.main.engineVersion
-                , Registry.main.mapPackVersion, levelComment);
-        levelComment = "";
-        Registry.main.GoToNextLevel();        
-        Hide();
+		if ( Registry.replayViewer.enabled )
+			Registry.replayViewer.StartNextReplay();
+		else {
+	        Registry.playtestManager.SendPlaytestData(Registry.main.currentUser
+	                , Registry.main.timer.CurrentTime, Registry.main.engineVersion
+	                , Registry.main.mapPackVersion, levelComment);
+	        levelComment = "";
+	        Registry.main.GoToNextLevel();        
+		}
+
+		Hide();
     }
 
     void OnGUI()

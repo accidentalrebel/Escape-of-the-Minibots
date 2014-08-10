@@ -62,7 +62,7 @@ public class ReplayViewer : MonoBehaviour {
 	TextAsset[] GetReplayTextAssetList(string path)
 	{
 		string pathToUse = Application.dataPath + "/Replays/" + path;
-		string[] fileNameList = Directory.GetFiles(pathToUse);
+		string[] fileNameList = Directory.GetFiles(pathToUse, "*.txt");
 		if ( fileNameList == null )
 			Debug.LogError("Error getting files at " + pathToUse);
 
@@ -74,9 +74,6 @@ public class ReplayViewer : MonoBehaviour {
 
 		foreach(string fileName in fileNameList)
 		{
-			if (fileName.Contains(".meta"))
-				continue;
-
 			int index = fileName.LastIndexOf("/");
 			string localPath = "Assets/Replays";
 			

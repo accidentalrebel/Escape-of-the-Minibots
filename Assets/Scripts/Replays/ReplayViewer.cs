@@ -7,24 +7,32 @@ public class ReplayViewer : MonoBehaviour {
     public bool isEnabled = false;
     public string replayUserFolderName;
 
-	private TextAsset[] _replayTextAsset;
-	public TextAsset[] replayTextAsset
+	//**==================================== PUBLIC METHODS ====================================**//
+	public void StartNextReplay()
 	{
-		get { return _replayTextAsset; }
+		_currentlyPlayingIndex++;
+		
+		_replayTextAsset = GetReplayTextAssetList(replayUserFolderName);
+		DecodeReplayAsset(_replayTextAsset[0]);
 	}
 
-	private TextAsset replayAsset;
+	//**==================================== PRIVATE VARIABLES ====================================**//
+	TextAsset[] _replayTextAsset;
+	int _currentlyPlayingIndex = -1;
 
+	TextAsset replayAsset;
+
+	//**==================================== MAIN ====================================**//
 	void Start () 
 	{
         if ( !isEnabled )
 			return;
 
-		_replayTextAsset = GetReplayTextAssetList(replayUserFolderName);
-		DecodeReplayAsset(_replayTextAsset[0]);
+		StartNextReplay();
 	}
 
-    private void DecodeReplayAsset(TextAsset currentReplayAsset)
+	//**==================================== HELPERS ====================================**//
+    void DecodeReplayAsset(TextAsset currentReplayAsset)
     {        
 		string[] data = currentReplayAsset.text.Split('^');
 		string thisLevel = data[4];
@@ -35,7 +43,7 @@ public class ReplayViewer : MonoBehaviour {
         Registry.main.StartReplay();        
     }
 	
-    private void ConvertToEvents(string replayData)
+    void ConvertToEvents(string replayData)
     {
         string[] eventStrings = replayData.Split('#');                          // We split each to eventStrings
         foreach (string eventString in eventStrings)                            // Each event string has two parameters ( Timestamp and the eventType )
@@ -49,10 +57,9 @@ public class ReplayViewer : MonoBehaviour {
         }
     }	
 
-	private TextAsset[] GetReplayTextAssetList(string path)
+	TextAsset[] GetReplayTextAssetList(string path)
 	{
 		string pathToUse = Application.dataPath + "/Replays/" + path;
-		Debug.Log ("AT STARTTTT " + pathToUse);
 		string[] fileNameList = Directory.GetFiles(pathToUse);
 		if ( fileNameList == null )
 			Debug.LogError("Error getting files at " + pathToUse);

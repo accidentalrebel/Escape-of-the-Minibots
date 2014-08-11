@@ -7,8 +7,10 @@ public class MenuLevelRecap : Menu {
 
 	// Use this for initialization
 	override protected void Start () {
-        base.Start();        
-        Registry.main.ELevelCompleted += LevelCompleted;
+        base.Start();  
+
+		if ( Registry.replayViewer.enabled == false )
+			Registry.main.ELevelCompleted += LevelCompleted;
 	}
 
     override protected void Update()
@@ -28,8 +30,8 @@ public class MenuLevelRecap : Menu {
 
     void LevelCompleted()
     {
-        Show();
-        Registry.main.StartReplay();
+		Show();
+		Registry.main.StartReplay();
     }
 
     private void RestartLevel()

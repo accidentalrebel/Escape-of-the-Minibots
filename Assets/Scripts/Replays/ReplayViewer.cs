@@ -42,6 +42,8 @@ public class ReplayViewer : MonoBehaviour {
 	void Start () 
 	{
 		_replayTextAsset = GetReplayTextAssetList(replayUserFolderName);
+		Registry.main.ELevelCompleted += OnLevelCompleted;
+
 		StartNextReplay();
 	}
 
@@ -62,6 +64,12 @@ public class ReplayViewer : MonoBehaviour {
 			StartPreviousReplay();
 		
 		GUI.skin.label.alignment = TextAnchor.UpperLeft;   
+	}
+
+	//**==================================== EVENTS ====================================**//
+	void OnLevelCompleted()
+	{
+		Registry.main.StartReplay();
 	}
 
 	//**==================================== HELPERS ====================================**//

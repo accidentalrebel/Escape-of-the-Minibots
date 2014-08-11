@@ -52,7 +52,7 @@ public class LevelEditor : MonoBehaviour {
         levelWriter = map.GetComponent<XMLLevelWriter>();
         if (levelWriter == null)
             Debug.LogError("levelWriter is not found!");
-        
+
         InitializeOriginMarker();
     }
 
@@ -334,7 +334,7 @@ public class LevelEditor : MonoBehaviour {
     // ************************************************************************************
     void OnGUI()
     {
-		if ( Registry.replayManager.enabled )
+		if ( Registry.replayViewer.enabled )
 			return;
 
         // Play and Stop Buttons

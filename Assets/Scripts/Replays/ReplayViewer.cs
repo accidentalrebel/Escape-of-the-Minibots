@@ -49,12 +49,15 @@ public class ReplayViewer : MonoBehaviour {
 	{
 		if (!enabled)
 			return;
-		
-		if (GUI.Button(new Rect(Screen.width - BUTTON_WIDTH - BORDER_PADDING, BORDER_PADDING
+
+		string labelString = replayUserFolderName + " - " + Registry.map.currentLevel;
+		GUI.Label(new Rect(Screen.width - BUTTON_WIDTH * 3 - BORDER_PADDING, BORDER_PADDING, BUTTON_WIDTH * 3, BUTTON_HEIGHT), labelString);
+
+		if (GUI.Button(new Rect(Screen.width - BUTTON_WIDTH - BORDER_PADDING, BORDER_PADDING + BUTTON_HEIGHT
 		 	, BUTTON_WIDTH, BUTTON_HEIGHT), ">>"))
 			StartNextReplay();
 
-		if (GUI.Button(new Rect(Screen.width - BUTTON_WIDTH * 2 - BORDER_PADDING, BORDER_PADDING
+		if (GUI.Button(new Rect(Screen.width - BUTTON_WIDTH * 2 - BORDER_PADDING, BORDER_PADDING + BUTTON_HEIGHT
 		                        , BUTTON_WIDTH, BUTTON_HEIGHT), "<<"))
 			StartPreviousReplay();
 		

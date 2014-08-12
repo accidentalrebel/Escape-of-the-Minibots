@@ -300,7 +300,7 @@ public class Minibot : LevelObject {
 				_objectBeingCarried.transform.position = transform.position + Vector3.up ;
 		}
 	}
-	
+
 	public void PickUpObject(GameObject objectAtSide) {
 		_objectBeingCarried = objectAtSide;
 	}

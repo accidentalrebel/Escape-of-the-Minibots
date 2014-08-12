@@ -134,6 +134,7 @@
   <hazard x="10" y="0" />
   <triggerableBlock x="9" y="1" isHidden="1" width="6" height="1" />
   <triggerableBlock x="7" y="8" isHidden="0" width="6" height="1" />
-  <stepSwitch x="16" y="9" xPosOfObjectToActivate1="17" yPosOfObjectToActivate1="2" />
   <switch x="4" y="2" xPosOfObjectToActivate1="7" yPosOfObjectToActivate1="8" xPosOfObjectToActivate2="9" yPosOfObjectToActivate2="1" />
+  <switch x="16" y="9" xPosOfObjectToActivate1="17" yPosOfObjectToActivate1="2" />
+  <switch x="-5" y="1" />
 </tiles>

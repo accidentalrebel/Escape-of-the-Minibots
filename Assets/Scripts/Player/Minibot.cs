@@ -88,12 +88,6 @@ public class Minibot : LevelObject {
 
         InitializeSprite();
 	}
-
-    void Update()
-    {
-        // Handles the carrying of the object
-		HandleCarriedObject();
-    }
 	
     void LateUpdate()
     {
@@ -292,17 +286,17 @@ public class Minibot : LevelObject {
 	// ************************************************************************************
 	// OBJECT CARRYING
 	// ************************************************************************************
-	private void HandleCarriedObject ()	{
-		if (_objectBeingCarried != null) {
-			if ( _gravityHandler.IsInverted )
-				_objectBeingCarried.transform.position = transform.position + Vector3.down * 1.25f;
-			else
-				_objectBeingCarried.transform.position = transform.position + Vector3.up ;
-		}
-	}
-	
 	public void PickUpObject(GameObject objectAtSide) {
 		_objectBeingCarried = objectAtSide;
+		_objectBeingCarried.transform.parent = transform;
+		Rigidbody rigidBody = (Rigidbody)_objectBeingCarried.transform.GetComponent("Rigidbody");
+		rigidBody.isKinematic = true;
+
+		Debug.Log ("PICKED UP");
+		if ( _gravityHandler.IsInverted )
+			_objectBeingCarried.transform.position = transform.position + Vector3.down * 1.25f;
+		else
+			_objectBeingCarried.transform.position = transform.position + Vector3.up;
 	}
 	
 	public void PutDownCarriedObject()

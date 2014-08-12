@@ -1,10 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Levels\Map.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\Minibot.cs">
     <Files>
-      <File FileName="Assets\Scripts\Levels\LevelEditor.cs" Line="497" Column="30" />
-      <File FileName="Assets\Scripts\GUI\MainGame\MenuLevelRecap.cs" Line="46" Column="5" />
-      <File FileName="Assets\Scripts\Levels\Map.cs" Line="140" Column="5" />
+      <File FileName="Assets\Scripts\Levels\LevelEditor.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GUI\MainGame\MenuLevelRecap.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Levels\Map.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player\Minibot.cs" Line="296" Column="8" />
+      <File FileName="Assets\Scripts\Character\MinibotController.cs" Line="125" Column="3" />
+      <File FileName="Assets\Scripts\Misc\GravityHandler.cs" Line="33" Column="3" />
+      <File FileName="Assets\Scripts\Objects\LevelObject.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

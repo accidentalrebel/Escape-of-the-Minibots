@@ -97,11 +97,11 @@
   <tile x="10" y="0" />
   <tile x="10" y="1" />
   <tile x="11" y="1" />
-  <tile x="10" y="2" />
-  <tile x="11" y="2" />
   <tile x="9" y="1" />
   <tile x="9" y="8" />
   <tile x="5" y="7" />
+  <tile x="3" y="2" />
+  <tile x="2" y="2" />
   <door x="17" y="2" isOpen="1" />
   <door x="13" y="9" isOpen="1" />
   <hazard x="13" y="0" />

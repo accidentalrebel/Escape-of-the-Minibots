@@ -41,7 +41,7 @@ public class Minibot : LevelObject {
 		}
 	}
 	   
-    private GameObject 			_objectBeingCarried;
+    private LevelObject 		_objectBeingCarried;
     private Rigidbody 			_theRigidBody;    
     private MinibotController 	_controller;
 	private GravityHandler 		_gravityHandler;
@@ -103,7 +103,7 @@ public class Minibot : LevelObject {
             && _objectBeingCarried ==  null
 		    && !_isJumping)
         {
-			GameObject objectAtSide = GetObjectAtSide(_isFacing, normalRayLength);
+			LevelObject objectAtSide = GetObjectAtSide(_isFacing, normalRayLength);
 
             if (objectAtSide != null
                     && objectAtSide.tag == "Box")
@@ -227,12 +227,12 @@ public class Minibot : LevelObject {
 		}
     }
 
-	public GameObject GetObjectAtSide(Direction direction)
+	public LevelObject GetObjectAtSide(Direction direction)
 	{
 		return GetObjectAtSide(direction, normalRayLength);
 	}
 
-    public GameObject GetObjectAtSide(Direction direction, float rayLength)
+    public LevelObject GetObjectAtSide(Direction direction, float rayLength)
     {        
         Vector3 checkDirection;
         if (direction == Direction.Left)
@@ -249,7 +249,7 @@ public class Minibot : LevelObject {
 		Vector3 feetRaycastPosition = _spriteManager.gameObject.transform.position - feetOffset / 2.5f;
 		GameObject collidedGameObject = GetCollisionFromPosition(feetRaycastPosition, checkDirection, rayLength);
 		if ( collidedGameObject != null )
-			return collidedGameObject;
+			return (LevelObject)collidedGameObject.GetComponent("LevelObject");
 
 		Vector3 headOffset;
 		if ( !_gravityHandler.IsInverted )
@@ -260,7 +260,7 @@ public class Minibot : LevelObject {
 		Vector3 headRaycastPosition = _spriteManager.gameObject.transform.position - headOffset / 2.5f;
 		collidedGameObject = GetCollisionFromPosition(headRaycastPosition, checkDirection, rayLength);
 		if ( collidedGameObject != null )
-			return collidedGameObject;
+			return (LevelObject)collidedGameObject.GetComponent("LevelObject");
 
         return null;
     }
@@ -286,7 +286,7 @@ public class Minibot : LevelObject {
 	// ************************************************************************************
 	// OBJECT CARRYING
 	// ************************************************************************************
-	public void PickUpObject(GameObject objectAtSide) {
+	public void PickUpObject(LevelObject objectAtSide) {
 		_objectBeingCarried = objectAtSide;
 		_objectBeingCarried.transform.parent = transform;
 		Rigidbody rigidBody = (Rigidbody)_objectBeingCarried.transform.GetComponent("Rigidbody");

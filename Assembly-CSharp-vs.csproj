@@ -127,6 +127,7 @@
      <None Include="Assets\Resources\Levels\050.xml" />
      <None Include="Assets\Resources\Levels\017.xml" />
      <None Include="Assets\Resources\Levels\028.xml" />
+     <None Include="Assets\Resources\Levels\044.xml" />
      <None Include="Assets\Resources\Levels\001.xml" />
      <None Include="Assets\Resources\Levels\015.xml" />
      <None Include="Assets\Resources\Levels\bryan-3.xml" />
@@ -134,6 +135,7 @@
      <None Include="Assets\Replays\NewEngineTest\001-8-10-2014-17-37.txt" />
      <None Include="Assets\Resources\Levels\033.xml" />
      <None Include="Assets\Resources\Levels\021.xml" />
+     <None Include="Assets\Resources\Levels\029.xml" />
      <None Include="Assets\Resources\Levels\test.xml" />
      <None Include="Assets\Replays\NewEngineTest\004-8-10-2014-17-38.txt" />
      <None Include="Assets\Resources\Levels\014.xml" />

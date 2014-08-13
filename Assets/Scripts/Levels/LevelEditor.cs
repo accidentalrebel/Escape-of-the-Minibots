@@ -334,6 +334,8 @@ public class LevelEditor : MonoBehaviour {
     // ************************************************************************************
     void OnGUI()
     {
+		return;
+
 		if ( Registry.replayViewer.enabled )
 			return;
 

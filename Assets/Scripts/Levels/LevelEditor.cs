@@ -8,6 +8,7 @@ public class LevelEditor : MonoBehaviour {
     public enum LevelEditorMode { PlacementMode, DeletionMode, EditingMode, PickToEditMode, PickToLinkMode, None };
 
     bool mapEditMode = false;
+	public bool enabledOnStartup = false;
 
     public bool MapEditMode
     {
@@ -334,9 +335,7 @@ public class LevelEditor : MonoBehaviour {
     // ************************************************************************************
     void OnGUI()
     {
-		return;
-
-		if ( Registry.replayViewer.enabled )
+		if ( !enabledOnStartup || Registry.replayViewer.enabled )
 			return;
 
         // Play and Stop Buttons

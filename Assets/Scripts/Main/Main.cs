@@ -46,19 +46,16 @@ public class Main : MonoBehaviour
             if ( settings == null)
                 Debug.LogWarning("Settings not found!");
         }
-
-        // Level editor is optional
-        levelEditor = gameObject.GetComponent<LevelEditor>();
-        if (levelEditor == null)
-            Debug.LogWarning("Could not find level editor.");
-
+		
 #if UNITY_EDITOR
 		_mapToLoad = Registry.debugConfig.mapToLoadOnStartup;
 #endif
     }
 
     void Start()
-    {
+    {	
+		levelEditor = Registry.levelEditor;
+
         if (settings != null) {
             _mapToLoad = settings.InitialLevelToLoad.ToString();
             currentUser = settings.currentUser;

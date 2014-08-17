@@ -40,6 +40,11 @@ public class LevelEditor : MonoBehaviour {
     // MAIN
     // ************************************************************************************
 
+	void Awake()
+	{
+		Registry.levelEditor = this;
+	}
+
     void Start()
     {
         map = Registry.map;

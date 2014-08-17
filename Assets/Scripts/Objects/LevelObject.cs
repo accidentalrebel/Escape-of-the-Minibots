@@ -62,6 +62,9 @@ public class LevelObject : MonoBehaviour {
 
 		if ( levelObjectAtBottom == null && levelObjectAtTop != null && levelObjectAtTop is Tile ) {
 			spriteFlipper.SetFlippedY(true);
+			Debug.Log ("FLIPPING");
 		}
+		else
+			Debug.Log("DID NOT FLIP");
 	}
 }

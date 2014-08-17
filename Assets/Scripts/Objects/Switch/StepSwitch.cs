@@ -11,6 +11,13 @@ public class StepSwitch : Switch {
 		UpdateSwitchGraphic();
 	}
 
+	protected override void Start ()
+	{
+		base.Start ();
+
+		HandleSpriteFlipping();
+	}
+
     void Trigger()
     {
 		foreach( LevelObject levelObject in _linkedObjects ) {

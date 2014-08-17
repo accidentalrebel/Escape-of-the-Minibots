@@ -64,7 +64,7 @@ public class SpriteManager : MonoBehaviour {
             _animationFrames.Add(frameIndex, currentOffset);
             defaultFrameSet[frameIndex-1] = frameIndex;
             frameIndex++;
-            currentOffset.x += _offsetDifference.x;
+            currentOffset.x += _offsetDifference.x;        
 
             if (currentOffset.x >= 1)
             {   

@@ -12,4 +12,5 @@ public static class Registry {
 	public static SFXManager sfxManager;
 	public static BGMManager bgmManager;
 	public static ReplayViewer replayViewer;
+	public static DebugConfig debugConfig;
 }

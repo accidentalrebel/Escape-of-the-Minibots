@@ -46,6 +46,11 @@ public class BGMManager : MonoBehaviour {
 		Registry.bgmManager = this;
 
 		_bgmList = Resources.LoadAll("Audio/BGM");
+
+#if UNITY_EDITOR
+		if ( Registry.debugConfig.disableBGMOnStartup )
+			return;
+#endif
 		PlayNextTrack();
 	}
 

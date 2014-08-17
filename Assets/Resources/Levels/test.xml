@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <tiles>
-  <minibot x="6" y="3" invertGravity="0" invertHorizontal="0" />
   <tile x="0" y="0" />
   <tile x="0" y="1" />
   <tile x="0" y="2" />
@@ -67,9 +66,7 @@
   <tile x="1" y="14" />
   <tile x="0" y="14" />
   <tile x="0" y="13" />
-  <door x="17" y="1" isOpen="1" />
-  <triggerableBlock x="7" y="11" isHidden="0" width="5" height="1" />
-  <triggerableBlock x="11" y="3" isHidden="1" width="3" height="1" />
-  <triggerableHazard x="3" y="1" isHidden="1" width="1" height="3" />
-  <switch x="9" y="1" xPosOfObjectToActivate="7" yPosOfObjectToActivate="11" xPosOfObjectToActivate2="11" yPosOfObjectToActivate2="3" xPosOfObjectToActivate3="3" yPosOfObjectToActivate3="1" />
+  <horizontalInverter x="12" y="13" />
+  <triggerableBlock x="9" y="8" isHidden="0" width="2" height="2" />
+  <stepSwitch x="8" y="13" />
 </tiles>

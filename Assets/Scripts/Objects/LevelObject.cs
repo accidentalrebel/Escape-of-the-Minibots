@@ -51,4 +51,20 @@ public class LevelObject : MonoBehaviour {
     {
         Debug.LogWarning("Has not been overriden!");
     }
+
+	protected void HandleSpriteFlipping()
+	{
+		Vector3 topPosition = transform.position + Vector3.up;
+		Vector3 bottomPosition = transform.position + Vector3.down;
+		LevelObject levelObjectAtTop = Registry.map.GetLevelObjectAtPosition(topPosition);
+		LevelObject levelObjectAtBottom = Registry.map.GetLevelObjectAtPosition(bottomPosition);
+		SpriteFlipper spriteFlipper = gameObject.GetComponentInChildren<SpriteFlipper>();
+
+		if ( levelObjectAtBottom == null && levelObjectAtTop != null && levelObjectAtTop is Tile ) {
+			spriteFlipper.SetFlippedY(true);
+			Debug.Log ("FLIPPING");
+		}
+		else
+			Debug.Log("DID NOT FLIP");
+	}
 }

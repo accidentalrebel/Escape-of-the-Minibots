@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\Character\MinibotController.cs" />
      <Compile Include="Assets\Scripts\Character\MinibotList.cs" />
      <Compile Include="Assets\Scripts\Character\PlatformInputController.cs" />
+     <Compile Include="Assets\Scripts\Data\DebugConfig.cs" />
      <Compile Include="Assets\Scripts\GUI\CornerCover.cs" />
      <Compile Include="Assets\Scripts\GUI\LabelBackground.cs" />
      <Compile Include="Assets\Scripts\GUI\MainGame\GUILayout.cs" />

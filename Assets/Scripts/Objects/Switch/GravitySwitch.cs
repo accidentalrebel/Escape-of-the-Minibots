@@ -3,6 +3,13 @@ using System.Collections;
 
 public class GravitySwitch : Switch
 {   
+	protected override void Start ()
+	{
+		base.Start ();
+
+		HandleSpriteFlipping();
+	}
+
 	void LateUpdate()
     {
         if (_isTriggered)

@@ -29,7 +29,7 @@ public class Door : LevelObject {
     override protected void Start()
     {
         base.Start();
-        UpdateDoorGraphic();
+		HandleSpriteFlipping();
     }
 	
 	public void Initialize(Vector3 theStartingPos, bool theIsOpen)
@@ -45,8 +45,6 @@ public class Door : LevelObject {
 			_graphicHandler.theRenderer.material.SetTexture("_MainTex", _openTexture);
         else            
 			_graphicHandler.theRenderer.material.SetTexture("_MainTex", _closedTexture);
-
-		HandleSpriteFlipping();
     }
 
     override public void Use(bool setToValue)

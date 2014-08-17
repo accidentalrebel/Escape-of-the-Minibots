@@ -12,7 +12,6 @@ public class Main : MonoBehaviour
     public string engineVersion = "Alpha 5.0";
     public string mapPackVersion = "Alpha 3.0";
 
-	[SerializeField]
     string _mapToLoad = "1";
 
     public string currentUser = "User";
@@ -52,6 +51,10 @@ public class Main : MonoBehaviour
         levelEditor = gameObject.GetComponent<LevelEditor>();
         if (levelEditor == null)
             Debug.LogWarning("Could not find level editor.");
+
+#if UNITY_EDITOR
+		_mapToLoad = Registry.debugConfig.mapToLoadOnStartup;
+#endif
     }
 
     void Start()

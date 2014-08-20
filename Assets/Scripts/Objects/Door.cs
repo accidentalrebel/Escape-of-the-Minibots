@@ -30,6 +30,7 @@ public class Door : LevelObject {
     {
         base.Start();
 		HandleSpriteFlipping();
+        UpdateDoorGraphic();
     }
 	
 	public void Initialize(Vector3 theStartingPos, bool theIsOpen)

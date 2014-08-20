@@ -25,12 +25,12 @@ public class Menu : MonoBehaviour {
 	
 	}
 
-    internal void Show()
+    public void Show()
     {
         isVisible = true;
     }
 
-    internal void Hide()
+    public void Hide()
     {
         isVisible = false;
     }

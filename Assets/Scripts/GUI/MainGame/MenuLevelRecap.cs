@@ -6,12 +6,14 @@ public class MenuLevelRecap : Menu {
     string levelComment = "";
 
 	// Use this for initialization
-	protected override void Start () {
-        base.Start();        
-        Registry.main.ELevelCompleted += LevelCompleted;
+	override protected void Start () {
+        base.Start();  
+
+		if ( Registry.replayViewer.enabled == false )
+			Registry.main.ELevelCompleted += LevelCompleted;
 	}
 
-    protected override void Update()
+    override protected void Update()
     {
         base.Update();
 
@@ -28,8 +30,8 @@ public class MenuLevelRecap : Menu {
 
     void LevelCompleted()
     {
-        Show();
-        Registry.main.StartReplay();
+		Show();
+		Registry.main.StartReplay();
     }
 
     private void RestartLevel()
@@ -43,12 +45,17 @@ public class MenuLevelRecap : Menu {
 
     private void GoToNextLevel()
     {        
-        Registry.playtestManager.SendPlaytestData(Registry.main.currentUser
-                , Registry.main.timer.CurrentTime, Registry.main.engineVersion
-                , Registry.main.mapPackVersion, levelComment);
-        levelComment = "";
-        Registry.main.GoToNextLevel();        
-        Hide();
+		if ( Registry.replayViewer.enabled )
+			Registry.replayViewer.StartNextReplay();
+		else {
+	        Registry.playtestManager.SendPlaytestData(Registry.main.currentUser
+	                , Registry.main.timer.CurrentTime, Registry.main.engineVersion
+	                , Registry.main.mapPackVersion, levelComment);
+	        levelComment = "";
+	        Registry.main.GoToNextLevel();        
+		}
+
+		Hide();
     }
 
     void OnGUI()

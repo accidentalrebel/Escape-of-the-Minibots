@@ -3,179 +3,154 @@ using System.Collections;
 
 public class Switch : LevelObject {
 
-    public Vector3 posOfObjectToActivate1 = Vector3.zero;
-    public Vector3 posOfObjectToActivate2 = Vector3.zero;
-    public Vector3 posOfObjectToActivate3 = Vector3.zero;
+	const int MAX_NUM_OF_LINKS = 7;
 
-	public Texture triggeredTexture;
-	public Texture untriggeredTexture;
+    protected LevelObject[] _linkedObjects;
+	public LevelObject[] LinkedObjects {
+		get {
+			return _linkedObjects;
+		}
+	}
 
-    internal int objectNumToLinkTo = 0;
-    protected bool isTriggered = false;
-    protected Collider triggeredCollider;
-	protected Map map;
+	[SerializeField]
+	private Texture _triggeredTexture;
 
-	// Use this for initialization
+	[SerializeField]
+	private Texture _untriggeredTexture;
+
+    private int _indexOfReadyToBeLinked = 0;
+	private int _indexOfLink = 0;
+
+	protected Map _map;
+    protected bool _isTriggered = false;
+    protected Collider _triggeredCollider;
+
 	override protected void Awake () {
 		base.Awake();
 		
-		map = Registry.map;
+		_map = Registry.map;
+		_linkedObjects = new LevelObject[MAX_NUM_OF_LINKS];
 
-		if ( triggeredTexture == null )
-			Debug.LogError("triggeredTexture not initialized!");
-		if ( untriggeredTexture == null )
-			Debug.LogError("untriggeredTexture not initialized!");
+		if ( _triggeredTexture == null )
+			Debug.LogWarning("triggeredTexture not initialized!");
+		if ( _untriggeredTexture == null )
+			Debug.LogWarning("untriggeredTexture not initialized!");
 	}
 
-    internal void Initialize(Vector3 theStartingPos, Vector2 thePosOfObjectToActivate1)
-    {
-        base.Initialize(theStartingPos);
-        posOfObjectToActivate1 =
-            new Vector3(thePosOfObjectToActivate1.x
-                , thePosOfObjectToActivate1.y, 0);       
-    }
-
-    internal void Initialize(Vector3 theStartingPos, Vector2 thePosOfObjectToActivate1
-        , Vector2 thePosOfObjectToActivate2)
-    {
-        base.Initialize(theStartingPos);
-        posOfObjectToActivate1 =
-            new Vector3(thePosOfObjectToActivate1.x
-                , thePosOfObjectToActivate1.y, 0);
-        posOfObjectToActivate2 =
-            new Vector3(thePosOfObjectToActivate2.x
-                , thePosOfObjectToActivate2.y, 0);
-    }
-	
-	internal void Initialize(Vector3 theStartingPos, Vector2 thePosOfObjectToActivate1
-        , Vector2 thePosOfObjectToActivate2, Vector2 thePosOfObjectToActivate3 )
-	{
-		base.Initialize(theStartingPos);
-        posOfObjectToActivate1 = 
-            new Vector3(thePosOfObjectToActivate1.x
-                , thePosOfObjectToActivate1.y, 0);
-        posOfObjectToActivate2 =
-            new Vector3(thePosOfObjectToActivate2.x
-                , thePosOfObjectToActivate2.y, 0);
-        posOfObjectToActivate3 =
-            new Vector3(thePosOfObjectToActivate3.x
-                , thePosOfObjectToActivate3.y, 0);
+	public void Initialize(Vector3 tStartingPos) {
+		base.Initialize(tStartingPos);
 	}
 
-    internal void SetObjectToActivate(LevelObject theObject)
-    {
-        Vector3 thePosition = new Vector3(theObject.gameObject.transform.position.x
-                    , theObject.gameObject.transform.position.y, 0);;
+	public void PushToLinkedObjectsList(LevelObject tObject) {
+		_linkedObjects[_indexOfLink] = tObject;
+		_indexOfLink++;
+	}
 
-        if (objectNumToLinkTo == 1)
-            posOfObjectToActivate1 = thePosition;                
-        else if (objectNumToLinkTo == 2)
-            posOfObjectToActivate2 = thePosition;
-        else if (objectNumToLinkTo == 3)
-            posOfObjectToActivate3 = thePosition;
+	public void PlaceInLinkedObjectsListAtIndex(LevelObject tObject) {
+		_linkedObjects[_indexOfReadyToBeLinked] = tObject;
+	}
 
-        Debug.LogWarning(posOfObjectToActivate1 + ", " + posOfObjectToActivate2 + ", " + posOfObjectToActivate3);
-
-        objectNumToLinkTo = 0;
-    }
-
-    //internal void SetObjectToActivate(Vector2 posOfObjectToActivate)
-    //{
-    //    objectToActivate = map.GetLevelObjectAtPosition
-    //        (new Vector3(theObject.gameObject.transform.position.x
-    //            , theObject.gameObject.transform.position.y, 0));
-    //}
-	
-	// Update is called once per frame
 	void LateUpdate () 
     {
-        if (isTriggered)
+        if (_isTriggered)
         {
             if (Registry.inputHandler.UseButton)
             {
-				UpdateSwitchGraphic();
-
-                LevelObject objectToUse;
-                if (posOfObjectToActivate1 != Vector3.zero)
-                {
-                    objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate1);
-                    objectToUse.Use();
-                }
-                if (posOfObjectToActivate2 != Vector3.zero)
-                {
-                    objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate2);
-                    objectToUse.Use();
-                }
-                if (posOfObjectToActivate3 != Vector3.zero)
-                {
-                    objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate3);
-                    objectToUse.Use();
-                }
+				Use();
             }
         }
+	}
+
+	public override void Use ()
+	{
+		UpdateSwitchGraphic();
+		Registry.sfxManager.PlaySFX(Registry.sfxManager.SFXButtonClick);
+
+		foreach( LevelObject levelObject in _linkedObjects ) {
+			if ( levelObject != null )
+				levelObject.Use();
+		}
 	}
 
     void OnTriggerEnter(Collider col)
     {
 		if (col.tag == "Player") {
-	        triggeredCollider = col;
-	        isTriggered = true;
+	        _triggeredCollider = col;
+	        _isTriggered = true;
 		}
     }
 
     void OnTriggerExit()
     {
-        triggeredCollider = null;
-        isTriggered = false;
+        _triggeredCollider = null;
+        _isTriggered = false;
 
 		UpdateSwitchGraphic();
     }
 
-    internal override void ResetObject()
-    {
-        base.ResetObject();
-    }
-
 	virtual protected void UpdateSwitchGraphic ()
 	{
-		if ( isTriggered )
-			graphicHandler.theRenderer.material.SetTexture("_MainTex", triggeredTexture);
+		if ( _isTriggered )
+			_graphicHandler.theRenderer.material.SetTexture("_MainTex", _triggeredTexture);
 		else
-			graphicHandler.theRenderer.material.SetTexture("_MainTex", untriggeredTexture);
+			_graphicHandler.theRenderer.material.SetTexture("_MainTex", _untriggeredTexture);
 	}
 
     // ************************************************************************************
     // OBJECT EDITING
     // ************************************************************************************
-    internal override void GetEditableAttributes(LevelEditor levelEditor)
+    override public void GetEditableAttributes(LevelEditor levelEditor)
     {       
-        HandleLinkGUI(posOfObjectToActivate1, 1, levelEditor);
-        HandleLinkGUI(posOfObjectToActivate2, 2, levelEditor);
-        HandleLinkGUI(posOfObjectToActivate3, 3, levelEditor);        
+		int i = 1;
+		foreach( LevelObject linkObject in _linkedObjects )
+		{
+			HandleLinkGUI(linkObject, i, levelEditor);
+			i++;
+		}  
     }
 
-    /// <summary>
-    /// Handles the GUI for the links
-    /// </summary>
-    /// <param name="posOfObjectToActivate"></param>
-    /// <param name="objectLinkNumber"></param>
-    /// <param name="levelEditor"></param>
-    private void HandleLinkGUI(Vector3 posOfObjectToActivate, int objectLinkNumber, LevelEditor levelEditor)
+	private void HandleLinkGUI(LevelObject tObjectToActivate, int objectLinkNumber, LevelEditor levelEditor)
     {
         string toDisplay;
 
-        if (posOfObjectToActivate != Vector3.zero)
-            toDisplay = "Linked";
+		if (tObjectToActivate != null)
+			toDisplay = tObjectToActivate.name;
         else
             toDisplay = "No Link";       
 
-        GUI.Label(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110 + (30 * (objectLinkNumber - 1)), 100, 20), toDisplay);
+		float left = (Screen.width / 2) - 180;
+		float top = (Screen.height / 2) - 110 + (30 * (objectLinkNumber - 1));
+		float width = 150;
+		float height = 20;
+        GUI.Label(new Rect(left, top, width, height), toDisplay);
 
-        if (GUI.Button(new Rect((Screen.width / 2) - 30, (Screen.height / 2) - 110 + (30 * (objectLinkNumber - 1)), 100, 20), "Link to Object"))
+		left = (Screen.width / 2) - 30;
+		width = 100;
+		float right = (Screen.width / 2 ) + 80;
+        
+		if (GUI.Button(new Rect(left, top, width, height), "Link to Object"))
         {
-            Debug.Log("Linking to object");
-            objectNumToLinkTo = objectLinkNumber;
+            _indexOfReadyToBeLinked = objectLinkNumber - 1;
             levelEditor.CurrentMode = LevelEditor.LevelEditorMode.PickToLinkMode;
         }
+
+		if (tObjectToActivate != null
+		    && GUI.Button(new Rect(right, top, width, height), "Unlink"))
+		{
+			_indexOfReadyToBeLinked = 0;
+			RemoveLinkedObjectAtIndex(objectLinkNumber);
+			levelEditor.CurrentMode = LevelEditor.LevelEditorMode.EditingMode;
+		}
     }
+
+	private void RemoveLinkedObjectAtIndex(int indexPos)
+	{
+		_linkedObjects[indexPos-1] = null;
+	}
+
+	public override void ResetObject ()
+	{
+		base.ResetObject ();		
+		_isTriggered = false;
+	}
 }

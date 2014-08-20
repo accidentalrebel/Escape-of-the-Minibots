@@ -4,16 +4,16 @@ using System.Collections.Generic;
 
 public class TriggerableBlocks : LevelObject {
 
-    internal DynamicSizeObject dynamicSizeComponent;
+    public DynamicSizeObject dynamicSizeComponent;
 
-    public bool isHidden = false;
-    private bool startingIsHidden = false;
-    internal Object prefabToSpawn;
+    private bool _isHidden = false;
+    private bool _startingIsHidden = false;
+    protected Object _prefabToSpawn;
 
-    bool IsHidden
+    public bool IsHidden
     {
-        get { return isHidden; }
-        set { isHidden = value; UpdateChildTiles(); }
+        get { return _isHidden; }
+        set { _isHidden = value; UpdateChildTiles(); }
     }
 
     // ************************************************************************************
@@ -28,22 +28,22 @@ public class TriggerableBlocks : LevelObject {
             return;
         }
 
-        prefabToSpawn = Registry.prefabHandler.pfTriggerableTile;        
+        _prefabToSpawn = Registry.prefabHandler.pfTriggerableTile;        
     }
 
-    protected override void Start()
+    override protected void Start()
     {
         
     }
 	
-	internal void Initialize(Vector3 theStartingPos, bool theIsHidden, Vector2 theBlockSize)
+	public void Initialize(Vector3 theStartingPos, bool theIsHidden, Vector2 theBlockSize)
 	{
 		base.Initialize(theStartingPos);
 
-        isHidden = theIsHidden;
-        startingIsHidden = isHidden;
+        _isHidden = theIsHidden;
+        _startingIsHidden = _isHidden;
         
-        dynamicSizeComponent.Initialize(prefabToSpawn, theBlockSize);
+        dynamicSizeComponent.Initialize(_prefabToSpawn, theBlockSize);
         
         UpdateChildTiles();
 	}
@@ -51,15 +51,11 @@ public class TriggerableBlocks : LevelObject {
     // ************************************************************************************
     // CHILD TILES
     // ************************************************************************************
-    /// <summary>
-    /// This sets the status of the child tiles if it is hidden or not
-    /// And how the graphic handler should handle it
-    /// </summary>
     private void UpdateChildTiles()
     {
         foreach (GameObject child in dynamicSizeComponent.childTiles)
         {
-            if (isHidden)
+            if (_isHidden)
             {
                 child.collider.enabled = false;
                 child.GetComponent<GraphicHandler>().theRenderer.enabled = false;
@@ -72,27 +68,27 @@ public class TriggerableBlocks : LevelObject {
         }      
     }
 
-    override internal void ResetObject()
+    override public void ResetObject()
     {
-        isHidden = startingIsHidden;
+        _isHidden = _startingIsHidden;
         UpdateChildTiles();  
     }
 
     // ************************************************************************************
     // USAGE
     // ************************************************************************************
-    override internal void Use(bool setToValue)
+    override public void Use(bool setToValue)
     {
-        isHidden = setToValue;
+        _isHidden = setToValue;
         UpdateChildTiles();
     }
 
-    override internal void Use()
+    override public void Use()
     {
-        if (isHidden)
-            isHidden = false;
+        if (_isHidden)
+            _isHidden = false;
         else
-            isHidden = true;
+            _isHidden = true;
 
         UpdateChildTiles();
     }
@@ -100,7 +96,7 @@ public class TriggerableBlocks : LevelObject {
     // ************************************************************************************
     // OBJECT EDITING
     // ************************************************************************************
-    internal override void GetEditableAttributes(LevelEditor levelEditor)
+    override public void GetEditableAttributes(LevelEditor levelEditor)
     {
         GUI.Label(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 50, 20), "Width");
         dynamicSizeComponent.BlockWidth = GUI.TextField(new Rect((Screen.width / 2) - 90, (Screen.height / 2) - 110, 100, 20), dynamicSizeComponent.BlockWidth);
@@ -109,5 +105,6 @@ public class TriggerableBlocks : LevelObject {
         dynamicSizeComponent.BlockHeight = GUI.TextField(new Rect((Screen.width / 2) - 90, (Screen.height / 2) - 80, 100, 20), dynamicSizeComponent.BlockHeight);
 
         IsHidden = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 50, 150, 20), IsHidden, "Is hidden?");
+		_startingIsHidden = IsHidden;
     }
 }

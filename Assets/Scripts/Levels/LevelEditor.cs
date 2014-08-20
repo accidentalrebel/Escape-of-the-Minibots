@@ -8,6 +8,7 @@ public class LevelEditor : MonoBehaviour {
     public enum LevelEditorMode { PlacementMode, DeletionMode, EditingMode, PickToEditMode, PickToLinkMode, None };
 
     bool mapEditMode = false;
+	public bool enabledOnStartup = false;
 
     public bool MapEditMode
     {
@@ -39,6 +40,11 @@ public class LevelEditor : MonoBehaviour {
     // MAIN
     // ************************************************************************************
 
+	void Awake()
+	{
+		Registry.levelEditor = this;
+	}
+
     void Start()
     {
         map = Registry.map;
@@ -52,7 +58,7 @@ public class LevelEditor : MonoBehaviour {
         levelWriter = map.GetComponent<XMLLevelWriter>();
         if (levelWriter == null)
             Debug.LogError("levelWriter is not found!");
-        
+
         InitializeOriginMarker();
     }
 
@@ -90,7 +96,7 @@ public class LevelEditor : MonoBehaviour {
                 // This handles the picking of level objects for linking
                 else if (CurrentMode == LevelEditorMode.PickToLinkMode)
                 {
-                    objectToDisplay.GetComponent<Switch>().SetObjectToActivate(objectAtMousePosition);
+					objectToDisplay.GetComponent<Switch>().PlaceInLinkedObjectsListAtIndex(objectAtMousePosition);
                     CurrentMode = LevelEditorMode.EditingMode;
                 }
             }
@@ -149,21 +155,19 @@ public class LevelEditor : MonoBehaviour {
     {
         LevelObject clickedObject = GetObjectAtMousePosition();
         
-        if (clickedObject == null)
+        if (clickedObject == null || clickedObject is SuroundingTile)
             return;
 
-        GameObject.Destroy(clickedObject.gameObject);
+		//TODO: Add a destroy funciton in LevelObject
+		GameObject.Destroy(clickedObject.gameObject);
+		clickedObject.transform.parent = null;
 
-        // If the deleted object is a minibot
-        if (clickedObject.gameObject.GetComponent<Minibot>() != null)
-        {
-            Debug.Log("there is minibot");
+        if (clickedObject is Minibot)
             Registry.main.GetMinibotsInLevel();     // We tell main to recount the number of minibots
-        }
-        else
-        {
-            Debug.Log("no minibot");
-        }
+
+		//TODO: For perfomance, consider creating a fucntion that would update the neighbors form a specific position only
+		if ( clickedObject is Tile )
+			Registry.map.UpdateNeighborsForAllWallTiles();
     }
 
     private LevelObject GetObjectAtMousePosition()
@@ -245,6 +249,7 @@ public class LevelEditor : MonoBehaviour {
             spawnedObject.GetComponent<Tile>().Initialize(new Vector3
                 (Mathf.Round(spawnPos.x)
                 , Mathf.Round(spawnPos.y), 0));
+			Registry.map.UpdateNeighborsForAllWallTiles();
         }
         else if (objectToSpawn == ObjectType.Hazard)
         {
@@ -335,6 +340,9 @@ public class LevelEditor : MonoBehaviour {
     // ************************************************************************************
     void OnGUI()
     {
+		if ( !enabledOnStartup || Registry.replayViewer.enabled )
+			return;
+
         // Play and Stop Buttons
         string btnText = "";
         if (isSimulating)
@@ -513,7 +521,7 @@ public class LevelEditor : MonoBehaviour {
         // This handles the GUI for the editing mode
         if (currentMode == LevelEditorMode.EditingMode)
         {
-            GUI.Box(new Rect((Screen.width / 2) - 150, (Screen.height / 2) - 150, 300, 300), "Edit Object");
+            GUI.Box(new Rect((Screen.width / 2) - 200, (Screen.height / 2) - 150, 400, 300), "Edit Object");
 
             if (objectToDisplay != null)
             {

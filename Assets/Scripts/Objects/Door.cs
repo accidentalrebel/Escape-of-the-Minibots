@@ -3,82 +3,86 @@ using System.Collections;
 
 public class Door : LevelObject {
 
-    public bool isOpen = false;
-	public Texture openTexture;
-	public Texture closedTexture;
+	[SerializeField]
+	private Texture _openTexture;
+	[SerializeField]
+	private Texture _closedTexture;
+
+    private bool _isOpen = false;
+	private bool _startingIsOpen = true;
 
     public bool IsOpen
     {
-        set { isOpen = value; UpdateDoorGraphic(); }
-        get { return isOpen; }
+        get { return _isOpen; }
     }
 
-    private bool startingIsOpen = true;
-
-	protected override void Awake ()
+	override protected void Awake ()
 	{
 		base.Awake ();
 
-		if ( openTexture == null )
+		if ( _openTexture == null )
 			Debug.LogError("openTexture not initialized!");
-		if ( closedTexture == null )
+		if ( _closedTexture == null )
 			Debug.LogError("closedTexture not initialized!");
 	}
 
     override protected void Start()
     {
         base.Start();
+		HandleSpriteFlipping();
         UpdateDoorGraphic();
     }
 	
-	internal void Initialize(Vector3 theStartingPos, bool theIsOpen)
+	public void Initialize(Vector3 theStartingPos, bool theIsOpen)
 	{
 		base.Initialize(theStartingPos);		
-		isOpen = theIsOpen;
-        startingIsOpen = isOpen;
+		_isOpen = theIsOpen;
+        _startingIsOpen = _isOpen;
 	}
 
     private void UpdateDoorGraphic()
     {
-        if( isOpen)
-			graphicHandler.theRenderer.material.SetTexture("_MainTex", openTexture);
+        if( _isOpen)
+			_graphicHandler.theRenderer.material.SetTexture("_MainTex", _openTexture);
         else            
-			graphicHandler.theRenderer.material.SetTexture("_MainTex", closedTexture);
+			_graphicHandler.theRenderer.material.SetTexture("_MainTex", _closedTexture);
     }
 
-    override internal void Use(bool setToValue)
+    override public void Use(bool setToValue)
     {
-        isOpen = setToValue;
+		_isOpen = setToValue;
         UpdateDoorGraphic();
     }
 
-    internal override void Use()
+    override public void Use()
     {
-        if (isOpen)
-            isOpen = false;
+        if (_isOpen)
+            _isOpen = false;
         else
-            isOpen = true;
+            _isOpen = true;
 
         UpdateDoorGraphic();
     }
 
-    internal void CloseDoor()
+    public void CloseDoor()
     {
-        isOpen = false; 
+        _isOpen = false; 
         UpdateDoorGraphic();
     }
 
-    internal override void ResetObject()
+    override public void ResetObject()
     {
-        isOpen = startingIsOpen;
+        _isOpen = _startingIsOpen;
         UpdateDoorGraphic();
     }
 
     // ************************************************************************************
     // OBJECT EDITING
     // ************************************************************************************
-    internal override void GetEditableAttributes(LevelEditor levelEditor)
+    override public void GetEditableAttributes(LevelEditor levelEditor)
     {
-        IsOpen = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 110, 20), IsOpen, "Is Open?");
+        _isOpen = GUI.Toggle(new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 110, 20), IsOpen, "Is Open?");
+		_startingIsOpen = IsOpen;
+		UpdateDoorGraphic();
     }
 }

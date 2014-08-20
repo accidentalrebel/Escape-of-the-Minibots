@@ -3,65 +3,50 @@ using System.Collections;
 
 public class StepSwitch : Switch {
     
-	protected override void Awake ()
+	override protected void Awake ()
 	{
 		base.Awake ();
 
-		isTriggered = false;
+		_isTriggered = false;
 		UpdateSwitchGraphic();
 	}
 
-	override internal void Initialize(Vector3 theStartingPos)
+	protected override void Start ()
 	{
-		base.Initialize(theStartingPos);
+		base.Start ();
+
+		HandleSpriteFlipping();
 	}
 
     void Trigger()
     {
-		bool status = isTriggered;
-
-        LevelObject objectToUse;
-        if (posOfObjectToActivate1 != Vector3.zero)
-        {
-            objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate1);
-            objectToUse.Use(status);
-        }
-        if (posOfObjectToActivate2 != Vector3.zero)
-        {
-            objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate2);
-            objectToUse.Use(status);
-        }
-        if (posOfObjectToActivate3 != Vector3.zero)
-        {
-            objectToUse = map.GetLevelObjectAtPosition(posOfObjectToActivate3);
-            objectToUse.Use(status);
-        }
+		foreach( LevelObject levelObject in _linkedObjects ) {
+			if ( levelObject != null )
+				levelObject.Use();
+		}
     }
 	
     void OnTriggerEnter(Collider col)
     {
-		if (col.tag == "Player") {
+		if (col.tag == "Player" || col.tag == "Box") {
 	        Debug.Log("OnTriggerEnter");
-			isTriggered = true;
+			_isTriggered = true;
 			Trigger();
 			UpdateSwitchGraphic();
+
+			Registry.sfxManager.PlaySFX(Registry.sfxManager.SFXStepSwitchDown);
 		}
     }
 
     void OnTriggerExit(Collider col)
     {     
-		if (col.tag == "Player") {
+		if (col.tag == "Player" || col.tag == "Box" ) {
 	        Debug.Log("OnTriggerExit");
-			isTriggered = false;
+			_isTriggered = false;
 			Trigger();
 			UpdateSwitchGraphic();
-		}
-    }
 
-    internal override void ResetObject()
-    {
-        Debug.LogWarning("Resetting");
-        base.ResetObject();
-        isTriggered = false;
+			Registry.sfxManager.PlaySFX(Registry.sfxManager.SFXStepSwitchUp);
+		}
     }
 }

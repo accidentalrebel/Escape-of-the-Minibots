@@ -3,23 +3,21 @@ using System.Collections;
 
 public class HorizontalSwitch : Switch {
 
-    override protected void Start()
-    {
-
-    }
-	
-	override internal void Initialize(Vector3 theStartingPos)
+	protected override void Start ()
 	{
-		base.Initialize(theStartingPos);
+		base.Start ();
+
+		HandleSpriteFlipping();
 	}
 
-    void Update()
+    void LateUpdate()
     {
-        if (isTriggered)
+        if (_isTriggered)
         {
             if (Registry.inputHandler.UseButton)
             { 
-                triggeredCollider.gameObject.GetComponent<MinibotController>().InvertHorizontal();
+				Registry.sfxManager.PlaySFX(Registry.sfxManager.SFXHorizontalSwitch);
+                _triggeredCollider.gameObject.GetComponent<MinibotController>().InvertHorizontally();
             }
         }
     }

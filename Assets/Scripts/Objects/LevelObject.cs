@@ -1,48 +1,70 @@
 using UnityEngine;
 using System.Collections;
 
-//[RequireComponent(typeof(GraphicHandler))]
+[RequireComponent(typeof(GraphicHandler))]
+[RequireComponent(typeof(SpriteManager))]
 public class LevelObject : MonoBehaviour {
 
-    protected GraphicHandler graphicHandler;
-    protected SpriteManager spriteManager;
-	internal Vector3 startingPos;
+    protected GraphicHandler _graphicHandler;
+    protected SpriteManager _spriteManager;
+	public SpriteManager SpriteManager {
+		get {
+			return _spriteManager;
+		}
+	}
+
+	public Vector3 startingPos;
 	
 	virtual protected void Awake()
 	{
 		startingPos = gameObject.transform.position;
-
-		spriteManager = gameObject.GetComponentInChildren<SpriteManager>();
-		graphicHandler = gameObject.GetComponent<GraphicHandler>();
+		_spriteManager = gameObject.GetComponentInChildren<SpriteManager>();
+		_graphicHandler = gameObject.GetComponent<GraphicHandler>();
 	}
 	
-	virtual internal void Initialize(Vector3 theStartingPos)
+	virtual public void Initialize(Vector3 theStartingPos)
 	{
 		startingPos = theStartingPos;
 		gameObject.transform.position = startingPos;
 	}
 
 	virtual protected void Start() {
-
+		// Intentionally left blank
 	}
 
-    virtual internal void Use(bool setToValue)
+    virtual public void Use(bool setToValue)
     {
         Debug.LogWarning("Has not been overriden!");
     }
 
-    virtual internal void Use()
+	virtual public void Use()
     {
         Debug.LogWarning("Has not been overridden!");
     }
 
-    virtual internal void ResetObject()
+    virtual public void ResetObject()
     {
         gameObject.transform.position = startingPos;        
     }
 
-    virtual internal void GetEditableAttributes(LevelEditor levelEditor)
+    virtual public void GetEditableAttributes(LevelEditor levelEditor)
     {
         Debug.LogWarning("Has not been overriden!");
     }
+
+	protected void HandleSpriteFlipping()
+	{
+		Vector3 topPosition = transform.position + Vector3.up;
+		Vector3 bottomPosition = transform.position + Vector3.down;
+		LevelObject levelObjectAtTop = Registry.map.GetLevelObjectAtPosition(topPosition);
+		LevelObject levelObjectAtBottom = Registry.map.GetLevelObjectAtPosition(bottomPosition);
+		SpriteFlipper spriteFlipper = gameObject.GetComponentInChildren<SpriteFlipper>();
+
+		if ( levelObjectAtBottom == null && levelObjectAtTop != null && levelObjectAtTop is Tile ) {
+			spriteFlipper.SetFlippedY(true);
+			Debug.Log ("FLIPPING");
+		}
+		else
+			Debug.Log("DID NOT FLIP");
+	}
 }

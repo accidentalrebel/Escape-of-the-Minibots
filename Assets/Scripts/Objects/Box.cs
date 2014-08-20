@@ -1,40 +1,51 @@
 using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(GravityHandler))]
+[RequireComponent(typeof(Rigidbody))]
 public class Box : LevelObject {
 
-    private Rigidbody theRigidBody;
+    private Rigidbody _rigidBody;
+	private bool _isInvertedVertically = false;
+	private GravityHandler _gravityHandler;
 
-    override protected void Start()
-    {
-        theRigidBody = GetComponent<Rigidbody>();
-        if (theRigidBody == null)
-            Debug.LogError("theRigidBody is not found!");
-
-        base.Start();
-    }
-	
-	override internal void Initialize(Vector3 theStartingPos)
-	{
-		base.Initialize(theStartingPos);
+	private bool _initVerticalOrientation = false;
+	public bool InitVerticalOrientation {
+		get {
+			return _initVerticalOrientation;
+		}
 	}
 
-    internal void PickUp()
-    {
-        theRigidBody.useGravity = false;
-    }
+	protected override void Awake ()
+	{
+		base.Awake ();
 
-    internal void PutDown()
-    {
-        theRigidBody.useGravity = true;
-    }
+		_gravityHandler = gameObject.GetComponent<GravityHandler>();
+		_rigidBody = GetComponent<Rigidbody>();
+	}
+	
+	public void Initialize(Vector3 theStartingPos, bool initVerticalOrientation)
+	{
+		base.Initialize(theStartingPos);
 
-    internal override void ResetObject()
+		_initVerticalOrientation = initVerticalOrientation;
+		_gravityHandler.IsInverted = _initVerticalOrientation;
+	}
+
+    override public void ResetObject()
     {
-        theRigidBody.velocity = Vector3.zero;
-        theRigidBody.angularVelocity = Vector3.zero;
-        theRigidBody.useGravity = true;
+        _rigidBody.velocity = Vector3.zero;
+        _rigidBody.angularVelocity = Vector3.zero;
+
+		_gravityHandler.Reset(_initVerticalOrientation);
 
         base.ResetObject();
     }
+
+	public override void GetEditableAttributes (LevelEditor levelEditor)
+	{
+		Rect guiRect = new Rect((Screen.width / 2) - 140, (Screen.height / 2) - 110, 110, 20);
+		_gravityHandler.IsInverted = GUI.Toggle(guiRect, _gravityHandler.IsInverted, "Invert Gravity");
+		_initVerticalOrientation =  _gravityHandler.IsInverted;
+	}
 }

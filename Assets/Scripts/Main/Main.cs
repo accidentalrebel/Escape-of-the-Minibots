@@ -12,17 +12,18 @@ public class Main : MonoBehaviour
     public string engineVersion = "Alpha 5.0";
     public string mapPackVersion = "Alpha 3.0";
 
-    public string mapToLoad = "1";
+    string _mapToLoad = "1";
+
     public string currentUser = "User";
     
-    internal Timer timer;
-    internal LevelEditor levelEditor;
+    public Timer timer;
+    public LevelEditor levelEditor;
 
     public bool isReplayMode = false;
-    int minibotCountAtStart;
+	public int minibotCountAtStart;
 
     Map map;
-    internal Settings settings;
+    public Settings settings;
     List<Minibot> minibotList = new List<Minibot>();
 
     // ************************************************************************************
@@ -36,7 +37,7 @@ public class Main : MonoBehaviour
 
         timer = GetComponent<Timer>();
         if (timer == null)
-            Debug.LogError("Timer not found!");
+            Debug.LogWarning("Timer not found!");
 
         GameObject settingsGO = GameObject.Find("Settings");
         if (settingsGO != null)
@@ -45,23 +46,23 @@ public class Main : MonoBehaviour
             if ( settings == null)
                 Debug.LogWarning("Settings not found!");
         }
-
-        // Level editor is optional
-        levelEditor = gameObject.GetComponent<LevelEditor>();
-        if (levelEditor == null)
-            Debug.LogWarning("Could not find level editor.");
+		
+#if UNITY_EDITOR
+		_mapToLoad = Registry.debugConfig.mapToLoadOnStartup;
+#endif
     }
 
     void Start()
-    {
-        // If we have a settings file ( If we booted the game from the Main Menu Scene )
-        if (settings != null)
-        {
-            mapToLoad = settings.InitialLevelToLoad.ToString();
+    {	
+		levelEditor = Registry.levelEditor;
+
+        if (settings != null) {
+            _mapToLoad = settings.InitialLevelToLoad.ToString();
             currentUser = settings.currentUser;
         }
 
-        map.levelReader.LoadLevel(mapToLoad);
+        if ( !Registry.replayViewer.enabled )
+			map.levelReader.LoadLevel(_mapToLoad);
     }
 
     void LateUpdate()
@@ -95,19 +96,12 @@ public class Main : MonoBehaviour
     // ************************************************************************************
     // LEVEL CHANGING
     // ************************************************************************************
-    /// <summary>
-    /// Gets the name of the level that would go next after this level
-    /// </summary>
-    internal void GoToNextLevel()
+    public void GoToNextLevel()
     {
         map.GetNextLevel();
     }
 
-    /// <summary>
-    /// Loads the next level
-    /// </summary>
-    /// <param name="nextLevelName"></param>
-    internal void LoadNextLevel(string nextLevelName)
+	public void LoadNextLevel(string nextLevelName)
     {        
         if (nextLevelName == "")
         {
@@ -124,58 +118,54 @@ public class Main : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Starts a new level
-    /// </summary>
-    internal void StartLevel()
+	public void StartLevel()
     {        
-        Registry.replayManager.StopReplay();
-        Registry.replayManager.StartRecording();
+		if ( !Registry.replayViewer.enabled ) {
+			Registry.replayManager.StopReplay();
+			Registry.replayManager.StartRecording();
+		}
 
         isReplayMode = false;
 
-        EUpdateMinibotCount();                          // We update the Minibot Count
-        ELevelStarted();
+		if ( EUpdateMinibotCount != null &&EUpdateMinibotCount.GetInvocationList().Length > 0 )
+			EUpdateMinibotCount();                          // We update the Minibot Count
+		
+		if ( ELevelStarted != null &&ELevelStarted.GetInvocationList().Length > 0 )
+			ELevelStarted();
     }
 
-    /// <summary>
-    /// Restarts the game
-    /// </summary>
-    internal void RestartLevel()
+    public void RestartLevel()
     {
         map.RestartLevel();
         StartLevel();
     }
 
-    /// <summary>
-    /// Resets level. Only called when minibot dies.
-    /// </summary>
-    internal void ResetLevel()
+	public void ResetLevel()
     {
         map.RestartLevel();
-        EUpdateMinibotCount();                          // We update the Minibot Count
-        ELevelStarted();
+       
+		if ( EUpdateMinibotCount != null &&EUpdateMinibotCount.GetInvocationList().Length > 0 )
+			EUpdateMinibotCount();                          // We update the Minibot Count
+		
+		if ( ELevelStarted != null &&ELevelStarted.GetInvocationList().Length > 0 )
+			ELevelStarted();
     }
 
     // ************************************************************************************
     // END GAME LOGIC
     // ************************************************************************************
 
-    /// <summary>
-    /// Checks if all the minibots in the level has succesfully exited the level
-    /// </summary>
-    internal void OnMinibotExit()
+	public void OnMinibotExit()
     {
-        EUpdateMinibotCount();
-        int minibotsLeft = CountMinibotsInLevel();
+		if ( EUpdateMinibotCount != null && EUpdateMinibotCount.GetInvocationList().Length > 0 )
+			EUpdateMinibotCount();
+       
+		int minibotsLeft = CountMinibotsInLevel();
 
         if (minibotsLeft <= 0)
             LevelCompleted();
     }
 
-    /// <summary>
-    /// This method handles what would happen when the level is over
-    /// </summary>
     private void LevelCompleted()
     {
         // Just restart the game automatically if in mapEditMode
@@ -184,29 +174,30 @@ public class Main : MonoBehaviour
             RestartLevel();
         else
         {
-            ELevelCompleted();
+			if ( ELevelCompleted != null && ELevelCompleted.GetInvocationList().Length > 0 )
+           	 	ELevelCompleted();
         }
     }
 
     // ************************************************************************************
     // REPLAY
     // ************************************************************************************
-    internal void StartReplay()
+    public void StartReplay()
     {
         isReplayMode = true;
-        Registry.replayManager.StartReplay();
-        map.RestartLevel();
+		map.RestartLevel();
+		Registry.replayManager.StartReplay();
     }
     
     // ************************************************************************************
     // HELPER FUNCTIONS
     // ************************************************************************************
-    internal int CountMinibotsInLevel()
+    public int CountMinibotsInLevel()
     {
         int count = 0;
         foreach (Minibot minibot in minibotList)
         {
-            if (minibot != null && minibot.hasExited == false)
+            if (minibot != null && minibot.HasExited == false)
             {
                 count++;
             }
@@ -219,7 +210,7 @@ public class Main : MonoBehaviour
     /// Gets all the minibots in the level
     /// And then saves it for future reference
     /// </summary>
-    internal void GetMinibotsInLevel()
+    public void GetMinibotsInLevel()
     {
         minibotList.Clear();
         foreach (Transform minibot in map.minibotsContainer.transform)

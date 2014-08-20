@@ -16,6 +16,7 @@ public class PrefabHandler : MonoBehaviour {
     public Object pfSwitch;
     public Object pfTriggerableBlock;
     public Object pfTriggerableTile;
+	public Object pfSurroundingTile;
 
 	// Use this for initialization
 	void Awake () {
@@ -47,5 +48,7 @@ public class PrefabHandler : MonoBehaviour {
             Debug.LogError("Can not find pfTriggerableBlock prefab!");        
         if (pfTriggerableTile == null)
             Debug.LogError("Can not find pfTriggerableTile prefab!");	
+		if (pfSurroundingTile == null)
+			Debug.LogError("Can not find pfSurroundingTile prefab!");	
 	}
 }

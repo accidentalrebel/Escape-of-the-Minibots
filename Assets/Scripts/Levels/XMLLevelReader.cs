@@ -4,24 +4,19 @@ using System.Xml;
 
 public class XMLLevelReader : XMLAccessor {
 
-    public string levelToLoad = "1";
     PrefabHandler prefabHandler;
 
-    	// Use this for initialization
 	override protected void Awake () 
     {        
         prefabHandler = Registry.prefabHandler;
         base.Awake();
 	}   
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="theLevelToLoad"></param>
-    /// <returns>True if levelLoad is successful. False if not.</returns>
-    internal bool LoadLevel(string theLevelToLoad)
+    public bool LoadLevel(string theLevelToLoad)
     {
-        string filepath = Application.dataPath + @"/Resources/Levels/" + theLevelToLoad + ".xml";
+		theLevelToLoad = XMLAccessor.padZeroesIfNumberedLevel(theLevelToLoad);
+		
+		string filepath = Application.dataPath + @"/Resources/Levels/" + theLevelToLoad + ".xml";
 
         // If file exists, continue reading file
         XmlReader reader = XmlReader.Create(filepath);
@@ -56,7 +51,8 @@ public class XMLLevelReader : XMLAccessor {
                 newObject = (GameObject)Instantiate(prefabHandler.pfBox);
 				newObject.GetComponent<Box>().Initialize(new Vector3
 					( float.Parse(reader.GetAttribute("x"))
-					, float.Parse(reader.GetAttribute("y")), 0));
+					, float.Parse(reader.GetAttribute("y")), 0)
+				    , StringToBool(reader.GetAttribute("invertGravity")));
 				
 				newObject.transform.parent = boxesContainer.transform;
 			}
@@ -69,15 +65,6 @@ public class XMLLevelReader : XMLAccessor {
 					, StringToBool(reader.GetAttribute("isOpen")));
 				
 				newObject.transform.parent = doorsContainer.transform;
-			}
-			else if (reader.IsStartElement("gravityInverter"))
-			{
-                newObject = (GameObject)Instantiate(prefabHandler.pfGravityInverter);
-				newObject.GetComponent<GravitySwitch>().Initialize(new Vector3
-					( float.Parse(reader.GetAttribute("x"))
-					, float.Parse(reader.GetAttribute("y")), 0));
-				
-				newObject.transform.parent = gravityInvertersContainer.transform;
 			}
 			else if (reader.IsStartElement("hazard"))
 			{
@@ -130,57 +117,12 @@ public class XMLLevelReader : XMLAccessor {
 			{
                 newObject = (GameObject)Instantiate(prefabHandler.pfStepSwitch);
 
-                string xObjectToActivate1 = reader.GetAttribute("xPosOfObjectToActivate");
-                string yObjectToActivate1 = reader.GetAttribute("yPosOfObjectToActivate");                  
-                
-                string xObjectToActivate2 = reader.GetAttribute("xPosOfObjectToActivate2");
-                string yObjectToActivate2 = reader.GetAttribute("yPosOfObjectToActivate2");
-                
-                string xObjectToActivate3 = reader.GetAttribute("xPosOfObjectToActivate3");
-                string yObjectToActivate3 = reader.GetAttribute("yPosOfObjectToActivate3");
-
-                // If we only have one objectToActivate
-                if ( xObjectToActivate2 == null && yObjectToActivate2 == null)
-                {
-                    newObject.GetComponent<StepSwitch>().Initialize(new Vector3
-                    (float.Parse(reader.GetAttribute("x"))
-                    , float.Parse(reader.GetAttribute("y")), 0)
-                    , new Vector2
-                    (float.Parse(xObjectToActivate1)
-                    , float.Parse(yObjectToActivate1))
-                    );
-                }
-                // If we have two objects to ativate
-                else if (xObjectToActivate3 == null && yObjectToActivate3 == null)
-                {
-                    newObject.GetComponent<StepSwitch>().Initialize(new Vector3
-                    (float.Parse(reader.GetAttribute("x"))
-                    , float.Parse(reader.GetAttribute("y")), 0)
-                    , new Vector2
-                    (float.Parse(xObjectToActivate1)
-                    , float.Parse(yObjectToActivate1))
-                    , new Vector2
-                    (float.Parse(xObjectToActivate2)
-                    , float.Parse(yObjectToActivate2))
-                    );
-                }
-                // If we have three objects to activate
-                else
-                {
-                    newObject.GetComponent<StepSwitch>().Initialize(new Vector3
-                        (float.Parse(reader.GetAttribute("x"))
-                        , float.Parse(reader.GetAttribute("y")), 0)
-                        , new Vector2
-                        (float.Parse(xObjectToActivate1)
-                        , float.Parse(yObjectToActivate1))
-                        , new Vector2
-                        (float.Parse(xObjectToActivate2)
-                        , float.Parse(yObjectToActivate2))
-                        , new Vector2
-                        (float.Parse(xObjectToActivate3)
-                        , float.Parse(yObjectToActivate3))
-                        );
-                }
+				Vector3 startingPos = new Vector3(float.Parse(reader.GetAttribute("x"))
+					, float.Parse(reader.GetAttribute("y")), 0);
+				
+				StepSwitch stepSwitchScript = newObject.GetComponent<StepSwitch>();
+				stepSwitchScript.Initialize(startingPos);
+				SetupLinksForSwitch(stepSwitchScript, reader);
 				
 				newObject.transform.parent = stepSwitchesContainer.transform;
 			}
@@ -188,61 +130,30 @@ public class XMLLevelReader : XMLAccessor {
 			{
                 newObject = (GameObject)Instantiate(prefabHandler.pfSwitch);
 
-                string xObjectToActivate1 = reader.GetAttribute("xPosOfObjectToActivate");
-                string yObjectToActivate1 = reader.GetAttribute("yPosOfObjectToActivate");
-
-                string xObjectToActivate2 = reader.GetAttribute("xPosOfObjectToActivate2");
-                string yObjectToActivate2 = reader.GetAttribute("yPosOfObjectToActivate2");
-
-                string xObjectToActivate3 = reader.GetAttribute("xPosOfObjectToActivate3");
-                string yObjectToActivate3 = reader.GetAttribute("yPosOfObjectToActivate3");
-
-                // If we only have one objectToActivate
-                if (xObjectToActivate2 == null && yObjectToActivate2 == null)
-                {
-                    newObject.GetComponent<Switch>().Initialize(new Vector3
-                    ( float.Parse(reader.GetAttribute("x"))
-                    , float.Parse(reader.GetAttribute("y")), 0)
-                    , new Vector2
-                    ( float.Parse(xObjectToActivate1)
-                    , float.Parse(yObjectToActivate1))
-                    );
-                }
-                // If we have two objects to ativate
-                else if (xObjectToActivate3 == null && yObjectToActivate3 == null)
-                {
-                    newObject.GetComponent<Switch>().Initialize(new Vector3
-                    ( float.Parse(reader.GetAttribute("x"))
-                    , float.Parse(reader.GetAttribute("y")), 0)
-                    , new Vector2
-                    ( float.Parse(xObjectToActivate1)
-                    , float.Parse(yObjectToActivate1))
-                    , new Vector2
-                    ( float.Parse(xObjectToActivate2)
-                    , float.Parse(yObjectToActivate2))
-                    );
-                }
-                // If we have three objects to activate
-                else
-                {
-                    newObject.GetComponent<Switch>().Initialize(new Vector3
-                        ( float.Parse(reader.GetAttribute("x"))
-                        , float.Parse(reader.GetAttribute("y")), 0)
-                        , new Vector2
-                        ( float.Parse(xObjectToActivate1)
-                        , float.Parse(yObjectToActivate1))
-                        , new Vector2
-                        ( float.Parse(xObjectToActivate2)
-                        , float.Parse(yObjectToActivate2))
-                        , new Vector2
-                        ( float.Parse(xObjectToActivate3)
-                        , float.Parse(yObjectToActivate3))
-                        );
-                }
+				Vector3 startingPos = new Vector3(float.Parse(reader.GetAttribute("x"))
+					, float.Parse(reader.GetAttribute("y")), 0);
+				
+				Switch switchScript = newObject.GetComponent<Switch>();
+				switchScript.Initialize(startingPos);
+				SetupLinksForSwitch(switchScript, reader);
 				
 				newObject.transform.parent = switchesContainer.transform;
-			}			
+			}	
+			else if (reader.IsStartElement("gravityInverter"))
+			{
+				newObject = (GameObject)Instantiate(prefabHandler.pfGravityInverter);
+				Vector3 startingPos = new Vector3(float.Parse(reader.GetAttribute("x"))
+				                                  , float.Parse(reader.GetAttribute("y")), 0);
+				
+				GravitySwitch switchScript = newObject.GetComponent<GravitySwitch>();
+				switchScript.Initialize(startingPos);
+				SetupLinksForSwitch(switchScript, reader);
+				
+				newObject.transform.parent = gravityInvertersContainer.transform;
+			}
         }
+
+		Registry.map.UpdateNeighborsForAllWallTiles();
 
         // We tell the main that we have finished loading
         HasFinishedLoadingLevel(theLevelToLoad);
@@ -250,9 +161,29 @@ public class XMLLevelReader : XMLAccessor {
         return true;
     }
 
-    /// <summary>
-    /// When loading of the level is finished, it informs all who needs to know
-    /// </summary>
+	private void SetupLinksForSwitch(Switch currentSwitch, XmlReader reader) {
+
+		int index = 1;
+		foreach( LevelObject linkedObject in currentSwitch.LinkedObjects ) {
+			
+			string xAttribute = reader.GetAttribute("xPosOfObjectToActivate" + index);
+			string yAttribute = reader.GetAttribute("yPosOfObjectToActivate" + index);
+			
+			if ( xAttribute != null && yAttribute != null )
+			{
+				float xPosition = float.Parse(xAttribute);
+				float yPosition = float.Parse(yAttribute);
+				
+				Vector3 posObjectToActivate1 = new Vector3(xPosition, yPosition, 0);
+				LevelObject levelObjectToLink = Registry.map.GetLevelObjectAtPosition(posObjectToActivate1);
+				
+				if ( levelObjectToLink != null )
+					currentSwitch.PushToLinkedObjectsList(levelObjectToLink);
+			}
+			index++;
+		}
+	}
+
     private void HasFinishedLoadingLevel(string theCurrentLevel)
     {
         Registry.map.currentLevel = theCurrentLevel;

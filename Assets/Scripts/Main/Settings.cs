@@ -3,13 +3,13 @@ using System.Collections;
 
 public class Settings : MonoBehaviour {
 
-    int initialLevelToLoad = 0;
+    private int _initialLevelToLoad = 0;
     public string currentUser = "User";
 
-    internal int InitialLevelToLoad
+    public int InitialLevelToLoad
     {
-        get { return initialLevelToLoad;  }
-        set { initialLevelToLoad = value; }
+        get { return _initialLevelToLoad;  }
+        set { _initialLevelToLoad = value; }
     }
 
 	// Use this for initialization

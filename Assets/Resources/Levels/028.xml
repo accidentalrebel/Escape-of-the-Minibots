@@ -202,6 +202,5 @@
   <hazard x="6" y="11" />
   <hazard x="6" y="12" />
   <hazard x="6" y="13" />
-  <hazard x="-5" y="15" />
   <switch x="3" y="2" xPosOfObjectToActivate1="16" yPosOfObjectToActivate1="2" />
 </tiles>

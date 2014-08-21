@@ -8,3 +8,14 @@ D:\Development\Projects\Minibots\Minibots\obj\Debug\Assembly-CSharp.dll
 D:\Development\Projects\Minibots\Minibots\obj\Debug\Assembly-CSharp.pdb
 D:\Development\Projects\Minibots\Minibots\Temp\bin\Debug\Mono.Cecil.dll
 D:\Development\Projects\Minibots\Minibots\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+C:\Development\Projects\AccidentalRebel\Minibots-Unity\Temp\bin\Debug\Assembly-CSharp.dll
+C:\Development\Projects\AccidentalRebel\Minibots-Unity\Temp\bin\Debug\Assembly-CSharp.pdb
+C:\Development\Projects\AccidentalRebel\Minibots-Unity\Temp\bin\Debug\UnityEditor.dll
+C:\Development\Projects\AccidentalRebel\Minibots-Unity\Temp\bin\Debug\UnityEngine.dll
+C:\Development\Projects\AccidentalRebel\Minibots-Unity\Temp\bin\Debug\Mono.Cecil.dll
+C:\Development\Projects\AccidentalRebel\Minibots-Unity\Temp\bin\Debug\nunit.framework.dll
+C:\Development\Projects\AccidentalRebel\Minibots-Unity\Temp\bin\Debug\Unity.DataContract.dll
+C:\Development\Projects\AccidentalRebel\Minibots-Unity\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+C:\Development\Projects\AccidentalRebel\Minibots-Unity\obj\Debug\Assembly-CSharp-vs.csprojResolveAssemblyReference.cache
+C:\Development\Projects\AccidentalRebel\Minibots-Unity\obj\Debug\Assembly-CSharp.dll
+C:\Development\Projects\AccidentalRebel\Minibots-Unity\obj\Debug\Assembly-CSharp.pdb

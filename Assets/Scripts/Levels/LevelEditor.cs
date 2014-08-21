@@ -117,14 +117,14 @@ public class LevelEditor : MonoBehaviour {
             }
         }
 
-        // This only shows the origin marker when mapEditMode is enabled
-        if (mapEditMode)
-        {
+        if (Registry.debugConfig.isCameraOrthographic)
+            return;
+
+        if (mapEditMode) {
             Camera.main.orthographic = true;
             originMarkerRenderer.enabled = true;
         }
-        else
-        {
+        else {
             Camera.main.orthographic = false;
             originMarkerRenderer.enabled = false;
         }

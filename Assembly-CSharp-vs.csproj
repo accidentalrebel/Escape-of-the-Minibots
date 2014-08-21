@@ -111,6 +111,7 @@
      <None Include="Assets\Resources\Levels\bryan-4.xml" />
      <None Include="Assets\Resources\Levels\bryan-1.xml" />
      <None Include="Assets\Resources\Levels\bryan-6.xml" />
+     <None Include="Assets\Resources\Levels\027.xml" />
      <None Include="Assets\Resources\Levels\032.xml" />
      <None Include="Assets\Resources\Levels\001.xml" />
      <None Include="Assets\Resources\Levels\bryan-5.xml" />
@@ -127,6 +128,7 @@
      <None Include="Assets\Resources\Levels\014.xml" />
      <None Include="Assets\Resources\Levels\025.xml" />
      <None Include="Assets\Resources\Levels\template.xml" />
+     <None Include="Assets\Resources\Levels\026.xml" />
      <None Include="Assets\Resources\Levels\012.xml" />
      <None Include="Assets\Resources\Levels\050.xml" />
      <None Include="Assets\Resources\Levels\017.xml" />

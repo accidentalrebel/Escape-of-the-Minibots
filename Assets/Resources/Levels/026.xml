@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <tiles>
+  <minibot x="3" y="8" invertGravity="0" invertHorizontal="0" />
+  <minibot x="16" y="8" invertGravity="0" invertHorizontal="1" />
   <tile x="0" y="0" />
   <tile x="0" y="1" />
   <tile x="0" y="2" />
@@ -66,22 +68,19 @@
   <tile x="1" y="14" />
   <tile x="0" y="14" />
   <tile x="0" y="13" />
-  <tile x="1" y="1" />
-  <tile x="2" y="1" />
-  <tile x="3" y="1" />
-  <tile x="4" y="1" />
-  <tile x="5" y="1" />
-  <tile x="6" y="1" />
-  <tile x="7" y="1" />
-  <tile x="8" y="1" />
-  <tile x="10" y="1" />
-  <tile x="9" y="1" />
-  <tile x="13" y="1" />
-  <tile x="12" y="1" />
-  <tile x="11" y="1" />
-  <tile x="14" y="1" />
-  <tile x="15" y="1" />
-  <tile x="17" y="1" />
-  <tile x="18" y="1" />
-  <tile x="16" y="1" />
+  <tile x="1" y="6" />
+  <tile x="2" y="6" />
+  <tile x="3" y="6" />
+  <tile x="4" y="6" />
+  <tile x="5" y="6" />
+  <tile x="14" y="6" />
+  <tile x="15" y="6" />
+  <tile x="16" y="6" />
+  <tile x="17" y="6" />
+  <tile x="18" y="6" />
+  <box x="18" y="7" invertGravity="0" />
+  <triggerableBlock x="6" y="6" isHidden="0" width="4" height="1" />
+  <triggerableBlock x="10" y="6" isHidden="0" width="4" height="1" />
+  <switch x="7" y="9" xPosOfObjectToActivate1="10" yPosOfObjectToActivate1="6" />
+  <switch x="12" y="9" xPosOfObjectToActivate1="6" yPosOfObjectToActivate1="6" />
 </tiles>

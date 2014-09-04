@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tiles>
+  <minibot x="2" y="5" invertGravity="0" invertHorizontal="0" />
+  <minibot x="12" y="5" invertGravity="0" invertHorizontal="0" />
+  <tile x="0" y="0" />
+  <tile x="0" y="1" />
+  <tile x="0" y="2" />
+  <tile x="0" y="3" />
+  <tile x="0" y="4" />
+  <tile x="0" y="5" />
+  <tile x="0" y="6" />
+  <tile x="0" y="7" />
+  <tile x="0" y="8" />
+  <tile x="0" y="9" />
+  <tile x="0" y="10" />
+  <tile x="0" y="11" />
+  <tile x="1" y="0" />
+  <tile x="2" y="0" />
+  <tile x="3" y="0" />
+  <tile x="4" y="0" />
+  <tile x="5" y="0" />
+  <tile x="6" y="0" />
+  <tile x="7" y="0" />
+  <tile x="8" y="0" />
+  <tile x="9" y="0" />
+  <tile x="10" y="0" />
+  <tile x="11" y="0" />
+  <tile x="12" y="0" />
+  <tile x="13" y="0" />
+  <tile x="15" y="0" />
+  <tile x="14" y="0" />
+  <tile x="16" y="0" />
+  <tile x="17" y="0" />
+  <tile x="18" y="0" />
+  <tile x="19" y="0" />
+  <tile x="19" y="1" />
+  <tile x="19" y="2" />
+  <tile x="19" y="3" />
+  <tile x="19" y="4" />
+  <tile x="19" y="5" />
+  <tile x="19" y="6" />
+  <tile x="19" y="7" />
+  <tile x="19" y="8" />
+  <tile x="19" y="9" />
+  <tile x="19" y="10" />
+  <tile x="19" y="12" />
+  <tile x="0" y="12" />
+  <tile x="19" y="13" />
+  <tile x="19" y="14" />
+  <tile x="18" y="14" />
+  <tile x="17" y="14" />
+  <tile x="16" y="14" />
+  <tile x="15" y="14" />
+  <tile x="14" y="14" />
+  <tile x="12" y="14" />
+  <tile x="13" y="14" />
+  <tile x="11" y="14" />
+  <tile x="10" y="14" />
+  <tile x="8" y="14" />
+  <tile x="9" y="14" />
+  <tile x="7" y="14" />
+  <tile x="6" y="14" />
+  <tile x="5" y="14" />
+  <tile x="4" y="14" />
+  <tile x="3" y="14" />
+  <tile x="2" y="14" />
+  <tile x="1" y="14" />
+  <tile x="0" y="14" />
+  <tile x="0" y="13" />
+  <tile x="10" y="11" />
+  <tile x="10" y="9" />
+  <tile x="10" y="10" />
+  <tile x="10" y="7" />
+  <tile x="10" y="8" />
+  <tile x="10" y="6" />
+  <tile x="10" y="5" />
+  <tile x="10" y="4" />
+  <tile x="10" y="3" />
+  <tile x="10" y="2" />
+  <tile x="10" y="1" />
+  <tile x="9" y="1" />
+  <tile x="9" y="2" />
+  <tile x="9" y="3" />
+  <tile x="9" y="4" />
+  <tile x="9" y="5" />
+  <tile x="9" y="6" />
+  <tile x="9" y="7" />
+  <tile x="9" y="9" />
+  <tile x="9" y="8" />
+  <tile x="9" y="10" />
+  <tile x="9" y="11" />
+  <tile x="1" y="4" />
+  <tile x="2" y="4" />
+  <tile x="3" y="4" />
+  <tile x="4" y="4" />
+  <tile x="5" y="4" />
+  <tile x="6" y="4" />
+  <tile x="7" y="4" />
+  <tile x="8" y="4" />
+  <tile x="11" y="4" />
+  <tile x="12" y="4" />
+  <tile x="13" y="4" />
+  <tile x="15" y="4" />
+  <tile x="14" y="4" />
+  <tile x="16" y="4" />
+  <tile x="17" y="4" />
+  <tile x="18" y="4" />
+  <tile x="1" y="3" />
+  <tile x="1" y="2" />
+  <tile x="1" y="1" />
+  <tile x="2" y="2" />
+  <tile x="2" y="3" />
+  <tile x="2" y="1" />
+  <tile x="3" y="1" />
+  <tile x="3" y="3" />
+  <tile x="4" y="3" />
+  <tile x="4" y="2" />
+  <tile x="3" y="2" />
+  <tile x="4" y="1" />
+  <tile x="5" y="1" />
+  <tile x="5" y="2" />
+  <tile x="5" y="3" />
+  <tile x="6" y="3" />
+  <tile x="6" y="2" />
+  <tile x="6" y="1" />
+  <tile x="7" y="1" />
+  <tile x="7" y="2" />
+  <tile x="7" y="3" />
+  <tile x="8" y="3" />
+  <tile x="8" y="2" />
+  <tile x="8" y="1" />
+  <tile x="12" y="3" />
+  <tile x="12" y="2" />
+  <tile x="11" y="1" />
+  <tile x="11" y="2" />
+  <tile x="11" y="3" />
+  <tile x="12" y="1" />
+  <tile x="13" y="1" />
+  <tile x="13" y="2" />
+  <tile x="14" y="3" />
+  <tile x="14" y="2" />
+  <tile x="14" y="1" />
+  <tile x="15" y="1" />
+  <tile x="15" y="2" />
+  <tile x="15" y="3" />
+  <tile x="13" y="3" />
+  <tile x="16" y="3" />
+  <tile x="16" y="2" />
+  <tile x="16" y="1" />
+  <tile x="17" y="1" />
+  <tile x="17" y="2" />
+  <tile x="17" y="3" />
+  <tile x="18" y="3" />
+  <tile x="18" y="2" />
+  <tile x="18" y="1" />
+  <tile x="17" y="5" />
+  <tile x="17" y="6" />
+  <tile x="18" y="6" />
+  <tile x="18" y="5" />
+  <tile x="16" y="5" />
+  <tile x="16" y="6" />
+  <tile x="16" y="9" />
+  <tile x="16" y="10" />
+  <tile x="17" y="10" />
+  <tile x="17" y="9" />
+  <tile x="18" y="10" />
+  <tile x="18" y="9" />
+  <tile x="8" y="11" />
+  <tile x="17" y="7" />
+  <tile x="16" y="8" />
+  <tile x="16" y="7" />
+  <tile x="17" y="8" />
+  <tile x="18" y="8" />
+  <tile x="18" y="7" />
+  <tile x="19" y="11" />
+  <tile x="16" y="11" />
+  <tile x="17" y="11" />
+  <tile x="18" y="11" />
+  <tile x="7" y="11" />
+  <tile x="9" y="12" />
+  <tile x="9" y="13" />
+  <tile x="10" y="12" />
+  <tile x="10" y="13" />
+  <tile x="6" y="11" />
+  <door x="7" y="12" isOpen="1" />
+  <door x="17" y="12" isOpen="1" />
+  <triggerableBlock x="1" y="6" isHidden="1" width="8" height="1" />
+  <triggerableBlock x="1" y="8" isHidden="1" width="8" height="1" />
+  <triggerableBlock x="1" y="10" isHidden="1" width="8" height="1" />
+  <triggerableBlock x="11" y="6" isHidden="1" width="5" height="1" />
+  <triggerableBlock x="11" y="8" isHidden="1" width="5" height="1" />
+  <triggerableBlock x="11" y="10" isHidden="1" width="5" height="1" />
+  <switch x="2" y="7" xPosOfObjectToActivate1="1" yPosOfObjectToActivate1="6" xPosOfObjectToActivate2="11" yPosOfObjectToActivate2="6" />
+  <switch x="7" y="9" xPosOfObjectToActivate1="11" yPosOfObjectToActivate1="8" />
+  <switch x="2" y="11" xPosOfObjectToActivate1="11" yPosOfObjectToActivate1="10" />
+  <switch x="12" y="9" xPosOfObjectToActivate1="1" yPosOfObjectToActivate1="8" />
+  <switch x="14" y="9" xPosOfObjectToActivate1="1" yPosOfObjectToActivate1="10" />
+  <switch x="13" y="11" xPosOfObjectToActivate1="11" yPosOfObjectToActivate1="10" />
+</tiles>

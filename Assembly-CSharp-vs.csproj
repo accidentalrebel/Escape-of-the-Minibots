@@ -125,6 +125,7 @@
      <None Include="Assets\Resources\Levels\002.xml" />
      <None Include="Assets\Resources\Levels\011.xml" />
      <None Include="Assets\Resources\Levels\014.xml" />
+     <None Include="Assets\Resources\Levels\025.xml" />
      <None Include="Assets\Resources\Levels\template.xml" />
      <None Include="Assets\Resources\Levels\012.xml" />
      <None Include="Assets\Resources\Levels\050.xml" />

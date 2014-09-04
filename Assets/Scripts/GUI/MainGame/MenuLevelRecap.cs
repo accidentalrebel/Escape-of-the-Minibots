@@ -19,13 +19,10 @@ public class MenuLevelRecap : Menu
         base.Update();
 
         if (isVisible) {
-            if (Input.GetKeyDown(KeyCode.Z)
-			    || Input.GetKeyDown(KeyCode.Space)) {                
+            if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Use") || Input.GetButtonDown("PickUp"))         
                 GoToNextLevel();
-            }
-            else if (Input.GetKeyDown(KeyCode.X)) {
+			else if (Input.GetButtonDown("Restart"))
                 RestartLevel();
-            }
         }
     }
 

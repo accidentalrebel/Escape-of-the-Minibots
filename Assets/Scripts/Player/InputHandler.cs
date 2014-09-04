@@ -33,37 +33,24 @@ public class InputHandler : MonoBehaviour {
     private bool _hasPressedRight = false;
     private bool _hasPressedLeft = false;
 
-	// Use this for initialization
+	// ************************************************************************************
+	// MAIN
+	// ************************************************************************************
 	void Start () {
         Registry.inputHandler = this;
         Registry.main.ELevelCompleted += ResetInput;
         Registry.main.ELevelStarted += ResetInput;
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 
         if (!Registry.main.isReplayMode && !Registry.replayViewer.enabled)
         {
 			HandleHorizontalInput();
-                    
-			if (Input.GetButtonDown("Jump"))
-            {
-                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedJump);
-                PressedJump();
-            }
-            else if (Input.GetButtonUp("Jump"))
-            {
-                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedJump);
-                ReleasedJump();
-            }
-            
-			if (Input.GetKeyDown(KeyCode.X))
-            {
-                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedUse);
-                PressedUse();
-            }
-            else if (Input.GetKeyDown(KeyCode.C))
+			HandleJumpInput();
+			HandleUseInput();
+
+            if (Input.GetKeyDown(KeyCode.C))
             {
                 Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedPickUp);
                 PressedPickUp();
@@ -73,7 +60,6 @@ public class InputHandler : MonoBehaviour {
                 Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedReset);
                 PressedReset();
             }
-
 			else if (Input.GetKeyDown(KeyCode.M))
 			{
 				Registry.bgmManager.toggleStatus();
@@ -82,16 +68,6 @@ public class InputHandler : MonoBehaviour {
 
         HandleAxis();
 	}
-    
-	public void ResetInput()
-    {
-        _hasPressedLeft = false;
-        _hasPressedRight = false;
-        _useButton = false;
-        _pickupButton = false;
-        _xAxis = 0;
-        _jumpButton = false;
-    }
 
     void LateUpdate()
     {
@@ -100,6 +76,9 @@ public class InputHandler : MonoBehaviour {
         _resetButton = false;
     }
         
+	// ************************************************************************************
+	// INPUTS
+	// ************************************************************************************
     private void HandleAxis()
     {
         if ( _hasPressedRight)
@@ -169,6 +148,16 @@ public class InputHandler : MonoBehaviour {
         _resetButton = true;
     }
 
+	public void ResetInput()
+	{
+		_hasPressedLeft = false;
+		_hasPressedRight = false;
+		_useButton = false;
+		_pickupButton = false;
+		_xAxis = 0;
+		_jumpButton = false;
+	}
+
 	// ************************************************************************************
 	// HELPERS
 	// ************************************************************************************
@@ -205,6 +194,29 @@ public class InputHandler : MonoBehaviour {
 				Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedLeft);
 				ReleasedLeft();
 			}
+		}
+	}
+
+	void HandleJumpInput ()
+	{
+		if (Input.GetButtonDown("Jump"))
+		{
+			Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedJump);
+			PressedJump();
+		}
+		else if (Input.GetButtonUp("Jump"))
+		{
+			Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedJump);
+			ReleasedJump();
+		}
+	}
+
+	void HandleUseInput()
+	{
+		if (Input.GetButtonDown("Use"))
+		{
+			Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedUse);
+			PressedUse();
 		}
 	}
 

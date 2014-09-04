@@ -44,6 +44,18 @@ public class InputHandler : MonoBehaviour {
 
         if (!Registry.main.isReplayMode && !Registry.replayViewer.enabled)
         {
+			if ( Input.GetAxis("Horizontal") < 0 ) {
+				PressedLeft();
+			}
+			else if ( Input.GetAxis("Horizontal") > 0 ) {
+				PressedRight();
+			}
+			else
+			{
+				ReleasedRight();
+				ReleasedLeft();
+			}
+
             if (Input.GetKeyDown(KeyCode.D)
                 || Input.GetKeyDown(KeyCode.RightArrow))
             {
@@ -70,14 +82,12 @@ public class InputHandler : MonoBehaviour {
                 ReleasedLeft();
             }
             
-			if (Input.GetButtonDown("Jump") 
-			    || Input.GetButtonDown("Jump-Joystick"))
+			if (Input.GetButtonDown("Jump"))
             {
                 Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedJump);
                 PressedJump();
             }
-            else if (Input.GetButtonUp("Jump")
-			    || Input.GetButtonUp("Jump-Joystick"))
+            else if (Input.GetButtonUp("Jump"))
             {
                 Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedJump);
                 ReleasedJump();

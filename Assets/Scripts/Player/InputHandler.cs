@@ -177,9 +177,11 @@ public class InputHandler : MonoBehaviour {
 		if ( isJoystickEnabled && IsJoystickConnected() ) {
 			if ( Input.GetAxis("Horizontal") < 0 ) {
 				PressedLeft();
+				ReleasedRight();
 			}
 			else if ( Input.GetAxis("Horizontal") > 0 ) {
 				PressedRight();
+				ReleasedLeft();	
 			}
 			else {
 				ReleasedRight();

@@ -1,12 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
-public class MenuLevelRecap : Menu {
-
-    string levelComment = "";
-
-	// Use this for initialization
-	override protected void Start () {
+public class MenuLevelRecap : Menu 
+{
+	override protected void Start () 
+	{
         base.Start();  
 
 		if ( Registry.replayViewer.enabled == false )
@@ -35,26 +33,14 @@ public class MenuLevelRecap : Menu {
     }
 
     private void RestartLevel()
-    {
-        Registry.playtestManager.SendPlaytestData(Registry.main.currentUser
-                , Registry.main.timer.CurrentTime, Registry.main.engineVersion
-                , Registry.main.mapPackVersion, levelComment);
+    {       
         Registry.main.RestartLevel();
         Hide();
     }
 
     private void GoToNextLevel()
-    {        
-		if ( Registry.replayViewer.enabled )
-			Registry.replayViewer.StartNextReplay();
-		else {
-	        Registry.playtestManager.SendPlaytestData(Registry.main.currentUser
-	                , Registry.main.timer.CurrentTime, Registry.main.engineVersion
-	                , Registry.main.mapPackVersion, levelComment);
-	        levelComment = "";
-	        Registry.main.GoToNextLevel();        
-		}
-
+    {       
+		Registry.main.GoToNextLevel();  
 		Hide();
     }
 
@@ -75,11 +61,6 @@ public class MenuLevelRecap : Menu {
                 , topPosition + 30
                 , menuWidth, 50), "Message to the developer");
             GUI.skin.label.alignment = TextAnchor.UpperLeft;   
-
-            levelComment = GUI.TextArea(new Rect
-                ( centerPosition - (menuWidth / 2) + 10
-                , topPosition + 50
-                , menuWidth - 20, 200), levelComment);
             
             GUI.skin.label.alignment = TextAnchor.UpperCenter;
             if (GUI.Button(new Rect

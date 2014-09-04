@@ -69,7 +69,7 @@ public class Main : MonoBehaviour
     {      
         // The following are debug keys
         // If we press the R key, the level restarts
-        if ( Registry.inputHandler.ResetButton )
+        if ( Registry.inputHandler.resetButton )
         {
             RestartLevel(); 
         }

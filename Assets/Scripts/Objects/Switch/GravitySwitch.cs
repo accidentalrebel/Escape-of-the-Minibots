@@ -14,7 +14,7 @@ public class GravitySwitch : Switch
     {
         if (_isTriggered)
         {
-            if (Registry.inputHandler.UseButton)
+            if (Registry.inputHandler.useButton)
             {
 				Use();
             }

@@ -5,32 +5,32 @@ public class InputHandler : MonoBehaviour {
 
     public float axisSensitivity = 0.1f;
 
-    float xAxis = 0;
-    public float XAxis
-    { get { return xAxis; } }
+    float _xAxis = 0;
+    public float xAxis
+    { get { return _xAxis; } }
 
-    float yAxis = 0;
-	public float YAxis
-    { get { return yAxis; } }
+    float _yAxis = 0;
+	public float yAxis
+    { get { return _yAxis; } }
 
-    bool jumpButton = false;    
-	public  bool JumpButton
-    { get { return jumpButton; } }
+    bool _jumpButton = false;    
+	public  bool jumpButton
+    { get { return _jumpButton; } }
 
-    bool useButton = false ;
-	public bool UseButton
-    { get { return useButton; } }
+    bool _useButton = false ;
+	public bool useButton
+    { get { return _useButton; } }
 
-    bool pickupButton = false;
-	public bool PickupButton
-    { get { return pickupButton; } }
+    bool _pickupButton = false;
+	public bool pickupButton
+    { get { return _pickupButton; } }
 
-    bool resetButton = false;
-	public bool ResetButton
-    { get { return resetButton; } }
+    bool _resetButton = false;
+	public bool resetButton
+    { get { return _resetButton; } }
 
-    private bool hasPressedRight = false;
-    private bool hasPressedLeft = false;
+    private bool _hasPressedRight = false;
+    private bool _hasPressedLeft = false;
 
 	// Use this for initialization
 	void Start () {
@@ -110,87 +110,87 @@ public class InputHandler : MonoBehaviour {
     
 	public void ResetInput()
     {
-        hasPressedLeft = false;
-        hasPressedRight = false;
-        useButton = false;
-        pickupButton = false;
-        xAxis = 0;
-        jumpButton = false;
+        _hasPressedLeft = false;
+        _hasPressedRight = false;
+        _useButton = false;
+        _pickupButton = false;
+        _xAxis = 0;
+        _jumpButton = false;
     }
 
     void LateUpdate()
     {
-        useButton = false;
-        pickupButton = false;
-        resetButton = false;
+        _useButton = false;
+        _pickupButton = false;
+        _resetButton = false;
     }
         
     private void HandleAxis()
     {
-        if ( hasPressedRight)
-            xAxis += axisSensitivity;
-        else if (hasPressedLeft)
-            xAxis -= axisSensitivity;        
+        if ( _hasPressedRight)
+            _xAxis += axisSensitivity;
+        else if (_hasPressedLeft)
+            _xAxis -= axisSensitivity;        
         // If no keys are pressed
         else
         {
-            if (xAxis > axisSensitivity)
-                xAxis -= axisSensitivity;
-            else if (xAxis < -axisSensitivity)
-                xAxis += axisSensitivity;
+            if (_xAxis > axisSensitivity)
+                _xAxis -= axisSensitivity;
+            else if (_xAxis < -axisSensitivity)
+                _xAxis += axisSensitivity;
             else
-                xAxis = 0;
+                _xAxis = 0;
         }
 
         // We cap the values to 1 and -1
-        if (xAxis > 1)
-            xAxis = 1;
-        else if (xAxis < -1)
-            xAxis = -1;
+        if (_xAxis > 1)
+            _xAxis = 1;
+        else if (_xAxis < -1)
+            _xAxis = -1;
     }
 
 	public void PressedRight()
     {
-        hasPressedRight = true;
+        _hasPressedRight = true;
     }
 
 	public void ReleasedRight()
     {
-        hasPressedRight = false;
+        _hasPressedRight = false;
     }
 
 	public void PressedLeft()
     {
-        hasPressedLeft = true;
+        _hasPressedLeft = true;
     }
 
 	public void ReleasedLeft()
     {
-        hasPressedLeft = false;
+        _hasPressedLeft = false;
     }
 
 	public void PressedJump()
     {
-        jumpButton = true;
+        _jumpButton = true;
     }
 
 	public void ReleasedJump()
     {
-        jumpButton = false;
+        _jumpButton = false;
     }
 
 	public void PressedUse()
     {        
-        useButton = true;
+        _useButton = true;
     }
 
 	public void PressedPickUp()
     {
-        pickupButton = true;
+        _pickupButton = true;
     }
 
 	public void PressedReset()
     {
-        resetButton = true;
+        _resetButton = true;
     }
 }

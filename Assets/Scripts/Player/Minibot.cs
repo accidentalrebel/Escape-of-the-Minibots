@@ -97,7 +97,7 @@ public class Minibot : LevelObject {
 	
     void LateUpdate()
     {
-        if ( Registry.inputHandler.PickupButton
+        if ( Registry.inputHandler.pickupButton
             && _objectBeingCarried != null
 		    && !_isJumping)
         {
@@ -105,7 +105,7 @@ public class Minibot : LevelObject {
         }
 
         // Handles the picking up of objects
-        if (Registry.inputHandler.PickupButton
+        if (Registry.inputHandler.pickupButton
             && _objectBeingCarried ==  null
 		    && !_isJumping)
         {

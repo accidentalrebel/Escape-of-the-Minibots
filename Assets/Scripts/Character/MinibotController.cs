@@ -55,8 +55,8 @@ public class MinibotController : MonoBehaviour
 
     void FixedUpdate()
     {
-		float yInput = Registry.inputHandler.YAxis;
-		float xInput = AdjustXInput(Registry.inputHandler.XAxis);
+		float yInput = Registry.inputHandler.yAxis;
+		float xInput = AdjustXInput(Registry.inputHandler.xAxis);
 		
 		_playerScript.SetFacingValueWithXinput(xInput);
 
@@ -74,7 +74,7 @@ public class MinibotController : MonoBehaviour
 		else
 			RemoveHorizontalForce();
 
-		if (Registry.inputHandler.JumpButton && _isGrounded && _canJump ) {
+		if (Registry.inputHandler.jumpButton && _isGrounded && _canJump ) {
 			ApplyJumpForces(currentVelocity);  
 			_playerScript.Jump(); 
         }

@@ -52,13 +52,8 @@ public class Switch : LevelObject {
 
 	void LateUpdate () 
     {
-        if (_isTriggered)
-        {
-            if (Registry.inputHandler.UseButton)
-            {
-				Use();
-            }
-        }
+		if (_isTriggered && Registry.inputHandler.useButton)
+       		Use();
 	}
 
 	public override void Use ()

@@ -4,191 +4,225 @@ using System.Collections;
 public class InputHandler : MonoBehaviour {
 
     public float axisSensitivity = 0.1f;
+	public bool isJoystickEnabled;
 
-    float xAxis = 0;
-    public float XAxis
-    { get { return xAxis; } }
+    float _xAxis = 0;
+    public float xAxis
+    { get { return _xAxis; } }
 
-    float yAxis = 0;
-	public float YAxis
-    { get { return yAxis; } }
+    float _yAxis = 0;
+	public float yAxis
+    { get { return _yAxis; } }
 
-    bool jumpButton = false;    
-	public  bool JumpButton
-    { get { return jumpButton; } }
+    bool _jumpButton = false;    
+	public  bool jumpButton
+    { get { return _jumpButton; } }
 
-    bool useButton = false ;
-	public bool UseButton
-    { get { return useButton; } }
+    bool _useButton = false ;
+	public bool useButton
+    { get { return _useButton; } }
 
-    bool pickupButton = false;
-	public bool PickupButton
-    { get { return pickupButton; } }
+    bool _pickupButton = false;
+	public bool pickupButton
+    { get { return _pickupButton; } }
 
-    bool resetButton = false;
-	public bool ResetButton
-    { get { return resetButton; } }
+    bool _resetButton = false;
+	public bool resetButton
+    { get { return _resetButton; } }
 
-    private bool hasPressedRight = false;
-    private bool hasPressedLeft = false;
+    private bool _hasPressedRight = false;
+    private bool _hasPressedLeft = false;
 
-	// Use this for initialization
+	// ************************************************************************************
+	// MAIN
+	// ************************************************************************************
 	void Start () {
         Registry.inputHandler = this;
         Registry.main.ELevelCompleted += ResetInput;
         Registry.main.ELevelStarted += ResetInput;
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 
         if (!Registry.main.isReplayMode && !Registry.replayViewer.enabled)
         {
-            if (Input.GetKeyDown(KeyCode.D)
-                || Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedRight);
-                PressedRight();
-            }
-            else if (Input.GetKeyUp(KeyCode.D)
-                || Input.GetKeyUp(KeyCode.RightArrow))
-            {
-                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedRight);
-                ReleasedRight();
-            }
-            
-			if (Input.GetKeyDown(KeyCode.A)
-                || Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedLeft);
-                PressedLeft();
-            }
-            else if (Input.GetKeyUp(KeyCode.A)
-                || Input.GetKeyUp(KeyCode.LeftArrow))
-            {
-                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedLeft);
-                ReleasedLeft();
-            }
-            
-			if (Input.GetButtonDown("Jump"))
-            {
-                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedJump);
-                PressedJump();
-            }
-            else if (Input.GetButtonUp("Jump"))
-            {
-                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedJump);
-                ReleasedJump();
-            }
-            
-			if (Input.GetKeyDown(KeyCode.X))
-            {
-                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedUse);
-                PressedUse();
-            }
-            else if (Input.GetKeyDown(KeyCode.C))
-            {
-                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedPickUp);
-                PressedPickUp();
-            }
-            else if (Input.GetKeyDown(KeyCode.R))
-            {
-                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedReset);
-                PressedReset();
-            }
-
-			else if (Input.GetKeyDown(KeyCode.M))
-			{
-				Registry.bgmManager.toggleStatus();
-			}
+			HandleHorizontalInput();
+			HandleJumpInput();
+			HandleUseInput();
+			HandlePickUpInput();
+			HandleRestartInput();
+			HandleMuteInput();
         }
 
         HandleAxis();
 	}
-    
-	public void ResetInput()
-    {
-        hasPressedLeft = false;
-        hasPressedRight = false;
-        useButton = false;
-        pickupButton = false;
-        xAxis = 0;
-        jumpButton = false;
-    }
 
     void LateUpdate()
     {
-        useButton = false;
-        pickupButton = false;
-        resetButton = false;
+        _useButton = false;
+        _pickupButton = false;
+        _resetButton = false;
     }
         
+	// ************************************************************************************
+	// INPUTS
+	// ************************************************************************************
     private void HandleAxis()
     {
-        if ( hasPressedRight)
-            xAxis += axisSensitivity;
-        else if (hasPressedLeft)
-            xAxis -= axisSensitivity;        
-        // If no keys are pressed
+        if ( _hasPressedRight)
+            _xAxis += axisSensitivity;
+        else if (_hasPressedLeft)
+            _xAxis -= axisSensitivity;    
         else
         {
-            if (xAxis > axisSensitivity)
-                xAxis -= axisSensitivity;
-            else if (xAxis < -axisSensitivity)
-                xAxis += axisSensitivity;
+            if (_xAxis > axisSensitivity)
+                _xAxis -= axisSensitivity;
+            else if (_xAxis < -axisSensitivity)
+                _xAxis += axisSensitivity;
             else
-                xAxis = 0;
+                _xAxis = 0;
         }
 
         // We cap the values to 1 and -1
-        if (xAxis > 1)
-            xAxis = 1;
-        else if (xAxis < -1)
-            xAxis = -1;
+        if (_xAxis > 1)
+            _xAxis = 1;
+        else if (_xAxis < -1)
+            _xAxis = -1;
     }
 
-	public void PressedRight()
+	public void OnPressedRight()
     {
-        hasPressedRight = true;
+		Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedRight);
+        _hasPressedRight = true;
     }
 
-	public void ReleasedRight()
+	public void OnReleasedRight()
     {
-        hasPressedRight = false;
+		Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedRight);
+        _hasPressedRight = false;
     }
 
-	public void PressedLeft()
+	public void OnPressedLeft()
     {
-        hasPressedLeft = true;
+		Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedLeft);
+        _hasPressedLeft = true;
     }
 
-	public void ReleasedLeft()
+	public void OnReleasedLeft()
     {
-        hasPressedLeft = false;
+		Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedLeft);
+        _hasPressedLeft = false;
     }
 
-	public void PressedJump()
+	public void OnPressedJump()
     {
-        jumpButton = true;
+		Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedJump);
+        _jumpButton = true;
     }
 
-	public void ReleasedJump()
+	public void OnReleasedJump()
     {
-        jumpButton = false;
+		Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedJump);
+        _jumpButton = false;
     }
 
-	public void PressedUse()
+	public void OnPressedUse()
     {        
-        useButton = true;
+		Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedUse);
+        _useButton = true;
     }
 
-	public void PressedPickUp()
+	public void OnPressedPickUp()
     {
-        pickupButton = true;
+		Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedPickUp);
+        _pickupButton = true;
     }
 
-	public void PressedReset()
+	public void OnPressedReset()
     {
-        resetButton = true;
+		Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedReset);
+        _resetButton = true;
     }
+
+	public void ResetInput()
+	{
+		_hasPressedLeft = false;
+		_hasPressedRight = false;
+		_useButton = false;
+		_pickupButton = false;
+		_xAxis = 0;
+		_jumpButton = false;
+	}
+
+	// ************************************************************************************
+	// HELPERS
+	// ************************************************************************************
+	void HandleHorizontalInput()
+	{
+		if ( isJoystickEnabled && IsJoystickConnected() ) {
+			if ( Input.GetAxis("Horizontal") < 0 ) {
+				OnPressedLeft();
+				if ( _hasPressedRight )
+					OnReleasedRight();
+			}
+			else if ( Input.GetAxis("Horizontal") > 0 ) {
+				OnPressedRight();
+				if ( _hasPressedLeft )
+					OnReleasedLeft();	
+			}
+			else {
+				if ( _hasPressedRight )
+					OnReleasedRight();
+				if ( _hasPressedLeft )
+					OnReleasedLeft();			
+			}
+		}
+		else {
+			if (Input.GetButtonDown("Right"))
+				OnPressedRight();
+			else if (Input.GetButtonUp("Right"))
+				OnReleasedRight();
+			else if (Input.GetButtonDown("Left"))
+				OnPressedLeft();
+			else if (Input.GetButtonUp("Left"))
+				OnReleasedLeft();
+		}
+	}
+
+	void HandleJumpInput ()
+	{
+		if (Input.GetButtonDown("Jump"))
+			OnPressedJump();
+		else if (Input.GetButtonUp("Jump"))
+			OnReleasedJump();
+	}
+
+	void HandleUseInput()
+	{
+		if (Input.GetButtonDown("Use"))
+			OnPressedUse();
+	}
+
+	void HandlePickUpInput ()
+	{
+		if (Input.GetButtonDown("PickUp"))
+			OnPressedPickUp();
+	}
+
+	void HandleRestartInput ()
+	{
+		if (Input.GetButtonDown("Restart"))
+			OnPressedReset();
+	}
+
+	void HandleMuteInput ()
+	{
+		if (Input.GetButtonDown("Mute"))
+			Registry.bgmManager.toggleStatus();
+	}
+
+	bool IsJoystickConnected() 
+	{
+		return Input.GetJoystickNames().Length > 0;
+	}
 }

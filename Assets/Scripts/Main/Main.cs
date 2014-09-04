@@ -69,7 +69,7 @@ public class Main : MonoBehaviour
     {      
         // The following are debug keys
         // If we press the R key, the level restarts
-        if ( Registry.inputHandler.ResetButton )
+        if ( Registry.inputHandler.resetButton )
         {
             RestartLevel(); 
         }
@@ -98,6 +98,14 @@ public class Main : MonoBehaviour
     // ************************************************************************************
     public void GoToNextLevel()
     {
+		if ( Registry.replayViewer.enabled )
+			Registry.replayViewer.StartNextReplay();
+		else {	     			
+			Registry.playtestManager.SendPlaytestData(Registry.main.currentUser
+                  , Registry.main.timer.CurrentTime, Registry.main.engineVersion
+                  , Registry.main.mapPackVersion);
+		}
+
         map.GetNextLevel();
     }
 
@@ -136,6 +144,12 @@ public class Main : MonoBehaviour
 
     public void RestartLevel()
     {
+		if ( Registry.playtestManager.enableSendingPlaytestData ) {
+			Registry.playtestManager.SendPlaytestData(Registry.main.currentUser
+	          , Registry.main.timer.CurrentTime, Registry.main.engineVersion
+	          , Registry.main.mapPackVersion);
+		}
+
         map.RestartLevel();
         StartLevel();
     }

@@ -1,12 +1,13 @@
 using UnityEngine;
 using System.Collections;
 
-public class MenuLevelRecap : Menu {
+public class MenuLevelRecap : Menu 
+{
+	static private float MENU_HEIGHT = 120;
+	static private float MENU_WIDTH = 400;
 
-    string levelComment = "";
-
-	// Use this for initialization
-	override protected void Start () {
+	override protected void Start () 
+	{
         base.Start();  
 
 		if ( Registry.replayViewer.enabled == false )
@@ -18,13 +19,10 @@ public class MenuLevelRecap : Menu {
         base.Update();
 
         if (isVisible) {
-            if (Input.GetKeyDown(KeyCode.Z)
-			    || Input.GetKeyDown(KeyCode.Space)) {                
+            if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Use") || Input.GetButtonDown("PickUp"))         
                 GoToNextLevel();
-            }
-            else if (Input.GetKeyDown(KeyCode.X)) {
+			else if (Input.GetButtonDown("Restart"))
                 RestartLevel();
-            }
         }
     }
 
@@ -35,26 +33,14 @@ public class MenuLevelRecap : Menu {
     }
 
     private void RestartLevel()
-    {
-        Registry.playtestManager.SendPlaytestData(Registry.main.currentUser
-                , Registry.main.timer.CurrentTime, Registry.main.engineVersion
-                , Registry.main.mapPackVersion, levelComment);
+    {       
         Registry.main.RestartLevel();
         Hide();
     }
 
     private void GoToNextLevel()
-    {        
-		if ( Registry.replayViewer.enabled )
-			Registry.replayViewer.StartNextReplay();
-		else {
-	        Registry.playtestManager.SendPlaytestData(Registry.main.currentUser
-	                , Registry.main.timer.CurrentTime, Registry.main.engineVersion
-	                , Registry.main.mapPackVersion, levelComment);
-	        levelComment = "";
-	        Registry.main.GoToNextLevel();        
-		}
-
+    {       
+		Registry.main.GoToNextLevel();  
 		Hide();
     }
 
@@ -62,29 +48,28 @@ public class MenuLevelRecap : Menu {
     {
         if (isVisible)
         {
+
+
             float centerPosition = (Screen.width / 2);
-            float topPosition = (Screen.height / 2) - (menuHeight / 2);
+            float topPosition = (Screen.height / 2) - (MENU_HEIGHT / 2);
             GUI.Box(new Rect
-                ( centerPosition - (menuWidth / 2)
+                ( centerPosition - (MENU_WIDTH / 2)
                 , topPosition
-                , menuWidth, menuHeight), "Level Completed");
+			 , MENU_WIDTH, MENU_HEIGHT), "");
 
-            GUI.skin.label.alignment = TextAnchor.UpperCenter;
-            GUI.Label(new Rect
-                ( leftPosition
-                , topPosition + 30
-                , menuWidth, 50), "Message to the developer");
-            GUI.skin.label.alignment = TextAnchor.UpperLeft;   
+			GUIStyle guiStyle = new GUIStyle();
+			guiStyle.fontSize = 30;
+			guiStyle.normal.textColor = Color.white;
+			guiStyle.alignment = TextAnchor.MiddleCenter;
 
-            levelComment = GUI.TextArea(new Rect
-                ( centerPosition - (menuWidth / 2) + 10
-                , topPosition + 50
-                , menuWidth - 20, 200), levelComment);
+			GUI.skin.label.alignment = TextAnchor.UpperCenter;
+            GUI.Label(new Rect( leftPosition, topPosition + 10, MENU_WIDTH, 40), "Level Completed!", guiStyle);
+			GUI.skin.label.alignment = TextAnchor.UpperLeft;   
             
             GUI.skin.label.alignment = TextAnchor.UpperCenter;
             if (GUI.Button(new Rect
                 ( centerPosition - buttonWidth - 10
-                , (Screen.height / 2) + (menuHeight / 2) - buttonHeight - 10
+                , (Screen.height / 2) + (MENU_HEIGHT / 2) - buttonHeight - 10
                 , buttonWidth, buttonHeight), "Restart"))
             {
                 RestartLevel();
@@ -92,7 +77,7 @@ public class MenuLevelRecap : Menu {
 
             if (GUI.Button(new Rect
                 ( centerPosition + 10
-                , (Screen.height / 2) + (menuHeight / 2) - buttonHeight - 10
+                , (Screen.height / 2) + (MENU_HEIGHT / 2) - buttonHeight - 10
                 , buttonWidth, buttonHeight), "Next Level"))
             {
                 GoToNextLevel();

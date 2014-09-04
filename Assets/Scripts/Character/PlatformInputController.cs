@@ -60,7 +60,7 @@ public class PlatformInputController : MonoBehaviour {
 	
 	    // Apply the direction to the CharacterMotor
 	    motor.inputMoveDirection = directionVector;
-	    motor.inputJump = Registry.inputHandler.JumpButton;
+	    motor.inputJump = Registry.inputHandler.jumpButton;
 	
 	    // Set rotation to the move direction	
 	    if (autoRotate && directionVector.sqrMagnitude > 0.01) {

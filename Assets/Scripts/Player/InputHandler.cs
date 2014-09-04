@@ -49,21 +49,9 @@ public class InputHandler : MonoBehaviour {
 			HandleHorizontalInput();
 			HandleJumpInput();
 			HandleUseInput();
-
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedPickUp);
-                PressedPickUp();
-            }
-            else if (Input.GetKeyDown(KeyCode.R))
-            {
-                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedReset);
-                PressedReset();
-            }
-			else if (Input.GetKeyDown(KeyCode.M))
-			{
-				Registry.bgmManager.toggleStatus();
-			}
+			HandlePickUpInput();
+			HandleRestartInput();
+			HandleMuteInput();
         }
 
         HandleAxis();
@@ -84,8 +72,7 @@ public class InputHandler : MonoBehaviour {
         if ( _hasPressedRight)
             _xAxis += axisSensitivity;
         else if (_hasPressedLeft)
-            _xAxis -= axisSensitivity;        
-        // If no keys are pressed
+            _xAxis -= axisSensitivity;    
         else
         {
             if (_xAxis > axisSensitivity)
@@ -199,13 +186,11 @@ public class InputHandler : MonoBehaviour {
 
 	void HandleJumpInput ()
 	{
-		if (Input.GetButtonDown("Jump"))
-		{
+		if (Input.GetButtonDown("Jump")) {
 			Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedJump);
 			PressedJump();
 		}
-		else if (Input.GetButtonUp("Jump"))
-		{
+		else if (Input.GetButtonUp("Jump")) {
 			Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedJump);
 			ReleasedJump();
 		}
@@ -213,10 +198,32 @@ public class InputHandler : MonoBehaviour {
 
 	void HandleUseInput()
 	{
-		if (Input.GetButtonDown("Use"))
-		{
+		if (Input.GetButtonDown("Use"))	{
 			Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedUse);
 			PressedUse();
+		}
+	}
+
+	void HandlePickUpInput ()
+	{
+		if (Input.GetButtonDown("PickUp")) {
+			Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedPickUp);
+			PressedPickUp();
+		}
+	}
+
+	void HandleRestartInput ()
+	{
+		if (Input.GetButtonDown("Restart"))	{
+			Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedReset);
+			PressedReset();
+		}
+	}
+
+	void HandleMuteInput ()
+	{
+		if (Input.GetButtonDown("Mute")) {
+			Registry.bgmManager.toggleStatus();
 		}
 	}
 

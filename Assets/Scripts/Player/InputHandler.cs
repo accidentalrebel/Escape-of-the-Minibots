@@ -70,12 +70,14 @@ public class InputHandler : MonoBehaviour {
                 ReleasedLeft();
             }
             
-			if (Input.GetButtonDown("Jump"))
+			if (Input.GetButtonDown("Jump") 
+			    || Input.GetButtonDown("Jump-Joystick"))
             {
                 Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedJump);
                 PressedJump();
             }
-            else if (Input.GetButtonUp("Jump"))
+            else if (Input.GetButtonUp("Jump")
+			    || Input.GetButtonUp("Jump-Joystick"))
             {
                 Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedJump);
                 ReleasedJump();

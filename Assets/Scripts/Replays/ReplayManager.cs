@@ -68,39 +68,39 @@ public class ReplayManager : MonoBehaviour {
 
             if (currentEvent.eventType == ReplayEvent.EventType.PressedRight)
             {
-                Registry.inputHandler.PressedRight();
+                Registry.inputHandler.OnPressedRight();
             }
             else if (currentEvent.eventType == ReplayEvent.EventType.ReleasedRight)
             {
-                Registry.inputHandler.ReleasedRight();
+                Registry.inputHandler.OnReleasedRight();
             }
             else if (currentEvent.eventType == ReplayEvent.EventType.PressedLeft)
             {
-                Registry.inputHandler.PressedLeft();
+                Registry.inputHandler.OnPressedLeft();
             }
             else if (currentEvent.eventType == ReplayEvent.EventType.ReleasedLeft)
             {
-                Registry.inputHandler.ReleasedLeft();
+                Registry.inputHandler.OnReleasedLeft();
             }
             else if (currentEvent.eventType == ReplayEvent.EventType.PressedJump)
             {
-                Registry.inputHandler.PressedJump();
+                Registry.inputHandler.OnPressedJump();
             }
             else if (currentEvent.eventType == ReplayEvent.EventType.ReleasedJump)
             {
-                Registry.inputHandler.ReleasedJump();
+                Registry.inputHandler.OnReleasedJump();
             }
             else if (currentEvent.eventType == ReplayEvent.EventType.PressedUse)
             {
-                Registry.inputHandler.PressedUse();
+                Registry.inputHandler.OnPressedUse();
             }
             else if (currentEvent.eventType == ReplayEvent.EventType.PressedPickUp)
             {
-                Registry.inputHandler.PressedPickUp();
+                Registry.inputHandler.OnPressedPickUp();
             }
             else if (currentEvent.eventType == ReplayEvent.EventType.PressedReset)
             {
-                Registry.inputHandler.PressedReset();
+                Registry.inputHandler.OnPressedReset();
             }
 
             index++;

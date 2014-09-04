@@ -90,48 +90,57 @@ public class InputHandler : MonoBehaviour {
             _xAxis = -1;
     }
 
-	public void PressedRight()
+	public void OnPressedRight()
     {
+		Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedRight);
         _hasPressedRight = true;
     }
 
-	public void ReleasedRight()
+	public void OnReleasedRight()
     {
+		Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedRight);
         _hasPressedRight = false;
     }
 
-	public void PressedLeft()
+	public void OnPressedLeft()
     {
+		Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedLeft);
         _hasPressedLeft = true;
     }
 
-	public void ReleasedLeft()
+	public void OnReleasedLeft()
     {
+		Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedLeft);
         _hasPressedLeft = false;
     }
 
-	public void PressedJump()
+	public void OnPressedJump()
     {
+		Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedJump);
         _jumpButton = true;
     }
 
-	public void ReleasedJump()
+	public void OnReleasedJump()
     {
+		Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedJump);
         _jumpButton = false;
     }
 
-	public void PressedUse()
+	public void OnPressedUse()
     {        
+		Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedUse);
         _useButton = true;
     }
 
-	public void PressedPickUp()
+	public void OnPressedPickUp()
     {
+		Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedPickUp);
         _pickupButton = true;
     }
 
-	public void PressedReset()
+	public void OnPressedReset()
     {
+		Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedReset);
         _resetButton = true;
     }
 
@@ -152,79 +161,60 @@ public class InputHandler : MonoBehaviour {
 	{
 		if ( isJoystickEnabled && IsJoystickConnected() ) {
 			if ( Input.GetAxis("Horizontal") < 0 ) {
-				PressedLeft();
-				ReleasedRight();
+				OnPressedLeft();
+				OnReleasedRight();
 			}
 			else if ( Input.GetAxis("Horizontal") > 0 ) {
-				PressedRight();
-				ReleasedLeft();	
+				OnPressedRight();
+				OnReleasedLeft();	
 			}
 			else {
-				ReleasedRight();
-				ReleasedLeft();			
+				OnReleasedRight();
+				OnReleasedLeft();			
 			}
 		}
 		else {
-			if (Input.GetButtonDown("Right")) {
-				Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedRight);
-				PressedRight();
-			}
-			else if (Input.GetButtonUp("Right")) {
-				Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedRight);
-				ReleasedRight();
-			}
-			else if (Input.GetButtonDown("Left")) {
-				Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedLeft);
-				PressedLeft();
-			}
-			else if (Input.GetButtonUp("Left"))	{
-				Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedLeft);
-				ReleasedLeft();
-			}
+			if (Input.GetButtonDown("Right"))
+				OnPressedRight();
+			else if (Input.GetButtonUp("Right"))
+				OnReleasedRight();
+			else if (Input.GetButtonDown("Left"))
+				OnPressedLeft();
+			else if (Input.GetButtonUp("Left"))
+				OnReleasedLeft();
 		}
 	}
 
 	void HandleJumpInput ()
 	{
-		if (Input.GetButtonDown("Jump")) {
-			Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedJump);
-			PressedJump();
-		}
-		else if (Input.GetButtonUp("Jump")) {
-			Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedJump);
-			ReleasedJump();
-		}
+		if (Input.GetButtonDown("Jump"))
+			OnPressedJump();
+		else if (Input.GetButtonUp("Jump"))
+			OnReleasedJump();
 	}
 
 	void HandleUseInput()
 	{
-		if (Input.GetButtonDown("Use"))	{
-			Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedUse);
-			PressedUse();
-		}
+		if (Input.GetButtonDown("Use"))
+			OnPressedUse();
 	}
 
 	void HandlePickUpInput ()
 	{
-		if (Input.GetButtonDown("PickUp")) {
-			Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedPickUp);
-			PressedPickUp();
-		}
+		if (Input.GetButtonDown("PickUp"))
+			OnPressedPickUp();
 	}
 
 	void HandleRestartInput ()
 	{
-		if (Input.GetButtonDown("Restart"))	{
-			Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedReset);
-			PressedReset();
-		}
+		if (Input.GetButtonDown("Restart"))
+			OnPressedReset();
 	}
 
 	void HandleMuteInput ()
 	{
-		if (Input.GetButtonDown("Mute")) {
+		if (Input.GetButtonDown("Mute"))
 			Registry.bgmManager.toggleStatus();
-		}
 	}
 
 	bool IsJoystickConnected() 

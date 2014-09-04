@@ -4,6 +4,7 @@ using System.Collections;
 public class InputHandler : MonoBehaviour {
 
     public float axisSensitivity = 0.1f;
+	public bool isJoystickEnabled;
 
     float _xAxis = 0;
     public float xAxis
@@ -44,44 +45,8 @@ public class InputHandler : MonoBehaviour {
 
         if (!Registry.main.isReplayMode && !Registry.replayViewer.enabled)
         {
-			if ( Input.GetAxis("Horizontal") < 0 ) {
-				PressedLeft();
-			}
-			else if ( Input.GetAxis("Horizontal") > 0 ) {
-				PressedRight();
-			}
-			else
-			{
-				ReleasedRight();
-				ReleasedLeft();
-			}
-
-            if (Input.GetKeyDown(KeyCode.D)
-                || Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedRight);
-                PressedRight();
-            }
-            else if (Input.GetKeyUp(KeyCode.D)
-                || Input.GetKeyUp(KeyCode.RightArrow))
-            {
-                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedRight);
-                ReleasedRight();
-            }
-            
-			if (Input.GetKeyDown(KeyCode.A)
-                || Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedLeft);
-                PressedLeft();
-            }
-            else if (Input.GetKeyUp(KeyCode.A)
-                || Input.GetKeyUp(KeyCode.LeftArrow))
-            {
-                Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedLeft);
-                ReleasedLeft();
-            }
-            
+			HandleHorizontalInput();
+                    
 			if (Input.GetButtonDown("Jump"))
             {
                 Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedJump);
@@ -203,4 +168,46 @@ public class InputHandler : MonoBehaviour {
     {
         _resetButton = true;
     }
+
+	// ************************************************************************************
+	// HELPERS
+	// ************************************************************************************
+	void HandleHorizontalInput()
+	{
+		if ( isJoystickEnabled && IsJoystickConnected() ) {
+			if ( Input.GetAxis("Horizontal") < 0 ) {
+				PressedLeft();
+			}
+			else if ( Input.GetAxis("Horizontal") > 0 ) {
+				PressedRight();
+			}
+			else {
+				ReleasedRight();
+				ReleasedLeft();			
+			}
+		}
+		else {
+			if (Input.GetButtonDown("Right")) {
+				Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedRight);
+				PressedRight();
+			}
+			else if (Input.GetButtonUp("Right")) {
+				Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedRight);
+				ReleasedRight();
+			}
+			else if (Input.GetButtonDown("Left")) {
+				Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.PressedLeft);
+				PressedLeft();
+			}
+			else if (Input.GetButtonUp("Left"))	{
+				Registry.replayManager.AddEvent(Time.time, ReplayEvent.EventType.ReleasedLeft);
+				ReleasedLeft();
+			}
+		}
+	}
+
+	bool IsJoystickConnected() 
+	{
+		return Input.GetJoystickNames().Length > 0;
+	}
 }

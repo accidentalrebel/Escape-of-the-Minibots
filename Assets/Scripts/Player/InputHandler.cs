@@ -52,6 +52,7 @@ public class InputHandler : MonoBehaviour {
 			HandlePickUpInput();
 			HandleRestartInput();
 			HandleMuteInput();
+            HandleResetGameInput();
         }
 
         HandleAxis();
@@ -220,6 +221,15 @@ public class InputHandler : MonoBehaviour {
 		if (Input.GetButtonDown("Mute"))
 			Registry.bgmManager.toggleStatus();
 	}
+
+    void HandleResetGameInput()
+    {
+        if (Input.GetButtonDown("ResetGame"))
+        {
+            Registry.map.ClearLevel();
+            Registry.map.levelReader.LoadLevel("001");
+        }
+    }
 
 	bool IsJoystickConnected() 
 	{

@@ -1,5 +1,5 @@
 # Escape-of-the-Minibots
-Source for my unfinished Unity puzzle platformer game.
+Escape of the Minibots is a puzzle platformer game where you control more than one character simultaneously.
 
 I still have plans of continuing this project but will redo everything from scratch.
 
